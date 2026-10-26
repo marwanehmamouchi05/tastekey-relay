@@ -3,6 +3,7 @@ const origin = { Origin: "http://localhost:3000" };
 test("Personal: discovery, verification, persistence, correction, consent, deletion", async ({
   page,
 }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/personal/discover");
   await page.getByLabel("A film you love").fill("Interstellar");
   await page.getByRole("button", { name: "Add as my own taste" }).click();
@@ -34,6 +35,14 @@ test("Personal: discovery, verification, persistence, correction, consent, delet
     data.nodes.some((n: any) => n.label === "Luxury architecture"),
   ).toBeTruthy();
   expect(data.nodes.some((n: any) => n.label === "Interstellar")).toBeTruthy();
+  await page.goto("/personal/discover");
+  await expect(
+    page.getByText(/Qloo credential (pending|configured)/, { exact: true }),
+  ).toBeVisible();
+  await page.screenshot({
+    path: "docs/screenshots/personal-desktop.png",
+    fullPage: true,
+  });
   await page.goto("/personal/relay");
   await expect(page.getByText("Nothing is shared yet")).toBeVisible();
   await page
@@ -75,6 +84,15 @@ test("Studio: save/reopen business, baseline strategy, plan, outcome, and learni
   await expect(page.getByLabel("Business name")).toHaveValue(
     "Atlas Test Cinema",
   );
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/studio/dashboard");
+  await expect(
+    page.getByText(/Qloo credential (pending|configured)/, { exact: true }),
+  ).toBeVisible();
+  await page.screenshot({
+    path: "docs/screenshots/studio-desktop.png",
+    fullPage: true,
+  });
   await page.goto("/studio/analysis");
   await page.getByRole("button", { name: "Run no-Qloo baseline" }).click();
   await expect(
@@ -228,7 +246,7 @@ test("Mobile layout, keyboard focus and customer privacy limitation", async ({
     "BODY",
   );
   await page.screenshot({
-    path: "test-results/studio-mobile.png",
+    path: "docs/screenshots/studio-mobile.png",
     fullPage: true,
   });
 });

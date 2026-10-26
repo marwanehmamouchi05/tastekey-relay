@@ -74,8 +74,8 @@ export default function TasteGraph({
           items.push({
             id: c.id,
             position: c.position || {
-              x: 400 + Math.cos(a + (j - 1) * 0.29) * 450,
-              y: 240 + Math.sin(a + (j - 1) * 0.29) * 330,
+              x: 400 + Math.cos(a + (j - 1) * 0.6) * 450,
+              y: 240 + Math.sin(a + (j - 1) * 0.6) * 330,
             },
             data: {
               label: (

@@ -2,6 +2,12 @@
 
 **One intelligence, two worlds.** A local-first personal taste identity and a private business cultural advisor, sharing a Qloo integration and evidence model.
 
+[Public source repository](https://github.com/marwanehmamouchi05/tastekey-relay) · [Verified CI run](https://github.com/marwanehmamouchi05/tastekey-relay/actions/runs/40368538220)
+
+![Personal walkthrough using explicitly entered sample tastes](docs/screenshots/personal-desktop.png)
+
+Screenshots show synthetic test walkthroughs while live Qloo access is unconfigured. They are not live recommendation or customer outcome evidence.
+
 ## Current delivery status
 
 This is an implemented application with tested local workflows. **It is not submission-ready yet.** The event credential is pending, so no live Qloo execution, API coverage, explainability, event quota, or cultural recommendation quality has been verified. The model adapter has not been tested with a real provider. A durable public deployment is still required. Never describe the synthetic test fixtures as live Qloo evidence.

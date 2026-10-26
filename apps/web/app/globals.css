@@ -770,12 +770,12 @@ footer a {
   color: #8a9bac;
 }
 .graph-label strong {
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.4;
   color: #4a6682;
 }
 .graph-label span {
-  font-size: 9px;
+  font-size: 11px;
   color: #8593a2;
 }
 .graph-preference.inferred .graph-label strong {

@@ -20,7 +20,7 @@ This file tracks implemented behavior separately from externally verified delive
 | Proof comparisons                                   | Common-pool exploratory observations                             | No live experiments or performance improvement claimed                     |
 | Studio evaluation rubric                            | Documented human-review method                                   | In-app reviewer editor and human review results pending                    |
 | Security                                            | Validation, tenant scoping, Origin checks, secret boundaries     | Negative tests; production authentication/CSP review still needed          |
-| Public source repository                            | Local Git repository prepared                                    | See actual remote for publication status                                   |
+| Public source repository                            | Published on GitHub                                              | https://github.com/marwanehmamouchi05/tastekey-relay                       |
 | Public HTTPS deployment                             | Docker and runbook prepared                                      | Host access, secrets, persistent volume and live verification required     |
 | Submission                                          | Honest draft documentation                                       | Not ready until live and public acceptance checks pass                     |
 
@@ -32,3 +32,7 @@ This file tracks implemented behavior separately from externally verified delive
 4. Run the actual connected judge story, collect genuine evidence/screenshots, and complete controlled human evaluations before making quality claims.
 
 The full two-product scope remains the target. Implemented fixture and baseline workflows are not evidence that the complete blueprint is done.
+
+## Verified local checkpoint
+
+33 unit/integration tests and six browser/API tests passed. One live Qloo test remains explicitly skipped until configured. Production build and TypeScript checks passed. Dependency audit: no known vulnerabilities. GitHub CI passed for commit 2fcc597. An earlier local browser run was interrupted by host network suspension; a clean rerun passed all six tests. No cloud resources have been created yet.
