@@ -237,7 +237,15 @@ function Discover({ profile, update, error }: Props) {
             )}
           </div>
           <label className="field-label" htmlFor="taste">
-            A {names[category].toLowerCase()} you love
+            {category === "artist"
+              ? "An artist you love"
+              : category === "book"
+                ? "A book you love"
+                : category === "place"
+                  ? "A place you love"
+                  : category === "design"
+                    ? "A design you love"
+                    : `A ${names[category].toLowerCase()} you love`}
           </label>
           <div className="search-input">
             <Search size={19} />

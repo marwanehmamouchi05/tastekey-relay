@@ -4,13 +4,13 @@
 
 [Public source repository](https://github.com/marwanehmamouchi05/tastekey-relay) · [Verified CI run](https://github.com/marwanehmamouchi05/tastekey-relay/actions/runs/40368538220)
 
-![Personal walkthrough using explicitly entered sample tastes](docs/screenshots/personal-desktop.png)
+![Live Qloo entertainment recommendations for explicitly entered test tastes](docs/screenshots/personal-live-entertainment.png)
 
-Screenshots show synthetic test walkthroughs while live Qloo access is unconfigured. They are not live recommendation or customer outcome evidence.
+Screenshots include fixture walkthroughs and verified live-Qloo captures. Live Studio captures use an explicitly synthetic business brief. No screenshot is evidence of actual customer demand or business outcomes.
 
 ## Current delivery status
 
-This is an implemented application with tested local workflows. **It is not submission-ready yet.** The event credential is pending, so no live Qloo execution, API coverage, explainability, event quota, or cultural recommendation quality has been verified. The model adapter has not been tested with a real provider. A durable public deployment is still required. Never describe the synthetic test fixtures as live Qloo evidence.
+This is an implemented application with tested local workflows. **It is not submission-ready yet.** The event credential is privately configured. Live search, movie recommendations, cross-category books, explainability and a Casablanca location signal have been verified against the issued hackathon endpoint. Entertainment, shopping-brand inspiration, travel destinations, Studio analysis, an accepted action plan and a changed-city/budget scenario also passed a live browser workflow. Event quota/expiry and recommendation quality have not been established. The model adapter has not been tested with a real provider. A durable public deployment is still required. Never describe the synthetic test fixtures as live Qloo evidence.
 
 ### Run locally
 
@@ -27,6 +27,7 @@ Configure Qloo privately using the supported event harness:
 
 ```sh
 pnpm qloo -- --version
+pnpm qloo -- config set base-url https://hackathon.api.qloo.com
 pnpm qloo -- setup --qloo
 pnpm qloo -- setup --status
 ```
@@ -37,7 +38,7 @@ Alternatively, copy `.env.example` to `apps/web/.env.local` and configure `QLOO_
 pnpm verify:qloo
 ```
 
-This live check resolves an unambiguous Interstellar reference and tests movie, book, and Casablanca location requests. It saves actual, public-cultural evidence only after success. It currently fails honestly without an event credential. A success does not establish all categories or all Studio markets: validate the actual judge story separately.
+This live check resolves an unambiguous Interstellar reference and tests movie, book, and Casablanca location requests. It saves actual, public-cultural evidence only after success. It fails honestly without an event credential. The initial live verification is recorded in `docs/live-evidence/qloo-verification.json`. A success does not establish all categories or all Studio markets: validate the actual judge story separately.
 
 ### Try Personal
 
@@ -103,4 +104,4 @@ Use a long-running Node 24 container with a persistent writable volume. A static
 - [Public API documentation](https://github.com/qloo/docs-public)
 - [Hackathon submission requirements](https://qloo.devpost.com/)
 
-MIT licensed. Public cultural relationships are not evidence of personal identity, sensitive traits, spending power, or future behavior.
+Source code is MIT licensed. Qloo-derived evidence remains subject to Qloo’s data terms and is not relicensed by this project. Public cultural relationships are not evidence of personal identity, sensitive traits, spending power, or future behavior.

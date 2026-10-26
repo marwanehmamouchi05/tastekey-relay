@@ -1,5 +1,10 @@
 import { callQloo, configured } from "../packages/qloo-adapter/index";
 import { writeFileSync, mkdirSync } from "node:fs";
+import type { QlooEvidence } from "../packages/shared-types/index";
+const publicEvidence = (e: QlooEvidence) => ({
+  ...e,
+  entities: e.entities.map(({ description, ...entity }) => entity),
+});
 async function main() {
   if (!(await configured()))
     throw new Error(
@@ -30,10 +35,10 @@ async function main() {
     JSON.stringify(
       {
         at: new Date().toISOString(),
-        search,
-        movie,
-        cross,
-        city,
+        search: publicEvidence(search),
+        movie: publicEvidence(movie),
+        cross: publicEvidence(cross),
+        city: publicEvidence(city),
         limitation:
           "Actual public cultural results; no personal data. Affinity is not a probability.",
       },

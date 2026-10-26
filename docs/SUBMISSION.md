@@ -16,7 +16,7 @@ TasteKey Studio saves private business profiles and supports cultural investigat
 
 The server-side adapter uses the event-supported official Qloo CLI to resolve reviewed entity choices and retrieve cultural relationships, with bounded calls and visible provenance. The product does not treat aggregate affinity as an individual's identity or probability of liking something.
 
-**Pending validation:** No live Qloo request has been completed in the current environment because the organizer-issued credential is pending. Add actual request-to-result evidence after successful validation; do not present synthetic unit fixtures as live results.
+**Verified integration:** The issued hackathon endpoint successfully resolved Interstellar and returned movie recommendations, cross-category book affinities, location-based movie results for Casablanca, and explainability. Actual evidence is stored in docs/live-evidence/qloo-verification.json. Synthetic unit fixtures remain separate. No recommendation-quality or business-outcome improvement is claimed.
 
 ## Technical implementation
 
@@ -30,7 +30,7 @@ Default strategy planning and hypothesis templates are deterministic. Optional A
 
 - Public live URL: pending
 - Public source URL: record after repository publication
-- Actual Qloo workflows and redacted evidence: pending credential
+- Actual Qloo workflows and redacted evidence: initial live evidence recorded in docs/live-evidence/qloo-verification.json
 - Measured experiments and sample sizes: none collected yet
 - Screenshots: capture verified flows without secrets
 

@@ -28,7 +28,7 @@ unset metadata_token
 if [[ ! "$public_ip" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then echo 'No public IPv4 available.'; exit 1; fi
 public_host="tastekey.${public_ip}.sslip.io"
 install -m 600 /dev/null /opt/tastekey-relay/.env
-printf 'APP_ORIGIN=https://%s\nTASTEKEY_DB_PATH=/app/data/tastekey.db\nQLOO_REQUESTS_PER_HOUR=60\n' "$public_host" > .env
+printf 'APP_ORIGIN=https://%s\nTASTEKEY_DB_PATH=/app/data/tastekey.db\nQLOO_REQUESTS_PER_HOUR=60\nQLOO_BASE_URL=https://hackathon.api.qloo.com\nQLOO_TRUSTED_BASE_URL=https://hackathon.api.qloo.com\n' "$public_host" > .env
 docker build -t tastekey-relay:local .
 docker network create tastekey-network
 docker volume create tastekey-data

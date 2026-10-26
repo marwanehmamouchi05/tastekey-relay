@@ -54,10 +54,15 @@ async function readConfiguration() {
       [binPath(), "setup", "--status"],
       { timeout: 10000, maxBuffer: 32768 },
     );
-    return !stdout.includes("no API credential");
-  } catch {
-    return false;
+    return qlooReadyFromStatus(stdout);
+  } catch (error) {
+    // The harness exits 1 when the optional chat model is absent, even if Qloo is ready.
+    const output = (error as { stdout?: unknown }).stdout;
+    return typeof output === "string" && qlooReadyFromStatus(output);
   }
+}
+export function qlooReadyFromStatus(output: string) {
+  return /Qloo data:\s*ready\b/.test(output);
 }
 export function normalizeEntities(raw: unknown, category: Category): Entity[] {
   if (!raw || typeof raw !== "object")
