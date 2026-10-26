@@ -1,0 +1,13 @@
+services:
+  tastekey:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file: .env
+    environment:
+      TASTEKEY_DB_PATH: /app/data/tastekey.db
+    volumes:
+      - tastekey-data:/app/data
+    restart: unless-stopped
+volumes:
+  tastekey-data:
