@@ -1,0 +1,48 @@
+{
+  "name": "tastekey-relay",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.20.0",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "pnpm --filter @tastekey/web dev",
+    "build": "pnpm --filter @tastekey/web build",
+    "start": "pnpm --filter @tastekey/web start",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "typecheck": "tsc --noEmit -p apps/web/tsconfig.json",
+    "qloo": "qloo",
+    "verify:qloo": "node --env-file-if-exists=apps/web/.env.local --import tsx scripts/verify-qloo.ts",
+    "format": "prettier --write apps packages tests scripts *.ts *.json *.yaml docs README.md",
+    "format:check": "prettier --check apps packages tests scripts *.ts *.json *.yaml docs README.md"
+  },
+  "dependencies": {
+    "@qloo/qloo-harness": "0.1.26",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^24.10.0",
+    "prettier": "^3.9.10",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "brace-expansion": "5.0.12",
+      "undici": "8.12.3"
+    },
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "@tailwindcss/oxide",
+      "sharp"
+    ]
+  }
+}
