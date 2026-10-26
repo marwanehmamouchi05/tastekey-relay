@@ -1,0 +1,30 @@
+{
+  "verifiedAt": "2026-10-26T23:50:12.457Z",
+  "origin": "https://tastekey.52.47.205.18.sslip.io",
+  "applicationRevision": "a24261399710f1ce9de5da73d42596f4f2e01394",
+  "browserTests": {
+    "passed": 7,
+    "durationSeconds": 41.1,
+    "liveQlooCaseSeconds": 24.3,
+    "syntheticBusinessInputs": true
+  },
+  "status": {
+    "qloo": true,
+    "model": false
+  },
+  "persistence": "Same private session and synthetic business survived full host reboot; verification workspace removed afterward.",
+  "security": {
+    "validTLS": true,
+    "appUid": 1000,
+    "credentialFileMode": "600",
+    "credentialOwner": "root",
+    "persistentVolume": "tastekey-data",
+    "ssh": "Lightsail browser service only"
+  },
+  "limitations": [
+    "Optional model provider unconfigured",
+    "No verified travel prices or booking availability",
+    "No real aggregate ingestion/withdrawal",
+    "No human evaluation or measured improvement"
+  ]
+}

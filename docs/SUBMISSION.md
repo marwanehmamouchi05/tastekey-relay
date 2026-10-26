@@ -28,10 +28,10 @@ Default strategy planning and hypothesis templates are deterministic. Optional A
 
 ## Submission fields to complete
 
-- Public live URL: pending
-- Public source URL: record after repository publication
+- Public live URL: https://tastekey.52.47.205.18.sslip.io/personal/discover (Studio: https://tastekey.52.47.205.18.sslip.io/studio/onboarding)
+- Public source URL: https://github.com/marwanehmamouchi05/tastekey-relay
 - Actual Qloo workflows and redacted evidence: initial live evidence recorded in docs/live-evidence/qloo-verification.json
 - Measured experiments and sample sizes: none collected yet
-- Screenshots: capture verified flows without secrets
+- Screenshots: verified local flows in docs/screenshots; public deployment captures in docs/screenshots/public
 
 Proposed story: discover a film preference, verify what matters, correct a hotel budget while preserving design taste, grant a context, then help a cinema owner investigate a cultural opportunity, compare a scenario, create a plan and record its real result.

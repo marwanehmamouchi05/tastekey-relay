@@ -21,14 +21,14 @@ This file tracks implemented behavior separately from externally verified delive
 | Studio evaluation rubric                            | Documented human-review method                                   | In-app reviewer editor and human review results pending                                                |
 | Security                                            | Validation, tenant scoping, Origin checks, secret boundaries     | Negative tests; production authentication/CSP review still needed                                      |
 | Public source repository                            | Published on GitHub                                              | https://github.com/marwanehmamouchi05/tastekey-relay                                                   |
-| Public HTTPS deployment                             | Docker and runbook prepared                                      | Host access, secrets, persistent volume and live verification required                                 |
+| Public HTTPS deployment                             | AWS Lightsail with static IP, Caddy HTTPS and persistent volume  | Seven public browser/API tests plus full server-reboot persistence passed                              |
 | Submission                                          | Honest draft documentation                                       | Not ready until live and public acceptance checks pass                                                 |
 
 ## Next external actions
 
 1. The issued credential is privately configured against https://hackathon.api.qloo.com. Search, movie/book affinities, explainability and Casablanca location signals passed. Validate the remaining contexts and confirm event quota/expiry.
 2. Configure and test a free-tier model provider if language understanding and AI-authored strategy proposals are required for the final story.
-3. Select an accessible host with Node subprocess support and persistent disk, configure secrets and public origin, deploy, and verify from a fresh session.
+3. Public deployment is verified. Monitor event quota/expiry, AWS credits and transfer use; maintain backups before real business use.
 4. Run the actual connected judge story, collect genuine evidence/screenshots, and complete controlled human evaluations before making quality claims.
 
 The full two-product scope remains the target. Implemented fixture and baseline workflows are not evidence that the complete blueprint is done.
@@ -44,3 +44,9 @@ The full two-product scope remains the target. Implemented fixture and baseline 
 ## Live browser checkpoint
 
 The explicit real-Qloo browser run passed (27.6 seconds): Interstellar and Radiohead resolution; authorized movie, brand and destination recommendations; a saved synthetic cinema brief; a real Qloo-backed analysis; accepted strategy to saved action; changed city (Casablanca to Rabat) and budget (500 to 250 MAD); and action persistence after reload. Recommendation requests contained only category and entity IDs, excluding budgets and raw profiles. Captures are in docs/screenshots/_-live-_.png. No model provider is configured, no real business outcomes were invented, and no AWS resource has yet been launched.
+
+## Public deployment checkpoint
+
+Live URL: https://tastekey.52.47.205.18.sslip.io. All seven public browser/API tests passed (41.1 seconds), including the real-Qloo Personal contexts and Studio analysis/scenario case (24.3 seconds). Tests used fresh browser sessions against HTTPS, without a local web server. Public captures are in docs/screenshots/public. The credential is private; the app runs as a non-root user. Static IP, browser-only SSH, Ubuntu updates, valid TLS and a persistent Docker volume are configured. A separate private business/session survived a full server reboot; Qloo readiness recovered after boot. Historical checkpoints above describe earlier states.
+
+Still incomplete: a real optional model provider; verified travel prices/availability; customer aggregate ingestion and withdrawal; human evaluations and quality measurements; production business account/recovery features. Public deployment does not establish that the complete blueprint is finished or automatically authorize a hackathon submission.

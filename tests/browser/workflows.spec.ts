@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
-const origin = { Origin: "http://localhost:3000" };
+const baseURL = process.env.PLAYWRIGHT_BASE_URL || "http://localhost:3000";
+const origin = { Origin: baseURL };
 test("Personal: discovery, verification, persistence, correction, consent, deletion", async ({
   page,
 }) => {
@@ -40,7 +41,7 @@ test("Personal: discovery, verification, persistence, correction, consent, delet
     page.getByText(/Qloo credential (pending|configured)/, { exact: true }),
   ).toBeVisible();
   await page.screenshot({
-    path: "docs/screenshots/personal-desktop.png",
+    path: `${process.env.PLAYWRIGHT_SCREENSHOTS || "docs/screenshots"}/personal-desktop.png`,
     fullPage: true,
   });
   await page.goto("/personal/relay");
@@ -90,7 +91,7 @@ test("Studio: save/reopen business, baseline strategy, plan, outcome, and learni
     page.getByText(/Qloo credential (pending|configured)/, { exact: true }),
   ).toBeVisible();
   await page.screenshot({
-    path: "docs/screenshots/studio-desktop.png",
+    path: `${process.env.PLAYWRIGHT_SCREENSHOTS || "docs/screenshots"}/studio-desktop.png`,
     fullPage: true,
   });
   await page.goto("/studio/analysis");
@@ -133,11 +134,11 @@ test("API: tenant isolation, cross-origin denial, no raw Personal profile exposu
   playwright,
 }) => {
   const a = await playwright.request.newContext({
-    baseURL: "http://localhost:3000",
+    baseURL,
     extraHTTPHeaders: origin,
   });
   const b = await playwright.request.newContext({
-    baseURL: "http://localhost:3000",
+    baseURL,
     extraHTTPHeaders: origin,
   });
   await a.post("/api/session");
@@ -246,7 +247,7 @@ test("Mobile layout, keyboard focus and customer privacy limitation", async ({
     "BODY",
   );
   await page.screenshot({
-    path: "docs/screenshots/studio-mobile.png",
+    path: `${process.env.PLAYWRIGHT_SCREENSHOTS || "docs/screenshots"}/studio-mobile.png`,
     fullPage: true,
   });
 });

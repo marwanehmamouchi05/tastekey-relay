@@ -43,7 +43,7 @@ test("live Qloo Personal contexts and Studio analysis/scenario with synthetic bu
     timeout: 35000,
   });
   await page.screenshot({
-    path: "docs/screenshots/personal-live-entertainment.png",
+    path: `${process.env.PLAYWRIGHT_SCREENSHOTS || "docs/screenshots"}/personal-live-entertainment.png`,
     fullPage: true,
   });
   await page.getByRole("button", { name: "Shopping", exact: true }).click();
@@ -65,7 +65,7 @@ test("live Qloo Personal contexts and Studio analysis/scenario with synthetic bu
     page.getByRole("heading", { name: "Shop by your own rules" }),
   ).toBeVisible();
   await page.screenshot({
-    path: "docs/screenshots/personal-live-shopping.png",
+    path: `${process.env.PLAYWRIGHT_SCREENSHOTS || "docs/screenshots"}/personal-live-shopping.png`,
     fullPage: true,
   });
   await page.getByRole("button", { name: "Travel", exact: true }).click();
@@ -81,7 +81,7 @@ test("live Qloo Personal contexts and Studio analysis/scenario with synthetic bu
     timeout: 35000,
   });
   await page.screenshot({
-    path: "docs/screenshots/personal-live-travel.png",
+    path: `${process.env.PLAYWRIGHT_SCREENSHOTS || "docs/screenshots"}/personal-live-travel.png`,
     fullPage: true,
   });
   expect(requests.map((r) => r.category)).toEqual([
@@ -140,7 +140,7 @@ test("live Qloo Personal contexts and Studio analysis/scenario with synthetic bu
   ).toBeVisible({ timeout: 35000 });
   await expect(page.locator(".strategy")).toHaveCount(4);
   await page.screenshot({
-    path: "docs/screenshots/studio-live-analysis.png",
+    path: `${process.env.PLAYWRIGHT_SCREENSHOTS || "docs/screenshots"}/studio-live-analysis.png`,
     fullPage: true,
   });
   await page
@@ -162,7 +162,7 @@ test("live Qloo Personal contexts and Studio analysis/scenario with synthetic bu
     page.getByText("Qloo response received", { exact: true }),
   ).toBeVisible({ timeout: 35000 });
   await page.screenshot({
-    path: "docs/screenshots/studio-live-scenario.png",
+    path: `${process.env.PLAYWRIGHT_SCREENSHOTS || "docs/screenshots"}/studio-live-scenario.png`,
     fullPage: true,
   });
   await page.reload();

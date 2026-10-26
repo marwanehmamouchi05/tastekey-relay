@@ -5,7 +5,7 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/web/package.json ./apps/web/package.json
 RUN npm install --global pnpm@10.20.0 && pnpm install --frozen-lockfile
 COPY . .
-RUN pnpm build && mkdir -p /app/data && chown -R node:node /app
+RUN pnpm build && mkdir -p /app/data && chown -R node:node /app/data /app/apps/web/.next
 ENV NODE_ENV=production
 ENV TASTEKEY_DB_PATH=/app/data/tastekey.db
 USER node

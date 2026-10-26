@@ -2,7 +2,7 @@
 
 **One intelligence, two worlds.** A local-first personal taste identity and a private business cultural advisor, sharing a Qloo integration and evidence model.
 
-[Public source repository](https://github.com/marwanehmamouchi05/tastekey-relay) · [Verified CI run](https://github.com/marwanehmamouchi05/tastekey-relay/actions/runs/40368538220)
+[Live Personal](https://tastekey.52.47.205.18.sslip.io/personal/discover) · [Live Studio](https://tastekey.52.47.205.18.sslip.io/studio/onboarding) · [Public source repository](https://github.com/marwanehmamouchi05/tastekey-relay) · [Verified CI run](https://github.com/marwanehmamouchi05/tastekey-relay/actions/runs/40419652354)
 
 ![Live Qloo entertainment recommendations for explicitly entered test tastes](docs/screenshots/personal-live-entertainment.png)
 
@@ -10,7 +10,7 @@ Screenshots include fixture walkthroughs and verified live-Qloo captures. Live S
 
 ## Current delivery status
 
-This is an implemented application with tested local workflows. **It is not submission-ready yet.** The event credential is privately configured. Live search, movie recommendations, cross-category books, explainability and a Casablanca location signal have been verified against the issued hackathon endpoint. Entertainment, shopping-brand inspiration, travel destinations, Studio analysis, an accepted action plan and a changed-city/budget scenario also passed a live browser workflow. Event quota/expiry and recommendation quality have not been established. The model adapter has not been tested with a real provider. A durable public deployment is still required. Never describe the synthetic test fixtures as live Qloo evidence.
+This is an implemented application with tested local workflows and a public HTTPS deployment. **The full blueprint is not complete; see the documented limitations.** The event credential is privately configured. Live search, movie recommendations, cross-category books, explainability and a Casablanca location signal have been verified against the issued hackathon endpoint. Entertainment, shopping-brand inspiration, travel destinations, Studio analysis, an accepted action plan and a changed-city/budget scenario also passed a live browser workflow. Event quota/expiry and recommendation quality have not been established. The model adapter has not been tested with a real provider. An AWS Lightsail deployment now serves both products over HTTPS with a static IP and private persistent storage. Public acceptance checks are recorded in docs/STATUS.md. Never describe the synthetic test fixtures as live Qloo evidence.
 
 ### Run locally
 
@@ -105,3 +105,7 @@ Use a long-running Node 24 container with a persistent writable volume. A static
 - [Hackathon submission requirements](https://qloo.devpost.com/)
 
 Source code is MIT licensed. Qloo-derived evidence remains subject to Qloo’s data terms and is not relicensed by this project. Public cultural relationships are not evidence of personal identity, sensitive traits, spending power, or future behavior.
+
+### Verify a public deployment
+
+Set `PLAYWRIGHT_BASE_URL` to the deployed HTTPS origin and run `pnpm test:e2e`. This skips the local server and uses fresh isolated browser sessions against that origin. Set `QLOO_BROWSER_LIVE=1` to opt into the live integration test and consume event quota. Set `PLAYWRIGHT_SCREENSHOTS=docs/screenshots/public` to preserve the earlier local captures. Public test briefs and reported outcomes are synthetic verification data.
