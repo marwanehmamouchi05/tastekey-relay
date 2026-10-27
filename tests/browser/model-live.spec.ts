@@ -96,6 +96,13 @@ test("live model correction and evidence-grounded Studio advisor preserve protec
   expect(analysis.mode).toBe("live");
   expect(analysis.modelUsed).toBe(true);
   expect(analysis.strategies).toHaveLength(4);
+  expect(
+    analysis.strategies.some((s: any) =>
+      s.rationale.startsWith(
+        "AI pilot interpretation; requires owner validation:",
+      ),
+    ),
+  ).toBe(true);
   for (const s of analysis.strategies) {
     expect(s.cost).toBeLessThanOrEqual(100);
     expect(

@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-27T08:58:36.501Z",
+  "verifiedAt": "2026-10-27T09:36:23.822Z",
   "provider": "AWS Bedrock",
   "model": "eu.amazon.nova-micro-v1:0",
   "region": "eu-west-3",
@@ -12,28 +12,36 @@
     "modelUsed": true,
     "strategies": [
       {
-        "title": "Test an offering around Avengers: Infinity War",
-        "rationale": "Qloo returned Avengers: Infinity War for the selected cultural references and Casablanca signal. Consider a cinema pilot using your catalog (Independent film screenings, subject to licensing.). Relevance to “Design a measurable weekly screening pilot” still needs owner review.",
+        "title": "Avengers: Infinity War Screening Pilot",
+        "rationale": "AI pilot interpretation; requires owner validation: Qloo identified 'Avengers: Infinity War' as a tentative topic of interest in Casablanca. Its relevance is bounded by its superhero genre appeal, which may attract film enthusiasts. However, this does not imply local demand or popularity.",
         "cost": 100,
-        "evidenceIds": ["7db7c074-d287-463f-9ee7-7228b53f15a1"]
+        "evidenceIds": [
+          "e401b288-8395-49fc-9139-1bdf8057cdef"
+        ]
       },
       {
-        "title": "Test an offering around Black Panther",
-        "rationale": "Qloo returned Black Panther for the selected cultural references and Casablanca signal. Consider a cinema pilot using your catalog (Independent film screenings, subject to licensing.). Relevance to “Design a measurable weekly screening pilot” still needs owner review.",
+        "title": "Black Panther Cultural Exploration",
+        "rationale": "AI pilot interpretation; requires owner validation: Qloo returned 'Black Panther' as a tentative cultural reference. Its relevance is bounded by its cultural impact and appeal to diverse audiences. This does not imply local demand or popularity.",
         "cost": 50,
-        "evidenceIds": ["7db7c074-d287-463f-9ee7-7228b53f15a1"]
+        "evidenceIds": [
+          "e401b288-8395-49fc-9139-1bdf8057cdef"
+        ]
       },
       {
-        "title": "Test an offering around Joker",
-        "rationale": "Qloo returned Joker for the selected cultural references and Casablanca signal. Consider a cinema pilot using your catalog (Independent film screenings, subject to licensing.). Relevance to “Design a measurable weekly screening pilot” still needs owner review.",
+        "title": "Joker Thematic Screening",
+        "rationale": "AI pilot interpretation; requires owner validation: Qloo identified 'Joker' as a tentative cultural reference. Its relevance is bounded by its psychological thriller genre appeal. This does not imply local demand or popularity.",
         "cost": 33,
-        "evidenceIds": ["7db7c074-d287-463f-9ee7-7228b53f15a1"]
+        "evidenceIds": [
+          "e401b288-8395-49fc-9139-1bdf8057cdef"
+        ]
       },
       {
-        "title": "Test an offering around Zack Snyder's Justice League",
-        "rationale": "Qloo returned Zack Snyder's Justice League for the selected cultural references and Casablanca signal. Consider a cinema pilot using your catalog (Independent film screenings, subject to licensing.). Relevance to “Design a measurable weekly screening pilot” still needs owner review.",
+        "title": "Zack Snyder's Justice League Pilot Screening",
+        "rationale": "AI pilot interpretation; requires owner validation: Qloo returned 'Zack Snyder's Justice League' as a tentative cultural reference. Its relevance is bounded by its unique visual style and appeal to fans of Snyder's direction. This does not imply local demand or popularity.",
         "cost": 25,
-        "evidenceIds": ["7db7c074-d287-463f-9ee7-7228b53f15a1"]
+        "evidenceIds": [
+          "e401b288-8395-49fc-9139-1bdf8057cdef"
+        ]
       }
     ],
     "trace": [
@@ -41,43 +49,37 @@
         "state": "Understand",
         "tool": "business-profile",
         "detail": "cinema in Casablanca; budget 500 MAD.",
-        "at": "2026-10-27T08:58:11.126Z"
+        "at": "2026-10-27T09:36:16.080Z"
       },
       {
         "state": "Learn",
         "tool": "outcome-history",
         "detail": "0 owner-reported outcomes reviewed; observations are not causal evidence.",
-        "at": "2026-10-27T08:58:11.126Z"
+        "at": "2026-10-27T09:36:16.080Z"
       },
       {
         "state": "Investigate",
         "tool": "tool-selection",
         "detail": "Use cultural references as interest signals, Casablanca as a location signal, and movie as the output category.",
-        "at": "2026-10-27T08:58:11.126Z"
+        "at": "2026-10-27T09:36:16.080Z"
       },
       {
         "state": "Evidence",
         "tool": "qloo api insights",
         "detail": "12 entities returned.",
-        "at": "2026-10-27T08:58:34.386Z"
+        "at": "2026-10-27T09:36:22.063Z"
       },
       {
         "state": "Constrain",
         "tool": "budget-rule",
         "detail": "Pilot allocations total 208 MAD, within the declared budget. 0 prior outcomes fell below target.",
-        "at": "2026-10-27T08:58:34.387Z"
+        "at": "2026-10-27T09:36:22.063Z"
       },
       {
         "state": "Recommend",
         "tool": "evidence-linked-planner",
         "detail": "4 proposals created from Qloo entities using deterministic planning rules. No LLM reasoning is claimed.",
-        "at": "2026-10-27T08:58:34.387Z"
-      },
-      {
-        "state": "Revise",
-        "tool": "language-model",
-        "detail": "Validated language-model strategy text. Evidence references and cost allocations remain controlled by code.",
-        "at": "2026-10-27T08:58:36.501Z"
+        "at": "2026-10-27T09:36:22.063Z"
       }
     ]
   },

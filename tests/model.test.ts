@@ -110,3 +110,103 @@ it("requires a configured provider instead of inventing a response", async () =>
     "No language model",
   );
 });
+
+it("model slots preserve server IDs and reject changed evidence or omitted references", async () => {
+  const { adviseStrategies } = await import("../packages/agent-orchestrator");
+  const original = {
+    id: "42c59a09-6ea7-4e28-81dc-a9c3788fa63d",
+    entityId: "fixture-film",
+    cost: 75,
+    evidenceIds: ["fixture-evidence"],
+    status: "proposed",
+    title: "Baseline",
+    rationale: "Baseline explanation",
+  };
+  const evidence = [
+    {
+      id: "fixture-evidence",
+      tool: "synthetic fixture",
+      entities: [
+        {
+          id: "fixture-film",
+          name: "Fixture Film",
+          category: "movie",
+          affinity: 0.5,
+          tags: [],
+        },
+      ],
+    },
+  ];
+  provider({
+    strategies: [
+      {
+        id: "0",
+        title: "Ask about a discussion pilot",
+        rationale:
+          "Fixture Film suggests a topic to validate; demand is unknown.",
+        nextAction:
+          "Ask visitors to register interest before committing funds.",
+        cost: 99999,
+        evidenceIds: ["invented"],
+        status: "accepted",
+      },
+    ],
+  });
+  const result = await adviseStrategies(
+    { catalog: "Cinema discussions" } as any,
+    evidence as any,
+    [original] as any,
+    [],
+  );
+  expect(result[0]).toMatchObject({
+    id: original.id,
+    entityId: "fixture-film",
+    cost: 75,
+    evidenceIds: ["fixture-evidence"],
+    status: "proposed",
+    title: "Ask about a discussion pilot",
+  });
+  expect(result[0].rationale).toContain("requires owner validation");
+  const sent = JSON.parse((vi.mocked(fetch).mock.calls[0][1] as any).body);
+  const input = JSON.parse(sent.messages[1].content);
+  expect(input.strategies[0].id).toBe("0");
+  expect(input.strategies[0].culturalReference).toBe("Fixture Film");
+  expect(input.evidence[0]).not.toHaveProperty("entities");
+  provider({
+    strategies: [
+      {
+        id: "0",
+        title: "Unrelated recommendation",
+        rationale: "No supplied cultural reference is mentioned.",
+        nextAction: "Ask for interest.",
+      },
+    ],
+  });
+  await expect(
+    adviseStrategies({} as any, evidence as any, [original] as any, []),
+  ).rejects.toThrow("assigned cultural reference");
+  provider({
+    strategies: [
+      {
+        id: "0",
+        title: "First duplicate",
+        rationale: "Fixture Film discussed.",
+        nextAction: "Ask for interest.",
+      },
+      {
+        id: "0",
+        title: "Second duplicate",
+        rationale: "Fixture Film discussed.",
+        nextAction: "Ask for interest.",
+      },
+    ],
+  });
+  await expect(
+    adviseStrategies(
+      {} as any,
+      evidence as any,
+      [original, original] as any,
+      [],
+    ),
+  ).rejects.toThrow("Invalid strategy IDs");
+});
