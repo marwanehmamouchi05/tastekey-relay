@@ -2386,3 +2386,11 @@ th {
     scroll-behavior: auto !important;
   }
 }
+
+.secret-code {
+  display: block;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  margin-block: 1rem;
+  font-size: 0.8rem;
+}

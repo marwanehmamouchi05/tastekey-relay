@@ -20,6 +20,7 @@
     "format:check": "prettier --check apps packages tests scripts *.ts *.json *.yaml docs README.md"
   },
   "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.1157.0",
     "@qloo/qloo-harness": "0.1.26",
     "zod": "^4.3.6"
   },

@@ -33,6 +33,12 @@ import type {
 } from "@tastekey/shared-types";
 import { api, download } from "@/lib/client";
 import { PageTitle } from "./personal";
+import {
+  RecoveryControls,
+  ReviewForm,
+  AudienceOwner,
+} from "./delivery-controls";
+import type { Review } from "@tastekey/shared-types";
 const blank: BusinessInput = {
   name: "",
   industry: "cinema",
@@ -59,6 +65,7 @@ export default function Studio({
     analyses: [],
     actions: [],
     outcomes: [],
+    reviews: [],
   });
   const [selected, setSelected] = useState("");
   const [error, setError] = useState("");
@@ -100,7 +107,17 @@ export default function Studio({
       setBusy(false);
     }
   }
-  const ctx = { business, analyses, actions, outcomes, mutate, busy, model };
+  const reviews = data.reviews.filter((r) => r.businessId === business?.id);
+  const ctx = {
+    business,
+    analyses,
+    actions,
+    outcomes,
+    reviews,
+    mutate,
+    busy,
+    model,
+  };
   if (!ready)
     return (
       <div className="loading">Opening your private business workspace…</div>
@@ -184,6 +201,7 @@ export default function Studio({
               }
             }}
           />
+          <RecoveryControls restore />
         </>
       ) : !business ? (
         <>
@@ -231,22 +249,31 @@ export default function Studio({
         <ActionsView {...ctx} />
       ) : section === "outcomes" ? (
         <OutcomesView {...ctx} />
+      ) : section === "reviews" ? (
+        <ReviewForm
+          analyses={analyses}
+          reviews={reviews}
+          busy={busy}
+          save={(input) => mutate("review", input)}
+        />
       ) : section === "audience" ? (
-        <Audience />
+        <AudienceOwner businessId={business.id} />
       ) : (
         <PageTitle
           title="Page not found"
           description="Choose a view from the navigation."
         />
       )}
+      {section === "dashboard" && <RecoveryControls />}
       {section === "dashboard" && (
         <section className="panel workspace-controls">
           <div>
             <h3>Private session controls</h3>
             <p>
               Business records are tied to this browser’s private cookie, which
-              expires in 30 days. Export records before clearing cookies;
-              account sync and recovery are not implemented.
+              expires in 30 days. Export records before clearing cookies; use a
+              recovery code to reopen them on another device. Full account login
+              and team roles are not implemented.
             </p>
           </div>
           <button
@@ -280,6 +307,7 @@ type Ctx = {
   analyses: Analysis[];
   actions: Action[];
   outcomes: Outcome[];
+  reviews: Review[];
   mutate: <T = any>(path: string, body: unknown) => Promise<T | undefined>;
   busy: boolean;
   model: boolean;
@@ -1438,49 +1466,6 @@ function OutcomesView({ business, actions, outcomes, mutate, busy }: Ctx) {
           )}
         </section>
       </div>
-    </>
-  );
-}
-function Audience() {
-  return (
-    <>
-      <PageTitle
-        title="Customer intelligence, with consent."
-        description="A foundation for collective insight that keeps individual taste identities private."
-      />
-      <section className="panel audience-empty">
-        <div className="audience-art">
-          <Users size={52} />
-          <ShieldCheck size={30} />
-        </div>
-        <span className="tag amber">Insufficient consented data</span>
-        <h2>There isn’t an audience dataset to report yet.</h2>
-        <p>
-          No personal profiles have been collected or shared with Studio.
-          Audience reporting is suppressed until at least 10 separately
-          consenting participants and 10 participants per reported group can
-          support a disclosure.
-        </p>
-        <div className="audience-rules">
-          <span>
-            <ShieldCheck size={18} />
-            No individual taste graphs
-          </span>
-          <span>
-            <ShieldCheck size={18} />
-            No private spending details
-          </span>
-          <span>
-            <ShieldCheck size={18} />
-            No invented customer metrics
-          </span>
-        </div>
-        <p className="microcopy">
-          Consent collection, aggregate ingestion, withdrawal handling, and a
-          privacy audit are required before activating real audience analytics.
-          No synthetic dataset is presented as customer evidence.
-        </p>
-      </section>
     </>
   );
 }

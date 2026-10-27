@@ -46,6 +46,8 @@ import {
 import { evaluatePool } from "@tastekey/evaluation";
 import { api, download } from "@/lib/client";
 import TasteGraph from "./taste-graph";
+import { AudienceConsent } from "./delivery-controls";
+import TravelQuotes from "./travel-quotes";
 const STORAGE = "tastekey.profile.v1";
 const names: Record<string, string> = {
   movie: "Film",
@@ -1051,6 +1053,12 @@ function Relay({ profile, update, error }: Props) {
               </p>
             )}
           </section>
+          {context === "travel" && grant.allowed && (
+            <TravelQuotes
+              destinations={result?.entities || []}
+              budget={grant.budget}
+            />
+          )}
           {context === "shopping" && grant.allowed && (
             <section className="panel sample-catalog">
               <h2>Shop by your own rules</h2>
@@ -1292,11 +1300,21 @@ function Proof({ profile, update, error }: Props) {
             <div className="notice">
               <p>
                 Delete all preferences, budgets, grants, cached candidates, and
-                experiments from this browser?
+                experiments and saved travel quotes from this browser? Any
+                category contributions from this session will also be withdrawn.
               </p>
               <button
                 className="danger"
-                onClick={() => {
+                onClick={async () => {
+                  try {
+                    await api("audience/withdraw", {});
+                  } catch (e) {
+                    error(
+                      "Could not withdraw audience contributions. Try deletion again when connected.",
+                    );
+                    return;
+                  }
+                  localStorage.removeItem("tastekey.travel.quotes");
                   localStorage.removeItem(STORAGE);
                   localStorage.removeItem("tastekey.proof.pool");
                   localStorage.removeItem("tastekey.proof.records");
@@ -1318,6 +1336,7 @@ function Proof({ profile, update, error }: Props) {
           )}
         </section>
       </div>
+      <AudienceConsent profile={profile} />
       <section className="panel">
         <h2>What your profile actually says</h2>
         <div className="metrics-row">

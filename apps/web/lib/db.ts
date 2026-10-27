@@ -2,6 +2,7 @@ import { DatabaseSync } from "node:sqlite";
 import { mkdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { createHash, randomBytes } from "node:crypto";
+import { aggregateMinimum } from "../../../packages/privacy-engine";
 import type {
   Workspace,
   Business,
@@ -20,6 +21,13 @@ export function db() {
     instance.exec(
       "PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; CREATE TABLE IF NOT EXISTS sessions (token TEXT PRIMARY KEY, expires INTEGER NOT NULL); CREATE TABLE IF NOT EXISTS records (id TEXT PRIMARY KEY, tenant TEXT NOT NULL, kind TEXT NOT NULL, business TEXT NOT NULL, data TEXT NOT NULL); CREATE INDEX IF NOT EXISTS records_tenant ON records(tenant,kind,business);",
     );
+    instance.exec(`
+      CREATE TABLE IF NOT EXISTS session_tenants (token TEXT PRIMARY KEY, tenant TEXT NOT NULL);
+      CREATE TABLE IF NOT EXISTS recovery_codes (digest TEXT PRIMARY KEY, tenant TEXT NOT NULL, expires INTEGER NOT NULL);
+      CREATE TABLE IF NOT EXISTS audience_invites (digest TEXT PRIMARY KEY, owner TEXT NOT NULL, business TEXT NOT NULL UNIQUE, expires INTEGER NOT NULL);
+      CREATE TABLE IF NOT EXISTS audience_contributions (business TEXT NOT NULL, participant TEXT NOT NULL, categories TEXT NOT NULL, expires INTEGER NOT NULL, PRIMARY KEY (business, participant));
+      CREATE TABLE IF NOT EXISTS model_usage (day TEXT PRIMARY KEY, calls INTEGER NOT NULL);
+    `);
   }
   return instance;
 }
@@ -35,11 +43,19 @@ export function newSession() {
 export function tenantFor(token?: string) {
   if (!token || !/^[a-f0-9]{64}$/.test(token)) return null;
   const tenant = hash(token);
-  return db()
+  const valid = db()
     .prepare("SELECT token FROM sessions WHERE token=? AND expires>?")
     .get(tenant, Date.now())
     ? tenant
     : null;
+  if (!valid) return null;
+  return (
+    (
+      db()
+        .prepare("SELECT tenant FROM session_tenants WHERE token=?")
+        .get(tenant) as { tenant: string } | undefined
+    )?.tenant || tenant
+  );
 }
 export function put(
   tenant: string,
@@ -74,9 +90,162 @@ export function workspace(tenant: string): Workspace {
     analyses: list<Analysis>(tenant, "analysis"),
     actions: list<Action>(tenant, "action"),
     outcomes: list<Outcome>(tenant, "outcome"),
+    reviews: list(tenant, "review"),
   };
 }
 export function deleteWorkspace(tenant: string) {
+  db()
+    .prepare(
+      "DELETE FROM audience_contributions WHERE business IN (SELECT id FROM records WHERE tenant=? AND kind=?) OR participant=?",
+    )
+    .run(tenant, "business", tenant);
+  db().prepare("DELETE FROM audience_invites WHERE owner=?").run(tenant);
+  db().prepare("DELETE FROM recovery_codes WHERE tenant=?").run(tenant);
+  revokeSessions(tenant);
   db().prepare("DELETE FROM records WHERE tenant=?").run(tenant);
   db().prepare("DELETE FROM sessions WHERE token=?").run(tenant);
+}
+function revokeSessions(tenant: string) {
+  db()
+    .prepare(
+      "DELETE FROM sessions WHERE token=? OR token IN (SELECT token FROM session_tenants WHERE tenant=?)",
+    )
+    .run(tenant, tenant);
+  db().prepare("DELETE FROM session_tenants WHERE tenant=?").run(tenant);
+}
+export function createRecoveryCode(tenant: string) {
+  const code = randomBytes(32).toString("hex");
+  db().prepare("DELETE FROM recovery_codes WHERE tenant=?").run(tenant);
+  db()
+    .prepare("INSERT INTO recovery_codes VALUES (?,?,?)")
+    .run(hash(code), tenant, Date.now() + 90 * 86400000);
+  return code;
+}
+export function recoverWorkspace(code: string) {
+  if (!/^[a-f0-9]{64}$/.test(code)) return null;
+  const conn = db();
+  conn.exec("BEGIN IMMEDIATE");
+  try {
+    const row = conn
+      .prepare("SELECT tenant FROM recovery_codes WHERE digest=? AND expires>?")
+      .get(hash(code), Date.now()) as { tenant: string } | undefined;
+    if (!row) {
+      conn.exec("COMMIT");
+      return null;
+    }
+    conn.prepare("DELETE FROM recovery_codes WHERE tenant=?").run(row.tenant);
+    revokeSessions(row.tenant);
+    const token = newSession();
+    conn
+      .prepare("INSERT INTO session_tenants VALUES (?,?)")
+      .run(hash(token), row.tenant);
+    // Consent follows the original participant pseudonym, not the browser doing recovery.
+    conn.exec("COMMIT");
+    return token;
+  } catch (e) {
+    conn.exec("ROLLBACK");
+    throw e;
+  }
+}
+export function createAudienceInvite(owner: string, business: string) {
+  const token = randomBytes(32).toString("hex");
+  db()
+    .prepare("DELETE FROM audience_invites WHERE business=? AND owner=?")
+    .run(business, owner);
+  db()
+    .prepare("INSERT INTO audience_invites VALUES (?,?,?,?)")
+    .run(hash(token), owner, business, Date.now() + 30 * 86400000);
+  return token;
+}
+export function audienceInvite(token: string) {
+  if (!/^[a-f0-9]{64}$/.test(token)) return null;
+  const row = db()
+    .prepare(
+      "SELECT owner,business FROM audience_invites WHERE digest=? AND expires>?",
+    )
+    .get(hash(token), Date.now()) as
+    { owner: string; business: string } | undefined;
+  if (!row) return null;
+  const b = get<Business>(row.owner, "business", row.business);
+  return b ? { businessId: b.id, name: b.name } : null;
+}
+export function contributeAudience(
+  participant: string,
+  invitation: string,
+  categories: string[],
+) {
+  const invite = audienceInvite(invitation);
+  if (!invite) return null;
+  db()
+    .prepare(
+      "INSERT INTO audience_contributions VALUES (?,?,?,?) ON CONFLICT(business,participant) DO UPDATE SET categories=excluded.categories, expires=excluded.expires",
+    )
+    .run(
+      invite.businessId,
+      participant,
+      JSON.stringify(categories),
+      Date.now() + 30 * 86400000,
+    );
+  return invite;
+}
+export function ownContributions(participant: string) {
+  return (
+    db()
+      .prepare(
+        "SELECT c.business,c.categories,c.expires, r.data FROM audience_contributions c JOIN records r ON r.id=c.business AND r.kind='business' WHERE c.participant=? AND c.expires>? ",
+      )
+      .all(participant, Date.now()) as any[]
+  ).map((r) => ({
+    businessId: r.business,
+    name: JSON.parse(r.data).name,
+    categories: JSON.parse(r.categories),
+    expiresAt: new Date(r.expires).toISOString(),
+  }));
+}
+export function withdrawAudience(participant: string, business?: string) {
+  if (business)
+    db()
+      .prepare(
+        "DELETE FROM audience_contributions WHERE participant=? AND business=?",
+      )
+      .run(participant, business);
+  else
+    db()
+      .prepare("DELETE FROM audience_contributions WHERE participant=?")
+      .run(participant);
+}
+export function audienceReport(business: string) {
+  const rows = db()
+    .prepare(
+      "SELECT categories FROM audience_contributions WHERE business=? AND expires>?",
+    )
+    .all(business, Date.now()) as { categories: string }[];
+  if (rows.length < aggregateMinimum)
+    return { suppressed: true, minimum: aggregateMinimum, groups: [] };
+  const counts: Record<string, number> = {};
+  for (const r of rows)
+    for (const category of JSON.parse(r.categories))
+      counts[category] = (counts[category] || 0) + 1;
+  return {
+    suppressed: false,
+    minimum: aggregateMinimum,
+    groups: Object.entries(counts)
+      .filter(
+        ([, n]) =>
+          n >= aggregateMinimum &&
+          (rows.length - n === 0 || rows.length - n >= aggregateMinimum),
+      )
+      .map(([category, count]) => ({ category, count })),
+  };
+}
+export function reserveModelCall(max = 40) {
+  if (!Number.isInteger(max) || max < 1) return false;
+  const day = new Date().toISOString().slice(0, 10);
+  return (
+    db()
+      .prepare(
+        "INSERT INTO model_usage VALUES (?,1) ON CONFLICT(day) DO UPDATE SET calls=calls+1 WHERE calls<? RETURNING calls",
+      )
+      .get(day, max) !== undefined
+  );
 }

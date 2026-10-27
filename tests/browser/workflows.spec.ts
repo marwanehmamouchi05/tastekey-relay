@@ -58,6 +58,14 @@ test("Personal: discovery, verification, persistence, correction, consent, delet
   await page.goto("/personal/proof");
   await page.getByRole("button", { name: "Delete my local profile" }).click();
   await page.getByRole("button", { name: "Delete now", exact: true }).click();
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          JSON.parse(localStorage.getItem("tastekey.profile.v1")!).nodes.length,
+      ),
+    )
+    .toBe(0);
   const deleted = await page.evaluate(() =>
     JSON.parse(localStorage.getItem("tastekey.profile.v1")!),
   );

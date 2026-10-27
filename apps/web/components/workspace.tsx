@@ -39,6 +39,7 @@ const studioNav = [
   ["actions", "Action plans", ListChecks],
   ["outcomes", "Outcome tracking", TrendingUp],
   ["audience", "Customer intelligence", Users],
+  ["reviews", "Human evaluation", FlaskConical],
 ] as const;
 export default function Workspace() {
   const pathname = usePathname();

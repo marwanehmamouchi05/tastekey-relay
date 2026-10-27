@@ -1,0 +1,88 @@
+{
+  "verifiedAt": "2026-10-27T08:58:36.501Z",
+  "provider": "AWS Bedrock",
+  "model": "eu.amazon.nova-micro-v1:0",
+  "region": "eu-west-3",
+  "inputs": "Explicitly synthetic test tastes and business brief; genuine Qloo cultural evidence",
+  "correction": {
+    "explicitUSDLimitPreserved": true,
+    "noAmountInvented": true
+  },
+  "advisor": {
+    "modelUsed": true,
+    "strategies": [
+      {
+        "title": "Test an offering around Avengers: Infinity War",
+        "rationale": "Qloo returned Avengers: Infinity War for the selected cultural references and Casablanca signal. Consider a cinema pilot using your catalog (Independent film screenings, subject to licensing.). Relevance to “Design a measurable weekly screening pilot” still needs owner review.",
+        "cost": 100,
+        "evidenceIds": ["7db7c074-d287-463f-9ee7-7228b53f15a1"]
+      },
+      {
+        "title": "Test an offering around Black Panther",
+        "rationale": "Qloo returned Black Panther for the selected cultural references and Casablanca signal. Consider a cinema pilot using your catalog (Independent film screenings, subject to licensing.). Relevance to “Design a measurable weekly screening pilot” still needs owner review.",
+        "cost": 50,
+        "evidenceIds": ["7db7c074-d287-463f-9ee7-7228b53f15a1"]
+      },
+      {
+        "title": "Test an offering around Joker",
+        "rationale": "Qloo returned Joker for the selected cultural references and Casablanca signal. Consider a cinema pilot using your catalog (Independent film screenings, subject to licensing.). Relevance to “Design a measurable weekly screening pilot” still needs owner review.",
+        "cost": 33,
+        "evidenceIds": ["7db7c074-d287-463f-9ee7-7228b53f15a1"]
+      },
+      {
+        "title": "Test an offering around Zack Snyder's Justice League",
+        "rationale": "Qloo returned Zack Snyder's Justice League for the selected cultural references and Casablanca signal. Consider a cinema pilot using your catalog (Independent film screenings, subject to licensing.). Relevance to “Design a measurable weekly screening pilot” still needs owner review.",
+        "cost": 25,
+        "evidenceIds": ["7db7c074-d287-463f-9ee7-7228b53f15a1"]
+      }
+    ],
+    "trace": [
+      {
+        "state": "Understand",
+        "tool": "business-profile",
+        "detail": "cinema in Casablanca; budget 500 MAD.",
+        "at": "2026-10-27T08:58:11.126Z"
+      },
+      {
+        "state": "Learn",
+        "tool": "outcome-history",
+        "detail": "0 owner-reported outcomes reviewed; observations are not causal evidence.",
+        "at": "2026-10-27T08:58:11.126Z"
+      },
+      {
+        "state": "Investigate",
+        "tool": "tool-selection",
+        "detail": "Use cultural references as interest signals, Casablanca as a location signal, and movie as the output category.",
+        "at": "2026-10-27T08:58:11.126Z"
+      },
+      {
+        "state": "Evidence",
+        "tool": "qloo api insights",
+        "detail": "12 entities returned.",
+        "at": "2026-10-27T08:58:34.386Z"
+      },
+      {
+        "state": "Constrain",
+        "tool": "budget-rule",
+        "detail": "Pilot allocations total 208 MAD, within the declared budget. 0 prior outcomes fell below target.",
+        "at": "2026-10-27T08:58:34.387Z"
+      },
+      {
+        "state": "Recommend",
+        "tool": "evidence-linked-planner",
+        "detail": "4 proposals created from Qloo entities using deterministic planning rules. No LLM reasoning is claimed.",
+        "at": "2026-10-27T08:58:34.387Z"
+      },
+      {
+        "state": "Revise",
+        "tool": "language-model",
+        "detail": "Validated language-model strategy text. Evidence references and cost allocations remain controlled by code.",
+        "at": "2026-10-27T08:58:36.501Z"
+      }
+    ]
+  },
+  "limitations": [
+    "Integration test, not a human evaluation",
+    "No independent demand or outcome validation"
+  ]
+}

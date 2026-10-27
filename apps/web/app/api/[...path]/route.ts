@@ -5,6 +5,8 @@ import {
   BusinessSchema,
   ActionInput,
   OutcomeInput,
+  ReviewInput,
+  AudienceContribution,
   type Business,
   type Action,
   type Analysis,
@@ -19,7 +21,17 @@ import {
   put,
   get,
   deleteWorkspace,
+  createRecoveryCode,
+  recoverWorkspace,
+  createAudienceInvite,
+  audienceInvite,
+  contributeAudience,
+  ownContributions,
+  withdrawAudience,
+  audienceReport,
+  reserveModelCall,
 } from "@/lib/db";
+import { modelConfigured } from "@tastekey/agent-orchestrator";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 const limits = new Map<string, { at: number; count: number }>();
@@ -57,11 +69,7 @@ async function route(request: NextRequest) {
     if (request.method === "GET" && path === "status")
       return response({
         qloo: await configured(),
-        model: !!(
-          process.env.MODEL_API_KEY &&
-          process.env.MODEL_BASE_URL &&
-          process.env.MODEL_NAME
-        ),
+        model: modelConfigured(),
         storage: "SQLite; private browser session",
         version: "0.1.0",
       });
@@ -72,12 +80,41 @@ async function route(request: NextRequest) {
       if (Number(request.headers.get("content-length") || 0) > 50000)
         return response({ error: "Request too large." }, 413);
     }
+    if (path === "recovery/restore" && request.method === "POST") {
+      rate(
+        `recovery:${request.headers.get("x-forwarded-for")?.split(",")[0] || "local"}`,
+        5,
+      );
+      const raw = await request.text();
+      if (raw.length > 50000)
+        return response({ error: "Request too large." }, 413);
+      const { code } = z
+        .object({ code: z.string().regex(/^[a-f0-9]{64}$/) })
+        .parse(JSON.parse(raw));
+      const token = recoverWorkspace(code);
+      if (!token)
+        return response(
+          { error: "Recovery code is invalid, expired or already used." },
+          403,
+        );
+      const res = response({ restored: true });
+      res.cookies.set("tastekey_session", token, {
+        httpOnly: true,
+        secure: (process.env.APP_ORIGIN || request.nextUrl.origin).startsWith(
+          "https:",
+        ),
+        sameSite: "strict",
+        path: "/",
+        maxAge: 30 * 86400,
+      });
+      return res;
+    }
     if (path === "session" && request.method === "POST") {
       let token = request.cookies.get("tastekey_session")?.value;
       if (!tenantFor(token)) {
         rate(
           `session:${request.headers.get("x-forwarded-for")?.split(",")[0] || "local"}`,
-          10,
+          Number(process.env.TASTEKEY_SESSION_REQUESTS_PER_MINUTE || 10),
         );
         token = newSession();
       }
@@ -102,6 +139,17 @@ async function route(request: NextRequest) {
     rate(tenant);
     if (request.method === "GET" && path === "workspace")
       return response(workspace(tenant));
+    if (request.method === "GET" && path === "audience/mine")
+      return response(ownContributions(tenant));
+    if (request.method === "GET" && path === "audience/report") {
+      const id = z
+        .string()
+        .uuid()
+        .parse(request.nextUrl.searchParams.get("businessId"));
+      if (!get(tenant, "business", id))
+        return response({ error: "Business not found." }, 404);
+      return response(audienceReport(id));
+    }
     if (request.method === "DELETE" && path === "workspace") {
       deleteWorkspace(tenant);
       const res = response({ deleted: true });
@@ -114,6 +162,57 @@ async function route(request: NextRequest) {
     if (raw.length > 50000)
       return response({ error: "Request too large." }, 413);
     const body = JSON.parse(raw || "{}");
+    if (path === "recovery/create")
+      return response({ code: createRecoveryCode(tenant), expiresInDays: 90 });
+    if (path === "audience/invite") {
+      const { businessId } = z
+        .object({ businessId: z.string().uuid() })
+        .parse(body);
+      if (!get(tenant, "business", businessId))
+        return response({ error: "Business not found." }, 404);
+      return response({ invitation: createAudienceInvite(tenant, businessId) });
+    }
+    if (path === "audience/preview") {
+      const { invitation } = z
+        .object({ invitation: z.string().regex(/^[a-f0-9]{64}$/) })
+        .parse(body);
+      const invite = audienceInvite(invitation);
+      return invite
+        ? response(invite)
+        : response({ error: "Invitation expired or not found." }, 404);
+    }
+    if (path === "audience/contribute") {
+      const input = AudienceContribution.parse(body);
+      const saved = contributeAudience(
+        tenant,
+        input.invitation,
+        input.categories,
+      );
+      return saved
+        ? response(saved)
+        : response({ error: "Invitation expired or not found." }, 404);
+    }
+    if (path === "audience/withdraw") {
+      const { businessId } = z
+        .object({ businessId: z.string().uuid().optional() })
+        .parse(body);
+      withdrawAudience(tenant, businessId);
+      return response({ withdrawn: true });
+    }
+    if (path === "review") {
+      const input = ReviewInput.parse(body.input);
+      const a = get<Analysis>(tenant, "analysis", input.analysisId);
+      if (!a) return response({ error: "Analysis not found." }, 404);
+      const id = crypto.randomUUID();
+      const review = {
+        ...input,
+        id,
+        businessId: a.businessId,
+        createdAt: new Date().toISOString(),
+      };
+      put(tenant, "review", a.businessId, review);
+      return response(review);
+    }
     if (path === "search") {
       const { query, category } = z
         .object({
@@ -147,6 +246,11 @@ async function route(request: NextRequest) {
         })
         .parse(body);
       void modelConsent;
+      if (!reserveModelCall(Number(process.env.MODEL_CALLS_PER_DAY || 40)))
+        throw new QlooError(
+          "RATE",
+          "The daily AI allowance is exhausted. Structured editing remains available.",
+        );
       return response(await interpretCorrection(text));
     }
     if (path === "business") {
@@ -178,6 +282,15 @@ async function route(request: NextRequest) {
         .filter((a) => a.businessId === businessId)
         .flatMap((a) => a.strategies.filter((s) => s.status === "rejected"));
       if (!baseline) quota();
+      if (
+        useModel &&
+        !baseline &&
+        !reserveModelCall(Number(process.env.MODEL_CALLS_PER_DAY || 40))
+      )
+        throw new QlooError(
+          "RATE",
+          "The daily AI allowance is exhausted. Run without the AI advisor.",
+        );
       const a = await analyze(
         scenario || b,
         businessId,

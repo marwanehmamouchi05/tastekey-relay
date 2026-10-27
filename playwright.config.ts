@@ -19,6 +19,7 @@ export default defineConfig({
         env: {
           APP_ORIGIN: "http://localhost:3000",
           TASTEKEY_DB_PATH: "../../test-results/browser.db",
+          TASTEKEY_SESSION_REQUESTS_PER_MINUTE: "100",
         },
       },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],

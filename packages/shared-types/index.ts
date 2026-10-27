@@ -182,4 +182,49 @@ export type Workspace = {
   analyses: Analysis[];
   actions: Action[];
   outcomes: Outcome[];
+  reviews: Review[];
 };
+export const ReviewInput = z.object({
+  analysisId: z.string().uuid(),
+  reviewer: z.string().trim().min(2).max(80),
+  relevance: z.number().int().min(1).max(5),
+  feasibility: z.number().int().min(1).max(5),
+  specificity: z.number().int().min(1).max(5),
+  grounding: z.number().int().min(1).max(5),
+  traceability: z.number().int().min(1).max(5),
+  rationale: z.string().trim().min(10).max(2000),
+});
+export type Review = z.infer<typeof ReviewInput> & {
+  id: string;
+  businessId: string;
+  createdAt: string;
+};
+export const AudienceCategories = Category;
+export const AudienceContribution = z.object({
+  invitation: z.string().regex(/^[a-f0-9]{64}$/),
+  categories: z
+    .array(AudienceCategories)
+    .min(1)
+    .max(8)
+    .refine((v) => new Set(v).size === v.length),
+  consent: z.literal(true),
+});
+export const TravelQuoteSchema = z.object({
+  id: z.string().uuid(),
+  destinationId: z.string().min(1).max(200),
+  destination: z.string().min(1).max(200),
+  name: z.string().trim().min(2).max(150),
+  nightlyUSD: z.number().positive().max(1000000),
+  source: z
+    .url()
+    .refine(
+      (v) =>
+        new URL(v).protocol === "https:" &&
+        !new URL(v).username &&
+        !new URL(v).password,
+      "Use a public HTTPS source URL without credentials.",
+    ),
+  checkedAt: z.iso.datetime(),
+  stayDate: z.iso.date(),
+});
+export type TravelQuote = z.infer<typeof TravelQuoteSchema>;
