@@ -25,11 +25,11 @@ Use human reviewers, blind source labels where possible, and the following fixed
 | Cultural grounding | Unsupported cultural claim | Evidence present, link weak  | Traceable cultural result linked to a bounded interpretation |
 | Traceability       | Source absent              | Partial provenance           | Inputs, evidence, limits and decisions reproducible          |
 
-Store reviewer identity pseudonymously, timestamp, exact analysis IDs, dimension scores and free-text rationale. Report sample size and disagreements. Qloo scores must not grade their own business usefulness. The application does not yet provide a dedicated reviewer-rubric editor; use the exported workspace and a separate review record.
+Store reviewer identity pseudonymously, timestamp, exact analysis IDs, dimension scores and free-text rationale. Report sample size and disagreements. Qloo scores must not grade their own business usefulness. The Human evaluation view provides a persisted rubric editor linked to exact analysis IDs. Reviewer aliases are self-reported; this is not blinded or proof of independent participation. Export the workspace to retain reviews and input snapshots.
 
 ## Current evidence
 
 - Unit and integration tests use clearly synthetic fixtures and verify correctness, not recommendation quality.
 - Browser tests exercise saved business -> baseline proposal -> accepted action -> reported outcome -> later lesson.
-- Live Qloo and live model tests are pending credentials.
+- Live Qloo integration and actual Bedrock correction/strategy checks have passed; see docs/live-evidence. These establish integration correctness, not user-study quality.
 - Owner outcomes entered through the app are reported observations, not independently audited results or causal evidence.

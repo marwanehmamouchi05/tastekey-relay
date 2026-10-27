@@ -17,7 +17,7 @@ docker cp "tastekey-app:$inside" "$outside"
 chmod 600 "$outside"
 docker exec tastekey-app node -e 'require("node:fs").unlinkSync(process.argv[1])' "$inside"
 # Retain seven days; an offline/off-host copy is still required for disaster recovery.
-find /var/backups/tastekey -maxdepth 1 -type f -name 'backup-*.db' -mtime +7 -delete
+find /var/backups/tastekey -maxdepth 1 -type f -name '*.db' -mmin +10080 -delete
 printf 'Backup completed: %s\n' "$outside"
 SCRIPT
 chmod 700 /usr/local/sbin/tastekey-backup

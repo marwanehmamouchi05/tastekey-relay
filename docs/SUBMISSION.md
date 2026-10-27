@@ -1,37 +1,45 @@
-# TasteKey Relay — One Intelligence, Two Worlds
+# TasteKey Relay — submission handoff
 
-**Draft. Publish only after the live and deployment checks in STATUS.md pass.**
+Saved Devpost draft: https://devpost.com/submit-to/31054-qloo-agentic-hackathon/manage/submissions/1267250-tastekey-relay/finalization
 
-## Problem
+Project preview: https://devpost.com/software/tastekey-relay
 
-Personalization restarts on each website, while people have little control over which preferences travel with them. Businesses face a related gap: turning cultural interests into practical, testable decisions.
+**Draft saved; not submitted.** Four of five Devpost steps are complete. The final page requires the owner to agree to the Official Rules and Devpost Terms of Service, review eligibility and submit. No legal attestation has been accepted by the agent. The owner confirmed October 26, 2026 as the start date; source history starts that day. A comparison with the other local application source found no identical source files or matching twelve-line substantive blocks; it is evidence of the audit performed, not a mathematical proof of originality.
 
-## What we built
+## Elevator pitch
 
-TasteKey Personal captures a few explicit preferences, asks adaptive clarification questions, displays an editable taste graph, and applies selected fields to controlled entertainment, shopping and travel experiences. Practical budgets are separate from aesthetics. People can revoke consent or delete their browser-local profile.
+Turn your taste into choices you control—and help small businesses turn Qloo cultural insights into traceable plans, experiments, and feedback.
 
-TasteKey Studio saves private business profiles and supports cultural investigations, evidence-linked proposals, scenario inputs, action plans and owner-reported outcomes. Subsequent investigations incorporate rejected strategies and reported results. Individual Personal profiles are never available to Studio.
+## Public links
 
-## Qloo contribution
+- Personal: https://tastekey.52.47.205.18.sslip.io/personal/discover
+- Studio: https://tastekey.52.47.205.18.sslip.io/studio/onboarding
+- Public MIT source: https://github.com/marwanehmamouchi05/tastekey-relay
+- Connected demonstration: [JUDGE_GUIDE.md](JUDGE_GUIDE.md)
 
-The server-side adapter uses the event-supported official Qloo CLI to resolve reviewed entity choices and retrieve cultural relationships, with bounded calls and visible provenance. The product does not treat aggregate affinity as an individual's identity or probability of liking something.
+## Defensible project story
 
-**Verified integration:** The issued hackathon endpoint successfully resolved Interstellar and returned movie recommendations, cross-category book affinities, location-based movie results for Casablanca, and explainability. Actual evidence is stored in docs/live-evidence/qloo-verification.json. Synthetic unit fixtures remain separate. No recommendation-quality or business-outcome improvement is claimed.
+Personalization starts over on every site. Cultural tastes can help discovery, but aesthetic preferences should not silently become spending assumptions. Small businesses face a related gap between cultural affinity and a practical next step.
 
-## Technical implementation
+TasteKey Personal develops an editable taste graph, asks adaptive clarification questions and preserves unverified possibilities until the person answers. People can reject interpretations, correct budgets independently of aesthetics and grant selected fields to entertainment, shopping or travel for 24 hours. Qloo supplies real movie, TV, brand and destination inspiration. Optional AI corrections send only the submitted text and require review before application. Dated accommodation quotes can be checked by the user and filtered locally by returned destination, freshness, date and USD budget. The app does not invent offers.
 
-TypeScript, Next.js, Tailwind CSS and React Flow; reusable domain/privacy/evaluation modules; SQLite tenant isolation through private sessions; a structured investigation workflow; optional configurable language-model adapters; Vitest and Playwright coverage.
+TasteKey Studio saves a private business brief, investigates reviewed references and city signals, shows cultural evidence and constrained pilot allocations, compares scenarios and creates editable action plans. Rejections and owner-reported outcomes inform subsequent investigations. Optional Nova Micro proposes pilot interpretations with explicit owner-validation labels. Slot validation and server-controlled fields preserve strategy IDs, costs, ownership and evidence links; invalid proposals retain the baseline.
 
-## Limitations
+The two products connect through explicit category-only consent. Owners can invite contributions; people preview the business, choose broad categories and withdraw. Contributions expire after 30 days. Reports require ten active browser-session contributions and suppress small groups and complements. No individual graph is available to Studio. Browser sessions are not independently verified people, and no differential privacy is claimed.
 
-Default strategy planning and hypothesis templates are deterministic. Optional AI language features need a configured provider. Shopping products/prices are illustrative samples. Destination suggestions are not bookable trips with verified costs or availability. Customer aggregates are not collected, and customer intelligence reports insufficient data. Proof observations are exploratory; no measured user-study improvement is claimed. Demo session authentication needs further development for production business use.
+The implementation uses TypeScript, Next.js, Tailwind, React Flow, the event-supported Qloo harness, SQLite, Amazon Bedrock Nova Micro, AWS Lightsail and Caddy HTTPS. The app runs as a non-root user with private server credentials, tenant authorization, nonce script CSP, consistent backups and deployment rollback. The model identity is restricted to the server IP, Nova resources and a 30-day window; daily attempted model usage is capped in SQLite.
 
-## Submission fields to complete
+Real integration checks cover cultural entity resolution, cross-category relationships, location, explainability, five Studio industry types and live AI correction/advice. Tests cover consent, protected fields, recovery, persistence, scenarios, failures, isolation and mobile layout. See STATUS.md for exact runs, revisions and screenshots.
 
-- Public live URL: https://tastekey.52.47.205.18.sslip.io/personal/discover (Studio: https://tastekey.52.47.205.18.sslip.io/studio/onboarding)
-- Public source URL: https://github.com/marwanehmamouchi05/tastekey-relay
-- Actual Qloo workflows and redacted evidence: initial live evidence recorded in docs/live-evidence/qloo-verification.json
-- Measured experiments and sample sizes: none collected yet
-- Screenshots: verified local flows in docs/screenshots; public deployment captures in docs/screenshots/public
+## Claims deliberately excluded
 
-Proposed story: discover a film preference, verify what matters, correct a hotel budget while preserving design taste, grant a context, then help a cinema owner investigate a cultural opportunity, compare a scenario, create a plan and record its real result.
+No independent user study, recommendation-quality gain, customer demand, conversion lift or revenue result has been collected. Shopping products/prices are illustrative. Travel quotes are supplied by the user and are not independently verified bookable offers. Human reviewer aliases and reported outcomes are not audited. Business SSO/roles, verified audience identity, booking inventory and controlled human evaluation remain future work.
+
+## Prepared media
+
+- `docs/media/thumbnail.svg` and `thumbnail.png`: original vector cover and rendered upload.
+- Devpost gallery: actual Qloo entertainment results and actual Qloo Studio evidence for an explicitly synthetic cinema brief, with captions stating the limits.
+- `docs/screenshots/completion/`: public acceptance captures, including real model integration and separate synthetic manual-quote fixture.
+- `docs/screenshots/completion-refined/`: final advisor/correction verification after the refinement, when present.
+
+The video field is left empty. A video was not required by the competition page at preparation time. Never fill it with an unproduced or unrelated link. Maintain valid credentials and the public deployment throughout judging. The scoped model identity expires November 26, 2026.

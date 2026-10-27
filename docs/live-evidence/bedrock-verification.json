@@ -15,33 +15,25 @@
         "title": "Avengers: Infinity War Screening Pilot",
         "rationale": "AI pilot interpretation; requires owner validation: Qloo identified 'Avengers: Infinity War' as a tentative topic of interest in Casablanca. Its relevance is bounded by its superhero genre appeal, which may attract film enthusiasts. However, this does not imply local demand or popularity.",
         "cost": 100,
-        "evidenceIds": [
-          "e401b288-8395-49fc-9139-1bdf8057cdef"
-        ]
+        "evidenceIds": ["e401b288-8395-49fc-9139-1bdf8057cdef"]
       },
       {
         "title": "Black Panther Cultural Exploration",
         "rationale": "AI pilot interpretation; requires owner validation: Qloo returned 'Black Panther' as a tentative cultural reference. Its relevance is bounded by its cultural impact and appeal to diverse audiences. This does not imply local demand or popularity.",
         "cost": 50,
-        "evidenceIds": [
-          "e401b288-8395-49fc-9139-1bdf8057cdef"
-        ]
+        "evidenceIds": ["e401b288-8395-49fc-9139-1bdf8057cdef"]
       },
       {
         "title": "Joker Thematic Screening",
         "rationale": "AI pilot interpretation; requires owner validation: Qloo identified 'Joker' as a tentative cultural reference. Its relevance is bounded by its psychological thriller genre appeal. This does not imply local demand or popularity.",
         "cost": 33,
-        "evidenceIds": [
-          "e401b288-8395-49fc-9139-1bdf8057cdef"
-        ]
+        "evidenceIds": ["e401b288-8395-49fc-9139-1bdf8057cdef"]
       },
       {
         "title": "Zack Snyder's Justice League Pilot Screening",
         "rationale": "AI pilot interpretation; requires owner validation: Qloo returned 'Zack Snyder's Justice League' as a tentative cultural reference. Its relevance is bounded by its unique visual style and appeal to fans of Snyder's direction. This does not imply local demand or popularity.",
         "cost": 25,
-        "evidenceIds": [
-          "e401b288-8395-49fc-9139-1bdf8057cdef"
-        ]
+        "evidenceIds": ["e401b288-8395-49fc-9139-1bdf8057cdef"]
       }
     ],
     "trace": [

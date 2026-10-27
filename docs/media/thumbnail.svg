@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<rect width="1200" height="800" fill="#f8f5ed"/>
+<circle cx="1100" cy="55" r="245" fill="#e7e0f4"/><circle cx="-30" cy="800" r="240" fill="#ece7dc"/>
+<g font-family="Arial,sans-serif" fill="#22231f">
+<rect x="72" y="68" width="48" height="48" rx="15" fill="#6f568c"/><path d="M85 92h22m-11-11v22" stroke="#fff" stroke-width="3"/>
+<text x="140" y="101" font-size="27" font-weight="600" letter-spacing="2">TASTEKEY RELAY</text>
+<text x="72" y="233" font-size="73" font-weight="700" letter-spacing="-3">One intelligence.</text><text x="72" y="316" font-size="73" font-weight="700" letter-spacing="-3">Two worlds.</text>
+<text x="76" y="376" font-size="25" fill="#68665e">Cultural insight, with evidence and control.</text>
+<rect x="72" y="446" width="500" height="224" rx="22" fill="#ffffff" stroke="#ddd8ce"/>
+<rect x="600" y="446" width="528" height="224" rx="22" fill="#282a25"/>
+<text x="106" y="496" font-size="17" letter-spacing="3" fill="#6f568c">PERSONAL</text>
+<text x="106" y="545" font-size="34" font-weight="600">Your taste. Your terms.</text>
+<text x="106" y="590" font-size="21" fill="#68665e">Discover • Verify • Correct • Grant</text>
+<text x="106" y="630" font-size="18" fill="#68665e">An editable identity, chosen by you.</text>
+<text x="634" y="496" font-size="17" letter-spacing="3" fill="#c8b4e5">STUDIO</text>
+<text x="634" y="545" font-size="34" font-weight="600" fill="#faf8f1">Insight into action.</text>
+<text x="634" y="590" font-size="21" fill="#d2d4ca">Investigate • Compare • Plan • Learn</text>
+<text x="634" y="630" font-size="18" fill="#d2d4ca">Traceable pilots for small businesses.</text>
+<path d="M930 176l90 49-62 80-71-47zM930 176l28 129M1020 225l-133 33" fill="none" stroke="#997eb7" stroke-width="2"/>
+<g fill="#6f568c"><circle cx="930" cy="176" r="12"/><circle cx="1020" cy="225" r="17"/><circle cx="958" cy="305" r="11"/><circle cx="887" cy="258" r="8"/></g>
+<text x="76" y="740" font-size="18" letter-spacing="1" fill="#68665e">QLOO CULTURAL INTELLIGENCE  /  AMAZON NOVA MICRO</text>
+</g></svg>

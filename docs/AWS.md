@@ -1,28 +1,31 @@
-# AWS deployment
+# AWS operations
 
-Deployed to a dedicated Lightsail instance after explicit owner approval. Public origin: https://tastekey.52.47.205.18.sslip.io. The application runtime is built from reviewed revision `a24261399710f1ce9de5da73d42596f4f2e01394`.
+Public origin: https://tastekey.52.47.205.18.sslip.io. Dedicated Lightsail host in Paris (`eu-west-3`), Ubuntu 24.04 LTS, 2 GB RAM / 2 vCPU / 60 GB SSD, console plan price $12 USD/month. Usage consumes applicable credits; overages or credit expiry can create charges. Financial account details are intentionally excluded from this repository.
 
-- Region: Paris (`eu-west-3`), close to Morocco.
-- Image: clean Ubuntu 24.04 LTS.
-- Plan: dual-stack, 2 GB RAM, 2 vCPU, 60 GB SSD, 3 TB transfer, shown by the console at **$12 USD/month**. Transfer overages and optional resources can cost extra.
-- Application: non-root Node 24 container; SQLite in a named persistent volume.
-- HTTPS: Caddy and an IP-based `sslip.io` hostname, requiring no domain purchase. Static IP `tastekey-relay-ip` is attached. The address stays stable across stop/start while this IP remains attached. An attached Lightsail static IP has no additional charge; detached idle IPs can incur charges. A production custom domain is preferable.
-- Secrets: no Qloo/model credentials in instance launch data, source code or build layers. The issued Qloo credential is configured in a root-owned mode-600 server environment file, transferred over SSH after verifying the host fingerprint. No model provider is configured.
-- Network: expose only HTTP/HTTPS for the application; restrict administrative SSH to the AWS browser SSH service. Port 3000 is internal to Docker.
-- Bootstrap: `scripts/lightsail-bootstrap.sh`, designed for a fresh instance, installs Docker, adds 4 GB swap for build memory, clones a reviewed public revision, builds, and starts both containers. Review `/var/log/tastekey-bootstrap.log` and container logs on failures. The script intentionally refuses to overwrite an existing app directory.
+The app uses non-root Node 24, private persistent volume `tastekey-data` at `/app/data`, Docker network `tastekey-network`, and Caddy HTTPS. Port 3000 is internal. A static attached IP provides the current hostname. A custom domain is preferable for longer-term production. Ubuntu security updates and the required kernel reboot were completed.
 
-The user's billing console was checked read-only: credit applicability includes Lightsail and EC2. Financial account details are intentionally not stored in this public repository. The existing local `nodum-dev` IAM credentials cannot read/provision Lightsail or EC2; they have not been modified or broadened.
+## Secrets and model access
 
-Resource creation, valid HTTPS, all seven browser/API tests (including the live Qloo integration), and same-session Studio record persistence after a full server reboot were verified. Ubuntu security updates were applied and the required kernel reboot completed. The default managed SSH key was created with owner approval; administrative ingress is restricted to the Lightsail browser SSH service. No paid account upgrade, domain, load balancer, managed database, or snapshot plan is needed for the proposed deployment.
+Qloo and model credentials live in root-owned mode-600 `/opt/tastekey-relay/.env`, transferred through verified-host SSH without command-line secrets. They are not in source, build layers, browser code or logs. The existing development AWS identity was not copied to production or broadened.
 
-## Redeploy and credential setup
+The dedicated `tastekey-relay-model` IAM identity can invoke only the EU Nova Micro inference profile and its required underlying model resources, from the app's static IP, through **2026-11-26T09:04:15Z**. It has no console login or general AWS privileges. App configuration also stops model use at that expiry. Rotate/revoke this credential deliberately after judging. Bedrock uses bounded inputs/output tokens and a SQLite-persisted global cap of 40 attempted calls per UTC day. This is an application limit, not an AWS billing hard cap. Qloo's production app allowance is 60 attempted workflows/hour, separate from event quota.
 
-Use the AWS browser SSH console. Keep `/opt/tastekey-relay/.env` private (mode 600), update issued credentials there, build the reviewed source, and recreate the application container with the same `tastekey-data` volume. Never delete that volume during an update. Pin source revisions and retain a backup before schema changes. The current schema uses only additive initialization and requires no migrations.
+## Deploy and rollback
 
-Monitor credit balance, free-plan end date, transfer use, disk and process health. This app does not schedule resource cleanup or billing monitoring automatically. Stopping an instance does not necessarily remove every charge; consult the actual plan and delete unneeded resources after preserving required records and judging availability.
+Use the AWS browser SSH service, or a temporary source-IP-only rule explicitly authorized by the owner. Remove temporary ingress after maintenance. Keep administrative SSH limited to Lightsail browser SSH, with public HTTP/HTTPS only for the app. Use the verified managed host key for command-line access; never disable host-key or TLS verification.
 
-## Verified deployment checkpoint
+Run `sudo bash scripts/deploy.sh FULL_REVIEWED_COMMIT_SHA` from `/opt/tastekey-relay`. The script makes a consistent predeployment SQLite snapshot, fetches the pinned revision, builds the non-root image and recreates the app with its existing volume. Failed HTTPS health checks restore the previous container. Additive database initialization preserves old records. Do not delete the data volume. Review changes requiring destructive migrations separately.
 
-The public status endpoint returned HTTP 200 with Qloo ready and the optional model unavailable. The app runs as UID 1000 (`node`); SQLite is mounted at `/app/data` in `tastekey-data`. Both containers restart automatically. All seven public browser/API tests passed in 41.1 seconds using fresh isolated browser sessions; the live integration case took 24.3 seconds. A separate synthetic business and its private session survived a complete server reboot, then that verification workspace was removed. Initial Caddy image download encountered a transient DNS failure during system updates; a clean retry succeeded. HTTPS checks ran with certificate validation enabled. The first persistence probe was made before restart completion; once both containers were ready, persistence and Qloo status passed.
+The completion update initially failed because restrictive source-file permissions made root-owned package files unreadable to the app user. Health checks restored the previous app. Docker COPY now assigns source ownership to `node`; the failed candidate had no public traffic and was removed after diagnosis. See STATUS.md for the verified deployed revision.
 
-AWS static IP pricing reference: https://aws.amazon.com/lightsail/faq/. If decommissioning, preserve needed business records and release the detached static IP as well as the instance.
+## Backups and restoration
+
+`scripts/install-backups.sh` installs a root-only daily systemd service/timer at 03:15 UTC with up to five minutes jitter. It purges expired consent/recovery records, takes a Node SQLite online backup, validates integrity and retains host copies for roughly seven days. Host-local snapshots do not protect against host loss. Keep a private off-host copy separately; never place database files in the repository or public screenshots.
+
+Before restoring, stop the app, preserve the current volume, validate the chosen snapshot and SQLite integrity, then restore the database as UID 1000 in the volume with appropriate permissions. Remove obsolete WAL/SHM sidecars only while SQLite is stopped and after a consistent snapshot is selected. Start the app and verify private records and status. Never restore a backup over an active database. Unit integration tests exercise WAL-consistent backup and restore; a full server reboot previously verified volume persistence.
+
+Monitor credits, expiry, model identity expiry, event quota, transfer, disk, health and backups. No recurring billing monitor or automated resource teardown was requested or created. Preserve judging availability and needed records before decommissioning; remove unneeded instances and detached IPs deliberately. See [Lightsail FAQ](https://aws.amazon.com/lightsail/faq/) for charging rules.
+
+## Current runtime checkpoint
+
+Reviewed runtime revision `7d20be94e1bdbbce3bed766bec6229dadc7dae60` is deployed and healthy. Qloo and Bedrock report ready; actual model browser checks passed. Daily backup and off-host snapshot integrity passed. Temporary PC SSH ingress was removed after maintenance; the console confirms Lightsail browser SSH only. The short-lived CloudShell staging copy of the model credential was removed. Private production/local copies remain intentionally available for the approved integration.

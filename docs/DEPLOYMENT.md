@@ -1,6 +1,6 @@
 # Deployment runbook
 
-The application needs Node 24+, an installed Qloo harness, a writable persistent SQLite disk, and public HTTPS. No cloud subscription, public host, or spend has been created by this repository.
+The application needs Node 24+, an installed Qloo harness, a writable persistent SQLite disk, and public HTTPS. The public hackathon instance is documented in AWS.md. Hosting and model usage consume applicable AWS credits; monitor ongoing costs and credential expiry.
 
 ## Container
 

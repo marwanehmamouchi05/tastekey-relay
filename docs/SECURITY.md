@@ -1,33 +1,39 @@
 # Data flows and security boundaries
 
-| Data                                 | Storage                                    | Transmission                                   | Boundary                                                            |
-| ------------------------------------ | ------------------------------------------ | ---------------------------------------------- | ------------------------------------------------------------------- |
-| Personal graph, budgets, grants      | This browser's localStorage                | No raw profile API                             | Context/category allowlist and per-node grant                       |
-| Selected cultural references         | Browser; business DB for Studio references | Server -> official Qloo harness                | Public entity IDs and optional business city only                   |
-| Correction text                      | In-memory UI                               | Optional model, only after explicit action     | Validated add/budget proposal; user reviews before applying         |
-| Business, strategy, plan, outcome    | SQLite on persistent disk                  | This browser -> application server             | Random private HTTP-only cookie, tenant-scoped queries              |
-| Business brief and cultural evidence | SQLite / request memory                    | Optional configured model, explicitly selected | Validated text fields cannot alter costs, evidence IDs or ownership |
-| Audience aggregate                   | None                                       | None                                           | Collection not active; disclosure threshold foundation only         |
+| Data                                           | Storage                                               | Transmission                                             | Boundary                                                                |
+| ---------------------------------------------- | ----------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------------------------------- |
+| Personal graph, budgets, grants, quotes        | Browser localStorage                                  | No raw profile API                                       | Per-context, per-node allowlist; expiry and revocation                  |
+| Reviewed cultural references                   | Browser; Studio SQLite                                | Server to official Qloo harness                          | Public entity IDs, category and optional business city; no budgets      |
+| Correction text                                | Request memory                                        | Explicit optional model action                           | Bounded validated proposal; review before applying                      |
+| Business, strategies, plans, outcomes, reviews | Persistent SQLite                                     | Browser to app server                                    | Private capability cookie; tenant-scoped queries                        |
+| Business brief and evidence                    | SQLite / request memory                               | Optional model, explicitly selected                      | Model cannot change costs, evidence IDs or ownership                    |
+| Audience contribution                          | SQLite, 30-day expiry                                 | Invitation, chosen broad categories and explicit consent | No graph, entity IDs, contact details or budget; participant withdrawal |
+| Recovery code                                  | Hash only in SQLite                                   | User-initiated restoration to app                        | Rotated one-use code, 90-day expiry, old sessions revoked               |
+| Backups                                        | Root-only host files; private off-host copy when made | Administrator-controlled                                 | Sensitive workspace snapshots; never public source                      |
 
 ## Enforced controls
 
-- All record reads/updates are scoped by tenant, and business/action relationships are authorized on the server.
-- Session token: 256 random bits, SHA-256 hash in database, 30-day expiry, HTTP-only, SameSite Strict, Secure under HTTPS. No public endpoint accepts a tenant selector.
-- Write operations require a matching Origin. JSON bodies, strings, arrays, budgets and enum values are bounded and validated. No credentials are returned in status responses.
-- Qloo calls use `execFile(process.execPath, args)` with a trusted installed script, not shell evaluation. Model output is untrusted, parsed and validated. React text rendering avoids HTML interpretation.
-- Personal context access excludes unverified, rejected, superseded and unrelated preferences. Budgets never travel to Qloo. Entertainment never receives budget values.
-- Personal deletion clears graph, grants, history, budgets, cached proof pool and experiments. Studio deletion removes all session records and invalidates the cookie.
-- Logs include operation path and exception type only. Raw subprocess errors are never returned to clients. Cultural result traces do not contain private model prompts or credentials.
-- Security headers deny framing and unnecessary camera, microphone and location access.
+- Record reads/writes and business/action relationships are authorized by tenant on the server. A visitor cannot select a tenant through the public API.
+- Session tokens contain 256 random bits and are stored hashed, expire after 30 days, and use HTTP-only SameSite Strict cookies, Secure under HTTPS. Restoring a recovery code invalidates prior sessions. Recovery grants full workspace access; protect the code like a credential. It does not sync Personal localStorage.
+- Writes require matching Origin. Bodies, strings, arrays, enum values and numerical constraints are bounded. Sensitive status values are never returned.
+- Qloo uses an installed trusted script with an argument array and no shell. Calls have concurrency, hourly allowance and timeout controls. Raw subprocess errors do not reach clients.
+- Model output is untrusted and validated. Explicit provider credentials, input/output limits, one SDK attempt and a persistent global daily allowance constrain model use. The production model identity is restricted by model resources, server IP and expiry. Configuration is unavailable after its declared expiry.
+- Contexts exclude unverified, rejected, superseded and unrelated nodes. Revocation/expiry invalidates pending responses. Budgets do not go to Qloo; entertainment does not receive budget values.
+- Personal deletion first withdraws contributions for the current private session, then clears local graph, grants, history, budgets, proof and quotes. If withdrawal fails, the interface reports failure. Lost cookies require recovery to access prior contributions. Studio deletion removes its records and revokes linked sessions/recovery codes.
+- Audience invitations expire in 30 days. Only explicitly selected coarse categories are collected; repeat submissions from one stable private session replace the prior contribution. Withdrawal immediately removes it from reports. Reports filter expired data immediately; daily maintenance physically deletes expired contributions, invitations and recovery codes.
+- Reports require ten active browser-session contributions. A group is disclosed only at count >=10 and with a complement of zero or >=10. No individual IDs or suppressed total counts are returned. These controls are not differential privacy and do not establish independent humans.
+- Nonce-based script CSP, framing denial, restrictive browser permissions and HTTPS headers are deployed. Inline styles remain allowed for React Flow positioning. React escapes text rather than interpreting model HTML.
+- Logs contain operation path and exception type, not prompts or credentials. Traces preserve selected business inputs and public cultural evidence; exports contain private business data.
+- Online SQLite snapshots are integrity checked, private and retained on the host for roughly seven days. Deletion cannot recall exports or already copied backups. Backups can retain withdrawn/expired data until retention ends.
 
-## Limits requiring work before production
+## Limits before broader production use
 
-- Demo capability sessions are not full business authentication: no password/login, role management, recovery, invitation, or cross-device access. Anyone with a copied cookie has that session's access. Shared browser profiles share session access.
-- Browser-local data is not encrypted and is accessible to scripts running on the same origin. Protect deployment credentials, dependencies and browser devices; deploy a reviewed CSP before broad production use.
-- SQLite requires persistent disk, access-restricted host permissions, backups and a single application replica. This is not a multi-region database architecture.
-- Request counters are in process memory and reset on restart. Session creation throttling trusts the reverse proxy's forwarding header; the proxy must sanitize it. A distributed rate limiter and retention/garbage-collection policy are needed at scale.
-- Minimum aggregate counts are only a foundation. No claim of differential privacy or complete protection from inference attacks is made. Do not activate real audience analytics without withdrawal propagation, provenance and disclosure review.
-- The optional model sees submitted text/briefs; users must avoid supplying personal identifiers or sensitive customer records. Provider retention is governed by the selected provider.
-- Public cultural search text is user supplied. The UI asks for cultural references; it does not automatically redact arbitrary identifiers typed into that field.
+Capability sessions and recovery are not business SSO, identity verification or team roles. A stolen cookie or recovery code grants access. Shared browser profiles share access. Personal data is unencrypted browser storage accessible to same-origin scripts. Client source security, dependencies and device protection remain important.
 
-Automated negative coverage includes cross-tenant read/update attempts, invalid session tokens, cross-origin writes, consent revocation/expiry, malformed entity responses and insufficient aggregates. A passing fixture test is not a penetration test or a live Qloo validation.
+SQLite assumes persistent disk and one app replica. Host snapshots alone do not survive host loss; a separate off-host backup and tested restoration are required. Session/Qloo request counters are process-local and reset on restart; model daily usage is persisted. Session throttling trusts proxy forwarding headers, which the reverse proxy must sanitize. Distributed enforcement and longer-term retention policy remain future work.
+
+Audience browser sessions can be recreated and are not verified people. Small-count suppression cannot prevent every inference attack. Existing exports cannot be recalled after withdrawal. No real customer dataset or independent privacy audit is claimed.
+
+Optional models receive explicitly submitted text or business briefs. Avoid customer identifiers or sensitive records; provider retention follows provider terms. Cultural search text is user supplied and is not an automatic identifier-redaction service. Human reviewer aliases and owner-reported outcomes are not independently audited.
+
+Tests cover cross-tenant access, cross-origin writes, invalid/recovered sessions, consent expiry/revocation, suppression, withdrawal, protected model fields and backup integrity. Passing these tests is not a penetration test.

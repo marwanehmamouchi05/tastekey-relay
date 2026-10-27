@@ -1,52 +1,61 @@
 # Acceptance and handoff status
 
-This file tracks implemented behavior separately from externally verified delivery.
+Updated October 27, 2026. Implemented behavior and actual integration evidence are recorded separately from user-study claims.
 
-| Requirement                                         | Implementation                                                   | Verification / remaining work                                                                          |
-| --------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Personal onboarding and editable graph              | Implemented                                                      | Browser and unit tests                                                                                 |
-| Adaptive verification and rejected assumptions      | Implemented template hypotheses, impact-based selection          | Unit/browser coverage; usefulness not measured                                                         |
-| Structured correction and separate budgets          | Implemented                                                      | Hotel-budget preservation tested                                                                       |
-| Natural-language corrections                        | Optional configured model, reviewed proposal                     | Real provider execution pending                                                                        |
-| Context permission filtering, expiry and revocation | Implemented                                                      | Negative unit and browser coverage                                                                     |
-| Entertainment / shopping / travel                   | Qloo flows wired; sample shopping catalog                        | Live movie, brand and destination flows verified; travel prices/booking constraints not verified       |
-| Persistent business profiles                        | SQLite and private session                                       | Browser/database coverage                                                                              |
-| Cultural investigation and evidence                 | Supported official harness route, bounded requests, trace        | Live search, movie/book affinities, explainability and Casablanca verified; event quota/expiry unknown |
-| AI strategic advisor                                | Optional model text with deterministic evidence/cost control     | Real provider pending; default planner is deterministic                                                |
-| Scenario recomputation                              | Inputs saved; city changes API signal; budget changes allocation | Unit coverage and live Casablanca/Rabat browser scenario passed                                        |
-| Strategy acceptance/rejection/revision              | Implemented                                                      | Browser accept->plan; fixture rejection learning                                                       |
-| Action plans and outcomes                           | Editable, persistent, scoped                                     | Browser/database coverage                                                                              |
-| Customer intelligence                               | Honest insufficient-data view; disclosure helper                 | Aggregate ingestion and consent withdrawal pipeline not implemented                                    |
-| Proof comparisons                                   | Common-pool exploratory observations                             | No live experiments or performance improvement claimed                                                 |
-| Studio evaluation rubric                            | Documented human-review method                                   | In-app reviewer editor and human review results pending                                                |
-| Security                                            | Validation, tenant scoping, Origin checks, secret boundaries     | Negative tests; production authentication/CSP review still needed                                      |
-| Public source repository                            | Published on GitHub                                              | https://github.com/marwanehmamouchi05/tastekey-relay                                                   |
-| Public HTTPS deployment                             | AWS Lightsail with static IP, Caddy HTTPS and persistent volume  | Seven public browser/API tests plus full server-reboot persistence passed                              |
-| Submission                                          | Honest draft documentation                                       | Not ready until live and public acceptance checks pass                                                 |
+## Verified delivery
 
-## Next external actions
+- Public HTTPS: [Personal](https://tastekey.52.47.205.18.sslip.io/personal/discover), [Studio](https://tastekey.52.47.205.18.sslip.io/studio/onboarding).
+- Runtime completion revision `9143f3a7ad28daf929d8d8303c1f1f65ce25007d`: all **11 public browser/API tests passed in 2.4 minutes**, including real Qloo and real Bedrock. Screenshots: `docs/screenshots/completion/`.
+- Subsequent advisor refinement `7d20be94e1bdbbce3bed766bec6229dadc7dae60`: 46 unit/integration tests pass; one separate credential-gated Qloo unit test deliberately skipped. TypeScript passes. Real local Bedrock/Qloo check passes. Production rebuild and the focused live browser check passed; see the final checkpoint below.
+- The prior 45-test completion suite, production build and local nine-browser-test run also passed, with two live cases explicitly skipped locally. Both live browser cases then passed against the public server.
+- GitHub CI passed for `9f21103`, `9143f3a` and `85c19f3`. Latest CI is checked separately below.
+- Daily consistent SQLite backup service: success, integrity `ok`; timer active for 03:15 UTC plus jitter. A private off-host copy was transferred and independently integrity checked on October 27. The backup installer handles a fresh database whose additive tables have not yet initialized.
+- Earlier full server reboot preserved private Studio records and the named data volume. Latest checks confirm non-root runtime, valid TLS, private environment configuration and both providers ready.
 
-1. The issued credential is privately configured against https://hackathon.api.qloo.com. Search, movie/book affinities, explainability and Casablanca location signals passed. Validate the remaining contexts and confirm event quota/expiry.
-2. Configure and test a free-tier model provider if language understanding and AI-authored strategy proposals are required for the final story.
-3. Public deployment is verified. Monitor event quota/expiry, AWS credits and transfer use; maintain backups before real business use.
-4. Run the actual connected judge story, collect genuine evidence/screenshots, and complete controlled human evaluations before making quality claims.
+## Capability acceptance
 
-The full two-product scope remains the target. Implemented fixture and baseline workflows are not evidence that the complete blueprint is done.
+| Area                   | Implemented and verified                                                                                                                       | Remaining limit                                                                                     |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Personal taste         | Explicit onboarding, adaptive template hypotheses, impact-based selection, editable graph/list, rejection and persistence                      | Adaptive-question usefulness not measured                                                           |
+| Corrections            | Separate budget editor; optional real Nova Micro interpretation, reviewed application; $60 hotel limit preserves existing film/design tastes   | Explicit USD only; arbitrary prose is not guaranteed semantic truth                                 |
+| Permissions            | Selected fields, contexts, 24-hour expiry, revocation and pending-response guard                                                               | Local browser storage and shared-device exposure                                                    |
+| Experiences            | Real Qloo movie/TV, brand and destination inspiration                                                                                          | Shopping catalog/prices are samples; no booking inventory                                           |
+| Practical travel       | Local dated, user-checked quote filtering by returned destination, 48-hour freshness, future stay and budget                                   | User source is not independently verified; no invented quote or FX                                  |
+| Studio records         | Private SQLite business profiles, proposals, plans, outcomes and anchored human reviews                                                        | Capability sessions, not team SSO or verified reviewer identities                                   |
+| Cultural investigation | Reviewed entity IDs, city signal, official harness, bounded calls, traces and real evidence                                                    | Organizer quota/expiry unknown; affinity is not demand                                              |
+| Categories             | Actual bookshop/book, cafe/place, retail/brand and travel/destination checks, plus cinema/movie browser flow                                   | Synthetic briefs, no actual customers or outcomes                                                   |
+| AI advisor             | Real Bedrock, protected costs/evidence/ownership, bounded inputs/tokens, persisted 40/day allowance                                            | Optional; invalid proposals retain deterministic baseline; interpretations require owner validation |
+| Scenarios              | Exact snapshots, new city Qloo request, changed budget allocations                                                                             | Allocations are planning bounds, not supplier quotes or forecasts                                   |
+| Learning               | Rejections and owner-reported outcomes inform later investigations; accepted proposals become editable actions                                 | Reports are not independently audited causal evidence                                               |
+| Consented audience     | Explicit category selection, named-business preview, 30-day expiry, stable-session deduplication, suppression and immediate withdrawal         | Sessions are not verified independent people; no differential privacy or real customer dataset      |
+| Recovery               | Hashed/rotated 90-day one-use code; stable workspace mapping and old-session invalidation                                                      | Code grants full access; Personal local graph is not synced                                         |
+| Security               | Tenant/relationship authorization, Origin validation, body bounds, nonce script CSP, explicit secrets, expiry, throttling and backup integrity | No independent penetration/privacy audit; one-replica SQLite                                        |
+| Evaluation             | Common-pool exploratory observations and persisted five-dimension Studio rubric                                                                | Independent controlled human evaluation remains uncollected                                         |
+| Submission             | Saved Devpost draft, story, public/source links, technology tags, labeled screenshots and cover                                                | Inception date confirmed; owner review of rules, eligibility and final submission remains           |
 
-## Verified local checkpoint
+## Actual evidence
 
-33 unit/integration tests and six browser/API tests passed. One live Qloo test remains explicitly skipped until configured. Production build and TypeScript checks passed. Dependency audit: no known vulnerabilities. GitHub CI passed for commit 2fcc597. An earlier local browser run was interrupted by host network suspension; a clean rerun passed all six tests. No cloud resources have been created yet.
+`docs/live-evidence/qloo-verification.json` records actual entity resolution, movie/book/location affinities and explainability. `studio-category-verification.json` records the four additional industry categories. `bedrock-verification.json` records real correction and advisor integration with synthetic business inputs and genuine cultural evidence. These establish integration correctness, not recommendation quality, demand or revenue lift.
 
-## Live API checkpoint
+The public browser suite verifies consent/revocation, recovery/reuse denial, category-only payloads/withdrawal, cross-tenant isolation, CSP, graph, manual-quote filtering, real Qloo contexts and city/budget scenarios, actual AI, saved plans/outcomes, failure states and mobile layout. The quote screenshot is a clearly synthetic fixture with example.org sources; it is not a hotel offer.
 
-35 unit/integration tests passed with the real-Qloo test explicitly enabled. Live search returned five Interstellar candidates; movie, book and Casablanca Insights returned 12 entities each, all Insights entities preserving explainability. The credential is stored only in the harness private configuration. The readiness check now handles the harness exit code when its optional chat model is absent. See the timestamped public-cultural evidence summary, which omits third-party descriptions and all credentials.
+## Deployment findings
 
-## Live browser checkpoint
+The first completion image failed because source package files were root-owned mode 600. Health checks restored the previous working app; source COPY ownership now belongs to the non-root app user. The next version passed all 11 public checks. The first backup cleanup ran before new tables existed; a table-existence guard fixed it and the service then completed with a valid snapshot.
 
-The explicit real-Qloo browser run passed (27.6 seconds): Interstellar and Radiohead resolution; authorized movie, brand and destination recommendations; a saved synthetic cinema brief; a real Qloo-backed analysis; accepted strategy to saved action; changed city (Casablanca to Rabat) and budget (500 to 250 MAD); and action persistence after reload. Recommendation requests contained only category and entity IDs, excluding budgets and raw profiles. Captures are in docs/screenshots/_-live-_.png. No model provider is configured, no real business outcomes were invented, and no AWS resource has yet been launched.
+Screenshot review found that the initial AI request could echo the baseline. The refinement supplies assigned cultural references and short output slots, avoids sending baseline prose, validates slot coverage, preserves immutable IDs/costs/evidence, labels accepted text as an AI interpretation, and retains baseline text when a proposal omits its assigned reference. Live refinement evidence is saved separately from assertions of quality.
 
-## Public deployment checkpoint
+## Work requiring people or external services
 
-Live URL: https://tastekey.52.47.205.18.sslip.io. All seven public browser/API tests passed (41.1 seconds), including the real-Qloo Personal contexts and Studio analysis/scenario case (24.3 seconds). Tests used fresh browser sessions against HTTPS, without a local web server. Public captures are in docs/screenshots/public. The credential is private; the app runs as a non-root user. Static IP, browser-only SSH, Ubuntu updates, valid TLS and a persistent Docker volume are configured. A separate private business/session survived a full server reboot; Qloo readiness recovered after boot. Historical checkpoints above describe earlier states.
+- Owner must review Devpost details, including the confirmed project details, eligibility and legal terms, and perform the final submission.
+- Independent human reviews and held-out participant comparisons are required before making quality claims. No results have been invented.
+- A genuine booking/pricing provider, business identity/team authentication and independent audience verification are future integrations.
+- Keep AWS credits, transfer/storage, event quota and credential expiry monitored. The scoped Bedrock identity expires **2026-11-26T09:04:15Z**; rotate or revoke deliberately. No recurring monitor was requested.
 
-Still incomplete: a real optional model provider; verified travel prices/availability; customer aggregate ingestion and withdrawal; human evaluations and quality measurements; production business account/recovery features. Public deployment does not establish that the complete blueprint is finished or automatically authorize a hackathon submission.
+## Final verified checkpoint — October 27
+
+Runtime image: `tastekey-relay:7d20be94e1bd`, full reviewed revision `7d20be94e1bdbbce3bed766bec6229dadc7dae60`. The refined public model test passed in 21.8 seconds, exercising actual correction and grounded advisor text with protected fields and explicit interpretation labels. The full 11-case public suite had already passed on the preceding completion runtime; only the advisor path changed afterward and was checked again. Latest unit suite: **46 passed, one opt-in live unit test skipped**. Production build, TypeScript and [GitHub CI](https://github.com/marwanehmamouchi05/tastekey-relay/actions/runs/40482122440) passed. Dependency audit reported no known vulnerabilities.
+
+Final host checks confirmed the non-root user, restart policy, mode-600 root environment, mode-700 backup directory, enabled timer, successful backup service and ample disk space. A fresh private off-host snapshot passed integrity checking after final verification. The retention installer now expires both daily and predeployment host snapshots after seven days. CloudShell's temporary credential staging file was removed and absence verified. The temporary PC SSH CIDR was removed; the console confirms **Lightsail browser SSH only**.
+
+The Devpost draft has four of five steps complete, including the confirmed October 26 start date, story, live/source links, cover and four labeled integration screenshots. The final rules/terms checkbox is unselected and the project is not submitted. The owner must review and perform that final step. Independent user evaluations and real booking/customer-demand evidence remain outside the verified claims above.
