@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixtures";
 test("a revoked grant discards a pending recommendation response", async ({
   page,
 }) => {

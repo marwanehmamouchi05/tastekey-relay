@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixtures";
 test.skip(
   process.env.QLOO_BROWSER_LIVE !== "1",
   "Explicit opt-in: uses the issued Qloo credential and consumes event quota.",

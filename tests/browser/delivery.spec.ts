@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixtures";
 const base = process.env.PLAYWRIGHT_BASE_URL || "http://localhost:3000";
 const headers = { Origin: base };
 const business = {

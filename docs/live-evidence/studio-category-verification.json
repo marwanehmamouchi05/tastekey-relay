@@ -1,0 +1,242 @@
+{
+  "verifiedAt": "2026-10-27T09:14:49.044Z",
+  "inputs": "Synthetic business briefs using a reviewed Interstellar entity and Casablanca location signal",
+  "results": [
+    {
+      "industry": "bookshop",
+      "mode": "live",
+      "category": "book",
+      "entityCount": 12,
+      "examples": [
+        {
+          "id": "B2C89E2E-EE26-42B6-9F53-F23CE364A64D",
+          "name": "The Alchemist"
+        },
+        {
+          "id": "253685DA-4F4E-4D01-9199-71B674FE8626",
+          "name": "Harry Potter and the Cursed Child: Parts One and Two (Harry Potter, #8)"
+        },
+        {
+          "id": "0C97E7FE-8A86-4B48-9F54-CB0A73CC2B96",
+          "name": "Harry Potter and the Sorcerer’s Stone (Harry Potter, #1)"
+        }
+      ],
+      "trace": [
+        {
+          "state": "Understand",
+          "tool": "business-profile",
+          "detail": "bookshop in Casablanca; budget 100 MAD.",
+          "at": "2026-10-27T09:14:20.552Z"
+        },
+        {
+          "state": "Learn",
+          "tool": "outcome-history",
+          "detail": "0 owner-reported outcomes reviewed; observations are not causal evidence.",
+          "at": "2026-10-27T09:14:20.554Z"
+        },
+        {
+          "state": "Investigate",
+          "tool": "tool-selection",
+          "detail": "Use cultural references as interest signals, Casablanca as a location signal, and book as the output category.",
+          "at": "2026-10-27T09:14:20.554Z"
+        },
+        {
+          "state": "Evidence",
+          "tool": "qloo api insights",
+          "detail": "12 entities returned.",
+          "at": "2026-10-27T09:14:23.999Z"
+        },
+        {
+          "state": "Constrain",
+          "tool": "budget-rule",
+          "detail": "Pilot allocations total 41 MAD, within the declared budget. 0 prior outcomes fell below target.",
+          "at": "2026-10-27T09:14:23.999Z"
+        },
+        {
+          "state": "Recommend",
+          "tool": "evidence-linked-planner",
+          "detail": "4 proposals created from Qloo entities using deterministic planning rules. No LLM reasoning is claimed.",
+          "at": "2026-10-27T09:14:23.999Z"
+        }
+      ]
+    },
+    {
+      "industry": "cafe",
+      "mode": "live",
+      "category": "place",
+      "entityCount": 12,
+      "examples": [
+        {
+          "id": "8C2D21C5-DB7A-4D15-8104-F067E45F178C",
+          "name": "Szentháromság tér"
+        },
+        {
+          "id": "4514B12F-7A85-42A9-ACB5-462A3344D38C",
+          "name": "Jardin Majorelle"
+        },
+        {
+          "id": "2EA691BE-E48C-43A3-BC6A-62D59A452A43",
+          "name": "Louvre Pyramid"
+        }
+      ],
+      "trace": [
+        {
+          "state": "Understand",
+          "tool": "business-profile",
+          "detail": "cafe in Casablanca; budget 100 MAD.",
+          "at": "2026-10-27T09:14:23.999Z"
+        },
+        {
+          "state": "Learn",
+          "tool": "outcome-history",
+          "detail": "0 owner-reported outcomes reviewed; observations are not causal evidence.",
+          "at": "2026-10-27T09:14:23.999Z"
+        },
+        {
+          "state": "Investigate",
+          "tool": "tool-selection",
+          "detail": "Use cultural references as interest signals, Casablanca as a location signal, and place as the output category.",
+          "at": "2026-10-27T09:14:23.999Z"
+        },
+        {
+          "state": "Evidence",
+          "tool": "qloo api insights",
+          "detail": "12 entities returned.",
+          "at": "2026-10-27T09:14:41.740Z"
+        },
+        {
+          "state": "Constrain",
+          "tool": "budget-rule",
+          "detail": "Pilot allocations total 41 MAD, within the declared budget. 0 prior outcomes fell below target.",
+          "at": "2026-10-27T09:14:41.740Z"
+        },
+        {
+          "state": "Recommend",
+          "tool": "evidence-linked-planner",
+          "detail": "4 proposals created from Qloo entities using deterministic planning rules. No LLM reasoning is claimed.",
+          "at": "2026-10-27T09:14:41.740Z"
+        }
+      ]
+    },
+    {
+      "industry": "retail",
+      "mode": "live",
+      "category": "brand",
+      "entityCount": 12,
+      "examples": [
+        {
+          "id": "D5B78065-6DBB-4DDB-80DF-6495B9B1006B",
+          "name": "Apple Inc"
+        },
+        {
+          "id": "C94B9E48-ACBB-4124-A2B5-9FA8A3A263BB",
+          "name": "Lamborghini"
+        },
+        {
+          "id": "B6AF9615-7872-477F-AD01-86AAF0CC4F6B",
+          "name": "Mercedes-benz"
+        }
+      ],
+      "trace": [
+        {
+          "state": "Understand",
+          "tool": "business-profile",
+          "detail": "retail in Casablanca; budget 100 MAD.",
+          "at": "2026-10-27T09:14:41.740Z"
+        },
+        {
+          "state": "Learn",
+          "tool": "outcome-history",
+          "detail": "0 owner-reported outcomes reviewed; observations are not causal evidence.",
+          "at": "2026-10-27T09:14:41.740Z"
+        },
+        {
+          "state": "Investigate",
+          "tool": "tool-selection",
+          "detail": "Use cultural references as interest signals, Casablanca as a location signal, and brand as the output category.",
+          "at": "2026-10-27T09:14:41.740Z"
+        },
+        {
+          "state": "Evidence",
+          "tool": "qloo api insights",
+          "detail": "12 entities returned.",
+          "at": "2026-10-27T09:14:46.607Z"
+        },
+        {
+          "state": "Constrain",
+          "tool": "budget-rule",
+          "detail": "Pilot allocations total 41 MAD, within the declared budget. 0 prior outcomes fell below target.",
+          "at": "2026-10-27T09:14:46.608Z"
+        },
+        {
+          "state": "Recommend",
+          "tool": "evidence-linked-planner",
+          "detail": "4 proposals created from Qloo entities using deterministic planning rules. No LLM reasoning is claimed.",
+          "at": "2026-10-27T09:14:46.608Z"
+        }
+      ]
+    },
+    {
+      "industry": "travel",
+      "mode": "live",
+      "category": "destination",
+      "entityCount": 12,
+      "examples": [
+        {
+          "id": "68DD62E5-255D-40EE-92C4-A7C1D02994DA",
+          "name": "Muscat"
+        },
+        {
+          "id": "E5077442-7449-4BB8-896F-64CCBCB07553",
+          "name": "Cairo"
+        },
+        {
+          "id": "979E0D38-ADAA-469F-A258-01F3F616EB96",
+          "name": "Beirut"
+        }
+      ],
+      "trace": [
+        {
+          "state": "Understand",
+          "tool": "business-profile",
+          "detail": "travel in Casablanca; budget 100 MAD.",
+          "at": "2026-10-27T09:14:46.608Z"
+        },
+        {
+          "state": "Learn",
+          "tool": "outcome-history",
+          "detail": "0 owner-reported outcomes reviewed; observations are not causal evidence.",
+          "at": "2026-10-27T09:14:46.608Z"
+        },
+        {
+          "state": "Investigate",
+          "tool": "tool-selection",
+          "detail": "Use cultural references as interest signals, Casablanca as a location signal, and destination as the output category.",
+          "at": "2026-10-27T09:14:46.608Z"
+        },
+        {
+          "state": "Evidence",
+          "tool": "qloo api insights",
+          "detail": "12 entities returned.",
+          "at": "2026-10-27T09:14:49.044Z"
+        },
+        {
+          "state": "Constrain",
+          "tool": "budget-rule",
+          "detail": "Pilot allocations total 41 MAD, within the declared budget. 0 prior outcomes fell below target.",
+          "at": "2026-10-27T09:14:49.044Z"
+        },
+        {
+          "state": "Recommend",
+          "tool": "evidence-linked-planner",
+          "detail": "4 proposals created from Qloo entities using deterministic planning rules. No LLM reasoning is claimed.",
+          "at": "2026-10-27T09:14:49.044Z"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Not a demand or business-quality evaluation",
+    "No model used for these category transport checks"
+  ]
+}

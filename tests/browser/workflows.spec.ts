@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixtures";
 const baseURL = process.env.PLAYWRIGHT_BASE_URL || "http://localhost:3000";
 const origin = { Origin: baseURL };
 test("Personal: discovery, verification, persistence, correction, consent, deletion", async ({

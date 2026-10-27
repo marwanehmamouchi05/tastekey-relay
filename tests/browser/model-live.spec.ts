@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixtures";
 test.skip(
   process.env.MODEL_BROWSER_LIVE !== "1",
   "Explicit opt-in: calls configured model and real Qloo; consumes credits/quota.",
