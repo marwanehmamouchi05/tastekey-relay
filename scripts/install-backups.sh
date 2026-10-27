@@ -11,7 +11,7 @@ flock -n 9 || exit 0
 stamp=$(date -u +%Y%m%dT%H%M%SZ)
 inside="/app/data/backup-${stamp}.db"
 outside="/var/backups/tastekey/backup-${stamp}.db"
-docker exec tastekey-app node --input-type=module -e 'import {DatabaseSync} from "node:sqlite"; const db=new DatabaseSync("/app/data/tastekey.db",{timeout:5000}); db.exec("BEGIN IMMEDIATE"); try {for(const table of ["audience_contributions","audience_invites","recovery_codes"])db.prepare("DELETE FROM "+table+" WHERE expires<=?").run(Date.now()); db.exec("COMMIT");} catch(e) {db.exec("ROLLBACK");throw e;} finally {db.close();}'
+docker exec tastekey-app node --input-type=module -e 'import {DatabaseSync} from "node:sqlite"; const db=new DatabaseSync("/app/data/tastekey.db",{timeout:5000}); db.exec("BEGIN IMMEDIATE"); try {for(const table of ["audience_contributions","audience_invites","recovery_codes"])if(db.prepare("SELECT 1 FROM sqlite_master WHERE type=? AND name=?").get("table",table))db.prepare("DELETE FROM "+table+" WHERE expires<=?").run(Date.now()); db.exec("COMMIT");} catch(e) {db.exec("ROLLBACK");throw e;} finally {db.close();}'
 docker exec tastekey-app node /app/scripts/backup.mjs /app/data/tastekey.db "$inside"
 docker cp "tastekey-app:$inside" "$outside"
 chmod 600 "$outside"
