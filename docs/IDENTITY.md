@@ -8,7 +8,7 @@ Open `/account`, choose secure sign-in and use the provider's sign-up or sign-in
 
 First sign-in claims this browser's private Studio workspace, preserving records and revoking prior anonymous session/recovery capabilities. Returning accounts reopen their selected workspace; new private drafts are preserved as another owned workspace. Personal taste graphs remain local to the browser. Shared-device users should sign out. Provider logout is configured on the deployment.
 
-In Studio → Team & access, owners/admins can rename the workspace and create seven-day invitations bound to an email address. Share links manually; TasteKey does not send invitation emails. Invitations are stored hashed, single-use and revocable. An authenticated account with the exact verified email must accept. An invitation never silently changes an existing member's role.
+In Studio → Team, owners/admins can rename the workspace and create seven-day invitations bound to an email address. Share links manually; TasteKey does not send invitation emails. Invitations are stored hashed, single-use and revocable. An authenticated account with the exact verified email must accept. An invitation never silently changes an existing member's role.
 
 | Role   | Access                                                                         |
 | ------ | ------------------------------------------------------------------------------ |

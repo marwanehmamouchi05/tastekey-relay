@@ -1,6 +1,42 @@
 # Acceptance and handoff status
 
-Updated October 27, 2026. Implemented behavior and actual integration evidence are recorded separately from user-study claims.
+Updated October 28, 2026. Implemented behavior and actual integration evidence are recorded separately from user-study claims.
+
+## Latest release: simpler screens and optional integrations
+
+Application revision `9ecd1eae3c6c54133bee3f8690f417a1176ec1c6` includes the verified-account foundation below, the plain-English simplification from `ced13c2`, and optional browser/business integrations. Personal now starts with one task; examples, follow-up questions and the map stay closed until requested. Navigation says Start, Your likes, Suggestions and Privacy. Studio keeps its less common tools under More tools.
+
+The downloadable Chrome/Edge developer extension filters supported visible result cards using selected likes/words and an optional same-currency budget. It restores hidden cards, avoids sign-in/payment forms, keeps copied likes locally and requests no broad host permissions. It is not a Chrome Web Store release. Live compatibility with every external website's changing DOM and the owner's normal-browser action-click installation are not inferred from fixture tests.
+
+Studio's website widget publishes only explicitly marked business offers, restricts offer links to the connected website and enables publishing only for verified owners/admins. Visitors explicitly select likes in a popup; sorting happens inside a TasteKey frame, with no profile/visitor list sent to the merchant. Selected likes clear after fifteen minutes or frame close and can be cleared immediately. This is an opt-in on-site offer tool, not a paid-ad network or evidence of customer/sales growth. The public sample is clearly synthetic. See [integration setup and boundaries](INTEGRATIONS.md).
+
+Local validation: **70 unit/integration tests passed**, one credential-gated live unit test skipped; **15 browser checks passed**, with two live provider cases deliberately skipped locally. Build, TypeScript, formatting, dependency audit and secret-exposure checks passed. The browser checks cover real popup consent, offer order/clearing, draft exclusion, the extension's actual isolated-browser loading/permissions/local deletion, and synthetic result-card filtering/restoration.
+
+Production checkpoint: `tastekey-relay:9ecd1eae3c6c` is deployed on HTTPS as non-root `node`, with persistent storage and automatic restart. **15 public browser/API checks passed in 3.3 minutes**; the two account/database-seeded cases were intentionally skipped on production and passed locally. The public run includes real Qloo, real Bedrock, the live extension download, the actual public sample widget/popup consent exchange, source-binding rejection and clearing. Its sample offers/likes remain explicitly synthetic, not real supplier/customer evidence. Captures: `docs/screenshots/integrations-public/`. [CI passed](https://github.com/marwanehmamouchi05/tastekey-relay/actions/runs/40724537651).
+
+The dedicated Cognito service is configured and its real hosted sign-in opens through the deployed PKCE flow. Real first-account password/email-code completion remains an owner handoff, so that entire live registration round trip is not claimed verified. Offer publishing requires a verified owner/admin and an actual business website; no external merchant site was supplied or modified. The owner's normal browser extension installation and Chrome Web Store publication were not performed. No advertising messages were sent.
+
+The Devpost draft story and previews now describe the simpler interface and both optional integrations. It remains 4/5 steps, unsubmitted, with final rules/terms and eligibility review reserved for the owner. A consistent private off-host backup passed SQLite integrity checking after the release; the host backup timer/service and root-only environment/backup permissions passed checks.
+
+Temporary deployment SSH ingress was removed after maintenance. The AWS console verified empty IPv4/IPv6 CIDR lists for port 22 with only the two Lightsail browser-SSH aliases retained. No new persistent administrative credential was created. The current application remains pinned to `9ecd1ea`; subsequent documentation/test-evidence commits do not change that runtime image.
+
+## October 28 foundation: identity and initial interface
+
+Reviewed release `fab4f0d23a0aea37c204b825662b8f3d7555a7b7` adds dedicated Cognito Lite verified-email OpenID Connect accounts, role-authorized teams, workspace switching/naming, email-bound single-use invitations and revocation, ownership transfer and an access audit. First sign-in secures private records and invalidates old capabilities; returning accounts preserve new private drafts separately. Provider tokens are not persisted. Corporate SAML/enterprise federation and SCIM are not configured.
+
+Audience disclosure now counts verified accounts across sessions, excludes anonymous legacy submissions and rejects contributions to a member's own business audience. Ten-account and small-complement suppression remain enforced. Email verification does not establish unique people, a verified business or actual demand.
+
+The initial interface release introduced a purpose-specific taste atlas with original CSS illustrations, self-hosted typography, category tiles, starting progress, keyboard input, a graph that fits new nodes and responsive navigation. The later simplification described above removes duplicate starting choices and the required-looking progress target. Studio shares the visual identity and has a dedicated team view.
+
+Validation: **65 unit/integration tests passed; one credential-gated live unit test skipped**. These include database role/claim/invitation/revocation tests, protocol wiring tests and separate real RSA-signed token checks for wrong key, issuer, audience, nonce and expiry. Production build, TypeScript, formatting and dependency audit pass. The local browser suite passes **11 tests**, with the two live provider cases explicitly skipped locally. Local account fixtures are synthetic and are never a production login bypass. [GitHub CI passed](https://github.com/marwanehmamouchi05/tastekey-relay/actions/runs/40703682813).
+
+The owner approved creating the dedicated identity pool and temporary PC-only SSH for deployment. No users, new IAM credentials, SMS or paid identity tier were created. Production activation, public provider checks and cleanup are recorded in the release checkpoint below once complete. Real first-account registration requires the owner's password/email-code handoff; that full live round trip is not claimed based on fixture tests.
+
+The owner has no live booking/merchant feed account. Existing user-checked quote filtering and clearly labeled sample products remain available. No supplier inventory, independent user study, unique-human verification or external penetration audit is fabricated. The final Devpost submission/terms remain the owner's action.
+
+## Historical October 27 acceptance evidence
+
+The sections below describe the preceding runtime. Their capability-session limitations were superseded by the October 28 identity changes above; their live provider evidence remains separately attributable to those revisions.
 
 ## Verified delivery
 

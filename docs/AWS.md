@@ -26,6 +26,12 @@ Before restoring, stop the app, preserve the current volume, validate the chosen
 
 Monitor credits, expiry, model identity expiry, event quota, transfer, disk, health and backups. No recurring billing monitor or automated resource teardown was requested or created. Preserve judging availability and needed records before decommissioning; remove unneeded instances and detached IPs deliberately. See [Lightsail FAQ](https://aws.amazon.com/lightsail/faq/) for charging rules.
 
-## Current runtime checkpoint
+## Previous runtime checkpoint — October 27
 
 Reviewed runtime revision `7d20be94e1bdbbce3bed766bec6229dadc7dae60` is deployed and healthy. Qloo and Bedrock report ready; actual model browser checks passed. Daily backup and off-host snapshot integrity passed. Temporary PC SSH ingress was removed after maintenance; the console confirms Lightsail browser SSH only. The short-lived CloudShell staging copy of the model credential was removed. Private production/local copies remain intentionally available for the approved integration.
+
+## Verified identity service — October 28
+
+An owner-approved dedicated Cognito Lite user pool and no-secret public OAuth client were created in Paris using `scripts/provision-identity.sh`. The pool requires verified email, uses classic hosted login and optionally supports software-token MFA. No users, IAM keys, SMS or SES sender were created. The app uses HTTPS authorization-code PKCE with state, nonce and explicit ID-token signature verification. Only public issuer/client/logout configuration was appended to the root-private production environment; existing Qloo/model secrets were preserved. See [identity](IDENTITY.md) for account boundaries, provider email limits and current pricing references. Corporate federation requires an actual organization's provider configuration.
+
+The identity foundation was pinned to `fab4f0d23a0aea37c204b825662b8f3d7555a7b7`. The latest application runtime is `9ecd1eae3c6c54133bee3f8690f417a1176ec1c6`, which includes the simpler interface and optional extension/widget. All fifteen applicable public checks, including real Qloo/Bedrock, passed. The widget uses the existing app/database and local matching; no additional AWS service, model key or advertising account was provisioned. Private off-host backup integrity and the daily timer/service passed. The remaining disk space was 43 GB. Deployment health and temporary ingress cleanup are recorded in [STATUS](STATUS.md).

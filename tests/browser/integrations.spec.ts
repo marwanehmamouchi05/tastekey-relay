@@ -234,7 +234,17 @@ test("business widget publishes only chosen offers, ranks by explicit popup cons
 
 test("integration page explains installation and the sample widget is clearly labelled", async ({
   page,
+  context,
 }) => {
+  const profile = addPreference(
+    emptyProfile(),
+    "Modern architecture",
+    "design",
+  );
+  await context.addInitScript(
+    (p) => localStorage.setItem("tastekey.profile.v1", JSON.stringify(p)),
+    profile,
+  );
   await page.goto("/integrations");
   await expect(
     page.getByRole("heading", { name: "Use TasteKey on other websites" }),
@@ -246,6 +256,44 @@ test("integration page explains installation and the sample widget is clearly la
   const frame = page.frameLocator('iframe[title="Sample TasteKey widget"]');
   await expect(frame.getByText("Demo only:", { exact: false })).toBeVisible();
   await expect(frame.locator("article")).toHaveCount(2);
+  const popupPromise = page.waitForEvent("popup");
+  await frame
+    .getByRole("button", { name: "Use my likes", exact: true })
+    .click();
+  const popup = await popupPromise;
+  const state = new URL(popup.url()).searchParams.get("state");
+  await page.evaluate((state) => {
+    const widget = document.querySelector(
+      'iframe[title="Sample TasteKey widget"]',
+    ) as HTMLIFrameElement;
+    widget.contentWindow!.postMessage(
+      {
+        type: "tastekey:likes",
+        widget: "demo",
+        state,
+        likes: [{ label: "architecture", category: "design" }],
+      },
+      location.origin,
+    );
+  }, state);
+  await expect(frame.locator("article").first()).toContainText(
+    "Stories from the sea",
+  );
+  await popup
+    .getByRole("checkbox", { name: "Modern architecture", exact: true })
+    .check();
+  await popup
+    .getByRole("checkbox", { name: /Use only these selected likes/ })
+    .check();
+  await popup.getByRole("button", { name: "Use selected likes" }).click();
+  await expect(frame.locator("article").first()).toContainText(
+    "Modern architecture",
+  );
+  await frame.getByRole("button", { name: "Stop using my likes" }).click();
+  await expect(frame.locator("article").first()).toContainText(
+    "Stories from the sea",
+  );
+  await popup.close();
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.screenshot({
     path: screenshots + "/integration-home.png",
