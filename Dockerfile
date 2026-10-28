@@ -6,6 +6,10 @@ COPY --chown=node:node apps/web/package.json ./apps/web/package.json
 RUN npm install --global pnpm@10.20.0 && pnpm install --frozen-lockfile
 COPY --chown=node:node . .
 RUN pnpm build && mkdir -p /app/data && chown -R node:node /app/data /app/apps/web/.next
+ARG BUILD_REVISION=unknown
+LABEL org.opencontainers.image.source="https://github.com/marwanehmamouchi05/tastekey-relay" \
+      org.opencontainers.image.revision="$BUILD_REVISION"
+ENV APP_RELEASE=$BUILD_REVISION
 ENV NODE_ENV=production
 ENV TASTEKEY_DB_PATH=/app/data/tastekey.db
 USER node

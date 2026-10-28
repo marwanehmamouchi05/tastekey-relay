@@ -1,0 +1,418 @@
+{
+  "kind": "retrospective-public-ballot-positive-list",
+  "createdAt": "2026-10-28T17:24:08.503Z",
+  "datasetSha256": "0604c0596843a75928de151bdcb72a9d32d008ad7f522d766cde1e6fb7bc1647",
+  "dataset": {
+    "version": 1,
+    "accessedOn": "2026-10-28",
+    "pollYear": 2022,
+    "announcementUrl": "https://www.bfi.org.uk/news/revealed-results-2022-sight-sound-greatest-films-all-time-poll",
+    "source": "BFI Sight and Sound 2022 individual public ballots, in displayed source order; not assumed to be ranked preferences",
+    "split": "Source positions 1,3,5,7,9 are seeds; 2,4,6,8,10 are held out. No replacement or tuning after retrieval.",
+    "limitations": [
+      "Five convenience-selected filmmaker ballots; not representative people or independent study participants.",
+      "Public ballot membership is a weak positive label; absence is unknown, not dislike.",
+      "Public lists may be present in Qloo or language-model training data; this is retrospective, not a clean temporal holdout.",
+      "Source years are preserved even where release-year conventions differ. Title-only entity linkage cannot verify director or year.",
+      "Source comments containing alternative film picks are excluded. Aliases below are alternate titles of the same film."
+    ],
+    "profiles": [
+      {
+        "id": "bong-joon-ho",
+        "name": "Bong Joon-ho",
+        "sourceUrl": "https://www.bfi.org.uk/sight-and-sound/greatest-films-all-time/all-voters/bong-joon-ho",
+        "films": [
+          {
+            "title": "Psycho",
+            "sourceYear": 1960,
+            "director": "Alfred Hitchcock",
+            "aliases": []
+          },
+          {
+            "title": "HANYO",
+            "sourceYear": 1960,
+            "director": "Kim Ki-young",
+            "aliases": [
+              "The Housemaid"
+            ]
+          },
+          {
+            "title": "Rocco E I Suoi Fratelli",
+            "sourceYear": 1960,
+            "director": "Luchino Visconti",
+            "aliases": [
+              "Rocco and His Brothers"
+            ]
+          },
+          {
+            "title": "FUKUSHÛ SURU WA WARE NI ARI",
+            "sourceYear": 1979,
+            "director": "Shohei Imamura",
+            "aliases": [
+              "Vengeance Is Mine"
+            ]
+          },
+          {
+            "title": "Raging Bull",
+            "sourceYear": 1980,
+            "director": "Martin Scorsese",
+            "aliases": []
+          },
+          {
+            "title": "A City of Sadness",
+            "sourceYear": 1989,
+            "director": "Hou Hsiao-Hsien",
+            "aliases": []
+          },
+          {
+            "title": "CURE",
+            "sourceYear": 1998,
+            "director": "Kiyoshi Kurosawa",
+            "aliases": [
+              "Cure"
+            ]
+          },
+          {
+            "title": "Zodiac",
+            "sourceYear": 2007,
+            "director": "David Fincher",
+            "aliases": []
+          },
+          {
+            "title": "Mad Max: Fury Road",
+            "sourceYear": 2015,
+            "director": "George Miller",
+            "aliases": []
+          },
+          {
+            "title": "Lazzaro felice",
+            "sourceYear": 2018,
+            "director": "Alice Rohrwacher",
+            "aliases": [
+              "Happy as Lazzaro"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "joanna-hogg",
+        "name": "Joanna Hogg",
+        "sourceUrl": "https://www.bfi.org.uk/sight-and-sound/greatest-films-all-time/all-voters/joanna-hogg",
+        "films": [
+          {
+            "title": "All That Jazz",
+            "sourceYear": 1979,
+            "director": "Bob Fosse",
+            "aliases": []
+          },
+          {
+            "title": "An Angel at My Table",
+            "sourceYear": 1990,
+            "director": "Jane Campion",
+            "aliases": []
+          },
+          {
+            "title": "La dolce vita",
+            "sourceYear": 1960,
+            "director": "Federico Fellini",
+            "aliases": []
+          },
+          {
+            "title": "The King of Comedy",
+            "sourceYear": 1983,
+            "director": "Martin Scorsese",
+            "aliases": []
+          },
+          {
+            "title": "Margaret",
+            "sourceYear": 2008,
+            "director": "Kenneth Lonergan",
+            "aliases": []
+          },
+          {
+            "title": "The Red Shoes",
+            "sourceYear": 1948,
+            "director": "Michael Powell, Emeric Pressburger",
+            "aliases": []
+          },
+          {
+            "title": "La Règle du jeu",
+            "sourceYear": 1939,
+            "director": "Jean Renoir",
+            "aliases": [
+              "The Rules of the Game"
+            ]
+          },
+          {
+            "title": "2001: A Space Odyssey",
+            "sourceYear": 1968,
+            "director": "Stanley Kubrick",
+            "aliases": []
+          },
+          {
+            "title": "Jeanne Dielman, 23 Quai du Commerce, 1080 Bruxelles",
+            "sourceYear": 1975,
+            "director": "Chantal Akerman",
+            "aliases": []
+          },
+          {
+            "title": "Journey to Italy",
+            "sourceYear": 1954,
+            "director": "Roberto Rossellini",
+            "aliases": []
+          }
+        ]
+      },
+      {
+        "id": "barry-jenkins",
+        "name": "Barry Jenkins",
+        "sourceUrl": "https://www.bfi.org.uk/sight-and-sound/greatest-films-all-time/all-voters/barry-jenkins",
+        "films": [
+          {
+            "title": "West Indies: The Fugitive Slaves of Liberty",
+            "sourceYear": 1979,
+            "director": "Med Hondo",
+            "aliases": []
+          },
+          {
+            "title": "Taxi Driver",
+            "sourceYear": 1976,
+            "director": "Martin Scorsese",
+            "aliases": []
+          },
+          {
+            "title": "Beau travail",
+            "sourceYear": 1998,
+            "director": "Claire Denis",
+            "aliases": []
+          },
+          {
+            "title": "In the Mood for Love",
+            "sourceYear": 2000,
+            "director": "Wong Kar Wai",
+            "aliases": []
+          },
+          {
+            "title": "Sátántangó",
+            "sourceYear": 1994,
+            "director": "Béla Tarr",
+            "aliases": []
+          },
+          {
+            "title": "SZEGÉNYLEGÉNYEK",
+            "sourceYear": 1966,
+            "director": "Miklós Jancsó",
+            "aliases": [
+              "The Round-Up"
+            ]
+          },
+          {
+            "title": "2001: A Space Odyssey",
+            "sourceYear": 1968,
+            "director": "Stanley Kubrick",
+            "aliases": []
+          },
+          {
+            "title": "Hidden",
+            "sourceYear": 2004,
+            "director": "Michael Haneke",
+            "aliases": [
+              "Caché"
+            ]
+          },
+          {
+            "title": "Do the Right Thing",
+            "sourceYear": 1989,
+            "director": "Spike Lee",
+            "aliases": []
+          },
+          {
+            "title": "Killer of Sheep",
+            "sourceYear": 1977,
+            "director": "Charles Burnett",
+            "aliases": []
+          }
+        ]
+      },
+      {
+        "id": "sofia-coppola",
+        "name": "Sofia Coppola",
+        "sourceUrl": "https://www.bfi.org.uk/sight-and-sound/greatest-films-all-time/all-voters/sofia-coppola",
+        "films": [
+          {
+            "title": "In the Mood for Love",
+            "sourceYear": 2000,
+            "director": "Wong Kar Wai",
+            "aliases": []
+          },
+          {
+            "title": "A Place in the Sun",
+            "sourceYear": 1951,
+            "director": "George Stevens",
+            "aliases": []
+          },
+          {
+            "title": "The Heartbreak Kid",
+            "sourceYear": 1972,
+            "director": "Elaine May",
+            "aliases": []
+          },
+          {
+            "title": "Rumble Fish",
+            "sourceYear": 1983,
+            "director": "Francis Ford Coppola",
+            "aliases": []
+          },
+          {
+            "title": "The Piano",
+            "sourceYear": 1992,
+            "director": "Jane Campion",
+            "aliases": []
+          },
+          {
+            "title": "La notte",
+            "sourceYear": 1961,
+            "director": "Michelangelo Antonioni",
+            "aliases": []
+          },
+          {
+            "title": "Purple Rain",
+            "sourceYear": 1984,
+            "director": "Albert Magnoli",
+            "aliases": []
+          },
+          {
+            "title": "Lost in America",
+            "sourceYear": 1985,
+            "director": "Albert Brooks",
+            "aliases": []
+          },
+          {
+            "title": "Seven Samurai",
+            "sourceYear": 1954,
+            "director": "Akira Kurosawa",
+            "aliases": []
+          },
+          {
+            "title": "Bugsy Malone",
+            "sourceYear": 1976,
+            "director": "Alan Parker",
+            "aliases": []
+          }
+        ]
+      },
+      {
+        "id": "guillermo-del-toro",
+        "name": "Guillermo del Toro",
+        "sourceUrl": "https://www.bfi.org.uk/sight-and-sound/greatest-films-all-time/all-voters/guillermo-del-toro",
+        "films": [
+          {
+            "title": "Barry Lyndon",
+            "sourceYear": 1975,
+            "director": "Stanley Kubrick",
+            "aliases": []
+          },
+          {
+            "title": "GoodFellas",
+            "sourceYear": 1990,
+            "director": "Martin Scorsese",
+            "aliases": [
+              "Goodfellas"
+            ]
+          },
+          {
+            "title": "City Lights",
+            "sourceYear": 1931,
+            "director": "Charles Chaplin",
+            "aliases": []
+          },
+          {
+            "title": "Close Encounters of the Third Kind",
+            "sourceYear": 1977,
+            "director": "Steven Spielberg",
+            "aliases": []
+          },
+          {
+            "title": "Frankenstein",
+            "sourceYear": 1931,
+            "director": "James Whale",
+            "aliases": []
+          },
+          {
+            "title": "8½",
+            "sourceYear": 1963,
+            "director": "Federico Fellini",
+            "aliases": [
+              "8 1/2"
+            ]
+          },
+          {
+            "title": "NAZARÍN",
+            "sourceYear": 1958,
+            "director": "Luis Buñuel",
+            "aliases": [
+              "Nazarín"
+            ]
+          },
+          {
+            "title": "No Country for Old Men",
+            "sourceYear": 2007,
+            "director": "Joel Coen, Ethan Coen",
+            "aliases": []
+          },
+          {
+            "title": "Shadow of a Doubt",
+            "sourceYear": 1943,
+            "director": "Alfred Hitchcock",
+            "aliases": []
+          },
+          {
+            "title": "The Magnificent Ambersons",
+            "sourceYear": 1942,
+            "director": "Orson Welles",
+            "aliases": []
+          }
+        ]
+      }
+    ]
+  },
+  "sourceScriptSha256": "aee31608adce4d482a2b6a81c85adbe518dc78fc4c44a3a160fa8427d8b02882",
+  "rankingEngineSha256": "b4c3cd985e13f4128cfa45dd970d9b76f4ab2095df7be76bbd021b70b46cbd7f",
+  "metricEngineSha256": "6a9d6c4a12d087cf3fa64a2328e17b09a6276dcd0d7fe2cbd5fe91bfa1f15d4d",
+  "nodeVersion": "v24.19.0",
+  "seedPositions": [
+    1,
+    3,
+    5,
+    7,
+    9
+  ],
+  "heldOutPositions": [
+    2,
+    4,
+    6,
+    8,
+    10
+  ],
+  "maximumAdapterCalls": 30,
+  "providerRetries": "Production adapter may retry transient 5xx once; maximum 60 upstream attempts, usually <=30.",
+  "sequential": true,
+  "arms": [
+    "alphabetical-en-title-id",
+    "qloo-returned-order",
+    "qloo-plus-simulated-verification"
+  ],
+  "fixedSimulatedAnswer": "Emotional storytelling",
+  "simulatedAnswerMeaning": "Identical predeclared rule input for every case, not that public person's reported preference.",
+  "matching": "Exact normalized title aliases only; year/director NOT verified. Ambiguous returned title matches excluded, with coverage recorded. No held-out search calls.",
+  "leakageControl": "Only seed titles enter search. Only resolved seed entity IDs enter recommendations. No source URL, person identity, held-out title or model call enters retrieval/reranking.",
+  "metrics": "Hit@3, recall@3, reciprocal rank and binary nDCG@3 over all five held-outs; out-of-pool or ambiguous linkage is zero. Conditional pool-only metrics are secondary.",
+  "limitations": [
+    "Not human participants, independent validation, blind preference elicitation, causal evidence or proof of quality.",
+    "Alphabetical arm shares Qloo's retrieval pool; this primarily tests conditional ranking, not independent retrieval superiority.",
+    "Published ballots may contaminate provider data. Unlisted films are unknown, not negative labels.",
+    "Title-only linkage can confuse remakes despite unique returned names. Report provisional title linkage, not canonical identity proof.",
+    "Keyword feature matches and rankings are retained; copyrighted provider descriptions are not stored.",
+    "Failures and zero-hit cases remain in the report; no tuning, substitutions or retries to improve scores."
+  ]
+}

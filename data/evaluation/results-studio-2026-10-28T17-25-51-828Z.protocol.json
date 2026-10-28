@@ -1,0 +1,64 @@
+{
+  "kind": "synthetic-studio-mechanical-ablation",
+  "createdAt": "2026-10-28T17:25:51.826Z",
+  "sourceScriptSha256": "31bd9ec623e20f42862fe9322991fb63893d3037f24be6216982fd29252f548f",
+  "productionEngineSha256": "4c4129ef41e08f749742e15e97947426c942408422a4f939d84e33f6c1c918e0",
+  "cases": [
+    {
+      "city": "Paris",
+      "audience": "Local visitors; synthetic planning scenario, not a measured audience",
+      "positioning": "Small independent business",
+      "competitors": "Not supplied",
+      "constraints": "One staff member; confirm rights, supply and capacity before launch",
+      "seeds": [],
+      "name": "Synthetic cinema",
+      "industry": "cinema",
+      "catalog": "One weekly film screening",
+      "goal": "Plan one small screening pilot",
+      "budget": 1000,
+      "currency": "EUR"
+    },
+    {
+      "city": "Paris",
+      "audience": "Local visitors; synthetic planning scenario, not a measured audience",
+      "positioning": "Small independent business",
+      "competitors": "Not supplied",
+      "constraints": "One staff member; confirm rights, supply and capacity before launch",
+      "seeds": [],
+      "name": "Synthetic bookshop",
+      "industry": "bookshop",
+      "catalog": "Existing books and one reading table",
+      "goal": "Plan a book discussion using existing stock",
+      "budget": 3000,
+      "currency": "MAD"
+    },
+    {
+      "city": "Paris",
+      "audience": "Local visitors; synthetic planning scenario, not a measured audience",
+      "positioning": "Small independent business",
+      "competitors": "Not supplied",
+      "constraints": "One staff member; confirm rights, supply and capacity before launch",
+      "seeds": [],
+      "name": "Synthetic retailer",
+      "industry": "retail",
+      "catalog": "Existing stationery display",
+      "goal": "Plan a display without new spending",
+      "budget": 0,
+      "currency": "USD"
+    }
+  ],
+  "reference": {
+    "title": "Interstellar",
+    "sourceYear": 2014,
+    "director": "Christopher Nolan",
+    "aliases": []
+  },
+  "maximumAdapterCalls": 4,
+  "upstreamAttempts": "At most eight with production transient-error retry; one seed search, three category investigations.",
+  "arms": [
+    "business-input-only baseline",
+    "Qloo-assisted deterministic planner"
+  ],
+  "useModel": false,
+  "limitation": "Synthetic inputs, no customers, no human quality ratings, no sales observations. Baseline zero evidence and fewer proposals are by design, not measures of inferior quality. Seed matching is provisional title-only; year/director are not verified."
+}

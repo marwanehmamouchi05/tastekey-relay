@@ -80,8 +80,7 @@
       event.origin !== location.origin ||
       !connectWindow ||
       event.source !== connectWindow ||
-      !state ||
-      Date.now() > pendingUntil
+      !state
     )
       return;
     const data = event.data;
@@ -94,6 +93,22 @@
       data.likes.length > 20
     )
       return;
+    if (Date.now() > pendingUntil) {
+      connectWindow.postMessage(
+        {
+          type: "tastekey:likes-ack",
+          state,
+          widget: config.id,
+          status: "expired",
+        },
+        location.origin,
+      );
+      state = undefined;
+      pendingUntil = 0;
+      $("status").textContent =
+        "This connection expired. Click “Use my likes” to try again.";
+      return;
+    }
     if (
       !data.likes.every(
         (x) =>
@@ -106,6 +121,7 @@
     )
       return;
     likes = data.likes.map(({ label, category }) => ({ label, category }));
+    const acceptedState = state;
     state = undefined;
     pendingUntil = 0;
     $("status").textContent = likes.length
@@ -114,6 +130,15 @@
     clearTimeout(expires);
     expires = setTimeout(clear, 15 * 60000);
     render();
+    connectWindow.postMessage(
+      {
+        type: "tastekey:likes-ack",
+        state: acceptedState,
+        widget: config.id,
+        status: "accepted",
+      },
+      location.origin,
+    );
   });
   $("clear").addEventListener("click", clear);
   $("apply-budget").addEventListener("click", () => {

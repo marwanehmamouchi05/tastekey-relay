@@ -948,7 +948,10 @@ function Relay({ profile, update, error }: Props) {
         Date.parse(profile.consents[context]!.expiresAt) > Date.now()
       ) {
         setResult(data);
-        localStorage.setItem("tastekey.proof.pool", JSON.stringify(data));
+        localStorage.setItem(
+          "tastekey.proof.pool",
+          JSON.stringify({ ...data, context }),
+        );
       }
     } catch (e) {
       error((e as Error).message);
@@ -1237,7 +1240,9 @@ function CompassIcon() {
   return <Sparkles size={35} />;
 }
 function Proof({ profile, update, error }: Props) {
-  const [pool, setPool] = useState<QlooEvidence | null>(null);
+  const [pool, setPool] = useState<
+    (QlooEvidence & { context?: Context }) | null
+  >(null);
   const [held, setHeld] = useState<string[]>([]);
   const [records, setRecords] = useState<any[]>([]);
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -1253,38 +1258,39 @@ function Proof({ profile, update, error }: Props) {
   }, []);
   function experiment() {
     if (!pool) return;
+    if (!pool.context) {
+      error(
+        "Get fresh suggestions first so this comparison knows which likes you shared.",
+      );
+      return;
+    }
+    const grant = authorizedContext(profile, pool.context);
+    if (!grant.allowed) {
+      error(
+        "Sharing for this comparison has ended. Choose your likes in Suggestions and try again.",
+      );
+      return;
+    }
     const entities = pool.entities;
     const baseline = [...entities]
       .sort((a, b) => a.name.localeCompare(b.name))
       .map((e) => e.id);
     const qloo = entities.map((e) => e.id);
-    const keywords = profile.nodes
-      .filter((n) => n.status === "confirmed")
-      .flatMap((n) => n.label.toLowerCase().split(/\W+/))
-      .filter((w) => w.length > 4);
-    const adaptive = entities
-      .map((e, i) => ({
-        id: e.id,
-        i,
-        score: keywords.filter((w) =>
-          `${e.name} ${e.description || ""} ${e.tags.join(" ")}`
-            .toLowerCase()
-            .includes(w),
-        ).length,
-      }))
-      .sort((a, b) => b.score - a.score || a.i - b.i)
-      .map((e) => e.id);
+    const adaptive = rankByVerifiedMetadata(entities, grant.nodes).map(
+      (e) => e.id,
+    );
     try {
       const result = evaluatePool(qloo, { baseline, qloo, adaptive }, held);
       const record = {
         at: new Date().toISOString(),
         sampleSize: 1,
         candidateCount: qloo.length,
-        questionCount: profile.history.filter((e) =>
-          e.detail.startsWith("Confirmed interpretation"),
-        ).length,
+        context: pool.context,
+        authorizedPreferenceIds: grant.nodes.map((n) => n.id),
+        questionCount: grant.nodes.filter((n) => n.status === "confirmed")
+          .length,
         method:
-          "Alphabetical baseline; Qloo order; Qloo reranked by confirmed keywords in returned metadata. One self-reported choice, not a blinded user study.",
+          "Alphabetical baseline; Qloo order; production reranker using only currently authorized confirmed likes for this context. One self-reported choice, not a blinded user study. Question count is the number of authorized confirmed interpretations, not an efficiency measure.",
         heldOut: held,
         rankings: { baseline, qloo, adaptive },
         result,

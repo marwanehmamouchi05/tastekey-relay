@@ -2,6 +2,12 @@
 
 No user-study result, live API result, conversion lift, ranking improvement or business outcome has been manufactured.
 
+## October 28 retrospective public-profile experiment
+
+[RESULTS.md](RESULTS.md) records the first frozen public-list proxy and three synthetic Studio ablations. This is not an independent human study. Five public BFI ballots use odd source positions as seeds and even positions as held-outs; only seed identities enter real Qloo requests. Conservative title-only resolution is explicitly provisional. All five cases and all 25 positives remain in denominators, including misses. Ranking uses the production helper and a predeclared simulated answer, not invented human preferences. The results do not establish improvement; the sole matched title ranked worse after the fixed simulated answer.
+
+The original self-report protocol below remains available for genuine future participants. Privacy's comparison now invokes the same production reranker as Suggestions and only the currently authorized likes for the saved pool's context. Legacy pools without context require a fresh suggestion request. This fixes an earlier duplicated calculation that could include unrelated/unshared preferences.
+
 ## Personal
 
 1. Obtain a real Qloo candidate pool using a user's authorized, reviewed references.

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { api } from "@/lib/client";
 import { ProfileSchema } from "@tastekey/shared-types";
@@ -14,7 +14,12 @@ export function ConnectLikes() {
     [selected, setSelected] = useState<number[]>([]),
     [consent, setConsent] = useState(false),
     [error, setError] = useState(""),
-    [sent, setSent] = useState(false);
+    [sent, setSent] = useState(false),
+    [sending, setSending] = useState(false);
+  const pending = useRef(false);
+  const acknowledgementTimer = useRef<
+    ReturnType<typeof setTimeout> | undefined
+  >(undefined);
   function loadLikes() {
     try {
       const raw = localStorage.getItem("tastekey.profile.v1");
@@ -47,6 +52,32 @@ export function ConnectLikes() {
       })
       .catch((e) => setError(e.message));
     loadLikes();
+    const source = window.opener;
+    const acknowledge = (event: MessageEvent) => {
+      if (
+        !pending.current ||
+        event.origin !== location.origin ||
+        event.source !== source ||
+        event.data?.type !== "tastekey:likes-ack" ||
+        event.data.state !== q.get("state") ||
+        event.data.widget !== id ||
+        !["accepted", "expired"].includes(event.data.status)
+      )
+        return;
+      pending.current = false;
+      clearTimeout(acknowledgementTimer.current);
+      setSending(false);
+      if (event.data.status === "accepted") setSent(true);
+      else
+        setError(
+          "This connection expired. Return to the offers window and click “Use my likes” again.",
+        );
+    };
+    window.addEventListener("message", acknowledge);
+    return () => {
+      window.removeEventListener("message", acknowledge);
+      clearTimeout(acknowledgementTimer.current);
+    };
   }, []);
   return (
     <div className="connect-likes panel">
@@ -122,9 +153,21 @@ export function ConnectLikes() {
           </label>
           <button
             className="primary"
-            disabled={!catalog || !consent || !selected.length || sent}
+            disabled={
+              !catalog || !consent || !selected.length || sent || sending
+            }
             onClick={() => {
               const q = new URLSearchParams(location.search);
+              setError("");
+              setSending(true);
+              pending.current = true;
+              acknowledgementTimer.current = setTimeout(() => {
+                pending.current = false;
+                setSending(false);
+                setError(
+                  "The offers window did not confirm your choice. Return there and click “Use my likes” again. Your likes have not been confirmed as applied.",
+                );
+              }, 12000);
               window.opener?.postMessage(
                 {
                   type: "tastekey:likes",
@@ -134,10 +177,9 @@ export function ConnectLikes() {
                 },
                 location.origin,
               );
-              setSent(true);
             }}
           >
-            Use selected likes
+            {sending ? "Waiting for the offers window…" : "Use selected likes"}
           </button>
         </>
       )}

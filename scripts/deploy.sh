@@ -16,7 +16,8 @@ docker exec tastekey-app node -e 'require("node:fs").unlinkSync(process.argv[1])
 git fetch origin main
 git checkout --detach "$revision"
 image="tastekey-relay:${revision:0:12}"
-docker build -t "$image" .
+docker build --build-arg BUILD_REVISION="$revision" -t "$image" .
+test "$(docker image inspect --format '{{index .Config.Labels "org.opencontainers.image.revision"}}' "$image")" = "$revision"
 old_image=$(docker inspect --format '{{.Image}}' tastekey-app)
 docker tag "$old_image" tastekey-relay:rollback
 if docker inspect tastekey-app-previous >/dev/null 2>&1; then docker rm tastekey-app-previous; fi
@@ -33,7 +34,7 @@ docker run -d --name tastekey-app --restart unless-stopped --network tastekey-ne
 origin=$(sed -n 's/^APP_ORIGIN=//p' .env)
 healthy=false
 for attempt in $(seq 1 30); do
-  if curl --max-time 4 -fsS "$origin/api/status" >/dev/null; then healthy=true; break; fi
+  if curl --max-time 4 -fsS "$origin/api/status" | python3 -c 'import json,sys; sys.exit(0 if json.load(sys.stdin).get("release")==sys.argv[1] else 1)' "$revision" 2>/dev/null; then healthy=true; break; fi
   sleep 2
 done
 if [ "$healthy" != true ]; then rollback; fi

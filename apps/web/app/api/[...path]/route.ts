@@ -58,6 +58,7 @@ import {
   OfferInput,
 } from "@/lib/integrations";
 import { widgetResponse } from "@/lib/widget";
+import { readRequestBody, RequestBodyTooLargeError } from "@/lib/request-body";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 const limits = new Map<string, { at: number; count: number }>();
@@ -110,6 +111,9 @@ async function route(request: NextRequest) {
         model: modelConfigured(),
         storage: "SQLite; verified workspaces and private demo sessions",
         version: "0.1.0",
+        release: /^[a-f0-9]{40}$/.test(process.env.APP_RELEASE || "")
+          ? process.env.APP_RELEASE
+          : "unknown",
         signIn: authConfigured(),
       });
     if (request.method !== "GET") {
@@ -136,9 +140,7 @@ async function route(request: NextRequest) {
         `recovery:${request.headers.get("x-forwarded-for")?.split(",")[0] || "local"}`,
         5,
       );
-      const raw = await request.text();
-      if (raw.length > 50000)
-        return response({ error: "Request too large." }, 413);
+      const raw = await readRequestBody(request);
       const { code } = z
         .object({ code: z.string().regex(/^[a-f0-9]{64}$/) })
         .parse(JSON.parse(raw));
@@ -225,9 +227,7 @@ async function route(request: NextRequest) {
     }
     if (request.method !== "POST")
       return response({ error: "Route not found." }, 404);
-    const raw = await request.text();
-    if (raw.length > 50000)
-      return response({ error: "Request too large." }, 413);
+    const raw = await readRequestBody(request);
     const body = JSON.parse(raw || "{}");
     if (path === "integration/settings") {
       const input = z
@@ -565,6 +565,8 @@ async function route(request: NextRequest) {
     }
     return response({ error: "Route not found." }, 404);
   } catch (err) {
+    if (err instanceof RequestBodyTooLargeError)
+      return response({ error: err.message }, 413);
     if (err instanceof AccessError)
       return response({ error: err.message }, err.status);
     if (err instanceof z.ZodError)

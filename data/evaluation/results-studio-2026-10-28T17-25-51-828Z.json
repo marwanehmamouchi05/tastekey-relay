@@ -1,0 +1,1048 @@
+{
+  "protocolFile": "results-studio-2026-10-28T17-25-51-828Z.protocol.json",
+  "protocolSha256": "d31c2394e32ba86307df99b5f150548d75a092cb54c83c145b5e22259cd5bb01",
+  "cases": [
+    {
+      "case": 1,
+      "input": {
+        "city": "Paris",
+        "audience": "Local visitors; synthetic planning scenario, not a measured audience",
+        "positioning": "Small independent business",
+        "competitors": "Not supplied",
+        "constraints": "One staff member; confirm rights, supply and capacity before launch",
+        "seeds": [
+          {
+            "id": "057DA9D9-399B-437E-8BCA-A80E499125EF",
+            "name": "Interstellar",
+            "category": "movie"
+          }
+        ],
+        "name": "Synthetic cinema",
+        "industry": "cinema",
+        "catalog": "One weekly film screening",
+        "goal": "Plan one small screening pilot",
+        "budget": 1000,
+        "currency": "EUR"
+      },
+      "seedResolution": {
+        "query": "Interstellar",
+        "status": "unique-title-only",
+        "yearAndDirectorVerified": false,
+        "searchEvidenceId": "a29d54c8-fc0b-4b30-9738-288fedc662b4",
+        "at": "2026-10-28T17:25:56.893Z",
+        "candidates": [
+          {
+            "id": "057DA9D9-399B-437E-8BCA-A80E499125EF",
+            "name": "Interstellar",
+            "category": "movie"
+          },
+          {
+            "id": "B78D795F-8932-4BC9-BFDE-8A68C684D578",
+            "name": "Interstellar: Nolan's Odyssey",
+            "category": "movie"
+          },
+          {
+            "id": "0A62BAA1-A0D4-4F0B-86CE-A889DD1AA697",
+            "name": "Interstellar Wars",
+            "category": "movie"
+          },
+          {
+            "id": "019C713C-C0DA-4719-9228-47A4E4EA5258",
+            "name": "Interstellar Civil War: Shadows of the Empire",
+            "category": "movie"
+          },
+          {
+            "id": "3D3B05AA-A859-41CB-973A-A4AAA52196FB",
+            "name": "The Science of Interstellar",
+            "category": "movie"
+          }
+        ]
+      },
+      "baseline": {
+        "metrics": {
+          "mode": "baseline",
+          "apiAvailable": true,
+          "proposalCount": 1,
+          "evidenceCount": 0,
+          "returnedEntityCount": 0,
+          "totalAllocated": 200,
+          "declaredBudget": 1000,
+          "currency": "EUR",
+          "nonnegativeFiniteCosts": true,
+          "withinDeclaredBudget": true,
+          "linkedProposalCount": 0,
+          "danglingEvidenceReferenceCount": 0,
+          "proposalsWithDependencies": 1,
+          "proposalsWithNextAction": 1,
+          "modelUsed": false,
+          "caveat": "Empty proposal sets make boolean allocation checks vacuously true; inspect mode and proposal count. Mechanical contracts are not usefulness or demand ratings."
+        },
+        "evidence": {
+          "id": "7bfdafde-2bb9-43b2-b4b9-a634cc049479",
+          "createdAt": "2026-10-28T17:25:56.893Z",
+          "mode": "baseline",
+          "evidence": [],
+          "strategies": [
+            {
+              "id": "8541fa18-19ed-4f95-81da-3e969a29c439",
+              "title": "Run a small cinema experiment",
+              "rationale": "Test one offering from your catalog against your stated objective: Plan one small screening pilot. This is a planning rule based only on business inputs.",
+              "evidenceIds": [],
+              "cost": 200,
+              "effort": "One small pilot",
+              "risks": "Demand is unknown; measure before expanding.",
+              "dependencies": "Owner approval; catalog availability; One staff member; confirm rights, supply and capacity before launch",
+              "nextAction": "Choose one existing offering, set a measurable target, and record the actual result.",
+              "status": "proposed",
+              "alignment": 0,
+              "source": "baseline"
+            }
+          ],
+          "trace": [
+            {
+              "state": "Understand",
+              "tool": "business-profile",
+              "detail": "cinema in Paris; budget 1000 EUR.",
+              "at": "2026-10-28T17:25:56.893Z"
+            },
+            {
+              "state": "Learn",
+              "tool": "outcome-history",
+              "detail": "0 owner-reported outcomes reviewed; observations are not causal evidence.",
+              "at": "2026-10-28T17:25:56.893Z"
+            },
+            {
+              "state": "Plan",
+              "tool": "baseline-rule",
+              "detail": "No Qloo or model data used.",
+              "at": "2026-10-28T17:25:56.893Z"
+            }
+          ],
+          "limitations": [
+            "Cultural affinity is aggregate evidence, not measured demand or a revenue forecast.",
+            "Pilot costs are budget allocations chosen by a planning rule, not vendor quotes.",
+            "Audience text and positioning are owner-provided context; they are not validated Qloo audience filters."
+          ]
+        }
+      },
+      "qlooAssisted": {
+        "metrics": {
+          "mode": "live",
+          "apiAvailable": true,
+          "proposalCount": 4,
+          "evidenceCount": 1,
+          "returnedEntityCount": 12,
+          "totalAllocated": 416,
+          "declaredBudget": 1000,
+          "currency": "EUR",
+          "nonnegativeFiniteCosts": true,
+          "withinDeclaredBudget": true,
+          "linkedProposalCount": 4,
+          "danglingEvidenceReferenceCount": 0,
+          "proposalsWithDependencies": 4,
+          "proposalsWithNextAction": 4,
+          "modelUsed": false,
+          "caveat": "Empty proposal sets make boolean allocation checks vacuously true; inspect mode and proposal count. Mechanical contracts are not usefulness or demand ratings."
+        },
+        "evidence": {
+          "id": "16c70da8-5105-4d98-8330-993f7df0e5b2",
+          "createdAt": "2026-10-28T17:25:56.893Z",
+          "mode": "live",
+          "evidence": [
+            {
+              "id": "09d0fe54-923c-4d78-9afb-0e2a4af82212",
+              "at": "2026-10-28T17:26:00.793Z",
+              "cached": false,
+              "inputs": {
+                "entities": "057DA9D9-399B-437E-8BCA-A80E499125EF",
+                "city": "Paris"
+              },
+              "entities": [
+                {
+                  "id": "7A5DD324-C74E-46D7-ABF8-4B09EB04928A",
+                  "name": "Avengers: Infinity War",
+                  "category": "movie",
+                  "affinity": 0.9196854800518572
+                },
+                {
+                  "id": "E743BA08-446C-4BB1-8AE2-1B813A18F162",
+                  "name": "Black Panther",
+                  "category": "movie",
+                  "affinity": 0.8980007884832663
+                },
+                {
+                  "id": "C48DF44E-CC69-473E-A017-713F08E74CE8",
+                  "name": "Zack Snyder's Justice League",
+                  "category": "movie",
+                  "affinity": 0.8930962672449837
+                },
+                {
+                  "id": "CDD60B09-04A2-47CF-8D14-AB7E8B416773",
+                  "name": "Clara",
+                  "category": "movie",
+                  "affinity": 0.8902662503442567
+                },
+                {
+                  "id": "5F98082A-A0AC-4453-8D8B-FCFBCB9ED4C0",
+                  "name": "Joker",
+                  "category": "movie",
+                  "affinity": 0.8853386364201412
+                },
+                {
+                  "id": "7CCA6DC8-1092-41E6-92CA-2C2F8AD0A822",
+                  "name": "Spider-Man: Into the Spider-Verse",
+                  "category": "movie",
+                  "affinity": 0.8832853202790857
+                },
+                {
+                  "id": "49237DE5-22CF-4856-84F8-25EF2C333FCC",
+                  "name": "Spider-Man: Far from Home",
+                  "category": "movie",
+                  "affinity": 0.8813238010444482
+                },
+                {
+                  "id": "A499EC25-7FF6-46DE-9DA5-3E78E99B9E26",
+                  "name": "Parasite",
+                  "category": "movie",
+                  "affinity": 0.8810597408583534
+                },
+                {
+                  "id": "B3BDA0F6-8924-4BD5-84DE-8150A7E0EFDE",
+                  "name": "Deadpool 2",
+                  "category": "movie",
+                  "affinity": 0.8789322885240629
+                },
+                {
+                  "id": "A79D1D11-0686-401E-8FFF-633E6A604929",
+                  "name": "Captain Marvel",
+                  "category": "movie",
+                  "affinity": 0.8766520825421174
+                },
+                {
+                  "id": "B76A3BF5-4B51-4635-AD18-B9E3F0405A15",
+                  "name": "1917",
+                  "category": "movie",
+                  "affinity": 0.8746580255716638
+                },
+                {
+                  "id": "AAF7FDF3-ADF6-4F14-B685-17FD76CCF938",
+                  "name": "Aquaman",
+                  "category": "movie",
+                  "affinity": 0.8731705595987984
+                }
+              ]
+            }
+          ],
+          "strategies": [
+            {
+              "id": "00a70801-0781-4c43-8698-059c68b7d52f",
+              "entityId": "7A5DD324-C74E-46D7-ABF8-4B09EB04928A",
+              "title": "Test an offering around Avengers: Infinity War",
+              "rationale": "Qloo returned Avengers: Infinity War for the selected cultural references and Paris signal. Consider a cinema pilot using your catalog (One weekly film screening). Relevance to “Plan one small screening pilot” still needs owner review.",
+              "evidenceIds": [
+                "09d0fe54-923c-4d78-9afb-0e2a4af82212"
+              ],
+              "cost": 200,
+              "effort": "Small pilot; review in one week",
+              "risks": "An aggregate affinity does not establish local demand. Confirm rights, supply, capacity, and fit with the intended audience.",
+              "dependencies": "One staff member; confirm rights, supply and capacity before launch; validate fit for Local visitors; synthetic planning scenario, not a measured audience. ",
+              "nextAction": "Validate access to Avengers: Infinity War, select one measurable pilot, and set a target before launch.",
+              "status": "proposed",
+              "alignment": 0.9196854800518572,
+              "source": "qloo-assisted"
+            },
+            {
+              "id": "a293c670-1c49-4862-be8c-94e4e96f8ad5",
+              "entityId": "E743BA08-446C-4BB1-8AE2-1B813A18F162",
+              "title": "Test an offering around Black Panther",
+              "rationale": "Qloo returned Black Panther for the selected cultural references and Paris signal. Consider a cinema pilot using your catalog (One weekly film screening). Relevance to “Plan one small screening pilot” still needs owner review.",
+              "evidenceIds": [
+                "09d0fe54-923c-4d78-9afb-0e2a4af82212"
+              ],
+              "cost": 100,
+              "effort": "Validate supply and interest first",
+              "risks": "An aggregate affinity does not establish local demand. Confirm rights, supply, capacity, and fit with the intended audience.",
+              "dependencies": "One staff member; confirm rights, supply and capacity before launch; validate fit for Local visitors; synthetic planning scenario, not a measured audience. ",
+              "nextAction": "Validate access to Black Panther, select one measurable pilot, and set a target before launch.",
+              "status": "proposed",
+              "alignment": 0.8980007884832663,
+              "source": "qloo-assisted"
+            },
+            {
+              "id": "1880db1a-1344-49d1-bc4e-e75b00a9f0d0",
+              "entityId": "C48DF44E-CC69-473E-A017-713F08E74CE8",
+              "title": "Test an offering around Zack Snyder's Justice League",
+              "rationale": "Qloo returned Zack Snyder's Justice League for the selected cultural references and Paris signal. Consider a cinema pilot using your catalog (One weekly film screening). Relevance to “Plan one small screening pilot” still needs owner review.",
+              "evidenceIds": [
+                "09d0fe54-923c-4d78-9afb-0e2a4af82212"
+              ],
+              "cost": 66,
+              "effort": "Validate supply and interest first",
+              "risks": "An aggregate affinity does not establish local demand. Confirm rights, supply, capacity, and fit with the intended audience.",
+              "dependencies": "One staff member; confirm rights, supply and capacity before launch; validate fit for Local visitors; synthetic planning scenario, not a measured audience. ",
+              "nextAction": "Validate access to Zack Snyder's Justice League, select one measurable pilot, and set a target before launch.",
+              "status": "proposed",
+              "alignment": 0.8930962672449837,
+              "source": "qloo-assisted"
+            },
+            {
+              "id": "c872fd9f-1be5-441e-83a9-af090acc9a32",
+              "entityId": "CDD60B09-04A2-47CF-8D14-AB7E8B416773",
+              "title": "Test an offering around Clara",
+              "rationale": "Qloo returned Clara for the selected cultural references and Paris signal. Consider a cinema pilot using your catalog (One weekly film screening). Relevance to “Plan one small screening pilot” still needs owner review.",
+              "evidenceIds": [
+                "09d0fe54-923c-4d78-9afb-0e2a4af82212"
+              ],
+              "cost": 50,
+              "effort": "Validate supply and interest first",
+              "risks": "An aggregate affinity does not establish local demand. Confirm rights, supply, capacity, and fit with the intended audience.",
+              "dependencies": "One staff member; confirm rights, supply and capacity before launch; validate fit for Local visitors; synthetic planning scenario, not a measured audience. ",
+              "nextAction": "Validate access to Clara, select one measurable pilot, and set a target before launch.",
+              "status": "proposed",
+              "alignment": 0.8902662503442567,
+              "source": "qloo-assisted"
+            }
+          ],
+          "trace": [
+            {
+              "state": "Understand",
+              "tool": "business-profile",
+              "detail": "cinema in Paris; budget 1000 EUR.",
+              "at": "2026-10-28T17:25:56.893Z"
+            },
+            {
+              "state": "Learn",
+              "tool": "outcome-history",
+              "detail": "0 owner-reported outcomes reviewed; observations are not causal evidence.",
+              "at": "2026-10-28T17:25:56.893Z"
+            },
+            {
+              "state": "Investigate",
+              "tool": "tool-selection",
+              "detail": "Use cultural references as interest signals, Paris as a location signal, and movie as the output category.",
+              "at": "2026-10-28T17:25:56.893Z"
+            },
+            {
+              "state": "Evidence",
+              "tool": "qloo api insights",
+              "detail": "12 entities returned.",
+              "at": "2026-10-28T17:26:00.793Z"
+            },
+            {
+              "state": "Constrain",
+              "tool": "budget-rule",
+              "detail": "Pilot allocations total 416 EUR, within the declared budget. 0 prior outcomes fell below target.",
+              "at": "2026-10-28T17:26:00.793Z"
+            },
+            {
+              "state": "Recommend",
+              "tool": "evidence-linked-planner",
+              "detail": "4 proposals created from Qloo entities using deterministic planning rules. No LLM reasoning is claimed.",
+              "at": "2026-10-28T17:26:00.793Z"
+            }
+          ],
+          "limitations": [
+            "Cultural affinity is aggregate evidence, not measured demand or a revenue forecast.",
+            "Pilot costs are budget allocations chosen by a planning rule, not vendor quotes.",
+            "Audience text and positioning are owner-provided context; they are not validated Qloo audience filters."
+          ]
+        }
+      }
+    },
+    {
+      "case": 2,
+      "input": {
+        "city": "Paris",
+        "audience": "Local visitors; synthetic planning scenario, not a measured audience",
+        "positioning": "Small independent business",
+        "competitors": "Not supplied",
+        "constraints": "One staff member; confirm rights, supply and capacity before launch",
+        "seeds": [
+          {
+            "id": "057DA9D9-399B-437E-8BCA-A80E499125EF",
+            "name": "Interstellar",
+            "category": "movie"
+          }
+        ],
+        "name": "Synthetic bookshop",
+        "industry": "bookshop",
+        "catalog": "Existing books and one reading table",
+        "goal": "Plan a book discussion using existing stock",
+        "budget": 3000,
+        "currency": "MAD"
+      },
+      "seedResolution": {
+        "query": "Interstellar",
+        "status": "unique-title-only",
+        "yearAndDirectorVerified": false,
+        "searchEvidenceId": "a29d54c8-fc0b-4b30-9738-288fedc662b4",
+        "at": "2026-10-28T17:25:56.893Z",
+        "candidates": [
+          {
+            "id": "057DA9D9-399B-437E-8BCA-A80E499125EF",
+            "name": "Interstellar",
+            "category": "movie"
+          },
+          {
+            "id": "B78D795F-8932-4BC9-BFDE-8A68C684D578",
+            "name": "Interstellar: Nolan's Odyssey",
+            "category": "movie"
+          },
+          {
+            "id": "0A62BAA1-A0D4-4F0B-86CE-A889DD1AA697",
+            "name": "Interstellar Wars",
+            "category": "movie"
+          },
+          {
+            "id": "019C713C-C0DA-4719-9228-47A4E4EA5258",
+            "name": "Interstellar Civil War: Shadows of the Empire",
+            "category": "movie"
+          },
+          {
+            "id": "3D3B05AA-A859-41CB-973A-A4AAA52196FB",
+            "name": "The Science of Interstellar",
+            "category": "movie"
+          }
+        ]
+      },
+      "baseline": {
+        "metrics": {
+          "mode": "baseline",
+          "apiAvailable": true,
+          "proposalCount": 1,
+          "evidenceCount": 0,
+          "returnedEntityCount": 0,
+          "totalAllocated": 600,
+          "declaredBudget": 3000,
+          "currency": "MAD",
+          "nonnegativeFiniteCosts": true,
+          "withinDeclaredBudget": true,
+          "linkedProposalCount": 0,
+          "danglingEvidenceReferenceCount": 0,
+          "proposalsWithDependencies": 1,
+          "proposalsWithNextAction": 1,
+          "modelUsed": false,
+          "caveat": "Empty proposal sets make boolean allocation checks vacuously true; inspect mode and proposal count. Mechanical contracts are not usefulness or demand ratings."
+        },
+        "evidence": {
+          "id": "af1f14ea-c22b-4338-83aa-287ea8198ac4",
+          "createdAt": "2026-10-28T17:26:00.795Z",
+          "mode": "baseline",
+          "evidence": [],
+          "strategies": [
+            {
+              "id": "dbe0bc00-db63-445e-89cf-8036a8498d73",
+              "title": "Run a small bookshop experiment",
+              "rationale": "Test one offering from your catalog against your stated objective: Plan a book discussion using existing stock. This is a planning rule based only on business inputs.",
+              "evidenceIds": [],
+              "cost": 600,
+              "effort": "One small pilot",
+              "risks": "Demand is unknown; measure before expanding.",
+              "dependencies": "Owner approval; catalog availability; One staff member; confirm rights, supply and capacity before launch",
+              "nextAction": "Choose one existing offering, set a measurable target, and record the actual result.",
+              "status": "proposed",
+              "alignment": 0,
+              "source": "baseline"
+            }
+          ],
+          "trace": [
+            {
+              "state": "Understand",
+              "tool": "business-profile",
+              "detail": "bookshop in Paris; budget 3000 MAD.",
+              "at": "2026-10-28T17:26:00.795Z"
+            },
+            {
+              "state": "Learn",
+              "tool": "outcome-history",
+              "detail": "0 owner-reported outcomes reviewed; observations are not causal evidence.",
+              "at": "2026-10-28T17:26:00.795Z"
+            },
+            {
+              "state": "Plan",
+              "tool": "baseline-rule",
+              "detail": "No Qloo or model data used.",
+              "at": "2026-10-28T17:26:00.795Z"
+            }
+          ],
+          "limitations": [
+            "Cultural affinity is aggregate evidence, not measured demand or a revenue forecast.",
+            "Pilot costs are budget allocations chosen by a planning rule, not vendor quotes.",
+            "Audience text and positioning are owner-provided context; they are not validated Qloo audience filters."
+          ]
+        }
+      },
+      "qlooAssisted": {
+        "metrics": {
+          "mode": "live",
+          "apiAvailable": true,
+          "proposalCount": 4,
+          "evidenceCount": 1,
+          "returnedEntityCount": 12,
+          "totalAllocated": 1250,
+          "declaredBudget": 3000,
+          "currency": "MAD",
+          "nonnegativeFiniteCosts": true,
+          "withinDeclaredBudget": true,
+          "linkedProposalCount": 4,
+          "danglingEvidenceReferenceCount": 0,
+          "proposalsWithDependencies": 4,
+          "proposalsWithNextAction": 4,
+          "modelUsed": false,
+          "caveat": "Empty proposal sets make boolean allocation checks vacuously true; inspect mode and proposal count. Mechanical contracts are not usefulness or demand ratings."
+        },
+        "evidence": {
+          "id": "39f8494a-bf21-4136-bb98-ba22b77a5920",
+          "createdAt": "2026-10-28T17:26:00.795Z",
+          "mode": "live",
+          "evidence": [
+            {
+              "id": "8ad3f47b-bb0b-4c79-8dfc-0f806872f075",
+              "at": "2026-10-28T17:26:03.958Z",
+              "cached": false,
+              "inputs": {
+                "entities": "057DA9D9-399B-437E-8BCA-A80E499125EF",
+                "city": "Paris"
+              },
+              "entities": [
+                {
+                  "id": "C3F696DC-62EA-4DDB-85F0-2312B52C791A",
+                  "name": "Norse Mythology",
+                  "category": "book",
+                  "affinity": 0.9106341210592582
+                },
+                {
+                  "id": "403F7A6F-E61A-42C2-92F5-ECFB514E0B10",
+                  "name": "The Wise Man's Fear (The Kingkiller Chronicle, #2)",
+                  "category": "book",
+                  "affinity": 0.8988988427449555
+                },
+                {
+                  "id": "66443FC3-796D-4B38-8183-C565D5041393",
+                  "name": "A Song of Ice and Fire (A Song of Ice and Fire, #1-5)",
+                  "category": "book",
+                  "affinity": 0.8970379454311662
+                },
+                {
+                  "id": "50CC7BEF-F150-4DEC-B2AE-150244C475DC",
+                  "name": "The Name of the Wind (The Kingkiller Chronicle, #1)",
+                  "category": "book",
+                  "affinity": 0.8920818883568697
+                },
+                {
+                  "id": "62E7D6D0-D968-4940-86D6-2FAECB50B2A1",
+                  "name": "A Storm of Swords (A Song of Ice and Fire, #3)",
+                  "category": "book",
+                  "affinity": 0.8900582234569235
+                },
+                {
+                  "id": "75ADF53A-6C4C-4A99-BF6D-1A48496685D0",
+                  "name": "The Maze Runner Trilogy (Maze Runner, #1-3)",
+                  "category": "book",
+                  "affinity": 0.8891965331135451
+                },
+                {
+                  "id": "D8E05823-C076-4537-9DD1-104167D9CD50",
+                  "name": "A Feast for Crows (A Song of Ice and Fire, #4)",
+                  "category": "book",
+                  "affinity": 0.8889998917973758
+                },
+                {
+                  "id": "93A27724-A7B5-4FE8-89FF-9788D48DB029",
+                  "name": "A Dance with Dragons (A Song of Ice and Fire, #5)",
+                  "category": "book",
+                  "affinity": 0.8821321056043098
+                },
+                {
+                  "id": "B00ABB53-EFEA-4EB3-AC00-60B9AB1A6650",
+                  "name": "American Gods",
+                  "category": "book",
+                  "affinity": 0.8803442408933317
+                },
+                {
+                  "id": "253685DA-4F4E-4D01-9199-71B674FE8626",
+                  "name": "Harry Potter and the Cursed Child: Parts One and Two (Harry Potter, #8)",
+                  "category": "book",
+                  "affinity": 0.8790489457285137
+                },
+                {
+                  "id": "0C97E7FE-8A86-4B48-9F54-CB0A73CC2B96",
+                  "name": "Harry Potter and the Sorcerer’s Stone (Harry Potter, #1)",
+                  "category": "book",
+                  "affinity": 0.8788582418009058
+                },
+                {
+                  "id": "98BFE2FD-4D27-43AF-8223-71B994E08A24",
+                  "name": "A Clash of Kings  (A Song of Ice and Fire, #2)",
+                  "category": "book",
+                  "affinity": 0.8781272403767971
+                }
+              ]
+            }
+          ],
+          "strategies": [
+            {
+              "id": "5aae380e-6bec-418f-b88b-3644c72e8013",
+              "entityId": "C3F696DC-62EA-4DDB-85F0-2312B52C791A",
+              "title": "Test an offering around Norse Mythology",
+              "rationale": "Qloo returned Norse Mythology for the selected cultural references and Paris signal. Consider a bookshop pilot using your catalog (Existing books and one reading table). Relevance to “Plan a book discussion using existing stock” still needs owner review.",
+              "evidenceIds": [
+                "8ad3f47b-bb0b-4c79-8dfc-0f806872f075"
+              ],
+              "cost": 600,
+              "effort": "Small pilot; review in one week",
+              "risks": "An aggregate affinity does not establish local demand. Confirm rights, supply, capacity, and fit with the intended audience.",
+              "dependencies": "One staff member; confirm rights, supply and capacity before launch; validate fit for Local visitors; synthetic planning scenario, not a measured audience. ",
+              "nextAction": "Validate access to Norse Mythology, select one measurable pilot, and set a target before launch.",
+              "status": "proposed",
+              "alignment": 0.9106341210592582,
+              "source": "qloo-assisted"
+            },
+            {
+              "id": "bf9c2a91-1438-435f-9fde-b5fe1b702dfd",
+              "entityId": "403F7A6F-E61A-42C2-92F5-ECFB514E0B10",
+              "title": "Test an offering around The Wise Man's Fear (The Kingkiller Chronicle, #2)",
+              "rationale": "Qloo returned The Wise Man's Fear (The Kingkiller Chronicle, #2) for the selected cultural references and Paris signal. Consider a bookshop pilot using your catalog (Existing books and one reading table). Relevance to “Plan a book discussion using existing stock” still needs owner review.",
+              "evidenceIds": [
+                "8ad3f47b-bb0b-4c79-8dfc-0f806872f075"
+              ],
+              "cost": 300,
+              "effort": "Validate supply and interest first",
+              "risks": "An aggregate affinity does not establish local demand. Confirm rights, supply, capacity, and fit with the intended audience.",
+              "dependencies": "One staff member; confirm rights, supply and capacity before launch; validate fit for Local visitors; synthetic planning scenario, not a measured audience. ",
+              "nextAction": "Validate access to The Wise Man's Fear (The Kingkiller Chronicle, #2), select one measurable pilot, and set a target before launch.",
+              "status": "proposed",
+              "alignment": 0.8988988427449555,
+              "source": "qloo-assisted"
+            },
+            {
+              "id": "f0930922-820a-4de9-aa79-c4b2d7bbdfaf",
+              "entityId": "66443FC3-796D-4B38-8183-C565D5041393",
+              "title": "Test an offering around A Song of Ice and Fire (A Song of Ice and Fire, #1-5)",
+              "rationale": "Qloo returned A Song of Ice and Fire (A Song of Ice and Fire, #1-5) for the selected cultural references and Paris signal. Consider a bookshop pilot using your catalog (Existing books and one reading table). Relevance to “Plan a book discussion using existing stock” still needs owner review.",
+              "evidenceIds": [
+                "8ad3f47b-bb0b-4c79-8dfc-0f806872f075"
+              ],
+              "cost": 200,
+              "effort": "Validate supply and interest first",
+              "risks": "An aggregate affinity does not establish local demand. Confirm rights, supply, capacity, and fit with the intended audience.",
+              "dependencies": "One staff member; confirm rights, supply and capacity before launch; validate fit for Local visitors; synthetic planning scenario, not a measured audience. ",
+              "nextAction": "Validate access to A Song of Ice and Fire (A Song of Ice and Fire, #1-5), select one measurable pilot, and set a target before launch.",
+              "status": "proposed",
+              "alignment": 0.8970379454311662,
+              "source": "qloo-assisted"
+            },
+            {
+              "id": "9d618fc1-0420-4888-b97f-67fdcba56da1",
+              "entityId": "50CC7BEF-F150-4DEC-B2AE-150244C475DC",
+              "title": "Test an offering around The Name of the Wind (The Kingkiller Chronicle, #1)",
+              "rationale": "Qloo returned The Name of the Wind (The Kingkiller Chronicle, #1) for the selected cultural references and Paris signal. Consider a bookshop pilot using your catalog (Existing books and one reading table). Relevance to “Plan a book discussion using existing stock” still needs owner review.",
+              "evidenceIds": [
+                "8ad3f47b-bb0b-4c79-8dfc-0f806872f075"
+              ],
+              "cost": 150,
+              "effort": "Validate supply and interest first",
+              "risks": "An aggregate affinity does not establish local demand. Confirm rights, supply, capacity, and fit with the intended audience.",
+              "dependencies": "One staff member; confirm rights, supply and capacity before launch; validate fit for Local visitors; synthetic planning scenario, not a measured audience. ",
+              "nextAction": "Validate access to The Name of the Wind (The Kingkiller Chronicle, #1), select one measurable pilot, and set a target before launch.",
+              "status": "proposed",
+              "alignment": 0.8920818883568697,
+              "source": "qloo-assisted"
+            }
+          ],
+          "trace": [
+            {
+              "state": "Understand",
+              "tool": "business-profile",
+              "detail": "bookshop in Paris; budget 3000 MAD.",
+              "at": "2026-10-28T17:26:00.795Z"
+            },
+            {
+              "state": "Learn",
+              "tool": "outcome-history",
+              "detail": "0 owner-reported outcomes reviewed; observations are not causal evidence.",
+              "at": "2026-10-28T17:26:00.795Z"
+            },
+            {
+              "state": "Investigate",
+              "tool": "tool-selection",
+              "detail": "Use cultural references as interest signals, Paris as a location signal, and book as the output category.",
+              "at": "2026-10-28T17:26:00.795Z"
+            },
+            {
+              "state": "Evidence",
+              "tool": "qloo api insights",
+              "detail": "12 entities returned.",
+              "at": "2026-10-28T17:26:03.958Z"
+            },
+            {
+              "state": "Constrain",
+              "tool": "budget-rule",
+              "detail": "Pilot allocations total 1250 MAD, within the declared budget. 0 prior outcomes fell below target.",
+              "at": "2026-10-28T17:26:03.959Z"
+            },
+            {
+              "state": "Recommend",
+              "tool": "evidence-linked-planner",
+              "detail": "4 proposals created from Qloo entities using deterministic planning rules. No LLM reasoning is claimed.",
+              "at": "2026-10-28T17:26:03.959Z"
+            }
+          ],
+          "limitations": [
+            "Cultural affinity is aggregate evidence, not measured demand or a revenue forecast.",
+            "Pilot costs are budget allocations chosen by a planning rule, not vendor quotes.",
+            "Audience text and positioning are owner-provided context; they are not validated Qloo audience filters."
+          ]
+        }
+      }
+    },
+    {
+      "case": 3,
+      "input": {
+        "city": "Paris",
+        "audience": "Local visitors; synthetic planning scenario, not a measured audience",
+        "positioning": "Small independent business",
+        "competitors": "Not supplied",
+        "constraints": "One staff member; confirm rights, supply and capacity before launch",
+        "seeds": [
+          {
+            "id": "057DA9D9-399B-437E-8BCA-A80E499125EF",
+            "name": "Interstellar",
+            "category": "movie"
+          }
+        ],
+        "name": "Synthetic retailer",
+        "industry": "retail",
+        "catalog": "Existing stationery display",
+        "goal": "Plan a display without new spending",
+        "budget": 0,
+        "currency": "USD"
+      },
+      "seedResolution": {
+        "query": "Interstellar",
+        "status": "unique-title-only",
+        "yearAndDirectorVerified": false,
+        "searchEvidenceId": "a29d54c8-fc0b-4b30-9738-288fedc662b4",
+        "at": "2026-10-28T17:25:56.893Z",
+        "candidates": [
+          {
+            "id": "057DA9D9-399B-437E-8BCA-A80E499125EF",
+            "name": "Interstellar",
+            "category": "movie"
+          },
+          {
+            "id": "B78D795F-8932-4BC9-BFDE-8A68C684D578",
+            "name": "Interstellar: Nolan's Odyssey",
+            "category": "movie"
+          },
+          {
+            "id": "0A62BAA1-A0D4-4F0B-86CE-A889DD1AA697",
+            "name": "Interstellar Wars",
+            "category": "movie"
+          },
+          {
+            "id": "019C713C-C0DA-4719-9228-47A4E4EA5258",
+            "name": "Interstellar Civil War: Shadows of the Empire",
+            "category": "movie"
+          },
+          {
+            "id": "3D3B05AA-A859-41CB-973A-A4AAA52196FB",
+            "name": "The Science of Interstellar",
+            "category": "movie"
+          }
+        ]
+      },
+      "baseline": {
+        "metrics": {
+          "mode": "baseline",
+          "apiAvailable": true,
+          "proposalCount": 1,
+          "evidenceCount": 0,
+          "returnedEntityCount": 0,
+          "totalAllocated": 0,
+          "declaredBudget": 0,
+          "currency": "USD",
+          "nonnegativeFiniteCosts": true,
+          "withinDeclaredBudget": true,
+          "linkedProposalCount": 0,
+          "danglingEvidenceReferenceCount": 0,
+          "proposalsWithDependencies": 1,
+          "proposalsWithNextAction": 1,
+          "modelUsed": false,
+          "caveat": "Empty proposal sets make boolean allocation checks vacuously true; inspect mode and proposal count. Mechanical contracts are not usefulness or demand ratings."
+        },
+        "evidence": {
+          "id": "19036eb9-59a7-4d6a-88df-56d85730a31f",
+          "createdAt": "2026-10-28T17:26:03.960Z",
+          "mode": "baseline",
+          "evidence": [],
+          "strategies": [
+            {
+              "id": "16e77116-8bdc-4503-8045-5c272b2ff256",
+              "title": "Run a small retail experiment",
+              "rationale": "Test one offering from your catalog against your stated objective: Plan a display without new spending. This is a planning rule based only on business inputs.",
+              "evidenceIds": [],
+              "cost": 0,
+              "effort": "One small pilot",
+              "risks": "Demand is unknown; measure before expanding.",
+              "dependencies": "Owner approval; catalog availability; One staff member; confirm rights, supply and capacity before launch",
+              "nextAction": "Choose one existing offering, set a measurable target, and record the actual result.",
+              "status": "proposed",
+              "alignment": 0,
+              "source": "baseline"
+            }
+          ],
+          "trace": [
+            {
+              "state": "Understand",
+              "tool": "business-profile",
+              "detail": "retail in Paris; budget 0 USD.",
+              "at": "2026-10-28T17:26:03.959Z"
+            },
+            {
+              "state": "Learn",
+              "tool": "outcome-history",
+              "detail": "0 owner-reported outcomes reviewed; observations are not causal evidence.",
+              "at": "2026-10-28T17:26:03.959Z"
+            },
+            {
+              "state": "Plan",
+              "tool": "baseline-rule",
+              "detail": "No Qloo or model data used.",
+              "at": "2026-10-28T17:26:03.960Z"
+            }
+          ],
+          "limitations": [
+            "Cultural affinity is aggregate evidence, not measured demand or a revenue forecast.",
+            "Pilot costs are budget allocations chosen by a planning rule, not vendor quotes.",
+            "Audience text and positioning are owner-provided context; they are not validated Qloo audience filters."
+          ]
+        }
+      },
+      "qlooAssisted": {
+        "metrics": {
+          "mode": "live",
+          "apiAvailable": true,
+          "proposalCount": 4,
+          "evidenceCount": 1,
+          "returnedEntityCount": 12,
+          "totalAllocated": 0,
+          "declaredBudget": 0,
+          "currency": "USD",
+          "nonnegativeFiniteCosts": true,
+          "withinDeclaredBudget": true,
+          "linkedProposalCount": 4,
+          "danglingEvidenceReferenceCount": 0,
+          "proposalsWithDependencies": 4,
+          "proposalsWithNextAction": 4,
+          "modelUsed": false,
+          "caveat": "Empty proposal sets make boolean allocation checks vacuously true; inspect mode and proposal count. Mechanical contracts are not usefulness or demand ratings."
+        },
+        "evidence": {
+          "id": "ebcfc921-85a0-49d5-8b05-f8b30ef45b5e",
+          "createdAt": "2026-10-28T17:26:03.960Z",
+          "mode": "live",
+          "evidence": [
+            {
+              "id": "42f479cf-e074-4246-89e8-45ac7f46cd8b",
+              "at": "2026-10-28T17:26:07.625Z",
+              "cached": false,
+              "inputs": {
+                "entities": "057DA9D9-399B-437E-8BCA-A80E499125EF",
+                "city": "Paris"
+              },
+              "entities": [
+                {
+                  "id": "3B0D64DD-29B7-4C90-8434-BA30589BF017",
+                  "name": "TED Talks",
+                  "category": "brand",
+                  "affinity": 0.9450241364906684
+                },
+                {
+                  "id": "84B18312-3C2B-41A9-863B-89651C2F6A2C",
+                  "name": "Gucci",
+                  "category": "brand",
+                  "affinity": 0.9446851421259662
+                },
+                {
+                  "id": "5760BF0A-EBDF-4B9A-88CD-69F4BF08C362",
+                  "name": "Louis Vuitton",
+                  "category": "brand",
+                  "affinity": 0.9441500987681133
+                },
+                {
+                  "id": "A5269DD4-5BCE-4EC7-BD50-355B29F3079F",
+                  "name": "Airbnb",
+                  "category": "brand",
+                  "affinity": 0.9428419055165795
+                },
+                {
+                  "id": "46DB54ED-CBA2-4F52-9512-EAA9B7C2CB69",
+                  "name": "The New York Times",
+                  "category": "brand",
+                  "affinity": 0.9343544570760355
+                },
+                {
+                  "id": "59E72ACF-8CFA-4E5B-BBEF-BA3AF8988C55",
+                  "name": "Christian Dior",
+                  "category": "brand",
+                  "affinity": 0.9341522679137259
+                },
+                {
+                  "id": "A5707876-D5A1-49F0-ABF9-A793EA7736D2",
+                  "name": "Vice",
+                  "category": "brand",
+                  "affinity": 0.933872341552318
+                },
+                {
+                  "id": "5B719D74-45D4-4FBD-A594-73DC30D7B64D",
+                  "name": "The Economist",
+                  "category": "brand",
+                  "affinity": 0.9332715151001818
+                },
+                {
+                  "id": "2723B38E-C3E2-435F-A77B-A94A92D68D07",
+                  "name": "Ralph Lauren",
+                  "category": "brand",
+                  "affinity": 0.9328734461255903
+                },
+                {
+                  "id": "212146FD-4F22-446B-BCA2-E8597774A940",
+                  "name": "Chanel",
+                  "category": "brand",
+                  "affinity": 0.9320823618814901
+                },
+                {
+                  "id": "8467E9C4-C5BA-4C74-8FAD-49DEEEB7A85D",
+                  "name": "Getty Images",
+                  "category": "brand",
+                  "affinity": 0.9320408611997951
+                },
+                {
+                  "id": "10BBB986-7878-4CF8-AF11-0B19D81CB205",
+                  "name": "Wired",
+                  "category": "brand",
+                  "affinity": 0.9312836432076989
+                }
+              ]
+            }
+          ],
+          "strategies": [
+            {
+              "id": "4ee7919f-3cfe-48c4-8927-10d95134b2a0",
+              "entityId": "3B0D64DD-29B7-4C90-8434-BA30589BF017",
+              "title": "Test an offering around TED Talks",
+              "rationale": "Qloo returned TED Talks for the selected cultural references and Paris signal. Consider a retail pilot using your catalog (Existing stationery display). Relevance to “Plan a display without new spending” still needs owner review.",
+              "evidenceIds": [
+                "42f479cf-e074-4246-89e8-45ac7f46cd8b"
+              ],
+              "cost": 0,
+              "effort": "Small pilot; review in one week",
+              "risks": "An aggregate affinity does not establish local demand. Confirm rights, supply, capacity, and fit with the intended audience.",
+              "dependencies": "One staff member; confirm rights, supply and capacity before launch; validate fit for Local visitors; synthetic planning scenario, not a measured audience. ",
+              "nextAction": "Validate access to TED Talks, select one measurable pilot, and set a target before launch.",
+              "status": "proposed",
+              "alignment": 0.9450241364906684,
+              "source": "qloo-assisted"
+            },
+            {
+              "id": "1e316938-a044-4f5c-8d46-e1f7c2e1e130",
+              "entityId": "84B18312-3C2B-41A9-863B-89651C2F6A2C",
+              "title": "Test an offering around Gucci",
+              "rationale": "Qloo returned Gucci for the selected cultural references and Paris signal. Consider a retail pilot using your catalog (Existing stationery display). Relevance to “Plan a display without new spending” still needs owner review.",
+              "evidenceIds": [
+                "42f479cf-e074-4246-89e8-45ac7f46cd8b"
+              ],
+              "cost": 0,
+              "effort": "Validate supply and interest first",
+              "risks": "An aggregate affinity does not establish local demand. Confirm rights, supply, capacity, and fit with the intended audience.",
+              "dependencies": "One staff member; confirm rights, supply and capacity before launch; validate fit for Local visitors; synthetic planning scenario, not a measured audience. ",
+              "nextAction": "Validate access to Gucci, select one measurable pilot, and set a target before launch.",
+              "status": "proposed",
+              "alignment": 0.9446851421259662,
+              "source": "qloo-assisted"
+            },
+            {
+              "id": "057e3682-ee1d-4592-b622-fe2ec464e40f",
+              "entityId": "5760BF0A-EBDF-4B9A-88CD-69F4BF08C362",
+              "title": "Test an offering around Louis Vuitton",
+              "rationale": "Qloo returned Louis Vuitton for the selected cultural references and Paris signal. Consider a retail pilot using your catalog (Existing stationery display). Relevance to “Plan a display without new spending” still needs owner review.",
+              "evidenceIds": [
+                "42f479cf-e074-4246-89e8-45ac7f46cd8b"
+              ],
+              "cost": 0,
+              "effort": "Validate supply and interest first",
+              "risks": "An aggregate affinity does not establish local demand. Confirm rights, supply, capacity, and fit with the intended audience.",
+              "dependencies": "One staff member; confirm rights, supply and capacity before launch; validate fit for Local visitors; synthetic planning scenario, not a measured audience. ",
+              "nextAction": "Validate access to Louis Vuitton, select one measurable pilot, and set a target before launch.",
+              "status": "proposed",
+              "alignment": 0.9441500987681133,
+              "source": "qloo-assisted"
+            },
+            {
+              "id": "fee64691-1771-43ea-9274-a7d62ec89f6a",
+              "entityId": "A5269DD4-5BCE-4EC7-BD50-355B29F3079F",
+              "title": "Test an offering around Airbnb",
+              "rationale": "Qloo returned Airbnb for the selected cultural references and Paris signal. Consider a retail pilot using your catalog (Existing stationery display). Relevance to “Plan a display without new spending” still needs owner review.",
+              "evidenceIds": [
+                "42f479cf-e074-4246-89e8-45ac7f46cd8b"
+              ],
+              "cost": 0,
+              "effort": "Validate supply and interest first",
+              "risks": "An aggregate affinity does not establish local demand. Confirm rights, supply, capacity, and fit with the intended audience.",
+              "dependencies": "One staff member; confirm rights, supply and capacity before launch; validate fit for Local visitors; synthetic planning scenario, not a measured audience. ",
+              "nextAction": "Validate access to Airbnb, select one measurable pilot, and set a target before launch.",
+              "status": "proposed",
+              "alignment": 0.9428419055165795,
+              "source": "qloo-assisted"
+            }
+          ],
+          "trace": [
+            {
+              "state": "Understand",
+              "tool": "business-profile",
+              "detail": "retail in Paris; budget 0 USD.",
+              "at": "2026-10-28T17:26:03.960Z"
+            },
+            {
+              "state": "Learn",
+              "tool": "outcome-history",
+              "detail": "0 owner-reported outcomes reviewed; observations are not causal evidence.",
+              "at": "2026-10-28T17:26:03.960Z"
+            },
+            {
+              "state": "Investigate",
+              "tool": "tool-selection",
+              "detail": "Use cultural references as interest signals, Paris as a location signal, and brand as the output category.",
+              "at": "2026-10-28T17:26:03.960Z"
+            },
+            {
+              "state": "Evidence",
+              "tool": "qloo api insights",
+              "detail": "12 entities returned.",
+              "at": "2026-10-28T17:26:07.625Z"
+            },
+            {
+              "state": "Constrain",
+              "tool": "budget-rule",
+              "detail": "Pilot allocations total 0 USD, within the declared budget. 0 prior outcomes fell below target.",
+              "at": "2026-10-28T17:26:07.625Z"
+            },
+            {
+              "state": "Recommend",
+              "tool": "evidence-linked-planner",
+              "detail": "4 proposals created from Qloo entities using deterministic planning rules. No LLM reasoning is claimed.",
+              "at": "2026-10-28T17:26:07.625Z"
+            }
+          ],
+          "limitations": [
+            "Cultural affinity is aggregate evidence, not measured demand or a revenue forecast.",
+            "Pilot costs are budget allocations chosen by a planning rule, not vendor quotes.",
+            "Audience text and positioning are owner-provided context; they are not validated Qloo audience filters."
+          ]
+        }
+      }
+    }
+  ],
+  "publicationNote": "Workstation protocol-file path removed before publication. Metrics and the frozen protocol are unchanged."
+}

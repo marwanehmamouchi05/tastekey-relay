@@ -27,6 +27,7 @@ import Studio from "./studio";
 import { AccountPanel } from "./auth-controls";
 import { api } from "@/lib/client";
 import { ConnectLikes, IntegrationHome } from "./integrations";
+import JudgeTour from "./judge-tour";
 const personalNav = [
   ["discover", "Start", Compass],
   ["taste-dna", "Your likes", Network],
@@ -167,7 +168,9 @@ export default function Workspace() {
             <strong>
               {pathname === "/account"
                 ? "Account"
-                : nav.find((n) => n[0] === section)?.[1] || "Workspace"}
+                : pathname === "/tour"
+                  ? "Quick tour"
+                  : nav.find((n) => n[0] === section)?.[1] || "Workspace"}
             </strong>
           </div>
           <div>
@@ -197,7 +200,9 @@ export default function Workspace() {
               </span>
             </div>
           )}
-          {pathname === "/connect" ? (
+          {pathname === "/tour" ? (
+            <JudgeTour />
+          ) : pathname === "/connect" ? (
             <ConnectLikes />
           ) : pathname === "/integrations" ? (
             <IntegrationHome />
@@ -213,6 +218,7 @@ export default function Workspace() {
           <span>TasteKey Relay</span>
           <span>One intelligence, two worlds.</span>
           <Link href="/integrations">Use on other websites</Link>
+          <Link href="/tour">Quick tour</Link>
           <a
             href="https://github.com/qloo/qloo-hackathon-kit"
             target="_blank"

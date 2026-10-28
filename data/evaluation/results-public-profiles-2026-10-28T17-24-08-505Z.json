@@ -1,0 +1,2727 @@
+{
+  "protocolFile": "results-public-profiles-2026-10-28T17-24-08-505Z.protocol.json",
+  "protocolSha256": "27fa81fcdd98948085ad83ec63cd9d6a881b40c7cdc14fc0dc444828df95292c",
+  "startedAt": "2026-10-28T17:24:08.507Z",
+  "completedAt": "2026-10-28T17:25:51.514Z",
+  "intendedCaseCount": 5,
+  "cases": [
+    {
+      "id": "bong-joon-ho",
+      "sourceUrl": "https://www.bfi.org.uk/sight-and-sound/greatest-films-all-time/all-voters/bong-joon-ho",
+      "status": "complete",
+      "seedResolution": [
+        {
+          "film": {
+            "title": "Psycho",
+            "sourceYear": 1960,
+            "director": "Alfred Hitchcock",
+            "aliases": []
+          },
+          "query": "Psycho",
+          "status": "ambiguous",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "ade481f7-f7b0-4e80-8457-afcbd85ed55b",
+          "at": "2026-10-28T17:24:13.713Z",
+          "candidates": [
+            {
+              "id": "4FBB2222-0E27-4094-8A4A-4A4695620B57",
+              "name": "Psycho",
+              "category": "movie"
+            },
+            {
+              "id": "83F5DB35-C24B-4653-B5E4-F4415BF1B679",
+              "name": "Psycho",
+              "category": "movie"
+            },
+            {
+              "id": "93557E85-31F7-4140-8F31-7629F3674AA1",
+              "name": "Psycho",
+              "category": "movie"
+            },
+            {
+              "id": "0B3C8418-0C99-4839-9FE2-D96E401A21F5",
+              "name": "Psycho",
+              "category": "movie"
+            },
+            {
+              "id": "CE8BE1C8-14D2-42AE-9D37-A1ACD0DD8639",
+              "name": "Psycho",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "Rocco E I Suoi Fratelli",
+            "sourceYear": 1960,
+            "director": "Luchino Visconti",
+            "aliases": [
+              "Rocco and His Brothers"
+            ]
+          },
+          "query": "Rocco and His Brothers",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "6ff3704d-0c5c-4f77-8318-cec82f60394b",
+          "at": "2026-10-28T17:24:16.651Z",
+          "candidates": [
+            {
+              "id": "9E3A9E34-B1AE-4A43-A12A-BD54C722DBBC",
+              "name": "Rocco and His Brothers",
+              "category": "movie"
+            },
+            {
+              "id": "C861C307-C16F-4FA0-B263-570B8383B6B9",
+              "name": "His Brother's Wife",
+              "category": "movie"
+            },
+            {
+              "id": "7B03C06E-9698-4B36-A817-CBC2EB8D26D1",
+              "name": "Standing in the Shadows of Motown",
+              "category": "movie"
+            },
+            {
+              "id": "97D57F8F-1464-4AC1-9553-2C20F5021301",
+              "name": "Agnes and His Brothers",
+              "category": "movie"
+            },
+            {
+              "id": "C758482F-C0C9-424D-AC10-515AACEBA450",
+              "name": "The Blues Brothers",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "Raging Bull",
+            "sourceYear": 1980,
+            "director": "Martin Scorsese",
+            "aliases": []
+          },
+          "query": "Raging Bull",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "54051cc4-9def-47ab-9320-8b597ed359a4",
+          "at": "2026-10-28T17:24:19.542Z",
+          "candidates": [
+            {
+              "id": "62B53AF0-FA86-462B-8345-F300A63C43A1",
+              "name": "Raging Bull",
+              "category": "movie"
+            },
+            {
+              "id": "9907A414-31D2-4F01-90EF-2EB45B153B1F",
+              "name": "Unstoppable",
+              "category": "movie"
+            },
+            {
+              "id": "D125402A-C443-425C-B678-C063238C74DC",
+              "name": "Easy Riders, Raging Bulls: How the Sex, Drugs and Rock 'N' Roll Generation Saved Hollywood",
+              "category": "movie"
+            },
+            {
+              "id": "C711A515-DCA4-426A-AC14-5DA08117E131",
+              "name": "The Big Bull",
+              "category": "movie"
+            },
+            {
+              "id": "51EDDE9C-7183-42C2-959B-5E2965DFC020",
+              "name": "Bull Durham",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "CURE",
+            "sourceYear": 1998,
+            "director": "Kiyoshi Kurosawa",
+            "aliases": [
+              "Cure"
+            ]
+          },
+          "query": "Cure",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "41c09d92-a947-46c6-b487-a3efe10544c5",
+          "at": "2026-10-28T17:24:22.586Z",
+          "candidates": [
+            {
+              "id": "EA635474-8A50-4EF1-B840-8B6F20077BF6",
+              "name": "Cure",
+              "category": "movie"
+            },
+            {
+              "id": "72B32DF5-4A9F-4E6C-8616-CC4DB3BA61D8",
+              "name": "The Cure",
+              "category": "movie"
+            },
+            {
+              "id": "C2023485-731E-4488-9E60-D41696E78814",
+              "name": "A Cure for Wellness",
+              "category": "movie"
+            },
+            {
+              "id": "A69F2146-2174-421C-B421-5D9FEAD6E6F7",
+              "name": "Cured",
+              "category": "movie"
+            },
+            {
+              "id": "220FF336-2668-4572-90D8-071E45B8579D",
+              "name": "The Cured",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "Mad Max: Fury Road",
+            "sourceYear": 2015,
+            "director": "George Miller",
+            "aliases": []
+          },
+          "query": "Mad Max: Fury Road",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "f68ddeb1-e1b3-4547-89c6-7bc368a661c2",
+          "at": "2026-10-28T17:24:25.641Z",
+          "candidates": [
+            {
+              "id": "4344F84A-69CE-46D1-B09C-02F31EC13117",
+              "name": "Mad Max: Fury Road",
+              "category": "movie"
+            },
+            {
+              "id": "E31C3FD7-CBF1-4600-A786-F3E1141B4808",
+              "name": "The Road Warrior",
+              "category": "movie"
+            },
+            {
+              "id": "3E5CB3D2-BD61-464A-B4C2-CA636D7FCDE0",
+              "name": "Furiosa: A Mad Max Saga",
+              "category": "movie"
+            },
+            {
+              "id": "F2569D02-B2C7-456D-A9E7-3FCD6B216B04",
+              "name": "Mad Max",
+              "category": "movie"
+            },
+            {
+              "id": "532135AE-74BD-4057-BA1C-0C2D83C1C1D2",
+              "name": "Mad Max: Beyond Thunderdome",
+              "category": "movie"
+            }
+          ]
+        }
+      ],
+      "resolvedSeedCount": 4,
+      "frozenPoolBeforeLabelMatching": {
+        "at": "2026-10-28T17:24:29.968Z",
+        "evidenceId": "9074f144-f24c-4ebb-a28f-0336f47710fa",
+        "inputs": {
+          "entities": "9E3A9E34-B1AE-4A43-A12A-BD54C722DBBC,62B53AF0-FA86-462B-8345-F300A63C43A1,EA635474-8A50-4EF1-B840-8B6F20077BF6,4344F84A-69CE-46D1-B09C-02F31EC13117"
+        },
+        "candidateIds": [
+          "329E393A-12D6-4A81-8FB4-446C13AD80B5",
+          "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+          "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+          "DA5F0271-8D29-4B8B-96B2-D2F4E5BDACFD",
+          "6EB01624-99E0-4F16-96CB-5AD0085AC88E",
+          "5BE86C9E-5848-476A-BCBE-33DF275F7377",
+          "73BB6E64-D409-45B7-A807-E7567A1BD246",
+          "B5EFACB4-1212-46DC-92FD-2A51BF659B84",
+          "9038D722-6F39-4BA3-849E-2AF2ECD908FE",
+          "11993E65-8437-4D26-8BF7-BBE4074C9AE6",
+          "C5777460-3328-480B-84CC-F9552B8CDE52",
+          "7F1163D3-D842-4121-AA13-68FA930E0F09"
+        ],
+        "rankings": {
+          "alphabetical": [
+            "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+            "11993E65-8437-4D26-8BF7-BBE4074C9AE6",
+            "9038D722-6F39-4BA3-849E-2AF2ECD908FE",
+            "B5EFACB4-1212-46DC-92FD-2A51BF659B84",
+            "6EB01624-99E0-4F16-96CB-5AD0085AC88E",
+            "5BE86C9E-5848-476A-BCBE-33DF275F7377",
+            "DA5F0271-8D29-4B8B-96B2-D2F4E5BDACFD",
+            "73BB6E64-D409-45B7-A807-E7567A1BD246",
+            "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+            "329E393A-12D6-4A81-8FB4-446C13AD80B5",
+            "7F1163D3-D842-4121-AA13-68FA930E0F09",
+            "C5777460-3328-480B-84CC-F9552B8CDE52"
+          ],
+          "qloo": [
+            "329E393A-12D6-4A81-8FB4-446C13AD80B5",
+            "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+            "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+            "DA5F0271-8D29-4B8B-96B2-D2F4E5BDACFD",
+            "6EB01624-99E0-4F16-96CB-5AD0085AC88E",
+            "5BE86C9E-5848-476A-BCBE-33DF275F7377",
+            "73BB6E64-D409-45B7-A807-E7567A1BD246",
+            "B5EFACB4-1212-46DC-92FD-2A51BF659B84",
+            "9038D722-6F39-4BA3-849E-2AF2ECD908FE",
+            "11993E65-8437-4D26-8BF7-BBE4074C9AE6",
+            "C5777460-3328-480B-84CC-F9552B8CDE52",
+            "7F1163D3-D842-4121-AA13-68FA930E0F09"
+          ],
+          "simulatedVerification": [
+            "6EB01624-99E0-4F16-96CB-5AD0085AC88E",
+            "5BE86C9E-5848-476A-BCBE-33DF275F7377",
+            "B5EFACB4-1212-46DC-92FD-2A51BF659B84",
+            "11993E65-8437-4D26-8BF7-BBE4074C9AE6",
+            "329E393A-12D6-4A81-8FB4-446C13AD80B5",
+            "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+            "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+            "DA5F0271-8D29-4B8B-96B2-D2F4E5BDACFD",
+            "73BB6E64-D409-45B7-A807-E7567A1BD246",
+            "9038D722-6F39-4BA3-849E-2AF2ECD908FE",
+            "C5777460-3328-480B-84CC-F9552B8CDE52",
+            "7F1163D3-D842-4121-AA13-68FA930E0F09"
+          ]
+        },
+        "sha256": "33b3ac8b43a64312d70b4a427904d15490a89efdab2e3d984cc4925c9be71b09"
+      },
+      "retrieval": {
+        "evidenceId": "9074f144-f24c-4ebb-a28f-0336f47710fa",
+        "at": "2026-10-28T17:24:29.960Z",
+        "cached": false,
+        "inputs": {
+          "entities": "9E3A9E34-B1AE-4A43-A12A-BD54C722DBBC,62B53AF0-FA86-462B-8345-F300A63C43A1,EA635474-8A50-4EF1-B840-8B6F20077BF6,4344F84A-69CE-46D1-B09C-02F31EC13117"
+        },
+        "returnedCount": 12,
+        "duplicateCount": 0,
+        "excludedSeedCount": 0
+      },
+      "candidates": [
+        {
+          "id": "329E393A-12D6-4A81-8FB4-446C13AD80B5",
+          "name": "Rashomon",
+          "category": "movie",
+          "affinity": 0.9251800504751453,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+          "name": "Barry Lyndon",
+          "category": "movie",
+          "affinity": 0.9201490900698902,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+          "name": "Ran",
+          "category": "movie",
+          "affinity": 0.9193205421658586,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "DA5F0271-8D29-4B8B-96B2-D2F4E5BDACFD",
+          "name": "On the Waterfront",
+          "category": "movie",
+          "affinity": 0.9145321698997713,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "6EB01624-99E0-4F16-96CB-5AD0085AC88E",
+          "name": "Le Samouraï",
+          "category": "movie",
+          "affinity": 0.9141183140762094,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "5BE86C9E-5848-476A-BCBE-33DF275F7377",
+          "name": "M",
+          "category": "movie",
+          "affinity": 0.9111227500809131,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "73BB6E64-D409-45B7-A807-E7567A1BD246",
+          "name": "Paths of Glory",
+          "category": "movie",
+          "affinity": 0.9093397527839264,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "B5EFACB4-1212-46DC-92FD-2A51BF659B84",
+          "name": "Ikiru",
+          "category": "movie",
+          "affinity": 0.9085102095744441,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "9038D722-6F39-4BA3-849E-2AF2ECD908FE",
+          "name": "Harakiri",
+          "category": "movie",
+          "affinity": 0.9082823623026529,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "11993E65-8437-4D26-8BF7-BBE4074C9AE6",
+          "name": "Diabolique",
+          "category": "movie",
+          "affinity": 0.907910498996562,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "C5777460-3328-480B-84CC-F9552B8CDE52",
+          "name": "Yojimbo",
+          "category": "movie",
+          "affinity": 0.9076867183917608,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "7F1163D3-D842-4121-AA13-68FA930E0F09",
+          "name": "Seven Samurai",
+          "category": "movie",
+          "affinity": 0.906676724493728,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        }
+      ],
+      "heldOutLinkage": [
+        {
+          "film": {
+            "title": "HANYO",
+            "sourceYear": 1960,
+            "director": "Kim Ki-young",
+            "aliases": [
+              "The Housemaid"
+            ]
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:bong-joon-ho:0"
+        },
+        {
+          "film": {
+            "title": "FUKUSHÛ SURU WA WARE NI ARI",
+            "sourceYear": 1979,
+            "director": "Shohei Imamura",
+            "aliases": [
+              "Vengeance Is Mine"
+            ]
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:bong-joon-ho:1"
+        },
+        {
+          "film": {
+            "title": "A City of Sadness",
+            "sourceYear": 1989,
+            "director": "Hou Hsiao-Hsien",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:bong-joon-ho:2"
+        },
+        {
+          "film": {
+            "title": "Zodiac",
+            "sourceYear": 2007,
+            "director": "David Fincher",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:bong-joon-ho:3"
+        },
+        {
+          "film": {
+            "title": "Lazzaro felice",
+            "sourceYear": 2018,
+            "director": "Alice Rohrwacher",
+            "aliases": [
+              "Happy as Lazzaro"
+            ]
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:bong-joon-ho:4"
+        }
+      ],
+      "rankings": {
+        "alphabetical": [
+          "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+          "11993E65-8437-4D26-8BF7-BBE4074C9AE6",
+          "9038D722-6F39-4BA3-849E-2AF2ECD908FE",
+          "B5EFACB4-1212-46DC-92FD-2A51BF659B84",
+          "6EB01624-99E0-4F16-96CB-5AD0085AC88E",
+          "5BE86C9E-5848-476A-BCBE-33DF275F7377",
+          "DA5F0271-8D29-4B8B-96B2-D2F4E5BDACFD",
+          "73BB6E64-D409-45B7-A807-E7567A1BD246",
+          "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+          "329E393A-12D6-4A81-8FB4-446C13AD80B5",
+          "7F1163D3-D842-4121-AA13-68FA930E0F09",
+          "C5777460-3328-480B-84CC-F9552B8CDE52"
+        ],
+        "qloo": [
+          "329E393A-12D6-4A81-8FB4-446C13AD80B5",
+          "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+          "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+          "DA5F0271-8D29-4B8B-96B2-D2F4E5BDACFD",
+          "6EB01624-99E0-4F16-96CB-5AD0085AC88E",
+          "5BE86C9E-5848-476A-BCBE-33DF275F7377",
+          "73BB6E64-D409-45B7-A807-E7567A1BD246",
+          "B5EFACB4-1212-46DC-92FD-2A51BF659B84",
+          "9038D722-6F39-4BA3-849E-2AF2ECD908FE",
+          "11993E65-8437-4D26-8BF7-BBE4074C9AE6",
+          "C5777460-3328-480B-84CC-F9552B8CDE52",
+          "7F1163D3-D842-4121-AA13-68FA930E0F09"
+        ],
+        "simulatedVerification": [
+          "6EB01624-99E0-4F16-96CB-5AD0085AC88E",
+          "5BE86C9E-5848-476A-BCBE-33DF275F7377",
+          "B5EFACB4-1212-46DC-92FD-2A51BF659B84",
+          "11993E65-8437-4D26-8BF7-BBE4074C9AE6",
+          "329E393A-12D6-4A81-8FB4-446C13AD80B5",
+          "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+          "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+          "DA5F0271-8D29-4B8B-96B2-D2F4E5BDACFD",
+          "73BB6E64-D409-45B7-A807-E7567A1BD246",
+          "9038D722-6F39-4BA3-849E-2AF2ECD908FE",
+          "C5777460-3328-480B-84CC-F9552B8CDE52",
+          "7F1163D3-D842-4121-AA13-68FA930E0F09"
+        ]
+      },
+      "metrics": {
+        "positiveCount": 5,
+        "candidateCount": 12,
+        "retrievedPositiveCount": 0,
+        "retrievalRecall": 0,
+        "metrics": {
+          "alphabetical": {
+            "hitAtK": 0,
+            "recallAtK": 0,
+            "reciprocalRank": 0,
+            "ndcgAtK": 0,
+            "firstRelevantRank": null
+          },
+          "qloo": {
+            "hitAtK": 0,
+            "recallAtK": 0,
+            "reciprocalRank": 0,
+            "ndcgAtK": 0,
+            "firstRelevantRank": null
+          },
+          "simulatedVerification": {
+            "hitAtK": 0,
+            "recallAtK": 0,
+            "reciprocalRank": 0,
+            "ndcgAtK": 0,
+            "firstRelevantRank": null
+          }
+        }
+      },
+      "conditionalMetrics": null,
+      "changedPositions": 10,
+      "linkageWarning": "Provisional title-only matching; source year/director preserved but not verified against Qloo identity."
+    },
+    {
+      "id": "joanna-hogg",
+      "sourceUrl": "https://www.bfi.org.uk/sight-and-sound/greatest-films-all-time/all-voters/joanna-hogg",
+      "status": "complete",
+      "seedResolution": [
+        {
+          "film": {
+            "title": "All That Jazz",
+            "sourceYear": 1979,
+            "director": "Bob Fosse",
+            "aliases": []
+          },
+          "query": "All That Jazz",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "606fa4c1-bab0-45ac-871d-dd762ca493d9",
+          "at": "2026-10-28T17:24:32.933Z",
+          "candidates": [
+            {
+              "id": "15B1D59E-7066-4BE8-808D-BEF7C0F7C91B",
+              "name": "All That Jazz",
+              "category": "movie"
+            },
+            {
+              "id": "248F9D26-EC70-4A29-B084-62A7792FA049",
+              "name": "She's All That",
+              "category": "movie"
+            },
+            {
+              "id": "AF938A07-3EFB-4188-BF3E-0134CBA7D074",
+              "name": "All That Heaven Allows",
+              "category": "movie"
+            },
+            {
+              "id": "C6E30D5A-79DD-4715-85AD-FD1D74A7D3DE",
+              "name": "He's All That",
+              "category": "movie"
+            },
+            {
+              "id": "5428487B-1E26-4DAC-9D68-B85C037BF731",
+              "name": "All That Breathes",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "La dolce vita",
+            "sourceYear": 1960,
+            "director": "Federico Fellini",
+            "aliases": []
+          },
+          "query": "La dolce vita",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "d34a04c4-b001-4e1c-aff0-f7d14036cce9",
+          "at": "2026-10-28T17:24:36.183Z",
+          "candidates": [
+            {
+              "id": "1EDBCE7F-31D8-4990-8C41-68767785EE52",
+              "name": "La Dolce Vita",
+              "category": "movie"
+            },
+            {
+              "id": "C14EA9CA-F111-455E-9860-B1D4F63FC899",
+              "name": "Munster, Go Home!",
+              "category": "movie"
+            },
+            {
+              "id": "514668BE-B435-4713-B851-1F4CF2DD153E",
+              "name": "The Truth About La Dolce Vita",
+              "category": "movie"
+            },
+            {
+              "id": "011DDDC7-E903-4577-91AF-1977D6968EAD",
+              "name": "Life Is Sweet",
+              "category": "movie"
+            },
+            {
+              "id": "06A06926-0684-4E27-B826-F0884EB8E3B6",
+              "name": "Life Is Beautiful",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "Margaret",
+            "sourceYear": 2008,
+            "director": "Kenneth Lonergan",
+            "aliases": []
+          },
+          "query": "Margaret",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "49f26e75-a7f2-4c5b-82c9-f0ae734eeb71",
+          "at": "2026-10-28T17:24:39.232Z",
+          "candidates": [
+            {
+              "id": "0257C0B9-EF13-42AB-879B-DD478850FB4D",
+              "name": "Margaret",
+              "category": "movie"
+            },
+            {
+              "id": "E253CCE7-30A6-400C-AACB-B8145DED68D2",
+              "name": "Mammal",
+              "category": "movie"
+            },
+            {
+              "id": "80B1576E-7C86-4CB8-B680-871A4D56D697",
+              "name": "Margarethe",
+              "category": "movie"
+            },
+            {
+              "id": "248F2894-503E-413B-A211-99C59079F430",
+              "name": "Margaret Atwood: A Word After a Word After a Word Is Power",
+              "category": "movie"
+            },
+            {
+              "id": "2C0FA607-C720-4D05-8336-3585D2D4D379",
+              "name": "Margaret's Museum",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "La Règle du jeu",
+            "sourceYear": 1939,
+            "director": "Jean Renoir",
+            "aliases": [
+              "The Rules of the Game"
+            ]
+          },
+          "query": "The Rules of the Game",
+          "status": "ambiguous",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "d77c47b7-e0ea-4903-a5b6-f3ba96b91d45",
+          "at": "2026-10-28T17:24:43.025Z",
+          "candidates": [
+            {
+              "id": "FCED5559-8AD2-4CD0-9FA0-8DE56023A8C9",
+              "name": "The Rules of the Game",
+              "category": "movie"
+            },
+            {
+              "id": "557262F0-D3C5-4222-8BA1-4C79CC912D1B",
+              "name": "The Rules of the Game",
+              "category": "movie"
+            },
+            {
+              "id": "A95CFF91-343C-4968-AA61-6B1A4EC7AA18",
+              "name": "The Rules of the Game",
+              "category": "movie"
+            },
+            {
+              "id": "0B339FC1-F5D5-4FBA-B9EA-D90D3C533562",
+              "name": "The Rules of the Game",
+              "category": "movie"
+            },
+            {
+              "id": "CB44CB29-6BB5-4FDE-B0D7-2429B0EBA5AA",
+              "name": "Sherlock Holmes: A Game of Shadows",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "Jeanne Dielman, 23 Quai du Commerce, 1080 Bruxelles",
+            "sourceYear": 1975,
+            "director": "Chantal Akerman",
+            "aliases": []
+          },
+          "query": "Jeanne Dielman, 23 Quai du Commerce, 1080 Bruxelles",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "0c4a356f-79aa-4eb8-8419-a24033adc7a1",
+          "at": "2026-10-28T17:24:46.694Z",
+          "candidates": [
+            {
+              "id": "86BF893C-6960-4EF6-9294-766C343FEE25",
+              "name": "Jeanne Dielman, 23, quai du Commerce, 1080 Bruxelles",
+              "category": "movie"
+            },
+            {
+              "id": "5AE647B2-D521-4EA8-8B25-AA024160CCFD",
+              "name": "Jeanne du Barry",
+              "category": "movie"
+            },
+            {
+              "id": "A3E6D4D6-58F6-4FD9-AB92-3CFF076E5B66",
+              "name": "Run Silent Run Deep",
+              "category": "movie"
+            },
+            {
+              "id": "7A28C41B-7C5C-42E3-8BA4-F2AD06FC81D1",
+              "name": "Between Two Worlds",
+              "category": "movie"
+            },
+            {
+              "id": "BE1D23B0-1111-40F6-94BD-418EF19D8BCC",
+              "name": "23 Paces to Baker Street",
+              "category": "movie"
+            }
+          ]
+        }
+      ],
+      "resolvedSeedCount": 4,
+      "frozenPoolBeforeLabelMatching": {
+        "at": "2026-10-28T17:24:51.198Z",
+        "evidenceId": "72de5505-0f6a-4175-8ee8-f36dc7196ddd",
+        "inputs": {
+          "entities": "15B1D59E-7066-4BE8-808D-BEF7C0F7C91B,1EDBCE7F-31D8-4990-8C41-68767785EE52,0257C0B9-EF13-42AB-879B-DD478850FB4D,86BF893C-6960-4EF6-9294-766C343FEE25"
+        },
+        "candidateIds": [
+          "1C63AFC3-4895-44BC-9B46-2F7D81C0348C",
+          "953066D6-6418-43D3-9A65-620615712928",
+          "568B6C14-7E61-4039-A773-C8DEB92ACA6F",
+          "6F321A99-EEEA-4156-B895-46205DFBD981",
+          "F6BFFBE0-EE6C-4CC6-B5F7-E602B54078C4",
+          "94416A84-05DB-43B7-A6AC-2EC425A867F9",
+          "4EDF9D72-B938-4D37-B43D-7E48BB99266D",
+          "0F9586EC-0375-44BC-BC6B-07D83917462D",
+          "1B9A77B8-2E3E-4C86-A307-6C9907953114",
+          "CF1CE6A2-C555-4D22-853E-971A7BE04DDE",
+          "70C5F35F-67D2-4548-B659-866ACD916D8E",
+          "36227DD8-AD78-4D04-8B43-83A0E6053878"
+        ],
+        "rankings": {
+          "alphabetical": [
+            "F6BFFBE0-EE6C-4CC6-B5F7-E602B54078C4",
+            "70C5F35F-67D2-4548-B659-866ACD916D8E",
+            "953066D6-6418-43D3-9A65-620615712928",
+            "94416A84-05DB-43B7-A6AC-2EC425A867F9",
+            "568B6C14-7E61-4039-A773-C8DEB92ACA6F",
+            "1B9A77B8-2E3E-4C86-A307-6C9907953114",
+            "1C63AFC3-4895-44BC-9B46-2F7D81C0348C",
+            "6F321A99-EEEA-4156-B895-46205DFBD981",
+            "CF1CE6A2-C555-4D22-853E-971A7BE04DDE",
+            "4EDF9D72-B938-4D37-B43D-7E48BB99266D",
+            "0F9586EC-0375-44BC-BC6B-07D83917462D",
+            "36227DD8-AD78-4D04-8B43-83A0E6053878"
+          ],
+          "qloo": [
+            "1C63AFC3-4895-44BC-9B46-2F7D81C0348C",
+            "953066D6-6418-43D3-9A65-620615712928",
+            "568B6C14-7E61-4039-A773-C8DEB92ACA6F",
+            "6F321A99-EEEA-4156-B895-46205DFBD981",
+            "F6BFFBE0-EE6C-4CC6-B5F7-E602B54078C4",
+            "94416A84-05DB-43B7-A6AC-2EC425A867F9",
+            "4EDF9D72-B938-4D37-B43D-7E48BB99266D",
+            "0F9586EC-0375-44BC-BC6B-07D83917462D",
+            "1B9A77B8-2E3E-4C86-A307-6C9907953114",
+            "CF1CE6A2-C555-4D22-853E-971A7BE04DDE",
+            "70C5F35F-67D2-4548-B659-866ACD916D8E",
+            "36227DD8-AD78-4D04-8B43-83A0E6053878"
+          ],
+          "simulatedVerification": [
+            "1C63AFC3-4895-44BC-9B46-2F7D81C0348C",
+            "953066D6-6418-43D3-9A65-620615712928",
+            "568B6C14-7E61-4039-A773-C8DEB92ACA6F",
+            "6F321A99-EEEA-4156-B895-46205DFBD981",
+            "F6BFFBE0-EE6C-4CC6-B5F7-E602B54078C4",
+            "94416A84-05DB-43B7-A6AC-2EC425A867F9",
+            "4EDF9D72-B938-4D37-B43D-7E48BB99266D",
+            "0F9586EC-0375-44BC-BC6B-07D83917462D",
+            "70C5F35F-67D2-4548-B659-866ACD916D8E",
+            "1B9A77B8-2E3E-4C86-A307-6C9907953114",
+            "CF1CE6A2-C555-4D22-853E-971A7BE04DDE",
+            "36227DD8-AD78-4D04-8B43-83A0E6053878"
+          ]
+        },
+        "sha256": "25cfa74d9491bfe88e63991f670b9f7610b21785ab99b4ed1ca822148ee761f2"
+      },
+      "retrieval": {
+        "evidenceId": "72de5505-0f6a-4175-8ee8-f36dc7196ddd",
+        "at": "2026-10-28T17:24:51.198Z",
+        "cached": false,
+        "inputs": {
+          "entities": "15B1D59E-7066-4BE8-808D-BEF7C0F7C91B,1EDBCE7F-31D8-4990-8C41-68767785EE52,0257C0B9-EF13-42AB-879B-DD478850FB4D,86BF893C-6960-4EF6-9294-766C343FEE25"
+        },
+        "returnedCount": 12,
+        "duplicateCount": 0,
+        "excludedSeedCount": 0
+      },
+      "candidates": [
+        {
+          "id": "1C63AFC3-4895-44BC-9B46-2F7D81C0348C",
+          "name": "My Life to Live",
+          "category": "movie",
+          "affinity": 0.9383271990894289,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "953066D6-6418-43D3-9A65-620615712928",
+          "name": "Contempt",
+          "category": "movie",
+          "affinity": 0.9375407752610498,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "568B6C14-7E61-4039-A773-C8DEB92ACA6F",
+          "name": "Jules and Jim",
+          "category": "movie",
+          "affinity": 0.9371959355083973,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "6F321A99-EEEA-4156-B895-46205DFBD981",
+          "name": "Opening Night",
+          "category": "movie",
+          "affinity": 0.9369335455552437,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "F6BFFBE0-EE6C-4CC6-B5F7-E602B54078C4",
+          "name": "A Woman Under the Influence",
+          "category": "movie",
+          "affinity": 0.9366039060429869,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "94416A84-05DB-43B7-A6AC-2EC425A867F9",
+          "name": "Days of Heaven",
+          "category": "movie",
+          "affinity": 0.9323739612174128,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "storytelling"
+          ]
+        },
+        {
+          "id": "4EDF9D72-B938-4D37-B43D-7E48BB99266D",
+          "name": "Red Desert",
+          "category": "movie",
+          "affinity": 0.9308802593811677,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "0F9586EC-0375-44BC-BC6B-07D83917462D",
+          "name": "The Bitter Tears of Petra von Kant",
+          "category": "movie",
+          "affinity": 0.9306885314257075,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "1B9A77B8-2E3E-4C86-A307-6C9907953114",
+          "name": "La Notte",
+          "category": "movie",
+          "affinity": 0.9298042570750507,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "CF1CE6A2-C555-4D22-853E-971A7BE04DDE",
+          "name": "Pierrot le fou",
+          "category": "movie",
+          "affinity": 0.9270343216849036,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "70C5F35F-67D2-4548-B659-866ACD916D8E",
+          "name": "Cleo from 5 to 7",
+          "category": "movie",
+          "affinity": 0.9268716831550143,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "36227DD8-AD78-4D04-8B43-83A0E6053878",
+          "name": "The Umbrellas of Cherbourg",
+          "category": "movie",
+          "affinity": 0.9260442798702727,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        }
+      ],
+      "heldOutLinkage": [
+        {
+          "film": {
+            "title": "An Angel at My Table",
+            "sourceYear": 1990,
+            "director": "Jane Campion",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:joanna-hogg:0"
+        },
+        {
+          "film": {
+            "title": "The King of Comedy",
+            "sourceYear": 1983,
+            "director": "Martin Scorsese",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:joanna-hogg:1"
+        },
+        {
+          "film": {
+            "title": "The Red Shoes",
+            "sourceYear": 1948,
+            "director": "Michael Powell, Emeric Pressburger",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:joanna-hogg:2"
+        },
+        {
+          "film": {
+            "title": "2001: A Space Odyssey",
+            "sourceYear": 1968,
+            "director": "Stanley Kubrick",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:joanna-hogg:3"
+        },
+        {
+          "film": {
+            "title": "Journey to Italy",
+            "sourceYear": 1954,
+            "director": "Roberto Rossellini",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:joanna-hogg:4"
+        }
+      ],
+      "rankings": {
+        "alphabetical": [
+          "F6BFFBE0-EE6C-4CC6-B5F7-E602B54078C4",
+          "70C5F35F-67D2-4548-B659-866ACD916D8E",
+          "953066D6-6418-43D3-9A65-620615712928",
+          "94416A84-05DB-43B7-A6AC-2EC425A867F9",
+          "568B6C14-7E61-4039-A773-C8DEB92ACA6F",
+          "1B9A77B8-2E3E-4C86-A307-6C9907953114",
+          "1C63AFC3-4895-44BC-9B46-2F7D81C0348C",
+          "6F321A99-EEEA-4156-B895-46205DFBD981",
+          "CF1CE6A2-C555-4D22-853E-971A7BE04DDE",
+          "4EDF9D72-B938-4D37-B43D-7E48BB99266D",
+          "0F9586EC-0375-44BC-BC6B-07D83917462D",
+          "36227DD8-AD78-4D04-8B43-83A0E6053878"
+        ],
+        "qloo": [
+          "1C63AFC3-4895-44BC-9B46-2F7D81C0348C",
+          "953066D6-6418-43D3-9A65-620615712928",
+          "568B6C14-7E61-4039-A773-C8DEB92ACA6F",
+          "6F321A99-EEEA-4156-B895-46205DFBD981",
+          "F6BFFBE0-EE6C-4CC6-B5F7-E602B54078C4",
+          "94416A84-05DB-43B7-A6AC-2EC425A867F9",
+          "4EDF9D72-B938-4D37-B43D-7E48BB99266D",
+          "0F9586EC-0375-44BC-BC6B-07D83917462D",
+          "1B9A77B8-2E3E-4C86-A307-6C9907953114",
+          "CF1CE6A2-C555-4D22-853E-971A7BE04DDE",
+          "70C5F35F-67D2-4548-B659-866ACD916D8E",
+          "36227DD8-AD78-4D04-8B43-83A0E6053878"
+        ],
+        "simulatedVerification": [
+          "1C63AFC3-4895-44BC-9B46-2F7D81C0348C",
+          "953066D6-6418-43D3-9A65-620615712928",
+          "568B6C14-7E61-4039-A773-C8DEB92ACA6F",
+          "6F321A99-EEEA-4156-B895-46205DFBD981",
+          "F6BFFBE0-EE6C-4CC6-B5F7-E602B54078C4",
+          "94416A84-05DB-43B7-A6AC-2EC425A867F9",
+          "4EDF9D72-B938-4D37-B43D-7E48BB99266D",
+          "0F9586EC-0375-44BC-BC6B-07D83917462D",
+          "70C5F35F-67D2-4548-B659-866ACD916D8E",
+          "1B9A77B8-2E3E-4C86-A307-6C9907953114",
+          "CF1CE6A2-C555-4D22-853E-971A7BE04DDE",
+          "36227DD8-AD78-4D04-8B43-83A0E6053878"
+        ]
+      },
+      "metrics": {
+        "positiveCount": 5,
+        "candidateCount": 12,
+        "retrievedPositiveCount": 0,
+        "retrievalRecall": 0,
+        "metrics": {
+          "alphabetical": {
+            "hitAtK": 0,
+            "recallAtK": 0,
+            "reciprocalRank": 0,
+            "ndcgAtK": 0,
+            "firstRelevantRank": null
+          },
+          "qloo": {
+            "hitAtK": 0,
+            "recallAtK": 0,
+            "reciprocalRank": 0,
+            "ndcgAtK": 0,
+            "firstRelevantRank": null
+          },
+          "simulatedVerification": {
+            "hitAtK": 0,
+            "recallAtK": 0,
+            "reciprocalRank": 0,
+            "ndcgAtK": 0,
+            "firstRelevantRank": null
+          }
+        }
+      },
+      "conditionalMetrics": null,
+      "changedPositions": 3,
+      "linkageWarning": "Provisional title-only matching; source year/director preserved but not verified against Qloo identity."
+    },
+    {
+      "id": "barry-jenkins",
+      "sourceUrl": "https://www.bfi.org.uk/sight-and-sound/greatest-films-all-time/all-voters/barry-jenkins",
+      "status": "complete",
+      "seedResolution": [
+        {
+          "film": {
+            "title": "West Indies: The Fugitive Slaves of Liberty",
+            "sourceYear": 1979,
+            "director": "Med Hondo",
+            "aliases": []
+          },
+          "query": "West Indies: The Fugitive Slaves of Liberty",
+          "status": "not-found",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "55d7ec71-9193-48ed-a4ca-150b3445a5be",
+          "at": "2026-10-28T17:24:53.961Z",
+          "candidates": [
+            {
+              "id": "579E4D6E-13F3-42B1-90E7-5C25207E88DF",
+              "name": "The French Dispatch",
+              "category": "movie"
+            },
+            {
+              "id": "7CDA3808-EECA-45E3-B85B-021737959539",
+              "name": "The Phantom of Liberty",
+              "category": "movie"
+            },
+            {
+              "id": "76407C9A-CE31-46C5-AA3C-91C75C70E9BD",
+              "name": "Out of Liberty",
+              "category": "movie"
+            },
+            {
+              "id": "B1AA127B-50F0-49F7-90DB-8D61D9D713A1",
+              "name": "Wild Beauty: Mustang Spirit of the West",
+              "category": "movie"
+            },
+            {
+              "id": "DB23E75E-2588-47FF-B8CE-5686417982A8",
+              "name": "The Prince of Egypt: Live from the West End",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "Beau travail",
+            "sourceYear": 1998,
+            "director": "Claire Denis",
+            "aliases": []
+          },
+          "query": "Beau travail",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "82489513-5437-4d7b-a492-3fc1e4d49a02",
+          "at": "2026-10-28T17:24:57.194Z",
+          "candidates": [
+            {
+              "id": "E9CB7164-BA01-4238-88C7-2562C2F0B1EF",
+              "name": "Beau Travail",
+              "category": "movie"
+            },
+            {
+              "id": "7E0CB1A4-F3BE-4CD1-918C-391786C8C7C1",
+              "name": "Beau Is Afraid",
+              "category": "movie"
+            },
+            {
+              "id": "269D2AA9-5269-40F2-B647-5C3C75681D9B",
+              "name": "Office Space",
+              "category": "movie"
+            },
+            {
+              "id": "D085E508-D5C1-450E-BE0A-C419535A857B",
+              "name": "Meet the Parents",
+              "category": "movie"
+            },
+            {
+              "id": "9CE72AE0-5583-4BC6-8E4E-BCCD6CA5F159",
+              "name": "Remember the Titans",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "Sátántangó",
+            "sourceYear": 1994,
+            "director": "Béla Tarr",
+            "aliases": []
+          },
+          "query": "Sátántangó",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "4bae68c8-fd62-4061-af74-0b16f4857239",
+          "at": "2026-10-28T17:25:00.615Z",
+          "candidates": [
+            {
+              "id": "E34FC4EC-A131-4E3B-9086-D6C3F851BBEC",
+              "name": "Satantango",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "2001: A Space Odyssey",
+            "sourceYear": 1968,
+            "director": "Stanley Kubrick",
+            "aliases": []
+          },
+          "query": "2001: A Space Odyssey",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "cd697968-798f-4f79-a353-90ec6dbd69dc",
+          "at": "2026-10-28T17:25:04.448Z",
+          "candidates": [
+            {
+              "id": "87B9350E-ABFF-4A53-8565-49641858015C",
+              "name": "2001: A Space Odyssey",
+              "category": "movie"
+            },
+            {
+              "id": "428AC907-4792-4736-8EC9-237EA4F663AA",
+              "name": "2001: A Space Travesty",
+              "category": "movie"
+            },
+            {
+              "id": "343329FC-CF5A-489F-9C1C-837BF2DF4B6B",
+              "name": "India's Space Odyssey",
+              "category": "movie"
+            },
+            {
+              "id": "CC40D443-16DD-4771-88EC-2F21E1B61A84",
+              "name": "Doraemon: Nobita in the Wan-Nyan Spacetime Odyssey",
+              "category": "movie"
+            },
+            {
+              "id": "7A9664B8-0FD4-4F92-B15A-1B42776EDDDF",
+              "name": "Space Odyssey: Voyage to the Planets",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "Do the Right Thing",
+            "sourceYear": 1989,
+            "director": "Spike Lee",
+            "aliases": []
+          },
+          "query": "Do the Right Thing",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "717eaea0-8458-4a8e-8db7-b694a0d0ec78",
+          "at": "2026-10-28T17:25:08.309Z",
+          "candidates": [
+            {
+              "id": "A9CCAFA9-A105-4D3F-B206-18C1C68E6C1D",
+              "name": "Do the Right Thing",
+              "category": "movie"
+            },
+            {
+              "id": "82DC637E-8948-4EE3-955E-A70A8EAAE798",
+              "name": "Making Do the Right Thing",
+              "category": "movie"
+            },
+            {
+              "id": "EBF58463-7F4F-4BE6-8E37-F0ECEB465A38",
+              "name": "That Thing You Do!",
+              "category": "movie"
+            },
+            {
+              "id": "B4A3ACE0-8D78-40F5-A9C7-71C39554B1BA",
+              "name": "No Such Thing As Monsters",
+              "category": "movie"
+            },
+            {
+              "id": "D8F70E7A-F6B9-4E2E-877E-C72E834164B8",
+              "name": "Dudley Do-Right",
+              "category": "movie"
+            }
+          ]
+        }
+      ],
+      "resolvedSeedCount": 4,
+      "frozenPoolBeforeLabelMatching": {
+        "at": "2026-10-28T17:25:13.615Z",
+        "evidenceId": "00dd0db8-f821-4c2c-a041-d9240896ad4d",
+        "inputs": {
+          "entities": "E9CB7164-BA01-4238-88C7-2562C2F0B1EF,E34FC4EC-A131-4E3B-9086-D6C3F851BBEC,87B9350E-ABFF-4A53-8565-49641858015C,A9CCAFA9-A105-4D3F-B206-18C1C68E6C1D"
+        },
+        "candidateIds": [
+          "FB1DB831-1962-4C74-9DAB-1B9ED46BDEAD",
+          "DAD258CF-8A7B-4825-97F3-717FA82FA696",
+          "071B4968-ECF0-45F2-ACD5-B58D1B25E919",
+          "85D451BC-FE29-44BF-93FF-AFF51533F30B",
+          "D68596E5-F60B-4044-8F91-6FF57EA9A25C",
+          "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+          "D2243411-C04C-4134-88C6-578B3F0A6116",
+          "F6BFFBE0-EE6C-4CC6-B5F7-E602B54078C4",
+          "1562D88B-C295-4096-9448-76A7424E85A6",
+          "C95ECE42-B850-41E8-9510-223DA8273FF0",
+          "19AA2B10-C2A5-4521-8D8A-047B360D7C99",
+          "A3FFE76D-EE10-4D71-A864-CD90350458C8"
+        ],
+        "rankings": {
+          "alphabetical": [
+            "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+            "F6BFFBE0-EE6C-4CC6-B5F7-E602B54078C4",
+            "19AA2B10-C2A5-4521-8D8A-047B360D7C99",
+            "A3FFE76D-EE10-4D71-A864-CD90350458C8",
+            "C95ECE42-B850-41E8-9510-223DA8273FF0",
+            "85D451BC-FE29-44BF-93FF-AFF51533F30B",
+            "D68596E5-F60B-4044-8F91-6FF57EA9A25C",
+            "D2243411-C04C-4134-88C6-578B3F0A6116",
+            "FB1DB831-1962-4C74-9DAB-1B9ED46BDEAD",
+            "DAD258CF-8A7B-4825-97F3-717FA82FA696",
+            "071B4968-ECF0-45F2-ACD5-B58D1B25E919",
+            "1562D88B-C295-4096-9448-76A7424E85A6"
+          ],
+          "qloo": [
+            "FB1DB831-1962-4C74-9DAB-1B9ED46BDEAD",
+            "DAD258CF-8A7B-4825-97F3-717FA82FA696",
+            "071B4968-ECF0-45F2-ACD5-B58D1B25E919",
+            "85D451BC-FE29-44BF-93FF-AFF51533F30B",
+            "D68596E5-F60B-4044-8F91-6FF57EA9A25C",
+            "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+            "D2243411-C04C-4134-88C6-578B3F0A6116",
+            "F6BFFBE0-EE6C-4CC6-B5F7-E602B54078C4",
+            "1562D88B-C295-4096-9448-76A7424E85A6",
+            "C95ECE42-B850-41E8-9510-223DA8273FF0",
+            "19AA2B10-C2A5-4521-8D8A-047B360D7C99",
+            "A3FFE76D-EE10-4D71-A864-CD90350458C8"
+          ],
+          "simulatedVerification": [
+            "FB1DB831-1962-4C74-9DAB-1B9ED46BDEAD",
+            "071B4968-ECF0-45F2-ACD5-B58D1B25E919",
+            "D68596E5-F60B-4044-8F91-6FF57EA9A25C",
+            "F6BFFBE0-EE6C-4CC6-B5F7-E602B54078C4",
+            "1562D88B-C295-4096-9448-76A7424E85A6",
+            "DAD258CF-8A7B-4825-97F3-717FA82FA696",
+            "85D451BC-FE29-44BF-93FF-AFF51533F30B",
+            "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+            "D2243411-C04C-4134-88C6-578B3F0A6116",
+            "C95ECE42-B850-41E8-9510-223DA8273FF0",
+            "19AA2B10-C2A5-4521-8D8A-047B360D7C99",
+            "A3FFE76D-EE10-4D71-A864-CD90350458C8"
+          ]
+        },
+        "sha256": "207f1d4468cdefe8eabd304e7eb1b1768c762301e68f04d23cd5acedc2a5b3a9"
+      },
+      "retrieval": {
+        "evidenceId": "00dd0db8-f821-4c2c-a041-d9240896ad4d",
+        "at": "2026-10-28T17:25:13.615Z",
+        "cached": false,
+        "inputs": {
+          "entities": "E9CB7164-BA01-4238-88C7-2562C2F0B1EF,E34FC4EC-A131-4E3B-9086-D6C3F851BBEC,87B9350E-ABFF-4A53-8565-49641858015C,A9CCAFA9-A105-4D3F-B206-18C1C68E6C1D"
+        },
+        "returnedCount": 12,
+        "duplicateCount": 0,
+        "excludedSeedCount": 0
+      },
+      "candidates": [
+        {
+          "id": "FB1DB831-1962-4C74-9DAB-1B9ED46BDEAD",
+          "name": "Stalker",
+          "category": "movie",
+          "affinity": 0.9328342033993803,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "DAD258CF-8A7B-4825-97F3-717FA82FA696",
+          "name": "The Mirror",
+          "category": "movie",
+          "affinity": 0.9326729813622218,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "071B4968-ECF0-45F2-ACD5-B58D1B25E919",
+          "name": "The Sacrifice",
+          "category": "movie",
+          "affinity": 0.9296345940761555,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "85D451BC-FE29-44BF-93FF-AFF51533F30B",
+          "name": "Nostalgia",
+          "category": "movie",
+          "affinity": 0.927605172317841,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "D68596E5-F60B-4044-8F91-6FF57EA9A25C",
+          "name": "Paris, Texas",
+          "category": "movie",
+          "affinity": 0.9261800102343912,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+          "name": "8½",
+          "category": "movie",
+          "affinity": 0.9214109981548854,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "D2243411-C04C-4134-88C6-578B3F0A6116",
+          "name": "Solaris",
+          "category": "movie",
+          "affinity": 0.9180743716535825,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "F6BFFBE0-EE6C-4CC6-B5F7-E602B54078C4",
+          "name": "A Woman Under the Influence",
+          "category": "movie",
+          "affinity": 0.9151950059778656,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "1562D88B-C295-4096-9448-76A7424E85A6",
+          "name": "Werckmeister Harmonies",
+          "category": "movie",
+          "affinity": 0.9147771143858524,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "C95ECE42-B850-41E8-9510-223DA8273FF0",
+          "name": "Mishima: A Life in Four Chapters",
+          "category": "movie",
+          "affinity": 0.9147090058930022,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "19AA2B10-C2A5-4521-8D8A-047B360D7C99",
+          "name": "Andrei Rublev",
+          "category": "movie",
+          "affinity": 0.9120097155114689,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "A3FFE76D-EE10-4D71-A864-CD90350458C8",
+          "name": "Damnation",
+          "category": "movie",
+          "affinity": 0.9116532695506613,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        }
+      ],
+      "heldOutLinkage": [
+        {
+          "film": {
+            "title": "Taxi Driver",
+            "sourceYear": 1976,
+            "director": "Martin Scorsese",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:barry-jenkins:0"
+        },
+        {
+          "film": {
+            "title": "In the Mood for Love",
+            "sourceYear": 2000,
+            "director": "Wong Kar Wai",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:barry-jenkins:1"
+        },
+        {
+          "film": {
+            "title": "SZEGÉNYLEGÉNYEK",
+            "sourceYear": 1966,
+            "director": "Miklós Jancsó",
+            "aliases": [
+              "The Round-Up"
+            ]
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:barry-jenkins:2"
+        },
+        {
+          "film": {
+            "title": "Hidden",
+            "sourceYear": 2004,
+            "director": "Michael Haneke",
+            "aliases": [
+              "Caché"
+            ]
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:barry-jenkins:3"
+        },
+        {
+          "film": {
+            "title": "Killer of Sheep",
+            "sourceYear": 1977,
+            "director": "Charles Burnett",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:barry-jenkins:4"
+        }
+      ],
+      "rankings": {
+        "alphabetical": [
+          "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+          "F6BFFBE0-EE6C-4CC6-B5F7-E602B54078C4",
+          "19AA2B10-C2A5-4521-8D8A-047B360D7C99",
+          "A3FFE76D-EE10-4D71-A864-CD90350458C8",
+          "C95ECE42-B850-41E8-9510-223DA8273FF0",
+          "85D451BC-FE29-44BF-93FF-AFF51533F30B",
+          "D68596E5-F60B-4044-8F91-6FF57EA9A25C",
+          "D2243411-C04C-4134-88C6-578B3F0A6116",
+          "FB1DB831-1962-4C74-9DAB-1B9ED46BDEAD",
+          "DAD258CF-8A7B-4825-97F3-717FA82FA696",
+          "071B4968-ECF0-45F2-ACD5-B58D1B25E919",
+          "1562D88B-C295-4096-9448-76A7424E85A6"
+        ],
+        "qloo": [
+          "FB1DB831-1962-4C74-9DAB-1B9ED46BDEAD",
+          "DAD258CF-8A7B-4825-97F3-717FA82FA696",
+          "071B4968-ECF0-45F2-ACD5-B58D1B25E919",
+          "85D451BC-FE29-44BF-93FF-AFF51533F30B",
+          "D68596E5-F60B-4044-8F91-6FF57EA9A25C",
+          "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+          "D2243411-C04C-4134-88C6-578B3F0A6116",
+          "F6BFFBE0-EE6C-4CC6-B5F7-E602B54078C4",
+          "1562D88B-C295-4096-9448-76A7424E85A6",
+          "C95ECE42-B850-41E8-9510-223DA8273FF0",
+          "19AA2B10-C2A5-4521-8D8A-047B360D7C99",
+          "A3FFE76D-EE10-4D71-A864-CD90350458C8"
+        ],
+        "simulatedVerification": [
+          "FB1DB831-1962-4C74-9DAB-1B9ED46BDEAD",
+          "071B4968-ECF0-45F2-ACD5-B58D1B25E919",
+          "D68596E5-F60B-4044-8F91-6FF57EA9A25C",
+          "F6BFFBE0-EE6C-4CC6-B5F7-E602B54078C4",
+          "1562D88B-C295-4096-9448-76A7424E85A6",
+          "DAD258CF-8A7B-4825-97F3-717FA82FA696",
+          "85D451BC-FE29-44BF-93FF-AFF51533F30B",
+          "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+          "D2243411-C04C-4134-88C6-578B3F0A6116",
+          "C95ECE42-B850-41E8-9510-223DA8273FF0",
+          "19AA2B10-C2A5-4521-8D8A-047B360D7C99",
+          "A3FFE76D-EE10-4D71-A864-CD90350458C8"
+        ]
+      },
+      "metrics": {
+        "positiveCount": 5,
+        "candidateCount": 12,
+        "retrievedPositiveCount": 0,
+        "retrievalRecall": 0,
+        "metrics": {
+          "alphabetical": {
+            "hitAtK": 0,
+            "recallAtK": 0,
+            "reciprocalRank": 0,
+            "ndcgAtK": 0,
+            "firstRelevantRank": null
+          },
+          "qloo": {
+            "hitAtK": 0,
+            "recallAtK": 0,
+            "reciprocalRank": 0,
+            "ndcgAtK": 0,
+            "firstRelevantRank": null
+          },
+          "simulatedVerification": {
+            "hitAtK": 0,
+            "recallAtK": 0,
+            "reciprocalRank": 0,
+            "ndcgAtK": 0,
+            "firstRelevantRank": null
+          }
+        }
+      },
+      "conditionalMetrics": null,
+      "changedPositions": 8,
+      "linkageWarning": "Provisional title-only matching; source year/director preserved but not verified against Qloo identity."
+    },
+    {
+      "id": "sofia-coppola",
+      "sourceUrl": "https://www.bfi.org.uk/sight-and-sound/greatest-films-all-time/all-voters/sofia-coppola",
+      "status": "complete",
+      "seedResolution": [
+        {
+          "film": {
+            "title": "In the Mood for Love",
+            "sourceYear": 2000,
+            "director": "Wong Kar Wai",
+            "aliases": []
+          },
+          "query": "In the Mood for Love",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "6f9647fd-a08c-45de-bc66-705a66248536",
+          "at": "2026-10-28T17:25:16.480Z",
+          "candidates": [
+            {
+              "id": "900B6C69-9D86-4153-B8FD-4D6CD726FCF8",
+              "name": "In the Mood for Love",
+              "category": "movie"
+            },
+            {
+              "id": "6C7446A8-4868-4CE6-98EE-9D84F8C111A7",
+              "name": "Tune in for Love",
+              "category": "movie"
+            },
+            {
+              "id": "D9D66C78-A804-4363-865E-AFA05E330C50",
+              "name": "Love for Sale",
+              "category": "movie"
+            },
+            {
+              "id": "766D0AF3-F10F-4AFE-B3A1-62556BE05808",
+              "name": "True Love, for Once in My Life",
+              "category": "movie"
+            },
+            {
+              "id": "D36DD0FF-8436-4432-A9CA-49314903BC89",
+              "name": "What's the Time in Your World?",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "The Heartbreak Kid",
+            "sourceYear": 1972,
+            "director": "Elaine May",
+            "aliases": []
+          },
+          "query": "The Heartbreak Kid",
+          "status": "ambiguous",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "676b6459-5edd-42ff-b4d5-ca67db1bee6d",
+          "at": "2026-10-28T17:25:19.328Z",
+          "candidates": [
+            {
+              "id": "45FFE39D-AC2B-46CB-9766-A2E52B364E4E",
+              "name": "The Heartbreak Kid",
+              "category": "movie"
+            },
+            {
+              "id": "50EED122-9A10-43F2-AA38-F35DEFE58836",
+              "name": "The Heartbreak Kid",
+              "category": "movie"
+            },
+            {
+              "id": "8EC2C535-0BEB-4EE1-AD30-E2A259421293",
+              "name": "The Heartbreak Kid: Becoming Shawn Michaels",
+              "category": "movie"
+            },
+            {
+              "id": "95B10295-3380-49C2-9465-2DBC81FB6BEA",
+              "name": "The Heartbreak Kid",
+              "category": "movie"
+            },
+            {
+              "id": "8CA4B2FB-B72D-44E2-9013-968ED5E72AE1",
+              "name": "The Karate Kid",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "The Piano",
+            "sourceYear": 1992,
+            "director": "Jane Campion",
+            "aliases": []
+          },
+          "query": "The Piano",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "1ce4836f-473d-4ed1-a4ba-94497ea246a7",
+          "at": "2026-10-28T17:25:22.107Z",
+          "candidates": [
+            {
+              "id": "53C49A7F-2954-4FCE-B1C7-D116D6016801",
+              "name": "The Piano",
+              "category": "movie"
+            },
+            {
+              "id": "90C3DF6B-F638-49AF-B3D6-4E17DB04A751",
+              "name": "The Piano Teacher",
+              "category": "movie"
+            },
+            {
+              "id": "D228BA2E-DF38-49DC-9C3F-54E58764267E",
+              "name": "The Piano Accident",
+              "category": "movie"
+            },
+            {
+              "id": "9ABB7151-D9AE-4D0C-8A51-61958EB218F3",
+              "name": "The Piano Lesson",
+              "category": "movie"
+            },
+            {
+              "id": "5B4BE30A-2072-486B-AA8E-71AADEDF2376",
+              "name": "The Piano Forest",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "Purple Rain",
+            "sourceYear": 1984,
+            "director": "Albert Magnoli",
+            "aliases": []
+          },
+          "query": "Purple Rain",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "a6093a3b-1847-408b-be63-5f228449e8c7",
+          "at": "2026-10-28T17:25:25.050Z",
+          "candidates": [
+            {
+              "id": "15822A58-8B51-4105-80E5-EC943F6BD43C",
+              "name": "Purple Rain",
+              "category": "movie"
+            },
+            {
+              "id": "59775A1E-5968-480C-94B2-47BE50CA3CD2",
+              "name": "Singin' in the Rain",
+              "category": "movie"
+            },
+            {
+              "id": "EBB89867-D4E8-4BDD-8093-AB78FC47A9FA",
+              "name": "Rain Man",
+              "category": "movie"
+            },
+            {
+              "id": "B780A5EB-61DC-42A7-920C-54C4DB47CD88",
+              "name": "The Color Purple",
+              "category": "movie"
+            },
+            {
+              "id": "5260C87C-DE9F-4226-91F2-E5FF13564ED8",
+              "name": "Purple Hearts",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "Seven Samurai",
+            "sourceYear": 1954,
+            "director": "Akira Kurosawa",
+            "aliases": []
+          },
+          "query": "Seven Samurai",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "e28c61af-ed10-4cb2-8ff1-f8a58e812793",
+          "at": "2026-10-28T17:25:27.957Z",
+          "candidates": [
+            {
+              "id": "7F1163D3-D842-4121-AA13-68FA930E0F09",
+              "name": "Seven Samurai",
+              "category": "movie"
+            },
+            {
+              "id": "5A497879-D9F1-4FF2-A3E0-F769BF1D7FC9",
+              "name": "Seven",
+              "category": "movie"
+            },
+            {
+              "id": "3A7052C7-83AD-4C04-A49E-DF1876A3CA61",
+              "name": "Seven Psychopaths",
+              "category": "movie"
+            },
+            {
+              "id": "E3360CB8-DC14-4DC8-8170-B5BD1F65F932",
+              "name": "The Last Samurai",
+              "category": "movie"
+            },
+            {
+              "id": "B5BFBEDD-FFBB-49F4-A7FB-BFC6FC7DD012",
+              "name": "The Magnificent Seven",
+              "category": "movie"
+            }
+          ]
+        }
+      ],
+      "resolvedSeedCount": 4,
+      "frozenPoolBeforeLabelMatching": {
+        "at": "2026-10-28T17:25:32.302Z",
+        "evidenceId": "472ffcc7-6a33-4461-b9d5-4672d97fc304",
+        "inputs": {
+          "entities": "900B6C69-9D86-4153-B8FD-4D6CD726FCF8,53C49A7F-2954-4FCE-B1C7-D116D6016801,15822A58-8B51-4105-80E5-EC943F6BD43C,7F1163D3-D842-4121-AA13-68FA930E0F09"
+        },
+        "candidateIds": [
+          "D68596E5-F60B-4044-8F91-6FF57EA9A25C",
+          "7CEAC44C-04CB-4B91-9356-01517F2E8DC6",
+          "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+          "3432AD41-497E-4D09-AB5B-CB0CC7790434",
+          "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+          "FA04B881-155E-49F4-8045-09FF3D14FA8F",
+          "11FB3D67-EE2C-4681-9521-363B588B6184",
+          "304546D6-BB87-492D-AE80-71DE16118B5B",
+          "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+          "537B0F85-B19B-43DF-B3BB-E15E5B60331F",
+          "BCFA4A1D-1378-4EDF-9E35-80BD41D429DD",
+          "3AB1891A-53BE-493B-9899-09F98E9DB0B8"
+        ],
+        "rankings": {
+          "alphabetical": [
+            "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+            "3432AD41-497E-4D09-AB5B-CB0CC7790434",
+            "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+            "11FB3D67-EE2C-4681-9521-363B588B6184",
+            "7CEAC44C-04CB-4B91-9356-01517F2E8DC6",
+            "3AB1891A-53BE-493B-9899-09F98E9DB0B8",
+            "D68596E5-F60B-4044-8F91-6FF57EA9A25C",
+            "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+            "304546D6-BB87-492D-AE80-71DE16118B5B",
+            "BCFA4A1D-1378-4EDF-9E35-80BD41D429DD",
+            "FA04B881-155E-49F4-8045-09FF3D14FA8F",
+            "537B0F85-B19B-43DF-B3BB-E15E5B60331F"
+          ],
+          "qloo": [
+            "D68596E5-F60B-4044-8F91-6FF57EA9A25C",
+            "7CEAC44C-04CB-4B91-9356-01517F2E8DC6",
+            "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+            "3432AD41-497E-4D09-AB5B-CB0CC7790434",
+            "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+            "FA04B881-155E-49F4-8045-09FF3D14FA8F",
+            "11FB3D67-EE2C-4681-9521-363B588B6184",
+            "304546D6-BB87-492D-AE80-71DE16118B5B",
+            "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+            "537B0F85-B19B-43DF-B3BB-E15E5B60331F",
+            "BCFA4A1D-1378-4EDF-9E35-80BD41D429DD",
+            "3AB1891A-53BE-493B-9899-09F98E9DB0B8"
+          ],
+          "simulatedVerification": [
+            "D68596E5-F60B-4044-8F91-6FF57EA9A25C",
+            "7CEAC44C-04CB-4B91-9356-01517F2E8DC6",
+            "3432AD41-497E-4D09-AB5B-CB0CC7790434",
+            "FA04B881-155E-49F4-8045-09FF3D14FA8F",
+            "11FB3D67-EE2C-4681-9521-363B588B6184",
+            "304546D6-BB87-492D-AE80-71DE16118B5B",
+            "BCFA4A1D-1378-4EDF-9E35-80BD41D429DD",
+            "3AB1891A-53BE-493B-9899-09F98E9DB0B8",
+            "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+            "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+            "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+            "537B0F85-B19B-43DF-B3BB-E15E5B60331F"
+          ]
+        },
+        "sha256": "77ca004459bf98eee9e015f678cc4c4e0afc9136714aa8c756791a179042abf9"
+      },
+      "retrieval": {
+        "evidenceId": "472ffcc7-6a33-4461-b9d5-4672d97fc304",
+        "at": "2026-10-28T17:25:32.302Z",
+        "cached": false,
+        "inputs": {
+          "entities": "900B6C69-9D86-4153-B8FD-4D6CD726FCF8,53C49A7F-2954-4FCE-B1C7-D116D6016801,15822A58-8B51-4105-80E5-EC943F6BD43C,7F1163D3-D842-4121-AA13-68FA930E0F09"
+        },
+        "returnedCount": 12,
+        "duplicateCount": 0,
+        "excludedSeedCount": 0
+      },
+      "candidates": [
+        {
+          "id": "D68596E5-F60B-4044-8F91-6FF57EA9A25C",
+          "name": "Paris, Texas",
+          "category": "movie",
+          "affinity": 0.9070478805210289,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "7CEAC44C-04CB-4B91-9356-01517F2E8DC6",
+          "name": "Cinema Paradiso",
+          "category": "movie",
+          "affinity": 0.90609720373583,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+          "name": "Barry Lyndon",
+          "category": "movie",
+          "affinity": 0.9059570743013248,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "3432AD41-497E-4D09-AB5B-CB0CC7790434",
+          "name": "A Streetcar Named Desire",
+          "category": "movie",
+          "affinity": 0.9057621189755775,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+          "name": "8½",
+          "category": "movie",
+          "affinity": 0.9053646598671825,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "FA04B881-155E-49F4-8045-09FF3D14FA8F",
+          "name": "Tokyo Story",
+          "category": "movie",
+          "affinity": 0.9049518228519833,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "11FB3D67-EE2C-4681-9521-363B588B6184",
+          "name": "Casablanca",
+          "category": "movie",
+          "affinity": 0.9041156374951899,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "304546D6-BB87-492D-AE80-71DE16118B5B",
+          "name": "Sunrise",
+          "category": "movie",
+          "affinity": 0.9020177447788599,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+          "name": "Ran",
+          "category": "movie",
+          "affinity": 0.9002552200245817,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "537B0F85-B19B-43DF-B3BB-E15E5B60331F",
+          "name": "Wild Strawberries",
+          "category": "movie",
+          "affinity": 0.8986038858322508,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "BCFA4A1D-1378-4EDF-9E35-80BD41D429DD",
+          "name": "The Graduate",
+          "category": "movie",
+          "affinity": 0.8983229348613571,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "3AB1891A-53BE-493B-9899-09F98E9DB0B8",
+          "name": "Gone with the Wind",
+          "category": "movie",
+          "affinity": 0.8959984480669516,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        }
+      ],
+      "heldOutLinkage": [
+        {
+          "film": {
+            "title": "A Place in the Sun",
+            "sourceYear": 1951,
+            "director": "George Stevens",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:sofia-coppola:0"
+        },
+        {
+          "film": {
+            "title": "Rumble Fish",
+            "sourceYear": 1983,
+            "director": "Francis Ford Coppola",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:sofia-coppola:1"
+        },
+        {
+          "film": {
+            "title": "La notte",
+            "sourceYear": 1961,
+            "director": "Michelangelo Antonioni",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:sofia-coppola:2"
+        },
+        {
+          "film": {
+            "title": "Lost in America",
+            "sourceYear": 1985,
+            "director": "Albert Brooks",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:sofia-coppola:3"
+        },
+        {
+          "film": {
+            "title": "Bugsy Malone",
+            "sourceYear": 1976,
+            "director": "Alan Parker",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:sofia-coppola:4"
+        }
+      ],
+      "rankings": {
+        "alphabetical": [
+          "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+          "3432AD41-497E-4D09-AB5B-CB0CC7790434",
+          "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+          "11FB3D67-EE2C-4681-9521-363B588B6184",
+          "7CEAC44C-04CB-4B91-9356-01517F2E8DC6",
+          "3AB1891A-53BE-493B-9899-09F98E9DB0B8",
+          "D68596E5-F60B-4044-8F91-6FF57EA9A25C",
+          "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+          "304546D6-BB87-492D-AE80-71DE16118B5B",
+          "BCFA4A1D-1378-4EDF-9E35-80BD41D429DD",
+          "FA04B881-155E-49F4-8045-09FF3D14FA8F",
+          "537B0F85-B19B-43DF-B3BB-E15E5B60331F"
+        ],
+        "qloo": [
+          "D68596E5-F60B-4044-8F91-6FF57EA9A25C",
+          "7CEAC44C-04CB-4B91-9356-01517F2E8DC6",
+          "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+          "3432AD41-497E-4D09-AB5B-CB0CC7790434",
+          "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+          "FA04B881-155E-49F4-8045-09FF3D14FA8F",
+          "11FB3D67-EE2C-4681-9521-363B588B6184",
+          "304546D6-BB87-492D-AE80-71DE16118B5B",
+          "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+          "537B0F85-B19B-43DF-B3BB-E15E5B60331F",
+          "BCFA4A1D-1378-4EDF-9E35-80BD41D429DD",
+          "3AB1891A-53BE-493B-9899-09F98E9DB0B8"
+        ],
+        "simulatedVerification": [
+          "D68596E5-F60B-4044-8F91-6FF57EA9A25C",
+          "7CEAC44C-04CB-4B91-9356-01517F2E8DC6",
+          "3432AD41-497E-4D09-AB5B-CB0CC7790434",
+          "FA04B881-155E-49F4-8045-09FF3D14FA8F",
+          "11FB3D67-EE2C-4681-9521-363B588B6184",
+          "304546D6-BB87-492D-AE80-71DE16118B5B",
+          "BCFA4A1D-1378-4EDF-9E35-80BD41D429DD",
+          "3AB1891A-53BE-493B-9899-09F98E9DB0B8",
+          "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+          "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+          "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+          "537B0F85-B19B-43DF-B3BB-E15E5B60331F"
+        ]
+      },
+      "metrics": {
+        "positiveCount": 5,
+        "candidateCount": 12,
+        "retrievedPositiveCount": 0,
+        "retrievalRecall": 0,
+        "metrics": {
+          "alphabetical": {
+            "hitAtK": 0,
+            "recallAtK": 0,
+            "reciprocalRank": 0,
+            "ndcgAtK": 0,
+            "firstRelevantRank": null
+          },
+          "qloo": {
+            "hitAtK": 0,
+            "recallAtK": 0,
+            "reciprocalRank": 0,
+            "ndcgAtK": 0,
+            "firstRelevantRank": null
+          },
+          "simulatedVerification": {
+            "hitAtK": 0,
+            "recallAtK": 0,
+            "reciprocalRank": 0,
+            "ndcgAtK": 0,
+            "firstRelevantRank": null
+          }
+        }
+      },
+      "conditionalMetrics": null,
+      "changedPositions": 10,
+      "linkageWarning": "Provisional title-only matching; source year/director preserved but not verified against Qloo identity."
+    },
+    {
+      "id": "guillermo-del-toro",
+      "sourceUrl": "https://www.bfi.org.uk/sight-and-sound/greatest-films-all-time/all-voters/guillermo-del-toro",
+      "status": "complete",
+      "seedResolution": [
+        {
+          "film": {
+            "title": "Barry Lyndon",
+            "sourceYear": 1975,
+            "director": "Stanley Kubrick",
+            "aliases": []
+          },
+          "query": "Barry Lyndon",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "96fc8739-c54c-4575-a8a8-80953d63ceea",
+          "at": "2026-10-28T17:25:35.278Z",
+          "candidates": [
+            {
+              "id": "0D5BCB28-D633-4A96-AFE0-8AFB7C205969",
+              "name": "Barry Lyndon",
+              "category": "movie"
+            },
+            {
+              "id": "66E0CF58-84F2-4F97-ADD8-2265B58C726C",
+              "name": "American Made",
+              "category": "movie"
+            },
+            {
+              "id": "5AE647B2-D521-4EA8-8B25-AA024160CCFD",
+              "name": "Jeanne du Barry",
+              "category": "movie"
+            },
+            {
+              "id": "ADCC4888-88CD-4084-800E-6A2C388E8614",
+              "name": "Fried Barry",
+              "category": "movie"
+            },
+            {
+              "id": "FA3BA99D-17F6-44F7-B78F-F929D70E624A",
+              "name": "Roy's World: Barry Gifford's Chicago",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "City Lights",
+            "sourceYear": 1931,
+            "director": "Charles Chaplin",
+            "aliases": []
+          },
+          "query": "City Lights",
+          "status": "ambiguous",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "b9bfd3d1-7924-4176-8d10-30ad1e0e6056",
+          "at": "2026-10-28T17:25:38.170Z",
+          "candidates": [
+            {
+              "id": "8133D45A-A189-475D-87DB-E86F81B26219",
+              "name": "City Lights",
+              "category": "movie"
+            },
+            {
+              "id": "F0EB297C-EFBA-49E7-BAD9-8EC96A6AEBDC",
+              "name": "CityLights",
+              "category": "movie"
+            },
+            {
+              "id": "A831C0AA-3FAD-4889-90D3-3A8A6681988C",
+              "name": "A California Christmas: City Lights",
+              "category": "movie"
+            },
+            {
+              "id": "7B8C4A69-5FFD-4793-81F0-0DDB5822445B",
+              "name": "Bright Lights, Big City",
+              "category": "movie"
+            },
+            {
+              "id": "567E2F1B-EC4A-4B77-846F-9F688F1D5E62",
+              "name": "City of Tiny Lights",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "Frankenstein",
+            "sourceYear": 1931,
+            "director": "James Whale",
+            "aliases": []
+          },
+          "query": "Frankenstein",
+          "status": "ambiguous",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "593da210-f0b0-426f-aae8-f38cec2a7a7d",
+          "at": "2026-10-28T17:25:41.251Z",
+          "candidates": [
+            {
+              "id": "DA0822C5-8F73-43B0-A122-ACB4A7FCD084",
+              "name": "Frankenstein",
+              "category": "movie"
+            },
+            {
+              "id": "E4604EF3-4A67-4EBD-B658-1D66150BF6B2",
+              "name": "Victor Frankenstein",
+              "category": "movie"
+            },
+            {
+              "id": "E22582BC-D6A9-45DD-BE01-918789DC9729",
+              "name": "Frankenstein",
+              "category": "movie"
+            },
+            {
+              "id": "A3AB3912-334C-476B-9C00-5F6C9FCE5BE3",
+              "name": "Frankenstein",
+              "category": "movie"
+            },
+            {
+              "id": "8DE1C785-98DC-4997-8E3A-6B6E296840E0",
+              "name": "Mary Shelley's Frankenstein",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "NAZARÍN",
+            "sourceYear": 1958,
+            "director": "Luis Buñuel",
+            "aliases": [
+              "Nazarín"
+            ]
+          },
+          "query": "Nazarín",
+          "status": "unique-title-only",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "95e0ad5b-4003-4caa-b90c-8370fabede58",
+          "at": "2026-10-28T17:25:43.922Z",
+          "candidates": [
+            {
+              "id": "C5A12A05-332E-4546-8182-7734A05EA75A",
+              "name": "Nazarin",
+              "category": "movie"
+            }
+          ]
+        },
+        {
+          "film": {
+            "title": "Shadow of a Doubt",
+            "sourceYear": 1943,
+            "director": "Alfred Hitchcock",
+            "aliases": []
+          },
+          "query": "Shadow of a Doubt",
+          "status": "ambiguous",
+          "yearAndDirectorVerified": false,
+          "searchEvidenceId": "3d68a321-2e7a-446c-b348-25de3339eadd",
+          "at": "2026-10-28T17:25:46.997Z",
+          "candidates": [
+            {
+              "id": "BBB57479-4D09-4A87-8BC2-744F18F1631B",
+              "name": "Shadow of a Doubt",
+              "category": "movie"
+            },
+            {
+              "id": "86AAFA03-13B2-4E67-8CFD-6B8BEFC7747C",
+              "name": "Shadow of a Doubt",
+              "category": "movie"
+            },
+            {
+              "id": "5133992F-BC35-49F9-ADB0-FF86B21145C5",
+              "name": "Shadow of a Doubt",
+              "category": "movie"
+            },
+            {
+              "id": "D23D9F31-D272-48EB-BACF-6577F8DEA9DC",
+              "name": "L'ombre du doute",
+              "category": "movie"
+            },
+            {
+              "id": "DD662367-24D6-414D-A0FF-4DCFED1D2052",
+              "name": "In the Shadow of the Moon",
+              "category": "movie"
+            }
+          ]
+        }
+      ],
+      "resolvedSeedCount": 2,
+      "frozenPoolBeforeLabelMatching": {
+        "at": "2026-10-28T17:25:51.511Z",
+        "evidenceId": "994e0744-fef3-442f-a966-d8b552fef6de",
+        "inputs": {
+          "entities": "0D5BCB28-D633-4A96-AFE0-8AFB7C205969,C5A12A05-332E-4546-8182-7734A05EA75A"
+        },
+        "candidateIds": [
+          "19AA2B10-C2A5-4521-8D8A-047B360D7C99",
+          "62F5792D-742E-4B6D-BB67-420E5D664966",
+          "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+          "2AC78C72-891B-4F1A-84E6-FB461FF74E57",
+          "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+          "541F9B86-4CF2-4364-A262-E18D538F2CE6",
+          "FCF0E13F-035B-4258-9393-E24A53A92CA1",
+          "537B0F85-B19B-43DF-B3BB-E15E5B60331F",
+          "391FC159-BC78-4137-9C84-41E582CD726A",
+          "329E393A-12D6-4A81-8FB4-446C13AD80B5",
+          "B5EFACB4-1212-46DC-92FD-2A51BF659B84",
+          "CE7D3EF7-8004-4204-8CEE-A6F1A56394A8"
+        ],
+        "rankings": {
+          "alphabetical": [
+            "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+            "19AA2B10-C2A5-4521-8D8A-047B360D7C99",
+            "CE7D3EF7-8004-4204-8CEE-A6F1A56394A8",
+            "541F9B86-4CF2-4364-A262-E18D538F2CE6",
+            "B5EFACB4-1212-46DC-92FD-2A51BF659B84",
+            "2AC78C72-891B-4F1A-84E6-FB461FF74E57",
+            "FCF0E13F-035B-4258-9393-E24A53A92CA1",
+            "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+            "329E393A-12D6-4A81-8FB4-446C13AD80B5",
+            "62F5792D-742E-4B6D-BB67-420E5D664966",
+            "391FC159-BC78-4137-9C84-41E582CD726A",
+            "537B0F85-B19B-43DF-B3BB-E15E5B60331F"
+          ],
+          "qloo": [
+            "19AA2B10-C2A5-4521-8D8A-047B360D7C99",
+            "62F5792D-742E-4B6D-BB67-420E5D664966",
+            "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+            "2AC78C72-891B-4F1A-84E6-FB461FF74E57",
+            "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+            "541F9B86-4CF2-4364-A262-E18D538F2CE6",
+            "FCF0E13F-035B-4258-9393-E24A53A92CA1",
+            "537B0F85-B19B-43DF-B3BB-E15E5B60331F",
+            "391FC159-BC78-4137-9C84-41E582CD726A",
+            "329E393A-12D6-4A81-8FB4-446C13AD80B5",
+            "B5EFACB4-1212-46DC-92FD-2A51BF659B84",
+            "CE7D3EF7-8004-4204-8CEE-A6F1A56394A8"
+          ],
+          "simulatedVerification": [
+            "541F9B86-4CF2-4364-A262-E18D538F2CE6",
+            "2AC78C72-891B-4F1A-84E6-FB461FF74E57",
+            "FCF0E13F-035B-4258-9393-E24A53A92CA1",
+            "391FC159-BC78-4137-9C84-41E582CD726A",
+            "B5EFACB4-1212-46DC-92FD-2A51BF659B84",
+            "CE7D3EF7-8004-4204-8CEE-A6F1A56394A8",
+            "19AA2B10-C2A5-4521-8D8A-047B360D7C99",
+            "62F5792D-742E-4B6D-BB67-420E5D664966",
+            "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+            "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+            "537B0F85-B19B-43DF-B3BB-E15E5B60331F",
+            "329E393A-12D6-4A81-8FB4-446C13AD80B5"
+          ]
+        },
+        "sha256": "f7e87a2c6330b54fdb1bc2a179180f20b9b591d5a5821bd14658b88e83af4bae"
+      },
+      "retrieval": {
+        "evidenceId": "994e0744-fef3-442f-a966-d8b552fef6de",
+        "at": "2026-10-28T17:25:51.511Z",
+        "cached": false,
+        "inputs": {
+          "entities": "0D5BCB28-D633-4A96-AFE0-8AFB7C205969,C5A12A05-332E-4546-8182-7734A05EA75A"
+        },
+        "returnedCount": 12,
+        "duplicateCount": 0,
+        "excludedSeedCount": 0
+      },
+      "candidates": [
+        {
+          "id": "19AA2B10-C2A5-4521-8D8A-047B360D7C99",
+          "name": "Andrei Rublev",
+          "category": "movie",
+          "affinity": 0.9324014092176189,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "62F5792D-742E-4B6D-BB67-420E5D664966",
+          "name": "The Seventh Seal",
+          "category": "movie",
+          "affinity": 0.9306328738297102,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+          "name": "8½",
+          "category": "movie",
+          "affinity": 0.9300643112059584,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "2AC78C72-891B-4F1A-84E6-FB461FF74E57",
+          "name": "La Strada",
+          "category": "movie",
+          "affinity": 0.9230376212800842,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+          "name": "Ran",
+          "category": "movie",
+          "affinity": 0.9229973293951538,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "541F9B86-4CF2-4364-A262-E18D538F2CE6",
+          "name": "Fanny and Alexander",
+          "category": "movie",
+          "affinity": 0.9221705622944754,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional",
+            "storytelling"
+          ]
+        },
+        {
+          "id": "FCF0E13F-035B-4258-9393-E24A53A92CA1",
+          "name": "Nights of Cabiria",
+          "category": "movie",
+          "affinity": 0.9217437660157123,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "537B0F85-B19B-43DF-B3BB-E15E5B60331F",
+          "name": "Wild Strawberries",
+          "category": "movie",
+          "affinity": 0.9213106871432236,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "391FC159-BC78-4137-9C84-41E582CD726A",
+          "name": "The Virgin Spring",
+          "category": "movie",
+          "affinity": 0.9183187298082014,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "329E393A-12D6-4A81-8FB4-446C13AD80B5",
+          "name": "Rashomon",
+          "category": "movie",
+          "affinity": 0.917947935231601,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": []
+        },
+        {
+          "id": "B5EFACB4-1212-46DC-92FD-2A51BF659B84",
+          "name": "Ikiru",
+          "category": "movie",
+          "affinity": 0.9173075094642484,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        },
+        {
+          "id": "CE7D3EF7-8004-4204-8CEE-A6F1A56394A8",
+          "name": "Bicycle Thieves",
+          "category": "movie",
+          "affinity": 0.9168048730107738,
+          "descriptionPresent": true,
+          "tagCount": 20,
+          "matchedSimulatedKeywords": [
+            "emotional"
+          ]
+        }
+      ],
+      "heldOutLinkage": [
+        {
+          "film": {
+            "title": "GoodFellas",
+            "sourceYear": 1990,
+            "director": "Martin Scorsese",
+            "aliases": [
+              "Goodfellas"
+            ]
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:guillermo-del-toro:0"
+        },
+        {
+          "film": {
+            "title": "Close Encounters of the Third Kind",
+            "sourceYear": 1977,
+            "director": "Steven Spielberg",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:guillermo-del-toro:1"
+        },
+        {
+          "film": {
+            "title": "8½",
+            "sourceYear": 1963,
+            "director": "Federico Fellini",
+            "aliases": [
+              "8 1/2"
+            ]
+          },
+          "status": "unique-title-only",
+          "matchedIds": [
+            "9B253850-49E0-4CEA-AE0A-AF07F0E7379E"
+          ],
+          "metricPositiveId": "9B253850-49E0-4CEA-AE0A-AF07F0E7379E"
+        },
+        {
+          "film": {
+            "title": "No Country for Old Men",
+            "sourceYear": 2007,
+            "director": "Joel Coen, Ethan Coen",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:guillermo-del-toro:3"
+        },
+        {
+          "film": {
+            "title": "The Magnificent Ambersons",
+            "sourceYear": 1942,
+            "director": "Orson Welles",
+            "aliases": []
+          },
+          "status": "not-in-pool",
+          "matchedIds": [],
+          "metricPositiveId": "unretrieved:guillermo-del-toro:4"
+        }
+      ],
+      "rankings": {
+        "alphabetical": [
+          "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+          "19AA2B10-C2A5-4521-8D8A-047B360D7C99",
+          "CE7D3EF7-8004-4204-8CEE-A6F1A56394A8",
+          "541F9B86-4CF2-4364-A262-E18D538F2CE6",
+          "B5EFACB4-1212-46DC-92FD-2A51BF659B84",
+          "2AC78C72-891B-4F1A-84E6-FB461FF74E57",
+          "FCF0E13F-035B-4258-9393-E24A53A92CA1",
+          "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+          "329E393A-12D6-4A81-8FB4-446C13AD80B5",
+          "62F5792D-742E-4B6D-BB67-420E5D664966",
+          "391FC159-BC78-4137-9C84-41E582CD726A",
+          "537B0F85-B19B-43DF-B3BB-E15E5B60331F"
+        ],
+        "qloo": [
+          "19AA2B10-C2A5-4521-8D8A-047B360D7C99",
+          "62F5792D-742E-4B6D-BB67-420E5D664966",
+          "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+          "2AC78C72-891B-4F1A-84E6-FB461FF74E57",
+          "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+          "541F9B86-4CF2-4364-A262-E18D538F2CE6",
+          "FCF0E13F-035B-4258-9393-E24A53A92CA1",
+          "537B0F85-B19B-43DF-B3BB-E15E5B60331F",
+          "391FC159-BC78-4137-9C84-41E582CD726A",
+          "329E393A-12D6-4A81-8FB4-446C13AD80B5",
+          "B5EFACB4-1212-46DC-92FD-2A51BF659B84",
+          "CE7D3EF7-8004-4204-8CEE-A6F1A56394A8"
+        ],
+        "simulatedVerification": [
+          "541F9B86-4CF2-4364-A262-E18D538F2CE6",
+          "2AC78C72-891B-4F1A-84E6-FB461FF74E57",
+          "FCF0E13F-035B-4258-9393-E24A53A92CA1",
+          "391FC159-BC78-4137-9C84-41E582CD726A",
+          "B5EFACB4-1212-46DC-92FD-2A51BF659B84",
+          "CE7D3EF7-8004-4204-8CEE-A6F1A56394A8",
+          "19AA2B10-C2A5-4521-8D8A-047B360D7C99",
+          "62F5792D-742E-4B6D-BB67-420E5D664966",
+          "9B253850-49E0-4CEA-AE0A-AF07F0E7379E",
+          "CDD1DA23-1C81-4309-8C6B-8F0CABD5BC95",
+          "537B0F85-B19B-43DF-B3BB-E15E5B60331F",
+          "329E393A-12D6-4A81-8FB4-446C13AD80B5"
+        ]
+      },
+      "metrics": {
+        "positiveCount": 5,
+        "candidateCount": 12,
+        "retrievedPositiveCount": 1,
+        "retrievalRecall": 0.2,
+        "metrics": {
+          "alphabetical": {
+            "hitAtK": 1,
+            "recallAtK": 0.2,
+            "reciprocalRank": 1,
+            "ndcgAtK": 0.46927872602275644,
+            "firstRelevantRank": 1
+          },
+          "qloo": {
+            "hitAtK": 1,
+            "recallAtK": 0.2,
+            "reciprocalRank": 0.3333333333333333,
+            "ndcgAtK": 0.23463936301137822,
+            "firstRelevantRank": 3
+          },
+          "simulatedVerification": {
+            "hitAtK": 0,
+            "recallAtK": 0,
+            "reciprocalRank": 0.1111111111111111,
+            "ndcgAtK": 0,
+            "firstRelevantRank": 9
+          }
+        }
+      },
+      "conditionalMetrics": {
+        "positiveCount": 1,
+        "candidateCount": 12,
+        "retrievedPositiveCount": 1,
+        "retrievalRecall": 1,
+        "metrics": {
+          "alphabetical": {
+            "hitAtK": 1,
+            "recallAtK": 1,
+            "reciprocalRank": 1,
+            "ndcgAtK": 1,
+            "firstRelevantRank": 1
+          },
+          "qloo": {
+            "hitAtK": 1,
+            "recallAtK": 1,
+            "reciprocalRank": 0.3333333333333333,
+            "ndcgAtK": 0.5,
+            "firstRelevantRank": 3
+          },
+          "simulatedVerification": {
+            "hitAtK": 0,
+            "recallAtK": 0,
+            "reciprocalRank": 0.1111111111111111,
+            "ndcgAtK": 0,
+            "firstRelevantRank": 9
+          }
+        }
+      },
+      "changedPositions": 12,
+      "linkageWarning": "Provisional title-only matching; source year/director preserved but not verified against Qloo identity."
+    }
+  ],
+  "publicationNote": "Workstation protocol-file path removed before publication. Metrics and the frozen protocol are unchanged."
+}
