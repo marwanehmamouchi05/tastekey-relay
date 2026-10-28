@@ -6,6 +6,14 @@ Project preview: https://devpost.com/software/tastekey-relay
 
 **Draft saved; not submitted.** Four of five Devpost steps are complete. The final page requires the owner to agree to the Official Rules and Devpost Terms of Service, review eligibility and submit. No legal attestation has been accepted by the agent. The owner confirmed October 26, 2026 as the start date; source history starts that day. A comparison with the other local application source found no identical source files or matching twelve-line substantive blocks; it is evidence of the audit performed, not a mathematical proof of originality.
 
+## Final readiness materials
+
+The reviewed application is now pinned to `bbb3e095bf080882f1c6e466dd54154c8787ba15`. See the [final audit](FINAL_READINESS_AUDIT.md), [current proposed Devpost story](DEVPOST_STORY.md), [actual evaluation results](RESULTS.md), [ablation](ABLATION.md), [pitch/Q&A](FINALIST_PITCH.md) and [third-party notices](THIRD_PARTY_NOTICES.md). The in-app [Quick tour](https://tastekey.52.47.205.18.sslip.io/tour) works without registration. Current screenshots are in `docs/screenshots/finalist-public/`.
+
+A dated, silent ~70-second actual public walkthrough with real Qloo/Bedrock and explicitly synthetic business inputs is in `docs/media/tastekey-walkthrough.webm`, with separate `.srt` subtitles and capture metadata. This optional backup recording has not been uploaded to a video host or placed in Devpost's video field. The independent-benefit experiment did not establish improvement and must not be described as a successful accuracy study.
+
+Submission cutoff: October 31, 2026 at 04:45 Morocco time. Keep the app available through the official judging end, November 6 at 05:45 Morocco time, rather than stopping at the November 5 announcement. The owner must review the prepared material, resolve personal eligibility/rights declarations, accept the final terms, submit and confirm a receipt.
+
 ## Elevator pitch
 
 Turn your taste into choices you control—and help small businesses turn Qloo cultural insights into traceable plans, experiments, and feedback.

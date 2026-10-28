@@ -1,0 +1,55 @@
+{
+  "at": "2026-10-28T17:41:46.750Z",
+  "release": "bbb3e095bf080882f1c6e466dd54154c8787ba15",
+  "durationSeconds": 67.6916996,
+  "audio": false,
+  "realPublicInteractions": true,
+  "syntheticBusinessInputs": true,
+  "mockRoutes": false,
+  "scenes": [
+    {
+      "atSeconds": 3.3217999,
+      "text": "TasteKey Relay: a real public walkthrough. All business inputs are synthetic."
+    },
+    {
+      "atSeconds": 6.5119102,
+      "text": "Personal: choose a film you like. Search resolves a real Qloo entity."
+    },
+    {
+      "atSeconds": 21.848046,
+      "text": "A clarification is a choice, not a fact guessed about you."
+    },
+    {
+      "atSeconds": 25.0634727,
+      "text": "Keep aesthetics separate from spending. Optional AI proposes a budget correction for review."
+    },
+    {
+      "atSeconds": 30.8225261,
+      "text": "Choose exactly which likes to share. Get real Qloo recommendations."
+    },
+    {
+      "atSeconds": 40.2616265,
+      "text": "Stop sharing clears the recommendations. Context permission remains under your control."
+    },
+    {
+      "atSeconds": 42.390819199999996,
+      "text": "Studio: a synthetic cinema brief, a real cultural reference and a bounded pilot budget."
+    },
+    {
+      "atSeconds": 45.8244684,
+      "text": "Real Qloo evidence grounds pilot ideas. Demand, rights, supply and costs still need owner review."
+    },
+    {
+      "atSeconds": 51.596628599999995,
+      "text": "An accepted idea becomes a saved action plan. No invented sales or attendance result is entered."
+    },
+    {
+      "atSeconds": 58.360037,
+      "text": "Compare a second city and budget. Location signals do not prove local demand."
+    },
+    {
+      "atSeconds": 63.6825621,
+      "text": "Working integrations, transparent evidence, honest limits. The public-ballot study did not establish recommendation improvement."
+    }
+  ]
+}

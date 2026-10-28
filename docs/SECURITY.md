@@ -1,5 +1,9 @@
 # Data flows and security boundaries
 
+October 28 readiness review found and fixed two concrete issues: request bodies are now capped while streaming at 50,000 UTF-8 bytes, including requests without Content-Length; widget confirmation now waits for a source/origin/state/widget-bound acknowledgement and reports expiry or missing acknowledgement honestly. Five bounded-reader unit cases and the expired/missing-ack browser cases pass. The evaluation comparison also now uses only the authorized context and the production ranking helper. These are targeted checks, not an independent penetration test or security certification.
+
+Model validation protects structure, assigned references, IDs, costs and ownership. It does not fact-check every sentence of AI advice; owner review and warnings about demand, rights, supply and capacity remain necessary.
+
 | Data                                           | Storage                                                            | Transmission                                             | Boundary                                                                |
 | ---------------------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------- | ----------------------------------------------------------------------- |
 | Personal graph, budgets, grants, quotes        | Browser localStorage                                               | No raw profile API                                       | Per-context, per-node allowlist; expiry and revocation                  |

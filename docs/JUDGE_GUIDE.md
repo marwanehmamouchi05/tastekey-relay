@@ -1,5 +1,7 @@
 # Judge walkthrough
 
+Start with the in-app [Quick tour](https://tastekey.52.47.205.18.sslip.io/tour). It connects the working Personal and Studio journeys without requiring registration. [Published results](RESULTS.md) include a public-list proxy and its negative findings; they do not establish recommendation superiority.
+
 Open [Personal](https://tastekey.52.47.205.18.sslip.io/personal/discover) and [Studio](https://tastekey.52.47.205.18.sslip.io/studio/onboarding) in your own browser. Each Studio visitor gets an empty private workspace. No shared judge account is needed.
 
 ## Personal: taste with control

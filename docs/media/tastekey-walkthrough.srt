@@ -1,0 +1,43 @@
+1
+00:00:03,322 --> 00:00:06,512
+TasteKey Relay: a real public walkthrough. All business inputs are synthetic.
+
+2
+00:00:06,512 --> 00:00:21,848
+Personal: choose a film you like. Search resolves a real Qloo entity.
+
+3
+00:00:21,848 --> 00:00:25,063
+A clarification is a choice, not a fact guessed about you.
+
+4
+00:00:25,063 --> 00:00:30,823
+Keep aesthetics separate from spending. Optional AI proposes a budget correction for review.
+
+5
+00:00:30,823 --> 00:00:40,262
+Choose exactly which likes to share. Get real Qloo recommendations.
+
+6
+00:00:40,262 --> 00:00:42,391
+Stop sharing clears the recommendations. Context permission remains under your control.
+
+7
+00:00:42,391 --> 00:00:45,824
+Studio: a synthetic cinema brief, a real cultural reference and a bounded pilot budget.
+
+8
+00:00:45,824 --> 00:00:51,597
+Real Qloo evidence grounds pilot ideas. Demand, rights, supply and costs still need owner review.
+
+9
+00:00:51,597 --> 00:00:58,360
+An accepted idea becomes a saved action plan. No invented sales or attendance result is entered.
+
+10
+00:00:58,360 --> 00:01:03,683
+Compare a second city and budget. Location signals do not prove local demand.
+
+11
+00:01:03,683 --> 00:01:07,692
+Working integrations, transparent evidence, honest limits. The public-ballot study did not establish recommendation improvement.

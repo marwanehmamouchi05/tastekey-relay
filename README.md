@@ -4,6 +4,8 @@
 
 [Personal](https://tastekey.52.47.205.18.sslip.io/personal/discover) · [Studio](https://tastekey.52.47.205.18.sslip.io/studio/onboarding) · [Source](https://github.com/marwanehmamouchi05/tastekey-relay) · [Judge walkthrough](docs/JUDGE_GUIDE.md)
 
+**Start with the [Quick tour](https://tastekey.52.47.205.18.sslip.io/tour); no account is needed for the core Personal and Studio journeys.** [Final readiness audit](docs/FINAL_READINESS_AUDIT.md) records the deployed revision, tests, fixes and owner gates. [Evaluation results](docs/RESULTS.md) include the negative findings from a five-ballot public-list proxy; no recommendation superiority or sales lift is established. A [dated screen recording](docs/media/tastekey-walkthrough.webm), [subtitles](docs/media/tastekey-walkthrough.srt) and [pitch](docs/FINALIST_PITCH.md) are available.
+
 ![Simple discovery screen: synthetic design preference used for interface testing](docs/screenshots/simple/personal-atlas-desktop.png)
 
 ## What is implemented

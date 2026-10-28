@@ -1,5 +1,7 @@
 # AWS operations
 
+Latest reviewed runtime: `bbb3e095bf080882f1c6e466dd54154c8787ba15`. See the [final audit](FINAL_READINESS_AUDIT.md) for independently inspected image/revision identity, public matching health, database integrity, backup status and environment-presence checks. This release used existing browser SSH, with no firewall or credential change. Availability must continue through November 6, 2026 at 05:45 Morocco time, the official judging end. The owner's expired billing session prevented a fresh credit balance check; older cached estimates are not current funding proof. Historical checkpoints below remain dated evidence, not the latest runtime identity.
+
 Public origin: https://tastekey.52.47.205.18.sslip.io. Dedicated Lightsail host in Paris (`eu-west-3`), Ubuntu 24.04 LTS, 2 GB RAM / 2 vCPU / 60 GB SSD, console plan price $12 USD/month. Usage consumes applicable credits; overages or credit expiry can create charges. Financial account details are intentionally excluded from this repository.
 
 The app uses non-root Node 24, private persistent volume `tastekey-data` at `/app/data`, Docker network `tastekey-network`, and Caddy HTTPS. Port 3000 is internal. A static attached IP provides the current hostname. A custom domain is preferable for longer-term production. Ubuntu security updates and the required kernel reboot were completed.

@@ -2,7 +2,15 @@
 
 Updated October 28, 2026. Implemented behavior and actual integration evidence are recorded separately from user-study claims.
 
-## Latest release: optional multiple-choice Start
+## Latest release: finalist readiness and bounded evidence
+
+The deployed application is `bbb3e095bf080882f1c6e466dd54154c8787ba15`. Its inspected image revision label and public `/api/status` agree. The [final audit](FINAL_READINESS_AUDIT.md) records the image digest, environment-presence, database/backup checks, fixes and remaining owner gates. Source CI passed. Verification passed **80 unit/integration tests** with real Qloo enabled and **21 local browser checks**, skipping the two provider cases exercised publicly. The public run passed seventeen cases but had three browser-context setup failures across a long runner interruption; all three passed on focused retry. All **twenty applicable public cases** therefore passed across the runs, with three intentional local-only fixture/concurrency skips. This is not described as one clean uninterrupted full public run.
+
+The [Quick tour](https://tastekey.52.47.205.18.sslip.io/tour) preserves both working products without registration. Comparison/context consistency, bounded body streaming and acknowledged widget consent are fixed. A silent dated public walkthrough, subtitles, curated current screenshots, proposed Devpost copy and a 90-second pitch are prepared. See [submission materials](SUBMISSION.md).
+
+The [public-list proxy](RESULTS.md) did not establish better recommendations: one of 25 held-out titles appeared in Qloo's pools, and fixed simulated verification worsened its rank. Three synthetic Studio cases passed evidence/budget contracts without proving usefulness. Final Devpost acceptance/submission and owner-operated password/email verification remain handoffs. Six-hour read-only availability monitoring was created through November 6, 2026 at 05:45 Morocco time; it is not an uptime guarantee. Later documentation/media/test-tool commits do not change the pinned runtime.
+
+## Previous release: optional multiple-choice Start
 
 Application revision `299a4c2ec1528bfb3c67ebcec9441b6667e31f93` is deployed. Start now offers “I know what I like” and “Not sure? Help me choose”. The optional guided path asks for a topic, then offers familiar examples. Film/music/book/place choices use the existing Qloo search and require selecting a result before saving. Style choices require a separate Add this style confirmation. People can change topics or switch to typing; examples are not represented as personalized recommendations.
 
