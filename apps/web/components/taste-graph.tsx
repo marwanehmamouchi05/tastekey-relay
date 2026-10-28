@@ -7,6 +7,8 @@ import {
   useNodesState,
   type Node,
   Position,
+  useReactFlow,
+  useNodesInitialized,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import type { Profile, Preference } from "@tastekey/shared-types";
@@ -107,7 +109,7 @@ export default function TasteGraph({
     source: n.parentId || "you",
     target: n.id,
     style: {
-      stroke: n.status === "inferred" ? "#b9add8" : "#8ca9c8",
+      stroke: n.status === "inferred" ? "#c4aadf" : "#a785ca",
       strokeWidth: 1.5,
       strokeDasharray: n.status === "inferred" ? "5 5" : undefined,
     },
@@ -143,6 +145,7 @@ export default function TasteGraph({
         elementsSelectable={!compact}
         proOptions={{ hideAttribution: false }}
       >
+        <FitTasteMap signature={visible.map((n) => n.id).join(",")} />
         <Background color="#c5cfdd" gap={24} size={1} />
         <Controls showInteractive={false} />
       </ReactFlow>
@@ -163,4 +166,13 @@ export default function TasteGraph({
       </div>
     </div>
   );
+}
+
+function FitTasteMap({ signature }: { signature: string }) {
+  const initialized = useNodesInitialized();
+  const { fitView } = useReactFlow();
+  useEffect(() => {
+    if (initialized) void fitView({ padding: 0.3, duration: 0 });
+  }, [initialized, signature, fitView]);
+  return null;
 }

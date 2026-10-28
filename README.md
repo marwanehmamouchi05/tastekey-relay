@@ -4,7 +4,7 @@
 
 [Personal](https://tastekey.52.47.205.18.sslip.io/personal/discover) · [Studio](https://tastekey.52.47.205.18.sslip.io/studio/onboarding) · [Source](https://github.com/marwanehmamouchi05/tastekey-relay) · [Judge walkthrough](docs/JUDGE_GUIDE.md)
 
-![Actual Qloo entertainment results for explicitly entered test tastes](docs/screenshots/personal-live-entertainment.png)
+![TasteKey's taste atlas: synthetic design preference used for interface testing](docs/screenshots/redesign/personal-atlas-desktop.png)
 
 ## What is implemented
 
@@ -12,9 +12,9 @@ Personal captures explicit preferences, asks adaptive clarification questions, d
 
 Studio saves private business profiles, investigates reviewed cultural references and city signals, presents evidence-linked pilot proposals, compares scenarios, creates editable action plans and records owner-reported outcomes. Rejected proposals and outcomes inform later investigations. Optional Amazon Nova Micro rewrites grounded proposals; validation preserves costs, evidence IDs and ownership. Deterministic planning remains available.
 
-Owners can invite explicit, category-only audience contributions. Participants choose categories and can withdraw. Contributions expire after 30 days. Reports require at least ten active browser-session contributions and suppress small groups and complements. Sessions are not verified independent people; this is not differential privacy. Studio never receives the Personal graph. A persisted five-dimension human evaluation form is included, but no independent user-study results or quality improvement are claimed.
+Owners can invite explicit, category-only audience contributions. Participants sign in with a verified email, choose categories and can withdraw across sessions. Contributions expire after 30 days. Reports require at least ten active verified-account contributions and suppress small groups and complements. Legacy anonymous contributions are excluded. Team members cannot contribute to their own business audience. Verified accounts do not establish unique independent people; this is not differential privacy. Studio never receives the Personal graph. A persisted five-dimension human evaluation form is included, but no independent user-study results or quality improvement are claimed.
 
-Private Studio sessions support rotated, hashed, one-use recovery codes. The app uses tenant-scoped SQLite, nonce script CSP, bounded requests and consistent backups. See [acceptance evidence](docs/STATUS.md), [security boundaries](docs/SECURITY.md) and [evaluation limits](docs/EVALUATION.md). This remains a hackathon application: business SSO/team roles, independent audience identity, real booking integration and controlled human evaluation remain future work.
+Studio supports secure OpenID Connect sign-in through a dedicated Cognito Lite service, verified emails, workspace switching, email-bound invitations, owner/admin/editor/viewer roles, immediate membership revocation, ownership transfer and an access audit. First sign-in secures the browser's private workspace and revokes its old capability/recovery codes; returning accounts preserve new private drafts separately. Anonymous exploration retains one-use recovery codes. The redesigned taste atlas uses illustrated discovery tiles, clearer progress and responsive navigation. See [acceptance evidence](docs/STATUS.md), [security boundaries](docs/SECURITY.md) and [evaluation limits](docs/EVALUATION.md). Corporate SAML federation/SCIM, proof of unique people, live booking/pricing feeds and independent human evaluation remain outside this release.
 
 ## Run locally
 
@@ -27,6 +27,8 @@ pnpm dev
 ```
 
 Open [Personal](http://localhost:3000/personal/discover) or [Studio](http://localhost:3000/studio/onboarding). Studio uses a private HTTP-only 30-day cookie. Save a recovery code and an export before clearing cookies; restoring the one-use code signs out older sessions. Personal graph data remains browser-local and is not restored by Studio recovery.
+
+For verified accounts, configure an HTTPS `APP_ORIGIN`, `OIDC_ISSUER`, `OIDC_CLIENT_ID` and optional confidential `OIDC_CLIENT_SECRET`. Register exactly `APP_ORIGIN/api/auth/callback` with the identity provider. The authorization code flow uses PKCE, state, nonce and explicit ID-token signature verification; only `email_verified=true` is accepted. `OIDC_LOGOUT_URL` optionally clears the provider session. Verified app sessions expire after eight hours and team workspaces disable capability recovery. Local HTTP exploration intentionally leaves sign-in disabled. The dedicated AWS setup is documented in [identity setup](docs/IDENTITY.md).
 
 Configure the issued Qloo credential privately with the official event harness:
 

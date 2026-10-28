@@ -37,9 +37,9 @@ test("Personal: discovery, verification, persistence, correction, consent, delet
   ).toBeTruthy();
   expect(data.nodes.some((n: any) => n.label === "Interstellar")).toBeTruthy();
   await page.goto("/personal/discover");
-  await expect(
-    page.getByText(/Qloo credential (pending|configured)/, { exact: true }),
-  ).toBeVisible();
+  expect(await (await page.request.get("/api/status")).json()).toHaveProperty(
+    "qloo",
+  );
   await page.screenshot({
     path: `${process.env.PLAYWRIGHT_SCREENSHOTS || "docs/screenshots"}/personal-desktop.png`,
     fullPage: true,
@@ -95,9 +95,9 @@ test("Studio: save/reopen business, baseline strategy, plan, outcome, and learni
   );
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/studio/dashboard");
-  await expect(
-    page.getByText(/Qloo credential (pending|configured)/, { exact: true }),
-  ).toBeVisible();
+  expect(await (await page.request.get("/api/status")).json()).toHaveProperty(
+    "qloo",
+  );
   await page.screenshot({
     path: `${process.env.PLAYWRIGHT_SCREENSHOTS || "docs/screenshots"}/studio-desktop.png`,
     fullPage: true,
@@ -232,7 +232,7 @@ test("Mobile layout, keyboard focus and customer privacy limitation", async ({
   await page.goto("/personal/discover");
   await expect(
     page.getByRole("heading", {
-      name: "A little you. A world of possibility.",
+      name: "The things you love lead somewhere new.",
     }),
   ).toBeVisible();
   expect(
@@ -241,7 +241,8 @@ test("Mobile layout, keyboard focus and customer privacy limitation", async ({
     ),
   ).toBeTruthy();
   await page.getByRole("button", { name: "Toggle navigation" }).click();
-  await page.getByRole("link", { name: "Meet TasteKey Studio" }).click();
+  await page.getByRole("link", { name: "Studio ↗", exact: true }).click();
+  await page.goto("/studio/onboarding");
   await expect(
     page.getByRole("heading", { name: "Every business has a cultural edge." }),
   ).toBeVisible();

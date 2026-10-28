@@ -32,6 +32,23 @@ import {
   reserveModelCall,
 } from "@/lib/db";
 import { modelConfigured } from "@tastekey/agent-orchestrator";
+import { authRoute, authConfigured } from "@/lib/auth";
+import {
+  identity,
+  AccessError,
+  assertWrite,
+  requireRole,
+  verifiedParticipant,
+  team,
+  inviteMember,
+  acceptInvite,
+  changeMember,
+  transferOwnership,
+  switchWorkspace,
+  renameWorkspace,
+  revokeInvite,
+} from "@/lib/identity";
+import { db } from "@/lib/db";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 const limits = new Map<string, { at: number; count: number }>();
@@ -72,6 +89,7 @@ async function route(request: NextRequest) {
         model: modelConfigured(),
         storage: "SQLite; private browser session",
         version: "0.1.0",
+        signIn: authConfigured(),
       });
     if (request.method !== "GET") {
       const expected = process.env.APP_ORIGIN || request.nextUrl.origin;
@@ -79,6 +97,15 @@ async function route(request: NextRequest) {
         return response({ error: "Origin not allowed." }, 403);
       if (Number(request.headers.get("content-length") || 0) > 50000)
         return response({ error: "Request too large." }, 413);
+    }
+    if (path.startsWith("auth/")) {
+      if (path === "auth/start")
+        rate(
+          `auth:${request.headers.get("x-forwarded-for")?.split(",")[0] || "local"}`,
+          6,
+        );
+      const result = await authRoute(request, path);
+      if (result) return result;
     }
     if (path === "recovery/restore" && request.method === "POST") {
       rate(
@@ -130,17 +157,28 @@ async function route(request: NextRequest) {
       });
       return res;
     }
-    const tenant = tenantFor(request.cookies.get("tastekey_session")?.value);
+    const sessionToken = request.cookies.get("tastekey_session")?.value;
+    const who = identity(sessionToken);
+    const tenant = tenantFor(sessionToken);
     if (!tenant)
       return response(
         { error: "Start a private session before continuing." },
         401,
       );
     rate(tenant);
+    if (path === "team" && request.method === "GET")
+      return response(team(sessionToken!));
     if (request.method === "GET" && path === "workspace")
       return response(workspace(tenant));
     if (request.method === "GET" && path === "audience/mine")
-      return response(ownContributions(tenant));
+      return response(
+        who
+          ? [
+              ...ownContributions(tenant),
+              ...ownContributions(verifiedParticipant(sessionToken!)),
+            ]
+          : ownContributions(tenant),
+      );
     if (request.method === "GET" && path === "audience/report") {
       const id = z
         .string()
@@ -151,6 +189,7 @@ async function route(request: NextRequest) {
       return response(audienceReport(id));
     }
     if (request.method === "DELETE" && path === "workspace") {
+      assertWrite(sessionToken, true);
       deleteWorkspace(tenant);
       const res = response({ deleted: true });
       res.cookies.delete("tastekey_session");
@@ -162,9 +201,80 @@ async function route(request: NextRequest) {
     if (raw.length > 50000)
       return response({ error: "Request too large." }, 413);
     const body = JSON.parse(raw || "{}");
-    if (path === "recovery/create")
+    if (
+      [
+        "business",
+        "analysis",
+        "strategy",
+        "action",
+        "outcome",
+        "review",
+      ].includes(path)
+    )
+      assertWrite(sessionToken);
+    if (path === "team/switch") {
+      const { workspaceId } = z
+        .object({ workspaceId: z.string().min(1).max(100) })
+        .parse(body);
+      switchWorkspace(sessionToken!, workspaceId);
+      return response({ switched: true });
+    }
+    if (path === "team/name") {
+      const { name } = z
+        .object({ name: z.string().trim().min(2).max(80) })
+        .parse(body);
+      renameWorkspace(sessionToken!, name);
+      return response({ renamed: true });
+    }
+    if (path === "team/revoke-invite") {
+      const { email } = z.object({ email: z.email().max(254) }).parse(body);
+      revokeInvite(sessionToken!, email);
+      return response({ revoked: true });
+    }
+    if (path === "team/invite") {
+      const { email, role } = z
+        .object({
+          email: z.email().max(254),
+          role: z.enum(["admin", "editor", "viewer"]),
+        })
+        .parse(body);
+      return response({ invitation: inviteMember(sessionToken!, email, role) });
+    }
+    if (path === "team/accept") {
+      const { invitation } = z
+        .object({ invitation: z.string().regex(/^[a-f0-9]{64}$/) })
+        .parse(body);
+      acceptInvite(sessionToken!, invitation);
+      return response({ joined: true });
+    }
+    if (path === "team/member") {
+      const { userId, role } = z
+        .object({
+          userId: z.string().uuid(),
+          role: z.enum(["admin", "editor", "viewer", "remove"]),
+        })
+        .parse(body);
+      changeMember(sessionToken!, userId, role);
+      return response({ updated: true });
+    }
+    if (path === "team/transfer") {
+      const { userId } = z.object({ userId: z.string().uuid() }).parse(body);
+      transferOwnership(sessionToken!, userId);
+      return response({ transferred: true });
+    }
+    if (path === "recovery/create") {
+      if (who)
+        return response(
+          {
+            error:
+              "Use your verified sign-in to recover this workspace; capability recovery is disabled for teams.",
+          },
+          403,
+        );
       return response({ code: createRecoveryCode(tenant), expiresInDays: 90 });
+    }
     if (path === "audience/invite") {
+      if (who) requireRole(sessionToken, ["owner", "admin"]);
       const { businessId } = z
         .object({ businessId: z.string().uuid() })
         .parse(body);
@@ -183,8 +293,24 @@ async function route(request: NextRequest) {
     }
     if (path === "audience/contribute") {
       const input = AudienceContribution.parse(body);
+      const participant = verifiedParticipant(sessionToken!);
+      const invite = audienceInvite(input.invitation);
+      if (
+        invite &&
+        db()
+          .prepare(
+            "SELECT 1 FROM records r JOIN memberships m ON m.workspace=r.tenant WHERE r.id=? AND m.user=?",
+          )
+          .get(invite.businessId, who!.id)
+      )
+        return response(
+          {
+            error: "Team members cannot count as their own business audience.",
+          },
+          403,
+        );
       const saved = contributeAudience(
-        tenant,
+        participant,
         input.invitation,
         input.categories,
       );
@@ -197,6 +323,7 @@ async function route(request: NextRequest) {
         .object({ businessId: z.string().uuid().optional() })
         .parse(body);
       withdrawAudience(tenant, businessId);
+      if (who) withdrawAudience(verifiedParticipant(sessionToken!), businessId);
       return response({ withdrawn: true });
     }
     if (path === "review") {
@@ -370,6 +497,8 @@ async function route(request: NextRequest) {
     }
     return response({ error: "Route not found." }, 404);
   } catch (err) {
+    if (err instanceof AccessError)
+      return response({ error: err.message }, err.status);
     if (err instanceof z.ZodError)
       return response(
         {

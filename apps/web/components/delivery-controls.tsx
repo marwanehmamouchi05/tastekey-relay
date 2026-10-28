@@ -1,14 +1,34 @@
 "use client";
+import { SignInLink } from "./auth-controls";
 import { useEffect, useState } from "react";
 import type { Analysis, Profile, Review } from "@tastekey/shared-types";
 import { Category } from "@tastekey/shared-types";
 import { api, download } from "@/lib/client";
 
 export function RecoveryControls({ restore = false }: { restore?: boolean }) {
+  const [signedIn, setSignedIn] = useState(false);
+  useEffect(() => {
+    api("auth/status")
+      .then((a) => setSignedIn(a.signedIn))
+      .catch(() => {});
+  }, []);
   const [code, setCode] = useState(""),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false),
     [created, setCreated] = useState("");
+  if (signedIn)
+    return (
+      <section className="panel">
+        <h2>Your workspace follows your sign-in</h2>
+        <p>
+          Sign in on another device to reopen your workspace. Team workspaces do
+          not use anonymous recovery codes.
+        </p>
+        <a className="secondary" href="/account">
+          Manage your account
+        </a>
+      </section>
+    );
   return (
     <section className="panel">
       <h2>{restore ? "Reopen a saved workspace" : "Keep a recovery code"}</h2>
@@ -278,8 +298,9 @@ export function AudienceOwner({ businessId }: { businessId: string }) {
       <p>
         People choose whether to contribute category-level interests. No taste
         names, entity IDs, budgets, browsing history, or contact details are
-        collected. Each private participant session contributes at most once per
-        business, for 30 days.
+        shown to your business. Each verified sign-in account contributes at
+        most once per business, for 30 days. Anonymous sessions do not count
+        toward reports.
       </p>
       {error && (
         <p className="notice error" role="alert">
@@ -327,7 +348,7 @@ export function AudienceOwner({ businessId }: { businessId: string }) {
       {report?.suppressed ? (
         <p className="notice">
           Insufficient consented data. Reporting requires at least{" "}
-          {report.minimum} active participant sessions; small groups and small
+          {report.minimum} active verified accounts; small groups and small
           complements are suppressed.
         </p>
       ) : report ? (
@@ -346,12 +367,12 @@ export function AudienceOwner({ businessId }: { businessId: string }) {
         <p>Loading disclosure-safe report…</p>
       )}
       <p className="microcopy">
-        Counts represent browser sessions, not verified independent customers.
-        No individual records or participant identifiers are exposed to a
-        business. Withdrawal and expiry remove contributions from future reports
-        immediately. Threshold suppression is not differential privacy; repeated
-        reports can still permit inference. A privacy review is required before
-        broad real-customer use.
+        Counts represent verified email accounts, not proven unique people or
+        customers. No individual records or participant identifiers are exposed
+        to a business. Withdrawal and expiry remove contributions from future
+        reports immediately. Threshold suppression is not differential privacy;
+        repeated reports can still permit inference. A privacy review is
+        required before broad real-customer use.
       </p>
     </section>
   );
@@ -363,6 +384,10 @@ type Own = {
   expiresAt: string;
 };
 export function AudienceConsent({ profile }: { profile: Profile }) {
+  const [account, setAccount] = useState<{
+    signedIn: boolean;
+    configured: boolean;
+  }>();
   const [invitation, setInvitation] = useState(""),
     [preview, setPreview] = useState<{ businessId: string; name: string }>(),
     [selected, setSelected] = useState<string[]>([]),
@@ -384,14 +409,36 @@ export function AudienceConsent({ profile }: { profile: Profile }) {
     }
   }
   useEffect(() => {
-    setInvitation(
-      new URLSearchParams(location.hash.slice(1)).get("audience") || "",
-    );
+    api("auth/status")
+      .then(setAccount)
+      .catch(() => {});
+    const pending =
+      location.hash || sessionStorage.getItem("tastekey.return.hash") || "";
+    sessionStorage.removeItem("tastekey.return.hash");
+    setInvitation(new URLSearchParams(pending.slice(1)).get("audience") || "");
     void refresh();
   }, [profile.nodes.length]);
   return (
     <section className="panel">
       <h2>Share a category summary, by choice</h2>
+      {!account?.signedIn && (
+        <div className="account-notice">
+          <p>
+            Verified email sign-in keeps the same account from being counted
+            again in another browser. Your email is never part of a business
+            audience report.
+          </p>
+          {account?.configured ? (
+            <SignInLink returnTo="/personal/proof">
+              Sign in to contribute
+            </SignInLink>
+          ) : (
+            <a className="secondary" href="/account">
+              View sign-in status
+            </a>
+          )}
+        </div>
+      )}
       <p>
         Your graph stays private. An invitation lets you contribute only the
         broad interest categories you select below to a named business.
@@ -465,7 +512,7 @@ export function AudienceConsent({ profile }: { profile: Profile }) {
           </label>
           <button
             className="secondary"
-            disabled={!consent || !selected.length}
+            disabled={!consent || !selected.length || !account?.signedIn}
             onClick={async () => {
               try {
                 await api("audience/contribute", {
@@ -518,9 +565,11 @@ export function AudienceConsent({ profile }: { profile: Profile }) {
         </article>
       ))}
       <p className="microcopy">
-        Contributions are linked to this private cookie, so retain the cookie or
-        a Studio recovery code to withdraw on another device. Previously viewed
-        reports or downloaded exports cannot be recalled.
+        Verified contributions follow your sign-in account. Sign in on another
+        device to withdraw them. Earlier anonymous contributions remain
+        removable in their original private session but do not count in verified
+        reports. Previously viewed reports or downloaded exports cannot be
+        recalled.
       </p>
     </section>
   );

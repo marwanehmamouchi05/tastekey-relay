@@ -39,6 +39,7 @@ import {
   AudienceOwner,
 } from "./delivery-controls";
 import type { Review } from "@tastekey/shared-types";
+import { TeamPanel } from "./auth-controls";
 const blank: BusinessInput = {
   name: "",
   industry: "cinema",
@@ -72,12 +73,17 @@ export default function Studio({
   const [busy, setBusy] = useState(false);
   const [ready, setReady] = useState(false);
   const [notice, setNotice] = useState("");
+  const [role, setRole] = useState("");
+  const readOnly = role === "viewer";
   async function refresh() {
     const value = await api<Workspace>("workspace");
     setData(value);
     return value;
   }
   useEffect(() => {
+    api("auth/status")
+      .then((a) => setRole(a.role || ""))
+      .catch(() => {});
     setSelected(localStorage.getItem("tastekey.business") || "");
     refresh()
       .catch((e) => setError(e.message))
@@ -85,7 +91,12 @@ export default function Studio({
   }, []);
   useEffect(() => {
     if (selected) localStorage.setItem("tastekey.business", selected);
-    else if (data.businesses.length) setSelected(data.businesses[0].id);
+    if (
+      data.businesses.length &&
+      selected !== "__new__" &&
+      !data.businesses.some((b) => b.id === selected)
+    )
+      setSelected(data.businesses[0].id);
   }, [selected, data.businesses]);
   const business = data.businesses.find((b) => b.id === selected);
   const analyses = data.analyses.filter((a) => a.businessId === business?.id);
@@ -95,6 +106,12 @@ export default function Studio({
     path: string,
     body: unknown,
   ): Promise<T | undefined> {
+    if (readOnly) {
+      setError(
+        "This workspace is read-only. Ask an owner or admin for editor access.",
+      );
+      return;
+    }
     setBusy(true);
     setError("");
     try {
@@ -115,15 +132,22 @@ export default function Studio({
     outcomes,
     reviews,
     mutate,
-    busy,
+    busy: busy || readOnly,
     model,
   };
   if (!ready)
     return (
       <div className="loading">Opening your private business workspace…</div>
     );
+  if (section === "team") return <TeamPanel />;
   return (
     <>
+      {readOnly && (
+        <p className="notice">
+          You have viewer access. You can browse and export this workspace;
+          editing requires an editor, admin or owner role.
+        </p>
+      )}
       {error && (
         <div className="notice error" role="alert">
           {error}
@@ -187,7 +211,7 @@ export default function Studio({
           <BusinessForm
             key={business?.id || "new"}
             business={business}
-            busy={busy}
+            busy={busy || readOnly}
             save={async (input) => {
               const result = await mutate<Business>("business", {
                 id: business?.id,

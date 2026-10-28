@@ -24,6 +24,8 @@ import {
 } from "lucide-react";
 import Personal from "./personal";
 import Studio from "./studio";
+import { AccountPanel } from "./auth-controls";
+import { api } from "@/lib/client";
 const personalNav = [
   ["discover", "Discover", Compass],
   ["taste-dna", "Taste DNA", Network],
@@ -40,17 +42,22 @@ const studioNav = [
   ["outcomes", "Outcome tracking", TrendingUp],
   ["audience", "Customer intelligence", Users],
   ["reviews", "Human evaluation", FlaskConical],
+  ["team", "Team & access", Users],
 ] as const;
 export default function Workspace() {
   const pathname = usePathname();
   const studio = pathname.startsWith("/studio");
   const section = pathname.split("/")[2] || (studio ? "dashboard" : "discover");
   const [menu, setMenu] = useState(false);
+  const [role, setRole] = useState("");
   const [status, setStatus] = useState<{
     qloo: boolean;
     model: boolean;
   } | null>(null);
   useEffect(() => {
+    api("auth/status")
+      .then((a) => setRole(a.role || ""))
+      .catch(() => {});
     fetch("/api/status")
       .then((r) => r.json())
       .then(setStatus)
@@ -58,11 +65,11 @@ export default function Workspace() {
   }, []);
   const nav = studio ? studioNav : personalNav;
   return (
-    <div className={`app-shell ${studio ? "studio-shell" : ""}`}>
+    <div className={`app-shell ${studio ? "studio-shell" : "personal-shell"}`}>
       <aside className={`sidebar ${menu ? "open" : ""}`}>
         <Link href="/" className="brand">
           <span className="brand-symbol">
-            <Aperture size={25} />
+            <KeyRound size={25} />
           </span>
           <span>
             TasteKey<span className="brand-sub">Relay</span>
@@ -103,7 +110,9 @@ export default function Workspace() {
               </strong>
               <p>
                 {studio
-                  ? "Records stay in this private session."
+                  ? role
+                    ? "Shared only with your workspace team."
+                    : "Records stay in this private session."
                   : "Stored on this browser. Shared by choice."}
               </p>
             </div>
@@ -142,9 +151,16 @@ export default function Workspace() {
             </strong>
           </div>
           <div>
+            <Link href="/account" className="account-link">
+              <KeyRound size={16} /> Account
+            </Link>
             <span className="local-badge">
               <ShieldCheck size={14} />
-              {studio ? "Private demo session" : "Local-first profile"}
+              {studio
+                ? role
+                  ? `${role} access`
+                  : "Private demo session"
+                : "Your taste stays yours"}
             </span>
             <span className="avatar">
               {studio ? <Building2 size={17} /> : <KeyRound size={17} />}
@@ -162,7 +178,9 @@ export default function Workspace() {
               </span>
             </div>
           )}
-          {studio ? (
+          {pathname === "/account" ? (
+            <AccountPanel />
+          ) : studio ? (
             <Studio section={section} model={status?.model ?? false} />
           ) : (
             <Personal section={section} model={status?.model ?? false} />

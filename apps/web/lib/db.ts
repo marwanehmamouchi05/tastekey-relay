@@ -27,6 +27,14 @@ export function db() {
       CREATE TABLE IF NOT EXISTS audience_invites (digest TEXT PRIMARY KEY, owner TEXT NOT NULL, business TEXT NOT NULL UNIQUE, expires INTEGER NOT NULL);
       CREATE TABLE IF NOT EXISTS audience_contributions (business TEXT NOT NULL, participant TEXT NOT NULL, categories TEXT NOT NULL, expires INTEGER NOT NULL, PRIMARY KEY (business, participant));
       CREATE TABLE IF NOT EXISTS model_usage (day TEXT PRIMARY KEY, calls INTEGER NOT NULL);
+      CREATE TABLE IF NOT EXISTS auth_users (id TEXT PRIMARY KEY, issuer TEXT NOT NULL, subject TEXT NOT NULL, email TEXT NOT NULL, home TEXT NOT NULL, UNIQUE(issuer,subject));
+      CREATE TABLE IF NOT EXISTS auth_workspaces (id TEXT PRIMARY KEY, name TEXT NOT NULL);
+      CREATE TABLE IF NOT EXISTS memberships (workspace TEXT NOT NULL, user TEXT NOT NULL, role TEXT NOT NULL, PRIMARY KEY(workspace,user));
+      CREATE TABLE IF NOT EXISTS auth_sessions (token TEXT PRIMARY KEY, user TEXT NOT NULL, workspace TEXT NOT NULL, expires INTEGER NOT NULL);
+      CREATE TABLE IF NOT EXISTS oidc_transactions (digest TEXT PRIMARY KEY, browser TEXT NOT NULL, data TEXT NOT NULL, expires INTEGER NOT NULL);
+      CREATE TABLE IF NOT EXISTS team_invites (digest TEXT PRIMARY KEY, workspace TEXT NOT NULL, email TEXT NOT NULL, role TEXT NOT NULL, expires INTEGER NOT NULL);
+      CREATE TABLE IF NOT EXISTS verified_audience (participant TEXT PRIMARY KEY, user TEXT NOT NULL UNIQUE);
+      CREATE TABLE IF NOT EXISTS audit_events (id TEXT PRIMARY KEY, workspace TEXT NOT NULL, actor TEXT NOT NULL, action TEXT NOT NULL, detail TEXT NOT NULL, at INTEGER NOT NULL);
     `);
   }
   return instance;
@@ -49,13 +57,30 @@ export function tenantFor(token?: string) {
     ? tenant
     : null;
   if (!valid) return null;
-  return (
+  const signed = db()
+    .prepare("SELECT user,workspace,expires FROM auth_sessions WHERE token=?")
+    .get(tenant) as
+    { user: string; workspace: string; expires: number } | undefined;
+  if (signed) {
+    if (
+      signed.expires <= Date.now() ||
+      !db()
+        .prepare("SELECT 1 FROM memberships WHERE workspace=? AND user=?")
+        .get(signed.workspace, signed.user)
+    )
+      return null;
+    return signed.workspace;
+  }
+  const anonymous =
     (
       db()
         .prepare("SELECT tenant FROM session_tenants WHERE token=?")
         .get(tenant) as { tenant: string } | undefined
-    )?.tenant || tenant
-  );
+    )?.tenant || tenant;
+  // Once claimed, a workspace cannot be opened with old capability/recovery tokens.
+  return db().prepare("SELECT 1 FROM auth_workspaces WHERE id=?").get(anonymous)
+    ? null
+    : anonymous;
 }
 export function put(
   tenant: string,
@@ -104,8 +129,17 @@ export function deleteWorkspace(tenant: string) {
   revokeSessions(tenant);
   db().prepare("DELETE FROM records WHERE tenant=?").run(tenant);
   db().prepare("DELETE FROM sessions WHERE token=?").run(tenant);
+  db()
+    .prepare(
+      "DELETE FROM sessions WHERE token IN (SELECT token FROM auth_sessions WHERE workspace=?)",
+    )
+    .run(tenant);
+  db().prepare("DELETE FROM auth_sessions WHERE workspace=?").run(tenant);
+  for (const table of ["memberships", "team_invites", "audit_events"])
+    db().prepare(`DELETE FROM ${table} WHERE workspace=?`).run(tenant);
+  db().prepare("DELETE FROM auth_workspaces WHERE id=?").run(tenant);
 }
-function revokeSessions(tenant: string) {
+export function revokeSessions(tenant: string) {
   db()
     .prepare(
       "DELETE FROM sessions WHERE token=? OR token IN (SELECT token FROM session_tenants WHERE tenant=?)",
@@ -114,6 +148,8 @@ function revokeSessions(tenant: string) {
   db().prepare("DELETE FROM session_tenants WHERE tenant=?").run(tenant);
 }
 export function createRecoveryCode(tenant: string) {
+  if (db().prepare("SELECT 1 FROM auth_workspaces WHERE id=?").get(tenant))
+    throw new Error("Use your verified sign-in to recover a team workspace.");
   const code = randomBytes(32).toString("hex");
   db().prepare("DELETE FROM recovery_codes WHERE tenant=?").run(tenant);
   db()
@@ -130,6 +166,12 @@ export function recoverWorkspace(code: string) {
       .prepare("SELECT tenant FROM recovery_codes WHERE digest=? AND expires>?")
       .get(hash(code), Date.now()) as { tenant: string } | undefined;
     if (!row) {
+      conn.exec("COMMIT");
+      return null;
+    }
+    if (
+      conn.prepare("SELECT 1 FROM auth_workspaces WHERE id=?").get(row.tenant)
+    ) {
       conn.exec("COMMIT");
       return null;
     }
@@ -217,7 +259,7 @@ export function withdrawAudience(participant: string, business?: string) {
 export function audienceReport(business: string) {
   const rows = db()
     .prepare(
-      "SELECT categories FROM audience_contributions WHERE business=? AND expires>?",
+      "SELECT categories FROM audience_contributions c JOIN verified_audience v ON v.participant=c.participant WHERE business=? AND expires>?",
     )
     .all(business, Date.now()) as { categories: string }[];
   if (rows.length < aggregateMinimum)

@@ -25,7 +25,9 @@ TasteKey Personal develops an editable taste graph, asks adaptive clarification 
 
 TasteKey Studio saves a private business brief, investigates reviewed references and city signals, shows cultural evidence and constrained pilot allocations, compares scenarios and creates editable action plans. Rejections and owner-reported outcomes inform subsequent investigations. Optional Nova Micro proposes pilot interpretations with explicit owner-validation labels. Slot validation and server-controlled fields preserve strategy IDs, costs, ownership and evidence links; invalid proposals retain the baseline.
 
-The two products connect through explicit category-only consent. Owners can invite contributions; people preview the business, choose broad categories and withdraw. Contributions expire after 30 days. Reports require ten active browser-session contributions and suppress small groups and complements. No individual graph is available to Studio. Browser sessions are not independently verified people, and no differential privacy is claimed.
+The two products connect through explicit category-only consent. Owners can invite contributions; people sign in with a verified email, preview the business, choose broad categories and withdraw. Contributions expire after 30 days. Reports require ten active verified-account contributions and suppress small groups and complements. Legacy anonymous contributions are excluded; team members cannot contribute to their own business audience. No individual graph or email is available in reports. Verified accounts do not prove independent people, and no differential privacy is claimed.
+
+Studio now supports Cognito-backed OpenID Connect sign-in, email-bound team invitations, workspace switching, owner/admin/editor/viewer roles, immediate revocation, ownership transfer and an access audit. The taste-atlas interface gives Personal an illustrated, purpose-specific discovery experience with responsive navigation and clear progress. Passwords and verification codes stay with the identity provider; the personal graph stays in the browser.
 
 The implementation uses TypeScript, Next.js, Tailwind, React Flow, the event-supported Qloo harness, SQLite, Amazon Bedrock Nova Micro, AWS Lightsail and Caddy HTTPS. The app runs as a non-root user with private server credentials, tenant authorization, nonce script CSP, consistent backups and deployment rollback. The model identity is restricted to the server IP, Nova resources and a 30-day window; daily attempted model usage is capped in SQLite.
 
@@ -33,7 +35,7 @@ Real integration checks cover cultural entity resolution, cross-category relatio
 
 ## Claims deliberately excluded
 
-No independent user study, recommendation-quality gain, customer demand, conversion lift or revenue result has been collected. Shopping products/prices are illustrative. Travel quotes are supplied by the user and are not independently verified bookable offers. Human reviewer aliases and reported outcomes are not audited. Business SSO/roles, verified audience identity, booking inventory and controlled human evaluation remain future work.
+No independent user study, recommendation-quality gain, customer demand, conversion lift or revenue result has been collected. Shopping products/prices are illustrative. Travel quotes are supplied by the user and are not independently verified bookable offers. Human reviewer aliases and reported outcomes are not audited. Corporate SAML federation/SCIM, proof of unique people, live booking/pricing feeds and controlled human evaluation remain outside this release. The owner has no booking/merchant provider account configured.
 
 ## Prepared media
 

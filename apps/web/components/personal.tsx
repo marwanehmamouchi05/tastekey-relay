@@ -187,27 +187,47 @@ function Discover({ profile, update, error }: Props) {
   }
   return (
     <>
-      <div className="page-heading">
+      <div className="page-heading discovery-hero">
         <div>
-          <span className="eyebrow">
-            <span className="tiny-star">✳</span> Made of everything you love
+          <span className="discovery-kicker">
+            <Sparkles size={17} /> A little curiosity goes a long way
           </span>
           <h1>
-            A little you.
-            <br />A world of possibility.
+            The things you love
+            <br />
+            lead somewhere new.
           </h1>
           <p>
             Your favorite film. A place you keep thinking about. Start with a
             few things you love, and see what connects.
           </p>
         </div>
-        <div className="heading-note">
-          <ShieldCheck size={19} />
-          <span>
-            No long questionnaire.
-            <br />
-            <strong>No assumptions about who you are.</strong>
-          </span>
+        <div className="taste-mosaic" aria-label="Choose where to begin">
+          {(
+            [
+              ["movie", "Film", "A story that stays with you"],
+              ["artist", "Music", "Your on-repeat feeling"],
+              ["place", "Places", "Somewhere you belong"],
+              ["design", "Design", "A style that feels like you"],
+            ] as const
+          ).map(([key, label, hint]) => (
+            <button
+              key={key}
+              className={"mosaic-tile " + key}
+              aria-label={"Start with " + label.toLowerCase()}
+              onClick={() => {
+                setCategory(key);
+                setResults([]);
+                document.getElementById("taste")?.focus();
+              }}
+            >
+              <span className="mosaic-art" aria-hidden="true" />
+              <span>
+                <strong>{label}</strong>
+                <small>{hint}</small>
+              </span>
+            </button>
+          ))}
         </div>
       </div>
       <div className="discover-grid">
@@ -219,7 +239,14 @@ function Discover({ profile, update, error }: Props) {
             </div>
             <span className="count-badge">{count} / 3</span>
           </div>
-          <div className="progress">
+          <div
+            className="progress"
+            role="progressbar"
+            aria-label="Starting tastes"
+            aria-valuemin={0}
+            aria-valuemax={3}
+            aria-valuenow={Math.min(count, 3)}
+          >
             <span style={{ width: `${Math.min(count / 3, 1) * 100}%` }} />
           </div>
           <div className="category-tabs" aria-label="Preference category">
@@ -227,6 +254,7 @@ function Discover({ profile, update, error }: Props) {
               (c) => (
                 <button
                   className={category === c ? "active" : ""}
+                  aria-pressed={category === c}
                   key={c}
                   onClick={() => {
                     setCategory(c);
@@ -266,6 +294,13 @@ function Discover({ profile, update, error }: Props) {
                     : "Something that feels like you…"
               }
               maxLength={150}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !busy && text.trim().length >= 2) {
+                  e.preventDefault();
+                  if (category === "design") save();
+                  else void search();
+                }
+              }}
             />
           </div>
           <div className="form-buttons">

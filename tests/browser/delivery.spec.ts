@@ -94,7 +94,7 @@ test("human rubric persists and a one-use recovery code reopens only its workspa
   await other.request.delete("/api/workspace", { headers });
   await context.close();
 });
-test("category contribution needs explicit consent and withdrawal updates the owner report", async ({
+test("anonymous audience preview requires verified sign-in before contribution", async ({
   page,
   browser,
 }) => {
@@ -133,20 +133,12 @@ test("category contribution needs explicit consent and withdrawal updates the ow
       name: "I consent to this category summary being stored for this business for 30 days.",
     })
     .check();
-  const sent = person.waitForRequest((r) =>
-    r.url().endsWith("/api/audience/contribute"),
-  );
-  await share.click();
-  const body = (await sent).postDataJSON();
-  expect(Object.keys(body).sort()).toEqual([
-    "categories",
-    "consent",
-    "invitation",
-  ]);
-  expect(body.categories).toEqual(["movie"]);
-  await expect(
-    person.getByRole("button", { name: "Withdraw category contribution" }),
-  ).toBeVisible();
+  await expect(share).toBeDisabled();
+  const denied = await person.request.post("/api/audience/contribute", {
+    headers,
+    data: { invitation, categories: ["movie"], consent: true },
+  });
+  expect(denied.status()).toBe(401);
   const unauthorized = await person.request.get(
     "/api/audience/report?businessId=" + b.id,
   );
@@ -155,9 +147,6 @@ test("category contribution needs explicit consent and withdrawal updates the ow
     "/api/audience/report?businessId=" + b.id,
   );
   expect(await report.json()).toMatchObject({ suppressed: true, groups: [] });
-  await person
-    .getByRole("button", { name: "Withdraw category contribution" })
-    .click();
   await expect(
     person.getByText("No active category contributions."),
   ).toBeVisible();

@@ -56,7 +56,7 @@ it("expired recovery codes never reopen records", () => {
     .run(tenant);
   expect(recoverWorkspace(code)).toBeNull();
 });
-it("audience counts deduplicate private sessions and suppress immediately after withdrawal", () => {
+it("verified fixture audience counts deduplicate participants and suppress immediately after withdrawal", () => {
   const owner = tenantFor(newSession())!,
     business = crypto.randomUUID();
   put(owner, "business", business, {
@@ -67,7 +67,12 @@ it("audience counts deduplicate private sessions and suppress immediately after 
   const participants = Array.from({ length: 10 }, () =>
     tenantFor(newSession())!,
   );
-  for (const p of participants) contributeAudience(p, invitation, ["movie"]);
+  for (const p of participants) {
+    db()
+      .prepare("INSERT INTO verified_audience VALUES (?,?)")
+      .run(p, "synthetic-fixture-" + p);
+    contributeAudience(p, invitation, ["movie"]);
+  }
   contributeAudience(participants[0], invitation, ["movie"]);
   expect(audienceReport(business)).toMatchObject({
     suppressed: false,
