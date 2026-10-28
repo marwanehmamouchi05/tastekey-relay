@@ -12,6 +12,13 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import type { Profile, Preference } from "@tastekey/shared-types";
+const statusLabel: Record<string, string> = {
+  stated: "You added this",
+  inferred: "A guess",
+  confirmed: "You confirmed this",
+  rejected: "Does not fit",
+  superseded: "Replaced",
+};
 export default function TasteGraph({
   profile,
   onSelect,
@@ -62,7 +69,7 @@ export default function TasteGraph({
             <div className="graph-label">
               <small>{n.category.replace("_", " ")}</small>
               <strong>{n.label}</strong>
-              <span>{n.status === "stated" ? "You told us" : n.status}</span>
+              <span>{statusLabel[n.status]}</span>
             </div>
           ),
         },
@@ -83,11 +90,7 @@ export default function TasteGraph({
               label: (
                 <div className="graph-label">
                   <strong>{c.label}</strong>
-                  <span>
-                    {c.status === "inferred"
-                      ? "Unverified possibility"
-                      : c.status}
-                  </span>
+                  <span>{statusLabel[c.status]}</span>
                 </div>
               ),
             },
@@ -118,7 +121,7 @@ export default function TasteGraph({
   return (
     <div className={`graph-container ${compact ? "compact" : ""}`}>
       <div className="graph-caption">
-        <span className="tag blue">Taste DNA</span>
+        <span className="tag blue">Your taste map</span>
         <label>
           <input
             type="checkbox"
@@ -158,10 +161,10 @@ export default function TasteGraph({
       <div className="graph-legend">
         <span>
           <i className="confirmed-dot" />
-          Your stated taste
+          What you told us
         </span>
         <span>
-          <i className="hypothesis-dot" />A possibility to verify
+          <i className="hypothesis-dot" />A guess you can check
         </span>
       </div>
     </div>

@@ -23,7 +23,7 @@ type Account = {
 };
 export function SignInLink({
   returnTo = "/account",
-  children = "Sign in securely",
+  children = "Sign in",
 }: {
   returnTo?: string;
   children?: React.ReactNode;
@@ -60,31 +60,28 @@ export function AccountPanel() {
         <span className="story-symbol">
           <KeyRound size={34} />
         </span>
-        <h1>
-          Your taste.
-          <br />
-          Your people.
-          <br />
-          One secure home.
-        </h1>
+        <h1>Save your work. Bring your team.</h1>
         <p>
-          Keep personal discovery private. Bring the right people into your
-          business workspace, with access you control.
+          Sign in to keep your business work safe and invite people to help.
         </p>
         <ul className="benefit-list">
           <li>
-            <ShieldCheck size={20} /> Verified email sign-in
+            <ShieldCheck size={20} /> Confirm your email
           </li>
           <li>
-            <Users size={20} /> Owners, admins, editors and viewers
+            <Users size={20} /> Choose who can view or edit
           </li>
           <li>
-            <Mail size={20} /> Invitations bound to the intended email
+            <Mail size={20} /> Invite people by email
           </li>
         </ul>
       </section>
       <section className="panel account-card">
-        <h2>{account?.signedIn ? "You’re signed in" : "Make it yours"}</h2>
+        <h2>
+          {account?.signedIn
+            ? "You’re signed in"
+            : "Sign in to save your workspace"}
+        </h2>
         {error && (
           <p className="notice error" role="alert">
             {error}
@@ -133,10 +130,7 @@ export function AccountPanel() {
           </>
         ) : (
           <>
-            <p>
-              Use secure sign-in to recover your Studio workspace, collaborate
-              with a team and contribute verified-account audience insights.
-            </p>
+            <p>Use your account to return to your work on another device.</p>
             {account.configured ? (
               <SignInLink />
             ) : (
@@ -149,10 +143,8 @@ export function AccountPanel() {
               Explore without an account
             </Link>
             <p className="microcopy">
-              First sign-in secures this browser’s private Studio workspace.
-              Returning accounts reopen their workspace; any new private Studio
-              work is preserved as a separate workspace. Your Personal taste
-              graph stays on this browser.
+              Signing in protects this browser’s business work. Your personal
+              likes stay on this device.
             </p>
             <details>
               <summary>What is shared when I sign in?</summary>
@@ -221,8 +213,8 @@ export function TeamPanel() {
     <>
       <div className="page-title">
         <div>
-          <h1>Good ideas need good company.</h1>
-          <p>A shared Studio, with a clear role for everyone.</p>
+          <h1>Your team</h1>
+          <p>Invite people and choose what they can do.</p>
         </div>
       </div>
       {error && (
@@ -251,7 +243,7 @@ export function TeamPanel() {
         <>
           <div className="team-switcher">
             <label className="field-label">
-              Active workspace
+              Your workspace
               <select
                 value={account.workspace}
                 onChange={async (e) => {
@@ -296,17 +288,20 @@ export function TeamPanel() {
               </button>
             </form>
           )}
-          <div className="role-guide">
-            {Object.entries(roleDescriptions).map(([r, text]) => (
-              <div key={r}>
-                <strong>{r}</strong>
-                <p>{text}</p>
-              </div>
-            ))}
-          </div>
+          <details className="simple-extra">
+            <summary>What can each role do?</summary>
+            <div className="role-guide">
+              {Object.entries(roleDescriptions).map(([r, text]) => (
+                <div key={r}>
+                  <strong>{r}</strong>
+                  <p>{text}</p>
+                </div>
+              ))}
+            </div>
+          </details>
           <div className="team-grid">
             <section className="panel">
-              <h2>People in this workspace</h2>
+              <h2>Your team members</h2>
               <div className="member-list">
                 {data?.members.map((m) => (
                   <div className="member-row" key={m.id}>
@@ -377,11 +372,7 @@ export function TeamPanel() {
               </div>
             </section>
             <section className="panel">
-              <h2>
-                {manage
-                  ? "Invite your next collaborator"
-                  : "Join another workspace"}
-              </h2>
+              <h2>{manage ? "Invite someone" : "Join another workspace"}</h2>
               {manage && (
                 <form
                   onSubmit={async (e) => {
@@ -483,7 +474,7 @@ export function TeamPanel() {
           </div>
           {manage && (
             <section className="panel audit-panel">
-              <h2>Recent access changes</h2>
+              <h2>Team activity</h2>
               {data?.audit.map((a, i) => (
                 <p key={i}>
                   <time>{new Date(a.at).toLocaleString()}</time> {a.detail}

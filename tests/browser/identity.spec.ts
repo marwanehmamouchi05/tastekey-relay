@@ -6,33 +6,42 @@ import { completeSignIn, identity } from "../../apps/web/lib/identity";
 const remote = Boolean(process.env.PLAYWRIGHT_BASE_URL);
 const screenshot =
   process.env.PLAYWRIGHT_SCREENSHOTS || "test-results/redesign";
-test("taste atlas has usable discovery tiles, keyboard search entry, account and responsive navigation", async ({
+test("simple discovery shows one task, keeps extra details optional and supports keyboard and mobile navigation", async ({
   page,
 }) => {
   await page.goto("/personal/discover");
   await expect(
     page.getByRole("heading", {
-      name: "The things you love lead somewhere new.",
+      name: "Find more of what you love.",
     }),
   ).toBeVisible();
-  await page.getByRole("button", { name: "Start with music" }).click();
+  await expect(page.getByText("Your taste map", { exact: true })).toHaveCount(
+    0,
+  );
+  await page.getByRole("button", { name: "Music", exact: true }).click();
   await expect(page.getByLabel("An artist you love")).toBeFocused();
-  await page.getByRole("button", { name: "Start with design" }).click();
+  await page.getByRole("button", { name: "Design", exact: true }).click();
   await page
     .getByLabel("A design you love")
     .fill("Synthetic sculptural architecture");
   await page.getByLabel("A design you love").press("Enter");
+  await expect(page.getByText("Your first like is saved.")).toBeVisible();
   await expect(
-    page.getByRole("progressbar", { name: "Starting tastes" }),
-  ).toHaveAttribute("aria-valuenow", "1");
+    page.getByRole("link", { name: "Get suggestions", exact: true }),
+  ).toBeVisible();
+  await expect(page.getByText("Your taste map", { exact: true })).toHaveCount(
+    0,
+  );
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.screenshot({
     path: screenshot + "/personal-atlas-desktop.png",
     fullPage: true,
   });
+  await page.getByText("See your taste map", { exact: true }).click();
+  await expect(page.getByText("Your taste map", { exact: true })).toBeVisible();
   await page.goto("/account");
   await expect(
-    page.getByRole("heading", { name: "Make it yours" }),
+    page.getByRole("heading", { name: "Sign in to save your workspace" }),
   ).toBeVisible();
   await expect(
     page.getByRole("link", { name: "Explore without an account" }),
@@ -45,13 +54,13 @@ test("taste atlas has usable discovery tiles, keyboard search entry, account and
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/personal/discover");
   await expect(
-    page.getByRole("button", { name: "Start with places" }),
+    page.getByRole("button", { name: "Places", exact: true }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Toggle navigation" }).click();
   await expect(
     page
       .getByRole("navigation", { name: "Main navigation" })
-      .getByRole("link", { name: "Taste DNA" }),
+      .getByRole("link", { name: "Your likes" }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Toggle navigation" }).click();
   expect(
@@ -118,7 +127,7 @@ test("team UI and real server authorization enforce invitations, viewer writes a
   ]);
   await page.goto("/studio/team");
   await expect(
-    page.getByRole("heading", { name: "People in this workspace" }),
+    page.getByRole("heading", { name: "Your team members" }),
   ).toBeVisible();
   await page
     .getByLabel("Teammate email")

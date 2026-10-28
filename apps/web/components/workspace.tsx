@@ -27,22 +27,22 @@ import Studio from "./studio";
 import { AccountPanel } from "./auth-controls";
 import { api } from "@/lib/client";
 const personalNav = [
-  ["discover", "Discover", Compass],
-  ["taste-dna", "Taste DNA", Network],
-  ["relay", "Relay experiences", ArrowUpRight],
-  ["proof", "Proof & privacy", FlaskConical],
+  ["discover", "Start", Compass],
+  ["taste-dna", "Your likes", Network],
+  ["relay", "Suggestions", ArrowUpRight],
+  ["proof", "Privacy", ShieldCheck],
 ] as const;
 const studioNav = [
-  ["onboarding", "Business setup", Building2],
-  ["dashboard", "Dashboard", LayoutDashboard],
-  ["analysis", "Cultural analysis", ChartNoAxesCombined],
-  ["advisor", "Strategy advisor", Compass],
-  ["scenarios", "Scenarios", GitCompareArrows],
-  ["actions", "Action plans", ListChecks],
-  ["outcomes", "Outcome tracking", TrendingUp],
-  ["audience", "Customer intelligence", Users],
-  ["reviews", "Human evaluation", FlaskConical],
-  ["team", "Team & access", Users],
+  ["onboarding", "Your business", Building2],
+  ["dashboard", "Overview", LayoutDashboard],
+  ["analysis", "Find ideas", ChartNoAxesCombined],
+  ["advisor", "Review ideas", Compass],
+  ["scenarios", "Compare options", GitCompareArrows],
+  ["actions", "Your plan", ListChecks],
+  ["outcomes", "Results", TrendingUp],
+  ["audience", "Audience interests", Users],
+  ["reviews", "Rate the ideas", FlaskConical],
+  ["team", "Team", Users],
 ] as const;
 export default function Workspace() {
   const pathname = usePathname();
@@ -64,6 +64,22 @@ export default function Workspace() {
       .catch(() => setStatus({ qloo: false, model: false }));
   }, []);
   const nav = studio ? studioNav : personalNav;
+  const extraIds = ["advisor", "scenarios", "audience", "reviews"];
+  const mainNav = studio ? nav.filter(([id]) => !extraIds.includes(id)) : nav;
+  const extraNav = studio ? nav.filter(([id]) => extraIds.includes(id)) : [];
+  const navLink = ([id, label, Icon]: (typeof nav)[number]) => (
+    <Link
+      key={id}
+      href={`/${studio ? "studio" : "personal"}/${id}`}
+      onClick={() => setMenu(false)}
+      className={section === id ? "active" : ""}
+      aria-current={section === id ? "page" : undefined}
+    >
+      <Icon size={19} />
+      <span>{label}</span>
+      {section === id && <ChevronRight size={15} />}
+    </Link>
+  );
   return (
     <div className={`app-shell ${studio ? "studio-shell" : "personal-shell"}`}>
       <aside className={`sidebar ${menu ? "open" : ""}`}>
@@ -87,19 +103,13 @@ export default function Workspace() {
           {studio ? "Your business workspace" : "Your personal workspace"}
         </div>
         <nav aria-label="Main navigation">
-          {nav.map(([id, label, Icon]) => (
-            <Link
-              key={id}
-              href={`/${studio ? "studio" : "personal"}/${id}`}
-              onClick={() => setMenu(false)}
-              className={section === id ? "active" : ""}
-              aria-current={section === id ? "page" : undefined}
-            >
-              <Icon size={19} />
-              <span>{label}</span>
-              {section === id && <ChevronRight size={15} />}
-            </Link>
-          ))}
+          {mainNav.map(navLink)}
+          {studio && (
+            <details className="more-tools" open={extraIds.includes(section)}>
+              <summary>More tools</summary>
+              {extraNav.map(navLink)}
+            </details>
+          )}
         </nav>
         <div className="sidebar-bottom">
           <div className="privacy-note">
@@ -147,7 +157,9 @@ export default function Workspace() {
             <span className="crumb">{studio ? "Studio" : "Personal"}</span>
             <ChevronRight size={13} />
             <strong>
-              {nav.find((n) => n[0] === section)?.[1] || "Workspace"}
+              {pathname === "/account"
+                ? "Account"
+                : nav.find((n) => n[0] === section)?.[1] || "Workspace"}
             </strong>
           </div>
           <div>
@@ -160,7 +172,7 @@ export default function Workspace() {
                 ? role
                   ? `${role} access`
                   : "Private demo session"
-                : "Your taste stays yours"}
+                : "Saved on this device"}
             </span>
             <span className="avatar">
               {studio ? <Building2 size={17} /> : <KeyRound size={17} />}
@@ -172,9 +184,8 @@ export default function Workspace() {
             <div className="connection-banner">
               <Info size={16} />
               <span>
-                Qloo access is pending. You can build your profile and manage
-                your business. Cultural results appear only after a live
-                connection.
+                Suggestions are offline right now. You can still save your likes
+                and business work.
               </span>
             </div>
           )}

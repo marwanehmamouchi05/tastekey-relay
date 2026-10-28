@@ -114,7 +114,7 @@ test("anonymous audience preview requires verified sign-in before contribution",
   const person = await context.newPage();
   await person.goto("/personal/discover");
   await person.getByLabel("A film you love").fill("Synthetic taste");
-  await person.getByRole("button", { name: "Add as my own taste" }).click();
+  await person.getByRole("button", { name: "Add without searching" }).click();
   await person.goto("/personal/proof#audience=" + invitation);
   await person
     .getByRole("button", { name: "Review audience invitation" })
@@ -192,7 +192,7 @@ test("scripts require a changing nonce while the interactive graph and quote bud
   );
   await page.getByRole("button", { name: "Places", exact: true }).click();
   await page.getByLabel("A place you love").fill("Synthetic destination");
-  await page.getByRole("button", { name: "Find cultural reference" }).click();
+  await page.getByRole("button", { name: "Search", exact: true }).click();
   await page.locator(".search-results button").first().click();
   await page.goto("/personal/taste-dna");
   await page.getByLabel("Accommodation per night (USD)").fill("60");
@@ -207,8 +207,10 @@ test("scripts require a changing nonce while the interactive graph and quote bud
   await page
     .getByRole("checkbox", { name: /Apply my hotel budget locally/ })
     .check();
-  await page.getByRole("button", { name: "Approve for 24 hours" }).click();
-  await page.getByRole("button", { name: "Find live recommendations" }).click();
+  await page
+    .getByRole("button", { name: "Share these likes for 24 hours" })
+    .click();
+  await page.getByRole("button", { name: "Get suggestions" }).click();
   await expect(page.locator(".result-card").first()).toBeVisible();
   const save = async (name: string, price: string) => {
     await page.getByLabel("Quoted destination").selectOption(entity.id);

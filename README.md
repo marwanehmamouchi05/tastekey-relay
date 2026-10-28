@@ -4,7 +4,7 @@
 
 [Personal](https://tastekey.52.47.205.18.sslip.io/personal/discover) · [Studio](https://tastekey.52.47.205.18.sslip.io/studio/onboarding) · [Source](https://github.com/marwanehmamouchi05/tastekey-relay) · [Judge walkthrough](docs/JUDGE_GUIDE.md)
 
-![TasteKey's taste atlas: synthetic design preference used for interface testing](docs/screenshots/redesign/personal-atlas-desktop.png)
+![Simple discovery screen: synthetic design preference used for interface testing](docs/screenshots/simple/personal-atlas-desktop.png)
 
 ## What is implemented
 
@@ -14,7 +14,7 @@ Studio saves private business profiles, investigates reviewed cultural reference
 
 Owners can invite explicit, category-only audience contributions. Participants sign in with a verified email, choose categories and can withdraw across sessions. Contributions expire after 30 days. Reports require at least ten active verified-account contributions and suppress small groups and complements. Legacy anonymous contributions are excluded. Team members cannot contribute to their own business audience. Verified accounts do not establish unique independent people; this is not differential privacy. Studio never receives the Personal graph. A persisted five-dimension human evaluation form is included, but no independent user-study results or quality improvement are claimed.
 
-Studio supports secure OpenID Connect sign-in through a dedicated Cognito Lite service, verified emails, workspace switching, email-bound invitations, owner/admin/editor/viewer roles, immediate membership revocation, ownership transfer and an access audit. First sign-in secures the browser's private workspace and revokes its old capability/recovery codes; returning accounts preserve new private drafts separately. Anonymous exploration retains one-use recovery codes. The redesigned taste atlas uses illustrated discovery tiles, clearer progress and responsive navigation. See [acceptance evidence](docs/STATUS.md), [security boundaries](docs/SECURITY.md) and [evaluation limits](docs/EVALUATION.md). Corporate SAML federation/SCIM, proof of unique people, live booking/pricing feeds and independent human evaluation remain outside this release.
+Studio supports secure OpenID Connect sign-in through a dedicated Cognito Lite service, verified emails, workspace switching, email-bound invitations, owner/admin/editor/viewer roles, immediate membership revocation, ownership transfer and an access audit. First sign-in secures the browser's private workspace and revokes its old capability/recovery codes; returning accounts preserve new private drafts separately. Anonymous exploration retains one-use recovery codes. Personal starts with one simple search; examples, follow-up questions and the taste map open only when requested. Navigation and core forms use plain English; Studio groups extra tools under More tools. See [acceptance evidence](docs/STATUS.md), [security boundaries](docs/SECURITY.md) and [evaluation limits](docs/EVALUATION.md). Corporate SAML federation/SCIM, proof of unique people, live booking/pricing feeds and independent human evaluation remain outside this release.
 
 ## Run locally
 

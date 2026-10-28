@@ -191,11 +191,9 @@ export default function Studio({
         <>
           <PageTitle
             title={
-              business
-                ? "Make the context count."
-                : "Every business has a cultural edge."
+              business ? "Update your business" : "Tell us about your business"
             }
-            description="Tell Studio what you offer, who you want to reach, and what a practical success looks like."
+            description="What do you offer, and what would you like to improve?"
             action={
               business && (
                 <button
@@ -230,8 +228,8 @@ export default function Studio({
       ) : !business ? (
         <>
           <PageTitle
-            title="A clearer direction for your business."
-            description="Ground your next move in cultural evidence, then learn from what actually happens."
+            title="Find ideas for your business"
+            description="Add your business, find ideas and see what works."
           />
           <section className="studio-welcome">
             <div className="studio-welcome-art">
@@ -379,11 +377,8 @@ function BusinessForm({
       <section className="panel">
         <div className="section-title">
           <div>
-            <h2>The business, in your words</h2>
-            <p>
-              Business inputs are your statements, not externally verified
-              facts.
-            </p>
+            <h2>Your business</h2>
+            <p>Start with the basics. You can change these later.</p>
           </div>
           <Building2 size={24} />
         </div>
@@ -419,7 +414,7 @@ function BusinessForm({
             </select>
           </label>
           <label className="field-label">
-            City or market
+            City
             <input
               required
               minLength={2}
@@ -440,7 +435,7 @@ function BusinessForm({
           </label>
         </div>
         <label className="field-label">
-          Products, services and catalog
+          What do you offer?
           <textarea
             required
             minLength={3}
@@ -450,31 +445,34 @@ function BusinessForm({
             placeholder="What do you offer today?"
           />
         </label>
-        <div className="form-grid">
-          <label className="field-label">
-            Positioning
-            <input
-              maxLength={1000}
-              value={form.positioning}
-              onChange={(e) => field("positioning", e.target.value)}
-              placeholder="How do you want the experience to feel?"
-            />
-          </label>
-          <label className="field-label">
-            Competitors (optional)
-            <input
-              maxLength={1000}
-              value={form.competitors}
-              onChange={(e) => field("competitors", e.target.value)}
-              placeholder="Only businesses you want to compare against"
-            />
-          </label>
-        </div>
+        <details className="simple-form-details">
+          <summary>More about your business (optional)</summary>
+          <div className="form-grid">
+            <label className="field-label">
+              What makes you different? (optional)
+              <input
+                maxLength={1000}
+                value={form.positioning}
+                onChange={(e) => field("positioning", e.target.value)}
+                placeholder="How do you want the experience to feel?"
+              />
+            </label>
+            <label className="field-label">
+              Competitors (optional)
+              <input
+                maxLength={1000}
+                value={form.competitors}
+                onChange={(e) => field("competitors", e.target.value)}
+                placeholder="Only businesses you want to compare against"
+              />
+            </label>
+          </div>
+        </details>
       </section>
       <section className="panel">
-        <h2>What would progress look like?</h2>
+        <h2>Your goal and budget</h2>
         <label className="field-label">
-          Primary objective
+          What is your goal?
           <textarea
             required
             minLength={3}
@@ -509,7 +507,7 @@ function BusinessForm({
           </label>
         </div>
         <label className="field-label">
-          Operating constraints
+          Limits to keep in mind (optional)
           <textarea
             maxLength={2000}
             value={form.constraints}
@@ -519,10 +517,10 @@ function BusinessForm({
         </label>
       </section>
       <section className="panel cultural-references">
-        <h2>Choose the cultural starting points</h2>
+        <h2>Add examples to guide the ideas</h2>
         <p>
-          Search public cultural references and review the results. These guide
-          Qloo; they do not represent verified customer preferences.
+          Choose a film, artist, book, brand or place that fits your business.
+          These are starting points, not proof of what your customers want.
         </p>
         <div className="inline-form">
           <label className="field-label">
@@ -626,7 +624,7 @@ function Dashboard({ business, analyses, actions, outcomes }: Ctx) {
         description={`${business!.industry} in ${business!.city}. Turn cultural curiosity into practical experiments.`}
         action={
           <Link href="/studio/analysis" className="primary">
-            Investigate opportunities
+            Find ideas
             <ArrowUpRight size={16} />
           </Link>
         }
@@ -662,7 +660,7 @@ function Dashboard({ business, analyses, actions, outcomes }: Ctx) {
       <div className="dashboard-grid">
         <section className="panel">
           <div className="section-title">
-            <h2>The business brief</h2>
+            <h2>About your business</h2>
             <Link href="/studio/onboarding" className="text-button">
               Edit
               <ArrowUpRight size={14} />
@@ -678,7 +676,7 @@ function Dashboard({ business, analyses, actions, outcomes }: Ctx) {
               </dd>
             </div>
             <div>
-              <dt>Intended audience</dt>
+              <dt>Who you want to reach</dt>
               <dd>{business!.audience || "Not specified"}</dd>
             </div>
             <div>
@@ -696,11 +694,7 @@ function Dashboard({ business, analyses, actions, outcomes }: Ctx) {
         </section>
         <section className="panel latest-insight">
           <span className="tag lilac">Your next step</span>
-          <h2>
-            {live
-              ? "Take an insight into the real world."
-              : "Start with a question worth answering."}
-          </h2>
+          <h2>{live ? "Try an idea" : "Ready to find ideas?"}</h2>
           <p>
             {live
               ? `${live.strategies.length} evidence-linked opportunities are ready for review. Accept a strategy, set a measurable target, and track the result.`
@@ -766,19 +760,15 @@ function AnalysisView(ctx: Ctx & { advisor: boolean }) {
   return (
     <>
       <PageTitle
-        title={
-          advisor
-            ? "A strategy you can question."
-            : "Find the cultural opportunity."
-        }
+        title={advisor ? "Review your ideas" : "Find ideas for your business"}
         description={
           advisor
-            ? "Review the rationale, inspect the evidence, and decide which proposals deserve a real-world test."
-            : "Investigate your selected references in your market, with a trace for every major decision."
+            ? "See why each idea was suggested. Choose one to try."
+            : "Use your examples, city and budget to find ideas to try."
         }
         action={
           <button className="primary" disabled={busy} onClick={() => run()}>
-            {busy ? "Investigating…" : "Run Qloo analysis"}
+            {busy ? "Finding ideas…" : "Find ideas with Qloo"}
             <Play size={15} />
           </button>
         }
@@ -799,9 +789,20 @@ function AnalysisView(ctx: Ctx & { advisor: boolean }) {
             </option>
           ))}
         </select>
-        <button className="secondary" disabled={busy} onClick={() => run(true)}>
-          Run no-Qloo baseline
-        </button>
+        <details className="simple-analysis-options">
+          <summary>More options</summary>
+          <p>
+            Make a basic plan using only your business details. This does not
+            use Qloo data.
+          </p>
+          <button
+            className="secondary"
+            disabled={busy}
+            onClick={() => run(true)}
+          >
+            Make a basic plan
+          </button>
+        </details>
         <label className="checkbox-label">
           <input
             type="checkbox"
@@ -820,16 +821,13 @@ function AnalysisView(ctx: Ctx & { advisor: boolean }) {
       ) : (
         <section className="panel empty-state">
           <ChartNoAxesCombined size={38} />
-          <h2>Evidence first. Recommendations second.</h2>
+          <h2>Your ideas will appear here</h2>
           <p>
-            Studio selects the category for your business, queries Qloo using
-            your reviewed cultural references and market, applies budget
-            constraints, and links every proposal to returned evidence.
+            Add an example in Your business, then choose “Find ideas with Qloo.”
+            Each idea shows where it came from.
           </p>
           <p className="microcopy">
-            Without credentials or valid references, the analysis records a
-            clear failure. The no-Qloo baseline is a separate business-input
-            planning rule.
+            An idea is something to test. It is not a promise of sales.
           </p>
         </section>
       )}

@@ -154,6 +154,7 @@ function Discover({ profile, update, error }: Props) {
   const [results, setResults] = useState<Entity[]>([]);
   const [busy, setBusy] = useState(false);
   const [searched, setSearched] = useState(false);
+  const [showMap, setShowMap] = useState(false);
   const question = nextQuestion(profile);
   const count = profile.nodes.filter((n) => !n.parentId).length;
   async function search() {
@@ -187,67 +188,32 @@ function Discover({ profile, update, error }: Props) {
   }
   return (
     <>
-      <div className="page-heading discovery-hero">
+      <div className="page-heading discovery-hero simple-hero">
         <div>
-          <span className="discovery-kicker">
-            <Sparkles size={17} /> A little curiosity goes a long way
-          </span>
-          <h1>
-            The things you love
-            <br />
-            lead somewhere new.
-          </h1>
+          <h1>Find more of what you love.</h1>
           <p>
-            Your favorite film. A place you keep thinking about. Start with a
-            few things you love, and see what connects.
+            Add something you like. Get ideas for films, products and places.
           </p>
         </div>
-        <div className="taste-mosaic" aria-label="Choose where to begin">
-          {(
-            [
-              ["movie", "Film", "A story that stays with you"],
-              ["artist", "Music", "Your on-repeat feeling"],
-              ["place", "Places", "Somewhere you belong"],
-              ["design", "Design", "A style that feels like you"],
-            ] as const
-          ).map(([key, label, hint]) => (
-            <button
-              key={key}
-              className={"mosaic-tile " + key}
-              aria-label={"Start with " + label.toLowerCase()}
-              onClick={() => {
-                setCategory(key);
-                setResults([]);
-                document.getElementById("taste")?.focus();
-              }}
-            >
-              <span className="mosaic-art" aria-hidden="true" />
-              <span>
-                <strong>{label}</strong>
-                <small>{hint}</small>
-              </span>
-            </button>
-          ))}
+        <div className="simple-art" aria-hidden="true">
+          <span className="mosaic-tile movie">
+            <span className="mosaic-art" />
+          </span>
+          <span className="mosaic-tile place">
+            <span className="mosaic-art" />
+          </span>
+          <span className="mosaic-tile artist">
+            <span className="mosaic-art" />
+          </span>
         </div>
       </div>
-      <div className="discover-grid">
+      <div className="simple-discovery">
         <section className="panel discovery-panel">
           <div className="section-title">
             <div>
-              <h2>What’s your kind of wonderful?</h2>
-              <p>Start with three tastes. Add more whenever you like.</p>
+              <h2>What do you like?</h2>
+              <p>Start with one. You can add more later.</p>
             </div>
-            <span className="count-badge">{count} / 3</span>
-          </div>
-          <div
-            className="progress"
-            role="progressbar"
-            aria-label="Starting tastes"
-            aria-valuemin={0}
-            aria-valuemax={3}
-            aria-valuenow={Math.min(count, 3)}
-          >
-            <span style={{ width: `${Math.min(count / 3, 1) * 100}%` }} />
           </div>
           <div className="category-tabs" aria-label="Preference category">
             {(["movie", "artist", "book", "place", "design"] as Category[]).map(
@@ -259,6 +225,7 @@ function Discover({ profile, update, error }: Props) {
                   onClick={() => {
                     setCategory(c);
                     setResults([]);
+                    document.getElementById("taste")?.focus();
                   }}
                 >
                   {names[c]}
@@ -304,30 +271,31 @@ function Discover({ profile, update, error }: Props) {
             />
           </div>
           <div className="form-buttons">
+            {category !== "design" && (
+              <button
+                className="primary"
+                disabled={busy || text.trim().length < 2}
+                onClick={search}
+              >
+                {busy ? "Searching…" : "Search"}
+                <Search size={15} />
+              </button>
+            )}
             <button
-              className="primary"
-              disabled={busy || text.trim().length < 2 || category === "design"}
-              onClick={search}
-            >
-              {busy ? "Searching Qloo…" : "Find cultural reference"}
-              <Search size={15} />
-            </button>
-            <button
-              className="secondary"
+              className={category === "design" ? "primary" : "text-button"}
               disabled={!text.trim()}
               onClick={() => save()}
             >
               <Plus size={16} />
-              Add as my own taste
+              {category === "design" ? "Add this" : "Add without searching"}
             </button>
           </div>
           <p className="microcopy">
-            Qloo search lets you review the exact reference. Your own tastes
-            work without a connection.
+            Saved on this device. You choose what to share.
           </p>
           {!!results.length && (
             <div className="search-results">
-              <strong>Choose the reference you mean</strong>
+              <strong>Choose the one you mean</strong>
               {results.map((e) => (
                 <button key={e.id} onClick={() => save(e)}>
                   <span>
@@ -346,25 +314,27 @@ function Discover({ profile, update, error }: Props) {
               No matches. Try a different name, or add it as your own taste.
             </p>
           )}
-          <div className="starter-prompts">
-            <span>Need a spark?</span>
-            {["Interstellar", "Spirited Away", "Luxury architecture"].map(
-              (s) => (
-                <button
-                  key={s}
-                  onClick={() => {
-                    setCategory(
-                      s === "Luxury architecture" ? "design" : "movie",
-                    );
-                    setText(s);
-                  }}
-                >
-                  {s}
-                  <Plus size={12} />
-                </button>
-              ),
-            )}
-          </div>
+          <details className="simple-examples">
+            <summary>Try an example</summary>
+            <div className="starter-prompts">
+              {["Interstellar", "Spirited Away", "Luxury architecture"].map(
+                (s) => (
+                  <button
+                    key={s}
+                    onClick={() => {
+                      setCategory(
+                        s === "Luxury architecture" ? "design" : "movie",
+                      );
+                      setText(s);
+                    }}
+                  >
+                    {s}
+                    <Plus size={12} />
+                  </button>
+                ),
+              )}
+            </div>
+          </details>
           <div className="recent-tastes">
             {profile.nodes
               .filter((n) => !n.parentId)
@@ -376,58 +346,41 @@ function Discover({ profile, update, error }: Props) {
                 </span>
               ))}
           </div>
-        </section>
-        <div className="graph-preview">
-          <TasteGraph profile={profile} compact />
-          <Link href="/personal/taste-dna" className="graph-link">
-            Explore your Taste DNA
-            <ArrowUpRight size={17} />
-          </Link>
-        </div>
-      </div>
-      <div className="lower-grid">
-        <Verification profile={profile} update={update} />
-        <section className="relay-teaser">
-          <div className="orbital-icon">
-            <ArrowUpRight size={26} />
-          </div>
-          <div>
-            <h2>One profile. New possibilities.</h2>
-            <p>Let the right parts of your taste travel with you.</p>
-            <div className="experience-icons">
-              <span>
-                <Film size={16} />
-                Watch
-              </span>
-              <span>
-                <ShoppingBag size={16} />
-                Shop
-              </span>
-              <span>
-                <Plane size={16} />
-                Explore
-              </span>
+          {count > 0 && (
+            <div className="simple-next">
+              <p>
+                {count === 1
+                  ? "Your first like is saved."
+                  : `${count} likes saved.`}
+              </p>
+              <Link className="primary" href="/personal/relay">
+                Get suggestions <ArrowUpRight size={16} />
+              </Link>
             </div>
-            <Link href="/personal/relay">
-              Open your Relay
-              <ChevronRight size={15} />
-            </Link>
-          </div>
+          )}
         </section>
-      </div>
-      <div className="principles-strip">
-        <span>
-          <Check size={16} />
-          Confirmed tastes stay distinct
-        </span>
-        <span>
-          <MessageSquare size={16} />
-          Change your mind anytime
-        </span>
-        <span>
-          <LockKeyhole size={16} />
-          You choose what travels
-        </span>
+        {count > 0 && (
+          <>
+            <details className="simple-extra">
+              <summary>Help us understand your choice (optional)</summary>
+              <Verification profile={profile} update={update} />
+            </details>
+            <details
+              className="simple-extra"
+              onToggle={(e) => setShowMap(e.currentTarget.open)}
+            >
+              <summary>See your taste map</summary>
+              {showMap && (
+                <div className="graph-preview">
+                  <TasteGraph profile={profile} compact />
+                  <Link href="/personal/taste-dna" className="graph-link">
+                    View and edit your likes <ArrowUpRight size={17} />
+                  </Link>
+                </div>
+              )}
+            </details>
+          </>
+        )}
       </div>
     </>
   );
@@ -438,14 +391,14 @@ function Verification({ profile, update }: Pick<Props, "profile" | "update">) {
     <section className="panel verification">
       <div className="section-title">
         <h2>
-          <Sparkles size={19} />A little clarity goes a long way
+          <Sparkles size={19} />
+          Tell us a little more
         </h2>
-        <span className="tag lilac">Adaptive question</span>
       </div>
       {q ? (
         <>
           <p>
-            What draws you to <strong>{q.parent.label}</strong>?
+            What do you like about <strong>{q.parent.label}</strong>?
           </p>
           <div className="verification-options">
             {q.options.map((n) => (
@@ -465,14 +418,21 @@ function Verification({ profile, update }: Pick<Props, "profile" | "update">) {
             None of these fit
           </button>
           <p className="microcopy">
-            {q.reason} These are possibilities, not personal facts.
+            These are guesses. Only you can say what fits.
           </p>
+          <details>
+            <summary>Why are we asking?</summary>
+            <p>
+              Your answer helps us understand this choice. You can skip it or
+              change your answer later.
+            </p>
+          </details>
         </>
       ) : (
         <>
           <p>
             {profile.nodes.length
-              ? "Your current questions are resolved. Add another taste to explore something new."
+              ? "You’re all set. Add another like whenever you want."
               : "Add your first taste, and we’ll ask a useful follow-up."}
           </p>
           <span className="tag">You can skip any question</span>
@@ -501,8 +461,8 @@ function DNA(props: Props & { model: boolean }) {
   return (
     <>
       <PageTitle
-        title="Your Taste DNA"
-        description="A living map of your preferences. Inspect a connection, verify a possibility, or change your mind."
+        title="Your likes"
+        description="See what you added. Change or remove anything."
         action={
           <button
             className="secondary"
@@ -527,9 +487,7 @@ function DNA(props: Props & { model: boolean }) {
           }
         />
         <section className="panel inspector">
-          <h2>
-            {node ? "Inside this preference" : "Every connection has a story"}
-          </h2>
+          <h2>{node ? "Edit this like" : "Choose a like to edit"}</h2>
           {node ? (
             <>
               <div className="tag blue">{names[node.category]}</div>
@@ -576,15 +534,26 @@ function DNA(props: Props & { model: boolean }) {
                     "rejected",
                     "superseded",
                   ].map((s) => (
-                    <option key={s}>{s}</option>
+                    <option key={s} value={s}>
+                      {
+                        (
+                          {
+                            stated: "You added this",
+                            inferred: "A guess",
+                            confirmed: "You confirmed this",
+                            rejected: "Does not fit",
+                            superseded: "Replaced",
+                          } as Record<string, string>
+                        )[s]
+                      }
+                    </option>
                   ))}
                 </select>
               </label>
               <p className="microcopy">
-                “Stated” is your direct input. “Inferred” is unverified. Neither
-                is a Qloo probability.
+                Guesses stay separate from things you have told us.
               </p>
-              <h4>Evidence trail</h4>
+              <h4>Where this came from</h4>
               <div className="evidence-list">
                 {node.evidence.slice(-5).map((e) => (
                   <div key={e.id}>
@@ -602,7 +571,7 @@ function DNA(props: Props & { model: boolean }) {
                 }}
               >
                 <Trash2 size={15} />
-                Delete preference and its hypotheses
+                Remove this like and its guesses
               </button>
             </>
           ) : (
@@ -617,9 +586,7 @@ function DNA(props: Props & { model: boolean }) {
         </section>
       </div>
       <details className="panel accessible-list">
-        <summary>
-          All preferences · accessible list ({profile.nodes.length})
-        </summary>
+        <summary>See all likes ({profile.nodes.length})</summary>
         {profile.nodes.map((n) => (
           <button key={n.id} onClick={() => setSelected(n.id)}>
             {n.label}
@@ -630,10 +597,9 @@ function DNA(props: Props & { model: boolean }) {
       <div className="lower-grid">
         <Verification profile={profile} update={update} />
         <section className="panel">
-          <h2>Practical constraints are separate</h2>
+          <h2>Your budget</h2>
           <p>
-            Your aesthetic tastes never determine your spending power. Enter the
-            limits you want to use.
+            Liking something expensive does not mean you want to spend more.
           </p>
           <div className="form-grid">
             {(["shopping", "travel"] as const).map((c) => (
@@ -866,8 +832,8 @@ function Relay({ profile, update, error }: Props) {
   return (
     <>
       <PageTitle
-        title="Let your taste travel."
-        description="Three controlled experiences. One profile. You decide which preferences each experience can use."
+        title="Suggestions for you"
+        description="Choose what to watch, buy or visit. Pick the likes you want to use."
       />
       <div className="experience-tabs">
         {(
@@ -891,13 +857,13 @@ function Relay({ profile, update, error }: Props) {
       <div className="relay-layout">
         <section className="panel consent-panel">
           <ShieldCheck size={25} />
-          <h2>Choose what this experience sees</h2>
+          <h2>Choose which likes to use</h2>
           <p>
             {context === "entertainment"
-              ? "Film, music and story interests help find cultural connections. No spending details are requested."
+              ? "Use your film and music likes to find something to watch. Your budget stays private."
               : context === "shopping"
-                ? "Design, brand and music preferences inform cultural inspiration. Your optional budget filters sample products locally."
-                : "Relevant cultural references inform destinations. Your hotel budget remains local; Qloo has no verified booking prices."}
+                ? "Use your likes to find brands. Product examples and prices are samples, not real offers."
+                : "Find places you might enjoy. Your budget stays on this device. Live hotel prices are not available."}
           </p>
           <div className="consent-options">
             {eligible.length ? (
@@ -964,7 +930,9 @@ function Relay({ profile, update, error }: Props) {
             }}
           >
             <Check size={16} />
-            {grant.allowed ? "Update permission" : "Approve for 24 hours"}
+            {grant.allowed
+              ? "Update permission"
+              : "Share these likes for 24 hours"}
           </button>
           {grant.allowed && (
             <button
@@ -974,18 +942,18 @@ function Relay({ profile, update, error }: Props) {
                 setResult(null);
               }}
             >
-              Revoke permission
+              Stop sharing
             </button>
           )}
           <div className="permission-summary">
             <strong>
               {grant.allowed
-                ? `${grant.nodes.length} preferences authorized`
+                ? `${grant.nodes.length} ${grant.nodes.length === 1 ? "like" : "likes"} selected`
                 : "Nothing is shared yet"}
             </strong>
             <p>
-              Only selected entity IDs go to Qloo. Raw taste graphs and budgets
-              stay in this browser.
+              We send your selected film, artist or place to Qloo for
+              suggestions. Your full list and budget stay on this device.
             </p>
           </div>
         </section>
@@ -1024,9 +992,7 @@ function Relay({ profile, update, error }: Props) {
               disabled={!grant.allowed || busy}
               onClick={recommend}
             >
-              {busy
-                ? "Finding cultural connections…"
-                : "Find live recommendations"}
+              {busy ? "Finding cultural connections…" : "Get suggestions"}
               <Sparkles size={16} />
             </button>
             {!result && !busy && (
@@ -1194,8 +1160,8 @@ function Proof({ profile, update, error }: Props) {
   return (
     <>
       <PageTitle
-        title="Proof, with the small print."
-        description="Inspect what changed, measure actual choices, and keep control of your profile."
+        title="Your privacy and data"
+        description="See what you shared. Download or delete your saved likes."
         action={
           <button
             className="secondary"
@@ -1208,7 +1174,7 @@ function Proof({ profile, update, error }: Props) {
       />
       <div className="proof-grid">
         <section className="panel">
-          <h2>Personal recommendation comparison</h2>
+          <h2>Compare your ratings</h2>
           <p>
             Choose a preference from the last live candidate pool before viewing
             the rankings. All three methods use the same candidates.
@@ -1293,7 +1259,7 @@ function Proof({ profile, update, error }: Props) {
         </section>
         <section className="panel privacy-controls">
           <ShieldCheck size={26} />
-          <h2>You hold the keys.</h2>
+          <h2>Your data controls</h2>
           <p>
             Your personal profile lives in this browser. Studio has no access to
             it.
@@ -1373,7 +1339,7 @@ function Proof({ profile, update, error }: Props) {
       </div>
       <AudienceConsent profile={profile} />
       <section className="panel">
-        <h2>What your profile actually says</h2>
+        <h2>What you have saved</h2>
         <div className="metrics-row">
           <div>
             <strong>

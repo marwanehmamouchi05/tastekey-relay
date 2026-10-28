@@ -3458,3 +3458,171 @@ select:focus {
 .you-node span {
   color: #65458d;
 }
+
+/* A quieter first screen: one task, then optional details. */
+.personal-shell .simple-hero {
+  max-width: 780px;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  padding: 0;
+  margin: 8px auto 26px;
+  min-height: 0;
+}
+.personal-shell .simple-hero h1 {
+  font-size: clamp(30px, 3.1vw, 43px);
+  letter-spacing: -1.4px;
+  line-height: 1.12;
+}
+.personal-shell .simple-hero p {
+  font-size: 15px;
+  margin-top: 12px;
+  max-width: 48ch;
+}
+.simple-art {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.simple-art .mosaic-tile {
+  display: block;
+  width: 54px;
+  height: 66px;
+  min-height: 0;
+  padding: 0;
+  border-radius: 12px;
+  pointer-events: none;
+}
+.simple-art .mosaic-art {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  right: 3px;
+  top: 8px;
+}
+.simple-art .movie .mosaic-art::after {
+  inset: 12px;
+}
+.simple-art .artist .mosaic-art::after {
+  inset: 15px;
+  border-width: 4px;
+}
+.simple-art .place .mosaic-art {
+  width: 70px;
+  height: 50px;
+  top: 27px;
+  right: -5px;
+}
+.simple-discovery {
+  max-width: 780px;
+  margin: 0 auto 30px;
+}
+.simple-discovery .discovery-panel {
+  padding: 28px 32px;
+}
+.simple-discovery .section-title {
+  margin-bottom: 20px;
+}
+.simple-discovery .section-title h2 {
+  font-size: 26px;
+}
+.simple-discovery .section-title p {
+  font-size: 14px;
+}
+.simple-discovery .category-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-bottom: 20px;
+}
+.simple-discovery .category-tabs button {
+  font-size: 14px;
+  padding: 10px 6px;
+  min-width: 0;
+}
+.simple-examples {
+  margin-top: 18px;
+  border-top: 1px solid #eee7f6;
+  padding-top: 14px;
+}
+.simple-examples summary,
+.simple-extra summary,
+.more-tools summary {
+  cursor: pointer;
+  color: #5f487f;
+  font-size: 14px;
+}
+.simple-examples .starter-prompts {
+  margin-top: 12px;
+  padding-top: 0;
+  border: 0;
+}
+.simple-discovery .recent-tastes:empty {
+  display: none;
+}
+.simple-next {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid #eee7f6;
+}
+.simple-next p {
+  margin: 0;
+  color: var(--ink);
+}
+.simple-extra {
+  padding: 18px 2px;
+  border-bottom: 1px solid #e8ddf3;
+}
+.simple-extra > summary {
+  font-size: 15px;
+}
+.simple-extra .verification,
+.simple-extra .graph-preview {
+  margin-top: 16px;
+}
+.more-tools {
+  padding: 12px 0;
+}
+.more-tools summary {
+  padding: 0 14px 10px;
+}
+.more-tools a {
+  margin-top: 4px;
+}
+@media (max-width: 640px) {
+  .personal-shell .simple-hero {
+    display: block;
+    margin: 0 auto 20px;
+  }
+  .simple-art {
+    display: none;
+  }
+  .simple-discovery .discovery-panel {
+    padding: 22px 18px;
+  }
+  .simple-discovery .section-title h2 {
+    font-size: 25px;
+  }
+  .simple-discovery .category-tabs button {
+    font-size: 12px;
+    padding: 10px 3px;
+  }
+  .simple-next {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .simple-next .primary {
+    justify-content: center;
+  }
+  .simple-discovery .form-buttons {
+    align-items: center;
+    gap: 8px;
+  }
+  .simple-discovery .form-buttons .text-button {
+    width: auto;
+    font-size: 12px;
+  }
+}

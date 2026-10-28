@@ -14,19 +14,23 @@ test("live Qloo Personal contexts and Studio analysis/scenario with synthetic bu
   await page.setViewportSize({ width: 1440, height: 1050 });
   await page.goto("/personal/discover");
   await page.getByLabel("A film you love").fill("Interstellar");
-  await page.getByRole("button", { name: "Find cultural reference" }).click();
+  await page.getByRole("button", { name: "Search", exact: true }).click();
   await page.getByRole("button", { name: /^Interstellar movie/ }).click();
+  await page
+    .getByText("Help us understand your choice (optional)", { exact: true })
+    .click();
   await page
     .getByRole("button", { name: "Emotional storytelling", exact: true })
     .click();
   await page.getByRole("button", { name: "Music", exact: true }).click();
   await page.getByLabel("An artist you love").fill("Radiohead");
-  await page.getByRole("button", { name: "Find cultural reference" }).click();
+  await page.getByRole("button", { name: "Search", exact: true }).click();
   await page.getByRole("button", { name: /^Radiohead artist/ }).click();
+  await page.getByText("Try an example", { exact: true }).click();
   await page
     .getByRole("button", { name: "Luxury architecture", exact: true })
     .click();
-  await page.getByRole("button", { name: "Add as my own taste" }).click();
+  await page.getByRole("button", { name: "Add this", exact: true }).click();
   await page.goto("/personal/taste-dna");
   await page.getByLabel("Shopping per item (USD)").fill("60");
   await page.getByLabel("Accommodation per night (USD)").fill("60");
@@ -37,8 +41,10 @@ test("live Qloo Personal contexts and Studio analysis/scenario with synthetic bu
   await page
     .getByRole("checkbox", { name: "Emotional storytelling Film", exact: true })
     .check();
-  await page.getByRole("button", { name: "Approve for 24 hours" }).click();
-  await page.getByRole("button", { name: "Find live recommendations" }).click();
+  await page
+    .getByRole("button", { name: "Share these likes for 24 hours" })
+    .click();
+  await page.getByRole("button", { name: "Get suggestions" }).click();
   await expect(page.locator(".result-card").first()).toBeVisible({
     timeout: 35000,
   });
@@ -56,8 +62,10 @@ test("live Qloo Personal contexts and Studio analysis/scenario with synthetic bu
   await page
     .getByRole("checkbox", { name: /Apply my shopping budget locally/ })
     .check();
-  await page.getByRole("button", { name: "Approve for 24 hours" }).click();
-  await page.getByRole("button", { name: "Find live recommendations" }).click();
+  await page
+    .getByRole("button", { name: "Share these likes for 24 hours" })
+    .click();
+  await page.getByRole("button", { name: "Get suggestions" }).click();
   await expect(page.locator(".result-card").first()).toBeVisible({
     timeout: 35000,
   });
@@ -75,8 +83,10 @@ test("live Qloo Personal contexts and Studio analysis/scenario with synthetic bu
   await page
     .getByRole("checkbox", { name: /Apply my hotel budget locally/ })
     .check();
-  await page.getByRole("button", { name: "Approve for 24 hours" }).click();
-  await page.getByRole("button", { name: "Find live recommendations" }).click();
+  await page
+    .getByRole("button", { name: "Share these likes for 24 hours" })
+    .click();
+  await page.getByRole("button", { name: "Get suggestions" }).click();
   await expect(page.locator(".result-card").first()).toBeVisible({
     timeout: 35000,
   });
@@ -98,14 +108,14 @@ test("live Qloo Personal contexts and Studio analysis/scenario with synthetic bu
   await page
     .getByLabel("Business name")
     .fill("Live integration cinema — synthetic brief");
-  await page.getByLabel("City or market").fill("Casablanca");
+  await page.getByLabel("City").fill("Casablanca");
   await page
-    .getByLabel("Products, services and catalog")
+    .getByLabel("What do you offer?")
     .fill(
       "Illustrative independent-film screenings, subject to licensing. Synthetic business input for integration testing.",
     );
   await page
-    .getByLabel("Primary objective")
+    .getByLabel("What is your goal?")
     .fill(
       "Design a measurable screening pilot. This is an integration test, not a real business outcome.",
     );
@@ -114,7 +124,7 @@ test("live Qloo Personal contexts and Studio analysis/scenario with synthetic bu
     .getByRole("combobox", { name: "Currency", exact: true })
     .selectOption("MAD");
   await page
-    .getByLabel("Operating constraints")
+    .getByLabel("Limits to keep in mind (optional)")
     .fill(
       "Validate screening rights. One evening per week; no guaranteed attendance.",
     );
@@ -133,7 +143,7 @@ test("live Qloo Personal contexts and Studio analysis/scenario with synthetic bu
   ).toBeVisible();
   await page.goto("/studio/analysis");
   await page
-    .getByRole("button", { name: "Run Qloo analysis", exact: true })
+    .getByRole("button", { name: "Find ideas with Qloo", exact: true })
     .click();
   await expect(
     page.getByText("Qloo response received", { exact: true }),

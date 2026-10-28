@@ -9,11 +9,12 @@ test("live model correction and evidence-grounded Studio advisor preserve protec
   test.setTimeout(150000);
   await page.goto("/personal/discover");
   await page.getByLabel("A film you love").fill("Interstellar");
-  await page.getByRole("button", { name: "Add as my own taste" }).click();
+  await page.getByRole("button", { name: "Add without searching" }).click();
+  await page.getByText("Try an example", { exact: true }).click();
   await page
     .getByRole("button", { name: "Luxury architecture", exact: true })
     .click();
-  await page.getByRole("button", { name: "Add as my own taste" }).click();
+  await page.getByRole("button", { name: "Add this", exact: true }).click();
   await page.goto("/personal/taste-dna");
   await page
     .getByPlaceholder(
@@ -90,7 +91,7 @@ test("live model correction and evidence-grounded Studio advisor preserve protec
     (r) => r.url().endsWith("/api/analysis") && r.request().method() === "POST",
   );
   await page
-    .getByRole("button", { name: "Run Qloo analysis", exact: true })
+    .getByRole("button", { name: "Find ideas with Qloo", exact: true })
     .click();
   const analysis = await (await response).json();
   expect(analysis.mode).toBe("live");
