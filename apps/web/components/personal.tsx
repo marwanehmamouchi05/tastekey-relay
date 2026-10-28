@@ -59,6 +59,24 @@ const names: Record<string, string> = {
   destination: "Destinations",
   place: "Places",
 };
+const guidedChoices = {
+  movie: ["Interstellar", "Spirited Away", "Jurassic Park", "Finding Nemo"],
+  artist: ["Adele", "Beyoncé", "Coldplay", "Daft Punk"],
+  book: [
+    "The Hobbit",
+    "The Little Prince",
+    "Pride and Prejudice",
+    "The Alchemist",
+  ],
+  place: ["Paris", "Marrakech", "Tokyo", "Barcelona"],
+  design: [
+    "Simple and clean",
+    "Bright and colourful",
+    "Natural materials",
+    "Vintage style",
+  ],
+} satisfies Partial<Record<Category, string[]>>;
+type GuidedCategory = keyof typeof guidedChoices;
 export default function Personal({
   section,
   model,
@@ -155,15 +173,19 @@ function Discover({ profile, update, error }: Props) {
   const [busy, setBusy] = useState(false);
   const [searched, setSearched] = useState(false);
   const [showMap, setShowMap] = useState(false);
-  const question = nextQuestion(profile);
+  const [guided, setGuided] = useState(false);
+  const [guidedCategory, setGuidedCategory] = useState<GuidedCategory | null>(
+    null,
+  );
   const count = profile.nodes.filter((n) => !n.parentId).length;
-  async function search() {
+  async function search(query = text, kind = category) {
+    error("");
     setBusy(true);
     setResults([]);
     try {
       const result = await api<QlooEvidence>("search", {
-        query: text,
-        category,
+        query,
+        category: kind,
       });
       setResults(result.entities);
       setSearched(true);
@@ -215,81 +237,196 @@ function Discover({ profile, update, error }: Props) {
               <p>Start with one. You can add more later.</p>
             </div>
           </div>
-          <div className="category-tabs" aria-label="Preference category">
-            {(["movie", "artist", "book", "place", "design"] as Category[]).map(
-              (c) => (
-                <button
-                  className={category === c ? "active" : ""}
-                  aria-pressed={category === c}
-                  key={c}
-                  onClick={() => {
-                    setCategory(c);
-                    setResults([]);
-                    document.getElementById("taste")?.focus();
-                  }}
-                >
-                  {names[c]}
-                </button>
-              ),
-            )}
-          </div>
-          <label className="field-label" htmlFor="taste">
-            {category === "artist"
-              ? "An artist you love"
-              : category === "book"
-                ? "A book you love"
-                : category === "place"
-                  ? "A place you love"
-                  : category === "design"
-                    ? "A design you love"
-                    : `A ${names[category].toLowerCase()} you love`}
-          </label>
-          <div className="search-input">
-            <Search size={19} />
-            <input
-              id="taste"
-              value={text}
-              onChange={(e) => {
-                setText(e.target.value);
-                setResults([]);
-              }}
-              placeholder={
-                category === "movie"
-                  ? "Maybe Interstellar, or Spirited Away…"
-                  : category === "artist"
-                    ? "An artist you always come back to…"
-                    : "Something that feels like you…"
-              }
-              maxLength={150}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && !busy && text.trim().length >= 2) {
-                  e.preventDefault();
-                  if (category === "design") save();
-                  else void search();
-                }
-              }}
-            />
-          </div>
-          <div className="form-buttons">
-            {category !== "design" && (
-              <button
-                className="primary"
-                disabled={busy || text.trim().length < 2}
-                onClick={search}
-              >
-                {busy ? "Searching…" : "Search"}
-                <Search size={15} />
-              </button>
-            )}
+          <div
+            className="start-mode"
+            role="group"
+            aria-label="How would you like to start?"
+          >
             <button
-              className={category === "design" ? "primary" : "text-button"}
-              disabled={!text.trim()}
-              onClick={() => save()}
+              className={!guided ? "active" : ""}
+              aria-pressed={!guided}
+              disabled={busy}
+              onClick={() => {
+                setGuided(false);
+                setResults([]);
+                setSearched(false);
+                setText("");
+              }}
             >
-              <Plus size={16} />
-              {category === "design" ? "Add this" : "Add without searching"}
+              I know what I like
+            </button>
+            <button
+              className={guided ? "active" : ""}
+              aria-pressed={guided}
+              disabled={busy}
+              onClick={() => {
+                setGuided(true);
+                setGuidedCategory(null);
+                setResults([]);
+                setSearched(false);
+                setText("");
+              }}
+            >
+              Not sure? Help me choose
             </button>
           </div>
+          {guided ? (
+            <div className="guided-start">
+              <h3>
+                {guidedCategory
+                  ? "Which of these do you like?"
+                  : "What would you like to start with?"}
+              </h3>
+              <p>
+                {guidedCategory
+                  ? "Tap one you already like. Nothing is saved until you add it."
+                  : "Choose a topic. No typing needed."}
+              </p>
+              <div
+                className="guided-options"
+                role="group"
+                aria-label={
+                  guidedCategory ? "Things you might like" : "Choose a topic"
+                }
+              >
+                {guidedCategory
+                  ? guidedChoices[guidedCategory].map((choice) => (
+                      <button
+                        key={choice}
+                        disabled={busy}
+                        aria-pressed={text === choice}
+                        onClick={() => {
+                          setText(choice);
+                          setResults([]);
+                          setSearched(false);
+                          if (guidedCategory !== "design")
+                            void search(choice, guidedCategory);
+                        }}
+                      >
+                        {choice}
+                      </button>
+                    ))
+                  : (Object.keys(guidedChoices) as GuidedCategory[]).map(
+                      (topic) => (
+                        <button
+                          key={topic}
+                          onClick={() => {
+                            setGuidedCategory(topic);
+                            setCategory(topic);
+                          }}
+                        >
+                          {names[topic]}
+                        </button>
+                      ),
+                    )}
+              </div>
+              {guidedCategory && (
+                <button
+                  className="text-button"
+                  disabled={busy}
+                  onClick={() => {
+                    setGuidedCategory(null);
+                    setText("");
+                    setResults([]);
+                    setSearched(false);
+                  }}
+                >
+                  None of these? Try another topic
+                </button>
+              )}
+              {busy && <p role="status">Finding that choice…</p>}
+              {guidedCategory === "design" && text && (
+                <button className="primary" onClick={() => save()}>
+                  <Plus size={16} />
+                  Add this style
+                </button>
+              )}
+              {guidedCategory && !busy && !text && (
+                <p className="microcopy">
+                  These are examples, not recommendations. You can also switch
+                  to typing a name.
+                </p>
+              )}
+            </div>
+          ) : (
+            <>
+              <div className="category-tabs" aria-label="Preference category">
+                {(
+                  ["movie", "artist", "book", "place", "design"] as Category[]
+                ).map((c) => (
+                  <button
+                    className={category === c ? "active" : ""}
+                    aria-pressed={category === c}
+                    key={c}
+                    onClick={() => {
+                      setCategory(c);
+                      setResults([]);
+                      document.getElementById("taste")?.focus();
+                    }}
+                  >
+                    {names[c]}
+                  </button>
+                ))}
+              </div>
+              <label className="field-label" htmlFor="taste">
+                {category === "artist"
+                  ? "An artist you love"
+                  : category === "book"
+                    ? "A book you love"
+                    : category === "place"
+                      ? "A place you love"
+                      : category === "design"
+                        ? "A design you love"
+                        : `A ${names[category].toLowerCase()} you love`}
+              </label>
+              <div className="search-input">
+                <Search size={19} />
+                <input
+                  id="taste"
+                  value={text}
+                  onChange={(e) => {
+                    setText(e.target.value);
+                    setResults([]);
+                  }}
+                  placeholder={
+                    category === "movie"
+                      ? "Maybe Interstellar, or Spirited Away…"
+                      : category === "artist"
+                        ? "An artist you always come back to…"
+                        : "Something that feels like you…"
+                  }
+                  maxLength={150}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !busy && text.trim().length >= 2) {
+                      e.preventDefault();
+                      if (category === "design") save();
+                      else void search();
+                    }
+                  }}
+                />
+              </div>
+              <div className="form-buttons">
+                {category !== "design" && (
+                  <button
+                    className="primary"
+                    disabled={busy || text.trim().length < 2}
+                    onClick={() => void search()}
+                  >
+                    {busy ? "Searching…" : "Search"}
+                    <Search size={15} />
+                  </button>
+                )}
+                <button
+                  className={category === "design" ? "primary" : "text-button"}
+                  disabled={!text.trim()}
+                  onClick={() => save()}
+                >
+                  <Plus size={16} />
+                  {category === "design" ? "Add this" : "Add without searching"}
+                </button>
+              </div>
+            </>
+          )}
           <p className="microcopy">
             Saved on this device. You choose what to share.
           </p>
@@ -311,30 +448,34 @@ function Discover({ profile, update, error }: Props) {
           )}
           {searched && !results.length && (
             <p>
-              No matches. Try a different name, or add it as your own taste.
+              {guided
+                ? "No matches. Choose another option, or switch to typing a name."
+                : "No matches. Try a different name, or add it as your own taste."}
             </p>
           )}
-          <details className="simple-examples">
-            <summary>Try an example</summary>
-            <div className="starter-prompts">
-              {["Interstellar", "Spirited Away", "Luxury architecture"].map(
-                (s) => (
-                  <button
-                    key={s}
-                    onClick={() => {
-                      setCategory(
-                        s === "Luxury architecture" ? "design" : "movie",
-                      );
-                      setText(s);
-                    }}
-                  >
-                    {s}
-                    <Plus size={12} />
-                  </button>
-                ),
-              )}
-            </div>
-          </details>
+          {!guided && (
+            <details className="simple-examples">
+              <summary>Try an example</summary>
+              <div className="starter-prompts">
+                {["Interstellar", "Spirited Away", "Luxury architecture"].map(
+                  (s) => (
+                    <button
+                      key={s}
+                      onClick={() => {
+                        setCategory(
+                          s === "Luxury architecture" ? "design" : "movie",
+                        );
+                        setText(s);
+                      }}
+                    >
+                      {s}
+                      <Plus size={12} />
+                    </button>
+                  ),
+                )}
+              </div>
+            </details>
+          )}
           <div className="recent-tastes">
             {profile.nodes
               .filter((n) => !n.parentId)

@@ -3516,6 +3516,45 @@ select:focus {
   max-width: 780px;
   margin: 0 auto 30px;
 }
+.start-mode {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.start-mode button,
+.guided-options button {
+  border: 1px solid #c9c4de;
+  background: #fff;
+  color: #332b50;
+  border-radius: 12px;
+  padding: 12px 16px;
+  text-align: left;
+  min-height: 48px;
+}
+.start-mode button.active,
+.guided-options button[aria-pressed="true"] {
+  background: #eee9ff;
+  border-color: #7760ba;
+  color: #493080;
+}
+.guided-start h3 {
+  margin: 0 0 8px;
+}
+.guided-start > p {
+  max-width: 55ch;
+  margin-bottom: 16px;
+}
+.guided-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.guided-options button:hover:not(:disabled) {
+  background: #f4f1fc;
+  border-color: #7760ba;
+}
 .simple-discovery .discovery-panel {
   padding: 28px 32px;
 }
