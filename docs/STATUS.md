@@ -2,7 +2,15 @@
 
 Updated October 28, 2026. Implemented behavior and actual integration evidence are recorded separately from user-study claims.
 
-## Latest release: simpler screens and optional integrations
+## Latest release: optional multiple-choice Start
+
+Application revision `299a4c2ec1528bfb3c67ebcec9441b6667e31f93` is deployed. Start now offers “I know what I like” and “Not sure? Help me choose”. The optional guided path asks for a topic, then offers familiar examples. Film/music/book/place choices use the existing Qloo search and require selecting a result before saving. Style choices require a separate Add this style confirmation. People can change topics or switch to typing; examples are not represented as personalized recommendations.
+
+Validation: production build, TypeScript, formatting, **70 unit/integration tests** and **16 local browser tests** passed. One credential-gated unit and two live-provider browser cases were skipped locally. The focused public guided browser test passed using explicitly synthetic search responses for failure/empty/confirmation coverage. A separate isolated public smoke check used actual Qloo search: HTTP 200, five returned entities, no save before confirmation, and confirmed local persistence after reload. An early smoke invocation loaded the old deployment while the image was still building and timed out; the fresh post-deployment check passed. [Runtime CI passed](https://github.com/marwanehmamouchi05/tastekey-relay/actions/runs/40729443800).
+
+Deployment used the existing Lightsail browser SSH connection without changing firewall rules or creating credentials. HTTPS health and a consistent backup passed. The previous release's full public provider checks below remain historical evidence; they were not all rerun for this interface change. The independent report-only review instructions are in [ASTRA_AUDIT_PROMPT.md](ASTRA_AUDIT_PROMPT.md). A final hackathon eligibility determination is not claimed by this update.
+
+## Previous release: simpler screens and optional integrations
 
 Application revision `9ecd1eae3c6c54133bee3f8690f417a1176ec1c6` includes the verified-account foundation below, the plain-English simplification from `ced13c2`, and optional browser/business integrations. Personal now starts with one task; examples, follow-up questions and the map stay closed until requested. Navigation says Start, Your likes, Suggestions and Privacy. Studio keeps its less common tools under More tools.
 
@@ -18,7 +26,7 @@ The dedicated Cognito service is configured and its real hosted sign-in opens th
 
 The Devpost draft story and previews now describe the simpler interface and both optional integrations. It remains 4/5 steps, unsubmitted, with final rules/terms and eligibility review reserved for the owner. A consistent private off-host backup passed SQLite integrity checking after the release; the host backup timer/service and root-only environment/backup permissions passed checks.
 
-Temporary deployment SSH ingress was removed after maintenance. The AWS console verified empty IPv4/IPv6 CIDR lists for port 22 with only the two Lightsail browser-SSH aliases retained. No new persistent administrative credential was created. The current application remains pinned to `9ecd1ea`; subsequent documentation/test-evidence commits do not change that runtime image.
+Temporary deployment SSH ingress was removed after maintenance. The AWS console verified empty IPv4/IPv6 CIDR lists for port 22 with only the two Lightsail browser-SSH aliases retained. No new persistent administrative credential was created. That runtime checkpoint was pinned to `9ecd1ea`; subsequent documentation/test-evidence commits did not change that image. It has since been superseded by the guided Start release above.
 
 ## October 28 foundation: identity and initial interface
 
