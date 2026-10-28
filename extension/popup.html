@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TasteKey filters</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <strong>TasteKey</strong>
+      <h1>Find what fits you</h1>
+      <p>Use only the likes you choose. Filters run on your device.</p>
+    </header>
+    <button id="import">Copy my likes from TasteKey</button>
+    <p class="help">
+      Open TasteKey in this tab first. Then open this extension and copy your
+      likes.
+    </p>
+    <a
+      href="https://tastekey.52.47.205.18.sslip.io/personal/discover"
+      target="_blank"
+      rel="noopener noreferrer"
+      >Open TasteKey</a
+    >
+    <section>
+      <h2>Choose likes to use</h2>
+      <div id="likes"></div>
+      <p id="empty">
+        No likes copied yet. You can also add filter words below.
+      </p>
+      <label
+        >Extra filter words (optional)<input
+          id="words"
+          placeholder="architecture, independent films"
+          maxlength="300"
+      /></label>
+      <details>
+        <summary>Set a budget (optional)</summary>
+        <label
+          >Maximum price<input
+            id="budget"
+            type="number"
+            min="0"
+            max="10000000" /></label
+        ><label
+          >Currency<select id="currency">
+            <option>USD</option>
+            <option>MAD</option>
+            <option>EUR</option>
+          </select></label
+        >
+        <p>
+          Cards with no clear price in this currency will be hidden. Prices are
+          read from the page and are not verified.
+        </p>
+      </details>
+    </section>
+    <button id="apply" class="primary">Show matches on this page</button
+    ><button id="restore">Show all results again</button
+    ><button id="forget" class="text">Delete copied likes</button>
+    <p id="status" role="status"></p>
+    <details>
+      <summary>What can this extension read?</summary>
+      <p>
+        Only the current page, after you click the extension and ask it to copy
+        likes or filter results. It does not read browsing history or send page
+        content or likes to a server. Selected likes and settings stay in this
+        browser's extension storage. It does not use cloud sync.
+      </p>
+      <p>
+        Supported cards include Amazon, Etsy, eBay, Booking, Google Search and
+        sites with article/list cards. Site layouts can change. This filters
+        visible result cards using matching words; it does not change the search
+        engine or promise better results. Filters stop on sign-in and payment
+        forms.
+      </p>
+    </details>
+    <script src="popup.js"></script>
+  </body>
+</html>

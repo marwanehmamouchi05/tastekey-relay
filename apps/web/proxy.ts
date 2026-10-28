@@ -9,6 +9,7 @@ export function proxy(request: NextRequest) {
   headers.set("Content-Security-Policy", csp);
   const response = NextResponse.next({ request: { headers } });
   response.headers.set("Content-Security-Policy", csp);
+  response.headers.set("X-Frame-Options", "DENY");
   response.headers.set("Cache-Control", "private, no-store");
   if (
     request.nextUrl.protocol === "https:" ||

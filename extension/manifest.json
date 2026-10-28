@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "TasteKey · My search filters",
+  "version": "0.1.0",
+  "description": "Choose your likes and filter supported search-result cards on the current page. No background browsing or tracking.",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "background": { "service_worker": "background.js" },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": { "default": "Alt+Shift+K", "mac": "Command+Shift+K" }
+    }
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "TasteKey filters"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'"
+  }
+}

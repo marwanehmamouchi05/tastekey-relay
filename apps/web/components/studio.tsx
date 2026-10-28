@@ -40,6 +40,7 @@ import {
 } from "./delivery-controls";
 import type { Review } from "@tastekey/shared-types";
 import { TeamPanel } from "./auth-controls";
+import { BusinessIntegration } from "./integrations";
 const blank: BusinessInput = {
   name: "",
   industry: "cinema",
@@ -261,6 +262,8 @@ export default function Studio({
             </div>
           </section>
         </>
+      ) : section === "integrations" ? (
+        <BusinessIntegration businessId={business.id} role={role} />
       ) : section === "dashboard" ? (
         <Dashboard {...ctx} />
       ) : section === "analysis" || section === "advisor" ? (

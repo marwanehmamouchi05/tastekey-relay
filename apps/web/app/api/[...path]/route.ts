@@ -49,6 +49,15 @@ import {
   revokeInvite,
 } from "@/lib/identity";
 import { db } from "@/lib/db";
+import {
+  integration,
+  configureSite,
+  saveOffer,
+  removeOffer,
+  publicCatalog,
+  OfferInput,
+} from "@/lib/integrations";
+import { widgetResponse } from "@/lib/widget";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 const limits = new Map<string, { at: number; count: number }>();
@@ -77,12 +86,24 @@ function quota() {
 function response(data: unknown, status = 200) {
   return NextResponse.json(data, {
     status,
-    headers: { "Cache-Control": "no-store" },
+    headers: { "Cache-Control": "no-store", "X-Frame-Options": "DENY" },
   });
 }
 async function route(request: NextRequest) {
   try {
     const path = request.nextUrl.pathname.replace("/api/", "");
+    if (request.method === "GET" && path.startsWith("widget/")) {
+      const catalog = publicCatalog(path.slice("widget/".length));
+      return catalog
+        ? widgetResponse(catalog)
+        : response({ error: "This widget is unavailable." }, 404);
+    }
+    if (request.method === "GET" && path.startsWith("widget-data/")) {
+      const catalog = publicCatalog(path.slice("widget-data/".length));
+      return catalog
+        ? response(catalog)
+        : response({ error: "This widget is unavailable." }, 404);
+    }
     if (request.method === "GET" && path === "status")
       return response({
         qloo: await configured(),
@@ -105,7 +126,10 @@ async function route(request: NextRequest) {
           6,
         );
       const result = await authRoute(request, path);
-      if (result) return result;
+      if (result) {
+        result.headers.set("X-Frame-Options", "DENY");
+        return result;
+      }
     }
     if (path === "recovery/restore" && request.method === "POST") {
       rate(
@@ -166,6 +190,10 @@ async function route(request: NextRequest) {
         401,
       );
     rate(tenant);
+    if (path === "integration" && request.method === "GET") {
+      const id = z.uuid().parse(request.nextUrl.searchParams.get("businessId"));
+      return response(integration(tenant, id));
+    }
     if (path === "team" && request.method === "GET")
       return response(team(sessionToken!));
     if (request.method === "GET" && path === "workspace")
@@ -201,6 +229,46 @@ async function route(request: NextRequest) {
     if (raw.length > 50000)
       return response({ error: "Request too large." }, 413);
     const body = JSON.parse(raw || "{}");
+    if (path === "integration/settings") {
+      const input = z
+        .object({
+          businessId: z.uuid(),
+          origin: z.url().max(300),
+          enabled: z.boolean(),
+        })
+        .parse(body);
+      return response(
+        configureSite(sessionToken!, tenant, input.businessId, input),
+      );
+    }
+    if (path === "integration/offer") {
+      const input = z
+        .object({
+          businessId: z.uuid(),
+          id: z.uuid().optional(),
+          published: z.boolean(),
+          offer: OfferInput,
+        })
+        .parse(body);
+      return response(
+        saveOffer(
+          sessionToken,
+          tenant,
+          input.businessId,
+          input.offer,
+          input.id,
+          input.published,
+        ),
+      );
+    }
+    if (path === "integration/remove-offer") {
+      removeOffer(
+        sessionToken,
+        tenant,
+        z.object({ id: z.uuid() }).parse(body).id,
+      );
+      return response({ removed: true });
+    }
     if (
       [
         "business",

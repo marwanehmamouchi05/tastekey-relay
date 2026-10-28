@@ -26,6 +26,7 @@ import Personal from "./personal";
 import Studio from "./studio";
 import { AccountPanel } from "./auth-controls";
 import { api } from "@/lib/client";
+import { ConnectLikes, IntegrationHome } from "./integrations";
 const personalNav = [
   ["discover", "Start", Compass],
   ["taste-dna", "Your likes", Network],
@@ -43,6 +44,7 @@ const studioNav = [
   ["audience", "Audience interests", Users],
   ["reviews", "Rate the ideas", FlaskConical],
   ["team", "Team", Users],
+  ["integrations", "Website widget", ArrowUpRight],
 ] as const;
 export default function Workspace() {
   const pathname = usePathname();
@@ -64,7 +66,13 @@ export default function Workspace() {
       .catch(() => setStatus({ qloo: false, model: false }));
   }, []);
   const nav = studio ? studioNav : personalNav;
-  const extraIds = ["advisor", "scenarios", "audience", "reviews"];
+  const extraIds = [
+    "advisor",
+    "scenarios",
+    "audience",
+    "reviews",
+    "integrations",
+  ];
   const mainNav = studio ? nav.filter(([id]) => !extraIds.includes(id)) : nav;
   const extraNav = studio ? nav.filter(([id]) => extraIds.includes(id)) : [];
   const navLink = ([id, label, Icon]: (typeof nav)[number]) => (
@@ -189,7 +197,11 @@ export default function Workspace() {
               </span>
             </div>
           )}
-          {pathname === "/account" ? (
+          {pathname === "/connect" ? (
+            <ConnectLikes />
+          ) : pathname === "/integrations" ? (
+            <IntegrationHome />
+          ) : pathname === "/account" ? (
             <AccountPanel />
           ) : studio ? (
             <Studio section={section} model={status?.model ?? false} />
@@ -200,6 +212,7 @@ export default function Workspace() {
         <footer>
           <span>TasteKey Relay</span>
           <span>One intelligence, two worlds.</span>
+          <Link href="/integrations">Use on other websites</Link>
           <a
             href="https://github.com/qloo/qloo-hackathon-kit"
             target="_blank"

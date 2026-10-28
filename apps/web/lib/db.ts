@@ -116,6 +116,8 @@ export function workspace(tenant: string): Workspace {
     actions: list<Action>(tenant, "action"),
     outcomes: list<Outcome>(tenant, "outcome"),
     reviews: list(tenant, "review"),
+    offers: list(tenant, "offer"),
+    integrations: list(tenant, "embed"),
   };
 }
 export function deleteWorkspace(tenant: string) {

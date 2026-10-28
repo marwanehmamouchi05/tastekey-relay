@@ -1,0 +1,96 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  width: 360px;
+  margin: 0;
+  padding: 22px;
+  font:
+    14px/1.5 system-ui,
+    sans-serif;
+  color: #30253f;
+  background: #faf8fd;
+}
+header > strong {
+  color: #623dc8;
+  font-size: 20px;
+}
+h1 {
+  font-size: 25px;
+  margin: 6px 0;
+}
+h2 {
+  font-size: 17px;
+}
+p {
+  color: #6e6379;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+  padding: 10px 14px;
+  margin: 7px 0;
+  border: 1px solid #d5c6eb;
+  border-radius: 22px;
+  background: white;
+  color: #5c3b96;
+  width: 100%;
+}
+.primary {
+  background: #623dc8;
+  color: white;
+}
+.text {
+  background: none;
+  border: 0;
+}
+label {
+  display: block;
+  margin: 10px 0;
+}
+label:has(input[type="checkbox"]) {
+  display: flex;
+  gap: 9px;
+  align-items: start;
+}
+input:not([type="checkbox"]),
+select {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #d7cbe8;
+  border-radius: 9px;
+  margin-top: 5px;
+}
+.help {
+  font-size: 12px;
+}
+a {
+  color: #623dc8;
+}
+section {
+  margin: 20px 0;
+  border-top: 1px solid #e4d9f0;
+  padding-top: 8px;
+}
+summary {
+  cursor: pointer;
+}
+#status {
+  padding: 10px 0;
+  color: #44305f;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #a47edf;
+  outline-offset: 2px;
+}
+#likes {
+  max-height: 220px;
+  overflow: auto;
+}

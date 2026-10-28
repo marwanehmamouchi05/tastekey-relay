@@ -183,6 +183,8 @@ export type Workspace = {
   actions: Action[];
   outcomes: Outcome[];
   reviews: Review[];
+  offers?: unknown[];
+  integrations?: unknown[];
 };
 export const ReviewInput = z.object({
   analysisId: z.string().uuid(),
