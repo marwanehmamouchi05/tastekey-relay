@@ -281,7 +281,10 @@ export default function Studio({
           save={(input) => mutate("review", input)}
         />
       ) : section === "audience" ? (
-        <AudienceOwner businessId={business.id} />
+        <AudienceOwner
+          businessId={business.id}
+          canInvite={!role || role === "owner" || role === "admin"}
+        />
       ) : (
         <PageTitle
           title="Page not found"
@@ -292,16 +295,16 @@ export default function Studio({
       {section === "dashboard" && (
         <section className="panel workspace-controls">
           <div>
-            <h3>Private session controls</h3>
+            <h3>Workspace data controls</h3>
             <p>
-              Business records are tied to this browser’s private cookie, which
-              expires in 30 days. Export records before clearing cookies; use a
-              recovery code to reopen them on another device. Full account login
-              and team roles are not implemented.
+              {role
+                ? "Records belong to your shared workspace. Sign in again to recover access. Only the owner can delete the workspace; deletion also removes team access. Save an export before deleting."
+                : "This private demo uses a browser cookie that expires in 30 days. Save an export and a recovery code before clearing cookies, or sign in to secure the workspace and add a team."}
             </p>
           </div>
           <button
             className="danger"
+            disabled={Boolean(role && role !== "owner")}
             onClick={async () => {
               if (
                 !window.confirm(

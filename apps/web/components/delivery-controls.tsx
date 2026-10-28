@@ -276,7 +276,13 @@ type Report = {
   minimum: number;
   groups: { category: string; count: number }[];
 };
-export function AudienceOwner({ businessId }: { businessId: string }) {
+export function AudienceOwner({
+  businessId,
+  canInvite = true,
+}: {
+  businessId: string;
+  canInvite?: boolean;
+}) {
   const [report, setReport] = useState<Report>(),
     [invitation, setInvitation] = useState(""),
     [error, setError] = useState("");
@@ -309,6 +315,7 @@ export function AudienceOwner({ businessId }: { businessId: string }) {
       )}
       <button
         className="secondary"
+        disabled={!canInvite}
         onClick={async () => {
           try {
             setInvitation(
@@ -325,6 +332,12 @@ export function AudienceOwner({ businessId }: { businessId: string }) {
       >
         Create or replace audience invitation
       </button>
+      {!canInvite && (
+        <p className="microcopy">
+          An owner or admin can manage audience invitations. Your role can read
+          this report.
+        </p>
+      )}
       {invitation && (
         <div className="notice">
           <p>

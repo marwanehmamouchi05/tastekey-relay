@@ -164,6 +164,18 @@ test("team UI and real server authorization enforce invitations, viewer writes a
   await reader.getByRole("button", { name: "Join invited workspace" }).click();
   await reader.waitForURL("**/studio/dashboard");
   await expect(reader.getByText(/You have viewer access/)).toBeVisible();
+  await expect(
+    reader.getByRole("button", { name: "Delete workspace", exact: true }),
+  ).toBeDisabled();
+  await reader.goto("/studio/audience");
+  await expect(
+    reader.getByRole("button", {
+      name: "Create or replace audience invitation",
+    }),
+  ).toBeDisabled();
+  await expect(
+    reader.getByText("Your role can read this report.", { exact: false }),
+  ).toBeVisible();
   const saved = await reader.request.get("/api/workspace");
   expect((await saved.json()).businesses[0].id).toBe(businessId);
   expect(

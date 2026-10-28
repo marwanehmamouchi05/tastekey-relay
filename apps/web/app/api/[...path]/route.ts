@@ -87,7 +87,7 @@ async function route(request: NextRequest) {
       return response({
         qloo: await configured(),
         model: modelConfigured(),
-        storage: "SQLite; private browser session",
+        storage: "SQLite; verified workspaces and private demo sessions",
         version: "0.1.0",
         signIn: authConfigured(),
       });
