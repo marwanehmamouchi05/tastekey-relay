@@ -233,7 +233,14 @@ export function verifiedMetadataSupport(
     metadataWords,
   );
   const answers = preferences
-    .filter((n) => n.status === "confirmed" && !n.entity)
+    .filter(
+      (n) =>
+        n.status === "confirmed" &&
+        !n.entity &&
+        !/\b(not|no|never|without|avoid|dislike|hate|don't|doesn't)\b/i.test(
+          n.label,
+        ),
+    )
     .map((n) => [
       ...new Set(
         metadataWords(n.label).filter(

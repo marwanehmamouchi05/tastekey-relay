@@ -6,6 +6,8 @@ The original five-ballot experiment remains unchanged. Its single retrieved posi
 
 The revised rule is deliberately conservative, not a learned recommender: only user-confirmed non-entity interpretations count; all informative words must occur as whole words in one description/tag field; nearby negation abstains; names do not supply preference evidence. A binary hint subtracts 1.1 from the original zero-based rank, so promotion/demotion is bounded to one place. Duplicated confirmations do not amplify it. This bound is an engineering safety choice tested on synthetic cases, not a fitted accuracy estimate. English negation detection is limited; metadata matches are not semantic entailment or probabilities.
 
+A final regression guard also abstains on negative manual answer wording such as “not,” “avoid” and “don't.” It does not invent inverse Qloo affinities or a validated negative-preference model. This guard was added after the fresh proxy measurement; that experiment used only the fixed positive phrase, so it supplies no new evidence about negative-answer quality. The exact engine used for the measurement remains preserved.
+
 Choosing one reason previously marked all unchosen reasons rejected. They now remain uncertain. A parent already answered is not asked again; rejected/missing parents are not questioned, expired grants do not raise question priority, and an invalid selected node leaves the profile unchanged. “None of these” still explicitly rejects the proposed reasons. Skipping the optional question changes no preference state. We do not label this information-gain optimization: priority remains a transparent unresolved-context heuristic, without a validated model of question utility.
 
 ## Pipeline inspection
@@ -40,6 +42,8 @@ These are synthetic correctness tests, not human relevance labels.
 | Unknown option ID                                                   | Rejects all inferred reasons    | No state change       |
 
 `tests/ranking-guardrails.test.ts`, `tests/engine.test.ts`, `tests/adapter.test.ts` and `tests/adapter-concurrency.test.ts` cover these contracts. The browser Proof test uses actual metadata support and the same production helper.
+
+The executed six-case development measurement is saved in `data/evaluation/ranking-guards-2026-10-29.json` and reproduced by `scripts/evaluate-ranking-guards.ts`. Four unsupported fixture promotions fell from one position to zero. The last item in a twelve-item pool moved eleven positions under the legacy sort and one under the revised rule. An adjacent full supported hint still moved one position. All measurements used zero provider/model calls; these are guardrail outcomes, not human relevance gains.
 
 ## Fresh diagnostic, frozen before provider calls
 

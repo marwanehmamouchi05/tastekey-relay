@@ -74,6 +74,18 @@ it("unconfirmed, rejected or canonical entity labels cannot become metadata hint
       "b",
     ]);
 });
+it("negative manual wording is never converted into a positive preference hint", () => {
+  const pool = [item("a"), item("b", "Emotional storytelling")];
+  for (const label of [
+    "Not emotional storytelling",
+    "No emotional storytelling",
+    "Avoid emotional storytelling",
+    "I don't like emotional storytelling",
+  ])
+    expect(
+      rankByVerifiedMetadata(pool, [answer(label)]).map((e) => e.id),
+    ).toEqual(["a", "b"]);
+});
 it("one answer is not a rejection of other reasons; invalid choices leave uncertainty untouched", () => {
   const p = addPreference(emptyProfile(), "Fixture", "movie");
   const q = nextQuestion(p)!;
