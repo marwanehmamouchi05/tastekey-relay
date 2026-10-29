@@ -8,7 +8,9 @@ Project preview: https://devpost.com/software/tastekey-relay
 
 ## Final readiness materials
 
-The reviewed application is now pinned to `bbb3e095bf080882f1c6e466dd54154c8787ba15`. See the [final audit](FINAL_READINESS_AUDIT.md), [current proposed Devpost story](DEVPOST_STORY.md), [actual evaluation results](RESULTS.md), [ablation](ABLATION.md), [pitch/Q&A](FINALIST_PITCH.md) and [third-party notices](THIRD_PARTY_NOTICES.md). The in-app [Quick tour](https://tastekey.52.47.205.18.sslip.io/tour) works without registration. Current screenshots are in `docs/screenshots/finalist-public/`.
+The reviewed application is now pinned to `bbb3e095bf080882f1c6e466dd54154c8787ba15`. See the [final audit](FINAL_READINESS_AUDIT.md), [saved Devpost story](DEVPOST_STORY.md), [actual evaluation results](RESULTS.md), [ablation](ABLATION.md), [pitch/Q&A](FINALIST_PITCH.md) and [third-party notices](THIRD_PARTY_NOTICES.md). The in-app [Quick tour](https://tastekey.52.47.205.18.sslip.io/tour) works without registration. Current screenshots are in `docs/screenshots/finalist-public/`.
+
+On October 29 Morocco time, the story, both primary app URLs pointing to `/tour`, and five current gallery screenshots with captions were saved and verified in the Devpost editor. The four older captures retain their October 27 labels. Finalization still shows **DRAFT, 4/5 steps**, with the terms checkbox unchecked. This is a saved draft, not a submission receipt. The documentation/media checkpoint `cfdc4f43d26e4af3fbbea8b533bdf38edd235ff7` also [passed CI](https://github.com/marwanehmamouchi05/tastekey-relay/actions/runs/40790502365); the deployed application revision remains unchanged.
 
 A dated, silent ~70-second actual public walkthrough with real Qloo/Bedrock and explicitly synthetic business inputs is in `docs/media/tastekey-walkthrough.webm`, with separate `.srt` subtitles and capture metadata. This optional backup recording has not been uploaded to a video host or placed in Devpost's video field. The independent-benefit experiment did not establish improvement and must not be described as a successful accuracy study.
 

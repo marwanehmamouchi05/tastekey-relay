@@ -77,6 +77,8 @@ Checked against the [official rules](https://qloo.devpost.com/rules) and [submis
 
 Official submission cutoff converts to **October 31, 2026 at 04:45 Africa/Casablanca**. Judging ends **November 6 at 05:45 Morocco time**, later than the November 5 announcement. Video is optional. The owner must review the rules, accept terms and submit; no agent accepted these or pressed Submit.
 
+October 29 draft checkpoint: the current story, `/tour` as the primary demonstration URL in both relevant fields, and five current gallery screenshots with descriptive captions were saved in Devpost and verified after reopening the editor. Four historical captures retain dated October 27 captions. Finalization remained DRAFT 4/5 with unchecked terms. The optional recording remains a repository artifact, not an externally hosted Devpost video. Documentation/media commit `cfdc4f43d26e4af3fbbea8b533bdf38edd235ff7` passed CI; production remains the reviewed `bbb3e09` revision.
+
 ## Outstanding-risk register
 
 | Risk / dependency                                  | Remaining action                                                                                                                                                                                                                                                           |
