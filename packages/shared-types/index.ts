@@ -170,6 +170,9 @@ export type Action = z.infer<typeof ActionInput> & {
 export const OutcomeInput = z.object({
   actionId: z.string().min(1),
   metric: z.string().trim().min(2).max(100),
+  direction: z
+    .enum(["higher-is-better", "lower-is-better", "observe-only"])
+    .default("observe-only"),
   expected: z.number().min(0),
   actual: z.number().min(0),
   notes: z.string().max(2000),
@@ -179,6 +182,27 @@ export type Outcome = z.infer<typeof OutcomeInput> & {
   id: string;
   businessId: string;
 };
+export function assessOutcome(outcome: {
+  expected: number;
+  actual: number;
+  direction?: Outcome["direction"];
+}) {
+  if (
+    outcome.direction !== "higher-is-better" &&
+    outcome.direction !== "lower-is-better"
+  )
+    return {
+      verdict: "observed" as const,
+      label: "Recorded only — no success judgement",
+    };
+  const met =
+    outcome.direction === "higher-is-better"
+      ? outcome.actual >= outcome.expected
+      : outcome.actual <= outcome.expected;
+  return met
+    ? { verdict: "met" as const, label: "Target met" }
+    : { verdict: "shortfall" as const, label: "Target missed" };
+}
 export type Workspace = {
   businesses: Business[];
   analyses: Analysis[];

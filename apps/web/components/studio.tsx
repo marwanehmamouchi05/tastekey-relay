@@ -31,6 +31,7 @@ import type {
   Action,
   Outcome,
 } from "@tastekey/shared-types";
+import { assessOutcome } from "@tastekey/shared-types";
 import { api, download } from "@/lib/client";
 import { PageTitle } from "./personal";
 import {
@@ -1357,6 +1358,8 @@ function ActionEditor({
 function OutcomesView({ business, actions, outcomes, mutate, busy }: Ctx) {
   const [actionId, setActionId] = useState("");
   const [metric, setMetric] = useState("Attendance");
+  const [direction, setDirection] =
+    useState<Outcome["direction"]>("observe-only");
   const [expected, setExpected] = useState(30);
   const [actual, setActual] = useState(0);
   const [notes, setNotes] = useState("");
@@ -1373,7 +1376,15 @@ function OutcomesView({ business, actions, outcomes, mutate, busy }: Ctx) {
           onSubmit={async (e) => {
             e.preventDefault();
             const result = await mutate("outcome", {
-              input: { actionId, metric, expected, actual, notes, date },
+              input: {
+                actionId,
+                metric,
+                direction,
+                expected,
+                actual,
+                notes,
+                date,
+              },
             });
             if (result) setNotes("");
           }}
@@ -1410,12 +1421,32 @@ function OutcomesView({ business, actions, outcomes, mutate, busy }: Ctx) {
               onChange={(e) => setMetric(e.target.value)}
             />
           </label>
+          <label className="field-label">
+            What counts as a good result?
+            <select
+              value={direction}
+              onChange={(e) =>
+                setDirection(e.target.value as Outcome["direction"])
+              }
+            >
+              <option value="observe-only">
+                Just record it — do not judge
+              </option>
+              <option value="higher-is-better">
+                Higher is better (for example, attendance)
+              </option>
+              <option value="lower-is-better">
+                Lower is better (for example, cost per booking)
+              </option>
+            </select>
+          </label>
           <div className="form-grid">
             <label className="field-label">
               Original target
               <input
                 required
                 type="number"
+                step="any"
                 min="0"
                 value={expected}
                 onChange={(e) => setExpected(Number(e.target.value))}
@@ -1426,6 +1457,7 @@ function OutcomesView({ business, actions, outcomes, mutate, busy }: Ctx) {
               <input
                 required
                 type="number"
+                step="any"
                 min="0"
                 value={actual}
                 onChange={(e) => setActual(Number(e.target.value))}
@@ -1466,6 +1498,13 @@ function OutcomesView({ business, actions, outcomes, mutate, busy }: Ctx) {
               <article className="outcome-record" key={o.id}>
                 <span className="tag">{o.date} · Owner reported</span>
                 <h3>{o.metric}</h3>
+                <p className="microcopy">
+                  {o.direction === "higher-is-better"
+                    ? "Higher is better"
+                    : o.direction === "lower-is-better"
+                      ? "Lower is better"
+                      : "Just recorded — no direction chosen"}
+                </p>
                 <div className="outcome-values">
                   <span>
                     <strong>{o.actual}</strong> actual
@@ -1473,16 +1512,24 @@ function OutcomesView({ business, actions, outcomes, mutate, busy }: Ctx) {
                   <span>
                     <strong>{o.expected}</strong> target
                   </span>
-                  <span className={o.actual >= o.expected ? "positive" : ""}>
-                    {o.actual - o.expected >= 0 ? "+" : ""}
-                    {o.actual - o.expected} vs target
+                  <span
+                    className={
+                      assessOutcome(o).verdict === "met" &&
+                      o.actual !== o.expected
+                        ? "positive"
+                        : ""
+                    }
+                  >
+                    {assessOutcome(o).label}
                   </span>
                 </div>
                 <p>{o.notes}</p>
                 <p className="microcopy">
-                  {o.actual < o.expected
-                    ? "Below-target results reduce the next pilot allocation under the current planning rule."
-                    : "This result will be included in subsequent investigation lessons. It does not prove repeatable success."}
+                  {assessOutcome(o).verdict === "shortfall"
+                    ? "This missed target reduces the next pilot allocation under the current planning rule."
+                    : assessOutcome(o).verdict === "observed"
+                      ? "No result direction was chosen. These values are kept as observations and do not reduce the next pilot allocation."
+                      : "This result will be included in subsequent investigation lessons. It does not prove repeatable success."}
                 </p>
               </article>
             ))

@@ -44,6 +44,23 @@ const fixture = (city = "Casablanca") => ({
   ],
 });
 describe("Studio workflow with explicitly synthetic fixture transport", () => {
+  it("does not cut a pilot allocation when a lower-is-better cost beats target", async () => {
+    call.mockResolvedValue(fixture());
+    const outcome = {
+      id: "cost-result",
+      businessId: "b",
+      actionId: "a",
+      metric: "Cost per booking",
+      direction: "lower-is-better",
+      actual: 5,
+      expected: 10,
+      date: "2026-10-29",
+      notes: "Owner reported",
+    } as Outcome;
+    expect((await analyze(business, "b", [outcome])).strategies[0].cost).toBe(
+      200,
+    );
+  });
   it("links proposals to supplied evidence and stays within budget", async () => {
     call.mockResolvedValueOnce(fixture());
     const a = await analyze(business, "test-business", []);
@@ -77,6 +94,8 @@ describe("Studio workflow with explicitly synthetic fixture transport", () => {
     call.mockResolvedValue(fixture());
     const o = {
       metric: "Attendance",
+      businessId: "b",
+      direction: "higher-is-better",
       actual: 12,
       expected: 30,
       date: "2026-10-26",
@@ -85,6 +104,52 @@ describe("Studio workflow with explicitly synthetic fixture transport", () => {
     const a = await analyze(business, "b", [o]);
     expect(a.strategies[0].cost).toBe(100);
     expect(a.lessons[0]).toContain("reported 12");
+  });
+  it.each([
+    ["lower-is-better", 5, 200],
+    ["lower-is-better", 20, 100],
+    ["lower-is-better", 10, 200],
+    ["higher-is-better", 5, 100],
+    ["higher-is-better", 20, 200],
+    ["observe-only", 5, 200],
+    [undefined, 5, 200],
+  ])(
+    "uses explicit %s direction for actual %s (including legacy records)",
+    async (direction, actual, allocation) => {
+      call.mockResolvedValue(fixture());
+      const o = {
+        id: "o",
+        businessId: "b",
+        actionId: "a",
+        metric: "Owner metric",
+        direction,
+        actual,
+        expected: 10,
+        date: "2026-10-29",
+        notes: "",
+      } as Outcome;
+      expect(
+        (await analyze(business, "b", [JSON.parse(JSON.stringify(o))]))
+          .strategies[0].cost,
+      ).toBe(allocation);
+    },
+  );
+  it("does not use another business's missed targets", async () => {
+    call.mockResolvedValue(fixture());
+    const o = {
+      id: "o",
+      businessId: "other",
+      actionId: "a",
+      metric: "Attendance",
+      direction: "higher-is-better",
+      actual: 0,
+      expected: 10,
+      date: "2026-10-29",
+      notes: "",
+    } as Outcome;
+    const a = await analyze(business, "b", [o]);
+    expect(a.strategies[0].cost).toBe(200);
+    expect(a.lessons).toEqual([]);
   });
   it("excludes rejected proposals and preserves the rejection reason", async () => {
     call.mockResolvedValue(fixture());

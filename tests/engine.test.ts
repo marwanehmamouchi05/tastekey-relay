@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   emptyProfile,
   addPreference,
+  editPreference,
   verify,
   nextQuestion,
   removePreference,
@@ -56,6 +57,78 @@ it("verification can rerank metadata matches while inferred and rejected tastes 
   ).toEqual(["a", "b"]);
 });
 describe("Personal state and verification", () => {
+  it("cannot rename a reviewed Qloo reference into another identity", () => {
+    const p = seeded();
+    const renamed = editPreference(p, p.nodes[0].id, "Spirited Away", "stated");
+    expect(renamed).toBe(p);
+    expect(renamed.nodes[0].label).toBe(renamed.nodes[0].entity!.name);
+  });
+  it("keeps interpretation edits and canonical status-only edits working", () => {
+    const p = seeded();
+    const status = editPreference(
+      p,
+      p.nodes[0].id,
+      "Interstellar",
+      "confirmed",
+    );
+    expect(status.nodes[0].status).toBe("confirmed");
+    expect(status.nodes[0].entity).toEqual(p.nodes[0].entity);
+    const child = p.nodes[1];
+    expect(
+      editPreference(p, child.id, "A visual journey", "confirmed").nodes[1]
+        .label,
+    ).toBe("A visual journey");
+  });
+  it("quarantines legacy identity mismatches and their reasons without rewriting saved data", () => {
+    let p = seeded();
+    const root = p.nodes[0];
+    p = verify(p, root.id, p.nodes[1].id);
+    p.nodes[0].label = "Spirited Away";
+    p.consents.entertainment = {
+      context: "entertainment",
+      nodeIds: p.nodes.map((n) => n.id),
+      budget: false,
+      expiresAt: new Date(Date.now() + 60000).toISOString(),
+    };
+    const saved = JSON.stringify(p);
+    expect(authorizedContext(JSON.parse(saved), "entertainment").nodes).toEqual(
+      [],
+    );
+    expect(nextQuestion(p)).toBeNull();
+    expect(JSON.stringify(p)).toBe(saved);
+  });
+  it("a reviewed replacement requires fresh permission and preserves unrelated likes/budgets", () => {
+    let p = addPreference(seeded(), "Jazz", "artist");
+    p = setBudget(p, "travel", 60);
+    const original = p.nodes[0],
+      unrelated = p.nodes.find((n) => n.label === "Jazz")!;
+    p.consents.entertainment = {
+      context: "entertainment",
+      nodeIds: [original.id, unrelated.id],
+      budget: false,
+      expiresAt: new Date(Date.now() + 60000).toISOString(),
+    };
+    p = removePreference(p, original.id);
+    p = addPreference(p, "Spirited Away", "movie", {
+      id: "new-reviewed-id",
+      name: "Spirited Away",
+      category: "movie",
+      tags: [],
+    });
+    const roundTrip = JSON.parse(JSON.stringify(p));
+    expect(
+      authorizedContext(roundTrip, "entertainment").nodes.map((n) => n.id),
+    ).toEqual([unrelated.id]);
+    expect(
+      roundTrip.nodes.some(
+        (n: any) => n.id === original.id || n.parentId === original.id,
+      ),
+    ).toBe(false);
+    expect(roundTrip.nodes.find((n: any) => n.id === unrelated.id)).toEqual(
+      unrelated,
+    );
+    expect(roundTrip.budgets.travel).toBe(60);
+  });
   it("preserves direct statement separately from uncertain interpretations", () => {
     const p = seeded();
     expect(p.nodes[0].status).toBe("stated");

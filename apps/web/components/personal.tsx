@@ -43,6 +43,8 @@ import {
   authorizedContext,
   categories,
   revoke,
+  isShareablePreference,
+  hasCanonicalIdentity,
 } from "@tastekey/privacy-engine";
 import { evaluatePool } from "@tastekey/evaluation";
 import { api, download } from "@/lib/client";
@@ -131,6 +133,14 @@ export default function Personal({
   if (!ready) return <div className="loading">Opening your local profile…</div>;
   return (
     <>
+      {profile.nodes.some((n) => !hasCanonicalIdentity(n)) && (
+        <div className="notice" role="status">
+          A saved name does not match its Qloo reference. It and its reasons
+          will not be shared. Open{" "}
+          <Link href="/personal/taste-dna">Your likes</Link>, remove that like,
+          then search and choose it again.
+        </div>
+      )}
       {error && (
         <div className="notice error" role="alert">
           {error}
@@ -637,13 +647,24 @@ function DNA(props: Props & { model: boolean }) {
             <>
               <div className="tag blue">{names[node.category]}</div>
               <h3>{node.label}</h3>
+              {node.entity && (
+                <p className="microcopy">
+                  Qloo reference: <strong>{node.entity.name}</strong>.
+                  {!hasCanonicalIdentity(node) &&
+                    " The saved name differs. This like and its reasons are blocked from sharing."}{" "}
+                  To choose a different reference, remove this like, then search
+                  and choose the new result in Start. Share it again when ready.
+                </p>
+              )}
               <label className="field-label">
-                Meaning
+                {node.entity ? "Qloo reference (locked)" : "Meaning"}
                 <input
                   key={node.id}
-                  defaultValue={node.label}
+                  defaultValue={node.entity?.name ?? node.label}
+                  readOnly={!!node.entity}
                   maxLength={200}
                   onBlur={(e) =>
+                    !node.entity &&
                     e.target.value.trim() &&
                     e.target.value !== node.label &&
                     update(
@@ -902,7 +923,7 @@ function Relay({ profile, update, error }: Props) {
   const grant = authorizedContext(profile, context);
   const eligible = profile.nodes.filter(
     (n) =>
-      ["stated", "confirmed"].includes(n.status) &&
+      isShareablePreference(profile, n) &&
       categories[context].includes(n.category),
   );
   useEffect(() => {
@@ -1141,7 +1162,9 @@ function Relay({ profile, update, error }: Props) {
             )}
             <button
               className="primary"
-              disabled={!grant.allowed || busy}
+              disabled={
+                !grant.allowed || !grant.nodes.some((n) => n.entity) || busy
+              }
               onClick={recommend}
             >
               {busy ? "Finding cultural connections…" : "Get suggestions"}

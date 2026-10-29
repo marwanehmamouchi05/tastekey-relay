@@ -28,8 +28,8 @@ export function addPreference(
     ev = evidence(`You added ${label}.`);
   const node: Preference = {
     id,
-    label: label.trim(),
-    category,
+    label: entity ? entity.name : label.trim(),
+    category: entity ? entity.category : category,
     status: "stated",
     entity,
     evidence: [ev],
@@ -78,6 +78,9 @@ export function nextQuestion(p: Profile) {
       p.nodes.some(
         (parent) =>
           parent.id === n.parentId &&
+          (!parent.entity ||
+            (parent.label === parent.entity.name &&
+              parent.category === parent.entity.category)) &&
           ["stated", "confirmed"].includes(parent.status),
       ) &&
       !p.nodes.some(
@@ -152,6 +155,8 @@ export function editPreference(
   label: string,
   status: Preference["status"],
 ): Profile {
+  const node = p.nodes.find((n) => n.id === id);
+  if (!node || !label.trim() || (node.entity && label !== node.label)) return p;
   const ev = evidence(`Preference edited to “${label}” (${status}).`);
   return {
     ...p,

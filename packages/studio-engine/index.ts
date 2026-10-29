@@ -5,6 +5,7 @@ import type {
   Analysis,
   Trace,
 } from "../shared-types";
+import { assessOutcome } from "../shared-types";
 import { callQloo } from "../qloo-adapter";
 import { adviseStrategies } from "../agent-orchestrator";
 export function baseline(b: BusinessInput): Strategy[] {
@@ -42,10 +43,11 @@ export async function analyze(
     "business-profile",
     `${b.industry} in ${b.city}; budget ${b.budget} ${b.currency}.`,
   );
+  const relevantOutcomes = outcomes.filter((o) => o.businessId === businessId);
   const lessons = [
-    ...outcomes.map(
+    ...relevantOutcomes.map(
       (o) =>
-        `${o.metric}: reported ${o.actual} against target ${o.expected} on ${o.date}. ${o.notes}`,
+        `${o.metric}: reported ${o.actual} against target ${o.expected} on ${o.date}. ${assessOutcome(o).label}. ${o.notes}`,
     ),
     ...rejected.map(
       (s) =>
@@ -107,8 +109,10 @@ export async function analyze(
       evidence.tool,
       `${evidence.entities.length} entities returned${evidence.cached ? " from a five-minute cache" : ""}.`,
     );
-    // Report observed target shortfalls; lower pilot allocation after under-target outcomes.
-    const underTarget = outcomes.filter((o) => o.actual < o.expected).length;
+    // Only explicit, direction-aware shortfalls affect this business's next pilot.
+    const underTarget = relevantOutcomes.filter(
+      (o) => assessOutcome(o).verdict === "shortfall",
+    ).length;
     const allocation = underTarget ? 0.1 : 0.2;
     result.strategies = evidence.entities
       .filter(
@@ -124,7 +128,7 @@ export async function analyze(
         id: crypto.randomUUID(),
         entityId: entity.id,
         title: `Test an offering around ${entity.name}`,
-        rationale: `Qloo returned ${entity.name} for the selected cultural references and ${b.city} signal. Consider a ${b.industry} pilot using your catalog (${b.catalog}). Relevance to “${b.goal}” still needs owner review.${underTarget ? " Earlier below-target results favor a smaller pilot." : ""}`,
+        rationale: `Qloo returned ${entity.name} for the selected cultural references and ${b.city} signal. Consider a ${b.industry} pilot using your catalog (${b.catalog}). Relevance to “${b.goal}” still needs owner review.${underTarget ? " Earlier missed targets favor a smaller pilot." : ""}`,
         evidenceIds: [evidence.id],
         cost: Math.floor((b.budget * allocation) / (i + 1)),
         effort:
@@ -149,7 +153,7 @@ export async function analyze(
     step(
       "Constrain",
       "budget-rule",
-      `Pilot allocations total ${result.strategies.reduce((a, s) => a + s.cost, 0)} ${b.currency}, within the declared budget. ${underTarget} prior outcomes fell below target.`,
+      `Pilot allocations total ${result.strategies.reduce((a, s) => a + s.cost, 0)} ${b.currency}, within the declared budget. ${underTarget} prior outcomes missed an explicitly directed target.`,
     );
     step(
       "Recommend",

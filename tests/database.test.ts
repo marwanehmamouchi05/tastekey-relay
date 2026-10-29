@@ -2,6 +2,7 @@ import { it, expect, beforeAll } from "vitest";
 import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { assessOutcome, OutcomeInput } from "../packages/shared-types";
 import {
   newSession,
   tenantFor,
@@ -128,6 +129,32 @@ it("persists records and denies another session all business records", () => {
   expect(get(b, "business", "b")).toBeNull();
   expect(workspace(b).outcomes).toEqual([]);
   expect(workspace(a).outcomes[0].actual).toBe(10);
+});
+it("reopens legacy outcomes unchanged and preserves explicit direction on new results", () => {
+  const tenant = tenantFor(newSession())!;
+  const legacy = {
+    id: "legacy-result",
+    businessId: "b",
+    actionId: "a",
+    metric: "Cost per booking",
+    expected: 10,
+    actual: 5,
+    date: "2026-10-29",
+    notes: "Existing report",
+  };
+  put(tenant, "outcome", "b", legacy);
+  const directed = {
+    ...OutcomeInput.parse({ ...legacy, direction: "lower-is-better" }),
+    id: "directed-result",
+    businessId: "b",
+  };
+  put(tenant, "outcome", "b", directed);
+  const old = get<any>(tenant, "outcome", legacy.id)!;
+  expect(old).toEqual(legacy);
+  expect(assessOutcome(old).verdict).toBe("observed");
+  const current = workspace(tenant).outcomes.find((o) => o.id === directed.id)!;
+  expect(current.direction).toBe("lower-is-better");
+  expect(assessOutcome(current).verdict).toBe("met");
 });
 it("cross-tenant upsert cannot overwrite another tenant record", () => {
   const a = tenantFor(newSession())!,
