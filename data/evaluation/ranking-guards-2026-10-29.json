@@ -1,0 +1,142 @@
+{
+  "at": "2026-10-29T00:47:13.784Z",
+  "kind": "synthetic-development-guardrail-measurements-not-relevance",
+  "sourceSha256": "10c37c9ac56dd53931bd4d1e24221f1ea70b759923996ad896abf5667e3eadda",
+  "providerCalls": 0,
+  "modelCalls": 0,
+  "cases": [
+    {
+      "id": "substring",
+      "providerOrder": [
+        "a",
+        "b"
+      ],
+      "legacyOrder": [
+        "b",
+        "a"
+      ],
+      "revisedOrder": [
+        "a",
+        "b"
+      ],
+      "legacyMaxDisplacement": 1,
+      "revisedMaxDisplacement": 0
+    },
+    {
+      "id": "title-only",
+      "providerOrder": [
+        "a",
+        "b"
+      ],
+      "legacyOrder": [
+        "b",
+        "a"
+      ],
+      "revisedOrder": [
+        "a",
+        "b"
+      ],
+      "legacyMaxDisplacement": 1,
+      "revisedMaxDisplacement": 0
+    },
+    {
+      "id": "partial-answer",
+      "providerOrder": [
+        "a",
+        "b"
+      ],
+      "legacyOrder": [
+        "b",
+        "a"
+      ],
+      "revisedOrder": [
+        "a",
+        "b"
+      ],
+      "legacyMaxDisplacement": 1,
+      "revisedMaxDisplacement": 0
+    },
+    {
+      "id": "nearby-negation",
+      "providerOrder": [
+        "a",
+        "b"
+      ],
+      "legacyOrder": [
+        "b",
+        "a"
+      ],
+      "revisedOrder": [
+        "a",
+        "b"
+      ],
+      "legacyMaxDisplacement": 1,
+      "revisedMaxDisplacement": 0
+    },
+    {
+      "id": "distant-full-match",
+      "providerOrder": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "legacyOrder": [
+        "11",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "revisedOrder": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "11",
+        "10"
+      ],
+      "legacyMaxDisplacement": 11,
+      "revisedMaxDisplacement": 1
+    },
+    {
+      "id": "adjacent-full-match",
+      "providerOrder": [
+        "a",
+        "b"
+      ],
+      "legacyOrder": [
+        "b",
+        "a"
+      ],
+      "revisedOrder": [
+        "b",
+        "a"
+      ],
+      "legacyMaxDisplacement": 1,
+      "revisedMaxDisplacement": 1
+    }
+  ],
+  "limitations": "Constructed metadata/ordering safety cases. No participant answers, human relevance or measured accuracy improvement."
+}

@@ -1,8 +1,14 @@
 # Acceptance and handoff status
 
-Updated October 28, 2026. Implemented behavior and actual integration evidence are recorded separately from user-study claims.
+Updated October 29, 2026. Implemented behavior and actual integration evidence are recorded separately from user-study claims.
 
-## Latest release: finalist readiness and bounded evidence
+## October 29: final improvement and verification
+
+Reviewed application `811044002cec6f70790447fffcf0b4d203826792` adds a negative-label abstention guard to `a18050d`. See the [complete mission report](FINAL_MISSION_REPORT_2026-10-29.md) for the final deployment identity, tests and owner actions. Final local checks passed 89 unit/integration tests with real Qloo, 22 browser cases with two intentional live skips, build and TypeScript; [CI passed](https://github.com/marwanehmamouchi05/tastekey-relay/actions/runs/40856168263). The final deployed release passed a clean 21-case public suite in 4.6 minutes with three intentional local-only skips, including actual Qloo and Bedrock. The immediately previous checkpoint also passed a clean 21-case public run.
+
+The conservative metadata rule moves a complete confirmed match at most one place and abstains on weak or negative wording. Unchosen reasons remain uncertain; seed/duplicate suggestions are excluded; provider years assist identity review; identical in-flight calls share work. The fresh diagnostic did not demonstrate an accuracy advantage, so production remains at 12 candidates. Real existing-account login, refresh, Owner access and logout passed; fresh registration/code delivery were not observed. The required host restart and disposable-record persistence check completed successfully. Devpost’s updated story and five October 29 captures were saved and verified; it remains an owner-controlled unsubmitted draft.
+
+## Previous October 28 release: finalist readiness and bounded evidence
 
 The deployed application is `bbb3e095bf080882f1c6e466dd54154c8787ba15`. Its inspected image revision label and public `/api/status` agree. The [final audit](FINAL_READINESS_AUDIT.md) records the image digest, environment-presence, database/backup checks, fixes and remaining owner gates. Source CI passed. Verification passed **80 unit/integration tests** with real Qloo enabled and **21 local browser checks**, skipping the two provider cases exercised publicly. The public run passed seventeen cases but had three browser-context setup failures across a long runner interruption; all three passed on focused retry. All **twenty applicable public cases** therefore passed across the runs, with three intentional local-only fixture/concurrency skips. This is not described as one clean uninterrupted full public run.
 

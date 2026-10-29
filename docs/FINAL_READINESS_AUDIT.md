@@ -1,5 +1,7 @@
 # Final readiness audit — October 28, 2026
 
+Historical October 28 checkpoint. See the [October 29 mission report](FINAL_MISSION_REPORT_2026-10-29.md) for later fixes and fresh verification.
+
 **The tested core product is publicly usable. Final submission and independent product benefit remain unestablished.** This audit combines a separate agent's targeted source review with implementation-agent verification. It is not an external security certification, a human user study or a prediction of finalist selection.
 
 ## Release identity and recovery

@@ -26,7 +26,7 @@ TypeScript, Next.js, React Flow and SQLite support both experiences. Reusable ta
 
 ## What we tested—and learned
 
-The readiness check passed 80 unit/integration tests, including actual Qloo calls, plus 21 local browser checks. Public Qloo and Bedrock journeys passed. A later browser-runner interruption caused three context-setup failures before app navigation; all three passed on focused retry. We preserve this distinction in the release audit rather than claim one uninterrupted clean run.
+The October 29 verification passed 89 unit/integration tests, including actual Qloo calls, plus 22 local browser checks with two intentional live-provider skips. A clean public run passed 21 cases, including real Qloo and Bedrock, with three intentional local-only fixture/concurrency skips. The release report preserves the older interrupted run and its focused retries separately. Build, TypeScript and CI passed. A disposable record survived the completed server restart and was then removed.
 
 We also ran a frozen **public-list proxy benchmark**, because real volunteer testers were unavailable. Agents researched five public BFI film ballots; the script sent only seed identities to Qloo and scored held-out title overlap. Only one of 25 held-out titles appeared in the candidate pools. A fixed simulated “Emotional storytelling” answer worsened that match from rank 3 to 9. This **does not prove recommendation improvement**. The people whose ballots were public did not participate or endorse the app; title linkage is provisional, and the comparison shares Qloo's candidate pool.
 
@@ -52,8 +52,8 @@ Genuine independent preference comparisons and business-owner judgments are the 
 
 Real Qloo suggestions using test tastes; not a recommendation-quality claim:
 
-![Personal Qloo suggestions](https://raw.githubusercontent.com/marwanehmamouchi05/tastekey-relay/main/docs/screenshots/finalist-public/personal-qloo.png)
+![Personal Qloo suggestions](https://raw.githubusercontent.com/marwanehmamouchi05/tastekey-relay/main/docs/screenshots/mission-public/personal-qloo.png)
 
 Real Qloo analysis of an explicitly synthetic cinema brief; allocations are planning bounds, not supplier quotes or a sales forecast:
 
-![Studio with real Qloo evidence and a synthetic business brief](https://raw.githubusercontent.com/marwanehmamouchi05/tastekey-relay/main/docs/screenshots/finalist-public/studio-qloo.png)
+![Studio with real Qloo evidence and a synthetic business brief](https://raw.githubusercontent.com/marwanehmamouchi05/tastekey-relay/main/docs/screenshots/mission-public/studio-qloo.png)

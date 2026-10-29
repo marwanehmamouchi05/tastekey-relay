@@ -1,5 +1,7 @@
 # Component verification — October 28, 2026
 
+Historical October 28 checkpoint. See the [October 29 mission report](FINAL_MISSION_REPORT_2026-10-29.md) for later fixes and fresh verification.
+
 This is a fresh verification by the implementation agent, not an independent Astra audit. No application code or infrastructure was changed during this check.
 
 Source inspected: `9b9990f8783a55393e4eab68c759766b08cb44a0`. The working tree was clean before verification. Public checks targeted https://tastekey.52.47.205.18.sslip.io. The previously recorded deployed application revision is `299a4c2ec1528bfb3c67ebcec9441b6667e31f93`; the source HEAD also contains documentation. This check did not independently inspect the running container's revision.
