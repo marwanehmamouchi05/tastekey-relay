@@ -18,6 +18,7 @@ export const EntitySchema = z.object({
   category: Category,
   affinity: z.number().optional(),
   description: z.string().max(3000).optional(),
+  releaseYear: z.number().int().min(1800).max(2200).optional(),
   explainability: z.string().max(4000).optional(),
   tags: z.array(z.string()).default([]),
 });
@@ -103,6 +104,7 @@ export type QlooEvidence = {
   entities: Entity[];
   at: string;
   cached: boolean;
+  requestAttempts?: number;
 };
 export const BusinessSchema = z.object({
   name: z.string().trim().min(2).max(100),

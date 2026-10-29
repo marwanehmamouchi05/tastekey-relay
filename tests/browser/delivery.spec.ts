@@ -185,7 +185,13 @@ test("scripts require a changing nonce while the interactive graph and quote bud
     tags: [],
   };
   await page.route("**/api/search", (r) =>
-    r.fulfill({ json: { id: "synthetic-search", entities: [entity] } }),
+    // Discovery is a distinct reviewed seed; recommendations must be new entity IDs.
+    r.fulfill({
+      json: {
+        id: "synthetic-search",
+        entities: [{ ...entity, id: "synthetic-seed-destination" }],
+      },
+    }),
   );
   await page.route("**/api/recommend", (r) =>
     r.fulfill({ json: { id: "synthetic-response", entities: [entity] } }),

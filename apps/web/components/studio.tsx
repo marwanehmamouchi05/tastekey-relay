@@ -574,7 +574,10 @@ function BusinessForm({
               onClick={() => field("seeds", [...form.seeds, e])}
             >
               <span>
-                <strong>{e.name}</strong>
+                <strong>
+                  {e.name}
+                  {e.releaseYear ? ` (${e.releaseYear})` : ""}
+                </strong>
                 <small>{e.description?.slice(0, 150) || e.category}</small>
               </span>
               <Plus size={16} />

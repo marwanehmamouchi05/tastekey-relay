@@ -32,3 +32,14 @@ it("also accepts raw Insights response envelopes", () => {
 it("does not accept a malformed response as empty success", () => {
   expect(() => normalizeEntities({ success: false }, "movie")).toThrow();
 });
+it("preserves returned release years for disambiguation and deduplicates by provider ID", () => {
+  const raw = { ...entity, properties: { release_year: 1999 } };
+  expect(normalizeEntities([raw, raw], "movie")).toHaveLength(1);
+  expect(normalizeEntities([raw], "movie")[0].releaseYear).toBe(1999);
+  expect(
+    normalizeEntities(
+      [{ ...entity, properties: { release_year: "unknown" } }],
+      "movie",
+    )[0].releaseYear,
+  ).toBeUndefined();
+});

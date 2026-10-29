@@ -37,6 +37,7 @@ import {
   removePreference,
   setBudget,
   rankByVerifiedMetadata,
+  recommendationCandidates,
 } from "@tastekey/taste-engine";
 import {
   authorizedContext,
@@ -438,7 +439,9 @@ function Discover({ profile, update, error }: Props) {
                   <span>
                     <strong>{e.name}</strong>
                     <small>
-                      {e.category} · {e.description?.slice(0, 100)}
+                      {e.category} ·{" "}
+                      {e.releaseYear ? `${e.releaseYear} · ` : ""}
+                      {e.description?.slice(0, 100)}
                     </small>
                   </span>
                   <Plus size={17} />
@@ -559,7 +562,8 @@ function Verification({ profile, update }: Pick<Props, "profile" | "update">) {
             None of these fit
           </button>
           <p className="microcopy">
-            These are guesses. Only you can say what fits.
+            These are guesses. Choosing one leaves the others uncertain. If
+            you’re not sure, skip this question.
           </p>
           <details>
             <summary>Why are we asking?</summary>
@@ -947,10 +951,14 @@ function Relay({ profile, update, error }: Props) {
         version === requestVersion.current &&
         Date.parse(profile.consents[context]!.expiresAt) > Date.now()
       ) {
-        setResult(data);
+        const fresh = {
+          ...data,
+          entities: recommendationCandidates(data.entities, entityIds),
+        };
+        setResult(fresh);
         localStorage.setItem(
           "tastekey.proof.pool",
-          JSON.stringify({ ...data, context }),
+          JSON.stringify({ ...fresh, context }),
         );
       }
     } catch (e) {
@@ -1155,10 +1163,17 @@ function Relay({ profile, update, error }: Props) {
             {result && (
               <>
                 <p className="microcopy">
-                  Qloo candidates, locally reranked using authorized, confirmed
-                  keywords in returned metadata. Ties keep Qloo order. The
-                  source trace preserves the original response order.
+                  Qloo suggestions come first. A reason you confirmed can move a
+                  result by one place when its description or tags match. No
+                  match means no change. The source trace keeps Qloo’s order.
+                  References you used are left out.
                 </p>
+                {!result.entities.length && (
+                  <p>
+                    No new suggestions came back. Try another reference or
+                    category.
+                  </p>
+                )}
                 <div className="result-grid">
                   {rankByVerifiedMetadata(result.entities, grant.nodes).map(
                     (e, i) => (

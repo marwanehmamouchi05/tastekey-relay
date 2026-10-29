@@ -1,0 +1,1245 @@
+{
+  "protocolFile": "results-retrieval-diagnostic-2026-10-29T00-28-56-554Z.protocol.json",
+  "protocolSha256": "9ff30dd5ffb4d9fd3ef95c3f4468ba5202a6f084ea39e84d72cc68db33c9608d",
+  "startedAt": "2026-10-29T00:28:56.554Z",
+  "adapterCalls": 14,
+  "upstreamAttempts": 14,
+  "modelCalls": 0,
+  "cases": [
+    {
+      "id": "jason-anderson-annual-2022",
+      "seedResolution": [
+        {
+          "title": "Aftersun",
+          "ms": 18476,
+          "cached": false,
+          "status": "ambiguous",
+          "candidates": [
+            {
+              "id": "8481AF5B-82DF-42B7-9900-371EAFBA56FB",
+              "name": "Aftersun",
+              "releaseYear": 2022
+            },
+            {
+              "id": "40ABE7B6-1E7B-4AF6-84F1-3D58E9168DAB",
+              "name": "Aftersun",
+              "releaseYear": 2006
+            },
+            {
+              "id": "62348A31-A930-475C-B779-934663A6ED60",
+              "name": "After Sundown",
+              "releaseYear": 2023
+            },
+            {
+              "id": "5A414B0F-6FFB-4562-B37B-245F93C0C3D2",
+              "name": "Aftersun",
+              "releaseYear": 2022
+            }
+          ]
+        },
+        {
+          "title": "The Fabelmans",
+          "ms": 2684,
+          "cached": false,
+          "status": "ambiguous",
+          "candidates": [
+            {
+              "id": "C5F1E4CA-F802-4EC4-BD2E-398CBA0B4345",
+              "name": "The Fabelmans",
+              "releaseYear": 2022
+            },
+            {
+              "id": "FCEEF93D-2020-41C5-8716-91742E87B79A",
+              "name": "The Fabelmans",
+              "releaseYear": 2022
+            }
+          ]
+        },
+        {
+          "title": "Flux Gourmet",
+          "ms": 2384,
+          "cached": false,
+          "status": "unique-title-only",
+          "candidates": [
+            {
+              "id": "80A646A6-18CC-4E0F-8DD1-E45BDB5855D8",
+              "name": "Flux Gourmet",
+              "releaseYear": 2022
+            },
+            {
+              "id": "BDA76D76-9F73-43A4-A1A1-F4CBC9F35140",
+              "name": "Æon Flux",
+              "releaseYear": 2005
+            },
+            {
+              "id": "4D4DC932-8D3B-4800-ABF2-C12D69626104",
+              "name": "Flux",
+              "releaseYear": 2026
+            },
+            {
+              "id": "DB72BB4C-3446-4C59-A6CF-55D68C345316",
+              "name": "The Solitary Gourmet",
+              "releaseYear": 2024
+            },
+            {
+              "id": "31B91815-AEAA-4877-A36F-6CBBD5C04E66",
+              "name": "Crayon Shin-chan: Very Tasty! B-class Gourmet Survival!!",
+              "releaseYear": 2013
+            }
+          ]
+        },
+        {
+          "title": "Nope",
+          "ms": 2516,
+          "cached": false,
+          "status": "unique-title-only",
+          "candidates": [
+            {
+              "id": "AA1B7CBB-DA01-460E-8BAE-76C094EA341A",
+              "name": "Nope",
+              "releaseYear": 2022
+            },
+            {
+              "id": "92C52C0D-69C7-4F77-937F-156432836A30",
+              "name": "The Quick and the Dead",
+              "releaseYear": 1995
+            },
+            {
+              "id": "62D5EDE5-7E2C-4461-B4CB-1C9ABBAC9627",
+              "name": "No Pets",
+              "releaseYear": 1994
+            },
+            {
+              "id": "550F4862-43D8-4784-961B-66E4ED794ABF",
+              "name": "No Perfect Man",
+              "releaseYear": 2026
+            },
+            {
+              "id": "57F8E5FF-77E8-4D2E-B901-EAB610A273B4",
+              "name": "The World's Fastest Indian",
+              "releaseYear": 2005
+            }
+          ]
+        },
+        {
+          "title": "I Have Electric Dreams",
+          "ms": 2579,
+          "cached": false,
+          "status": "unique-title-only",
+          "candidates": [
+            {
+              "id": "2934EBE5-6E0E-401A-A059-47DB83BA7E9F",
+              "name": "I Have Electric Dreams",
+              "releaseYear": 2022
+            },
+            {
+              "id": "E0219B66-CFB9-4065-97F1-5A8BB5FC21A5",
+              "name": "Robot Dreams",
+              "releaseYear": 2023
+            },
+            {
+              "id": "0BEA1EDE-CAA5-4B80-835D-47EE0F9DF185",
+              "name": "What Have I Done to Deserve This?",
+              "releaseYear": 1984
+            },
+            {
+              "id": "9C934CAF-9F72-453B-80CA-6107277A9600",
+              "name": "I Travel Because I Have to, I Come Back Because I Love You",
+              "releaseYear": 2009
+            },
+            {
+              "id": "3D6A1C2C-8E9C-431F-90D2-6A06B809B8F4",
+              "name": "To Have and Have Not",
+              "releaseYear": 1944
+            }
+          ]
+        }
+      ],
+      "strategies": [
+        {
+          "take": 12,
+          "ms": 3897,
+          "cached": false,
+          "evidenceId": "76712804-b60f-43c7-91a7-8f20af3a3dcd",
+          "returnedCount": 12,
+          "candidateCount": 12,
+          "uniqueTagCount": 221,
+          "descriptions": 12,
+          "releaseYears": 12,
+          "questionCount": {
+            "qloo": 0,
+            "legacy": 1,
+            "conservative": 1
+          },
+          "candidates": [
+            {
+              "id": "8206B421-5C85-4A2F-9612-9E57572F1938",
+              "name": "Beau Is Afraid",
+              "releaseYear": 2023,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "F8D79A68-0761-4F43-A1F1-827C66B07A5D",
+              "name": "The Humans",
+              "releaseYear": 2021,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "630E2345-6239-4335-A48C-8FE41A7E9D50",
+              "name": "White Noise",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "4721D130-DF02-483D-8743-A79A414ED076",
+              "name": "Infinity Pool",
+              "releaseYear": 2023,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "F6BC6958-C169-45A6-96B7-57B50D1E3FFA",
+              "name": "Bones and All",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "7851E2AD-088D-4470-983D-1DE2B91EB07D",
+              "name": "Men",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "AE9C2B29-2CDE-4F6A-A07C-077B492EB02B",
+              "name": "Crimes of the Future",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "F424E2BA-BBBA-4D5F-9CAE-BE8F26646990",
+              "name": "Pearl",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "1A9C4479-BDBC-46E7-9D68-196F9747093D",
+              "name": "Bodies Bodies Bodies",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "B74BF49E-83E5-42C7-A2DD-24A31C6A5F63",
+              "name": "Earwig",
+              "releaseYear": 2021,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "32343B35-57C8-425B-B9AB-1AFC6EDDB731",
+              "name": "Piggy",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "29EF0914-CCBB-4DC6-BFDE-7CD72146F4D8",
+              "name": "Tár",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            }
+          ],
+          "rankings": {
+            "qloo": [
+              "beauisafraid",
+              "thehumans",
+              "whitenoise",
+              "infinitypool",
+              "bonesandall",
+              "men",
+              "crimesofthefuture",
+              "pearl",
+              "bodiesbodiesbodies",
+              "earwig",
+              "piggy",
+              "tar"
+            ],
+            "legacy": [
+              "bonesandall",
+              "earwig",
+              "piggy",
+              "tar",
+              "beauisafraid",
+              "thehumans",
+              "whitenoise",
+              "infinitypool",
+              "men",
+              "crimesofthefuture",
+              "pearl",
+              "bodiesbodiesbodies"
+            ],
+            "conservative": [
+              "beauisafraid",
+              "thehumans",
+              "whitenoise",
+              "infinitypool",
+              "bonesandall",
+              "men",
+              "crimesofthefuture",
+              "pearl",
+              "bodiesbodiesbodies",
+              "earwig",
+              "piggy",
+              "tar"
+            ]
+          },
+          "rankingsFrozenAt": "2026-10-29T00:29:29.097Z",
+          "metrics": {
+            "positiveCount": 5,
+            "candidateCount": 12,
+            "retrievedPositiveCount": 0,
+            "retrievalRecall": 0,
+            "metrics": {
+              "qloo": {
+                "hitAtK": 0,
+                "recallAtK": 0,
+                "reciprocalRank": 0,
+                "ndcgAtK": 0,
+                "firstRelevantRank": null
+              },
+              "legacy": {
+                "hitAtK": 0,
+                "recallAtK": 0,
+                "reciprocalRank": 0,
+                "ndcgAtK": 0,
+                "firstRelevantRank": null
+              },
+              "conservative": {
+                "hitAtK": 0,
+                "recallAtK": 0,
+                "reciprocalRank": 0,
+                "ndcgAtK": 0,
+                "firstRelevantRank": null
+              }
+            }
+          }
+        },
+        {
+          "take": 20,
+          "ms": 3618,
+          "cached": false,
+          "evidenceId": "2b38226e-c99e-4c0b-aaa9-4ee75c8a7de6",
+          "returnedCount": 20,
+          "candidateCount": 20,
+          "uniqueTagCount": 342,
+          "descriptions": 20,
+          "releaseYears": 20,
+          "questionCount": {
+            "qloo": 0,
+            "legacy": 1,
+            "conservative": 1
+          },
+          "candidates": [
+            {
+              "id": "8206B421-5C85-4A2F-9612-9E57572F1938",
+              "name": "Beau Is Afraid",
+              "releaseYear": 2023,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "F8D79A68-0761-4F43-A1F1-827C66B07A5D",
+              "name": "The Humans",
+              "releaseYear": 2021,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "630E2345-6239-4335-A48C-8FE41A7E9D50",
+              "name": "White Noise",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "4721D130-DF02-483D-8743-A79A414ED076",
+              "name": "Infinity Pool",
+              "releaseYear": 2023,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "F6BC6958-C169-45A6-96B7-57B50D1E3FFA",
+              "name": "Bones and All",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "7851E2AD-088D-4470-983D-1DE2B91EB07D",
+              "name": "Men",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "AE9C2B29-2CDE-4F6A-A07C-077B492EB02B",
+              "name": "Crimes of the Future",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "F424E2BA-BBBA-4D5F-9CAE-BE8F26646990",
+              "name": "Pearl",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "1A9C4479-BDBC-46E7-9D68-196F9747093D",
+              "name": "Bodies Bodies Bodies",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "B74BF49E-83E5-42C7-A2DD-24A31C6A5F63",
+              "name": "Earwig",
+              "releaseYear": 2021,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "32343B35-57C8-425B-B9AB-1AFC6EDDB731",
+              "name": "Piggy",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "29EF0914-CCBB-4DC6-BFDE-7CD72146F4D8",
+              "name": "Tár",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "A7A09CFD-9FEE-476D-8F9D-2D699B14D6E9",
+              "name": "The Five Devils",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "04EA45CC-A549-4AEB-9CC8-CD9BFCD3673B",
+              "name": "The Innocents",
+              "releaseYear": 2021,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "5C774699-470F-40FC-8A65-AAD67C3329EF",
+              "name": "Lamb",
+              "releaseYear": 2021,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "E0B46A45-1156-493F-82CE-01954B50B656",
+              "name": "Nanny",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "D55426BF-1E16-40F5-9E9A-1A0FA88EEBB2",
+              "name": "How to Have Sex",
+              "releaseYear": 2023,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "F26587D9-39C2-4207-A071-D377882D8899",
+              "name": "Dream Scenario",
+              "releaseYear": 2023,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "1D6CA600-11FC-4C9B-BBEB-376E4F3641E6",
+              "name": "Poor Things",
+              "releaseYear": 2023,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "B13535E9-8D85-4153-8BAB-8F7A0A9BE6A1",
+              "name": "The Eternal Daughter",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            }
+          ],
+          "rankings": {
+            "qloo": [
+              "beauisafraid",
+              "thehumans",
+              "whitenoise",
+              "infinitypool",
+              "bonesandall",
+              "men",
+              "crimesofthefuture",
+              "pearl",
+              "bodiesbodiesbodies",
+              "earwig",
+              "piggy",
+              "tar",
+              "thefivedevils",
+              "theinnocents",
+              "lamb",
+              "nanny",
+              "howtohavesex",
+              "dreamscenario",
+              "poorthings",
+              "theeternaldaughter"
+            ],
+            "legacy": [
+              "bonesandall",
+              "earwig",
+              "piggy",
+              "tar",
+              "theinnocents",
+              "nanny",
+              "howtohavesex",
+              "theeternaldaughter",
+              "beauisafraid",
+              "thehumans",
+              "whitenoise",
+              "infinitypool",
+              "men",
+              "crimesofthefuture",
+              "pearl",
+              "bodiesbodiesbodies",
+              "thefivedevils",
+              "lamb",
+              "dreamscenario",
+              "poorthings"
+            ],
+            "conservative": [
+              "beauisafraid",
+              "thehumans",
+              "whitenoise",
+              "infinitypool",
+              "bonesandall",
+              "men",
+              "crimesofthefuture",
+              "pearl",
+              "bodiesbodiesbodies",
+              "earwig",
+              "piggy",
+              "tar",
+              "thefivedevils",
+              "theinnocents",
+              "lamb",
+              "nanny",
+              "howtohavesex",
+              "dreamscenario",
+              "poorthings",
+              "theeternaldaughter"
+            ]
+          },
+          "rankingsFrozenAt": "2026-10-29T00:29:32.717Z",
+          "metrics": {
+            "positiveCount": 5,
+            "candidateCount": 20,
+            "retrievedPositiveCount": 0,
+            "retrievalRecall": 0,
+            "metrics": {
+              "qloo": {
+                "hitAtK": 0,
+                "recallAtK": 0,
+                "reciprocalRank": 0,
+                "ndcgAtK": 0,
+                "firstRelevantRank": null
+              },
+              "legacy": {
+                "hitAtK": 0,
+                "recallAtK": 0,
+                "reciprocalRank": 0,
+                "ndcgAtK": 0,
+                "firstRelevantRank": null
+              },
+              "conservative": {
+                "hitAtK": 0,
+                "recallAtK": 0,
+                "reciprocalRank": 0,
+                "ndcgAtK": 0,
+                "firstRelevantRank": null
+              }
+            }
+          }
+        }
+      ],
+      "noQlooEditorial": {
+        "providerCalls": 0,
+        "questionCount": 0,
+        "ranking": [
+          "saintomer",
+          "decisiontoleave",
+          "thebansheesofinisherin",
+          "allthebeautyandthebloodshed",
+          "onefinemorning",
+          "eo",
+          "rrr",
+          "tar",
+          "corsage",
+          "pacifiction"
+        ],
+        "metrics": {
+          "positiveCount": 5,
+          "candidateCount": 10,
+          "retrievedPositiveCount": 1,
+          "retrievalRecall": 0.2,
+          "metrics": {
+            "editorial": {
+              "hitAtK": 0,
+              "recallAtK": 0,
+              "reciprocalRank": 0.16666666666666666,
+              "ndcgAtK": 0,
+              "firstRelevantRank": 6
+            }
+          }
+        }
+      },
+      "status": "complete"
+    },
+    {
+      "id": "michael-atkinson-annual-2022",
+      "seedResolution": [
+        {
+          "title": "Vortex",
+          "ms": 2367,
+          "cached": false,
+          "status": "ambiguous",
+          "candidates": [
+            {
+              "id": "169914D5-5A95-4D2D-8FBA-F400F524B95F",
+              "name": "Vortex",
+              "releaseYear": 2021
+            },
+            {
+              "id": "384B8640-2271-440B-8DFA-17E03F68735F",
+              "name": "Vortex",
+              "releaseYear": 2019
+            },
+            {
+              "id": "87B5EC4A-DA0D-420D-BC5C-6E7FABC67274",
+              "name": "Vortex: A Film Anthology",
+              "releaseYear": 2022
+            },
+            {
+              "id": "7303211A-B4DF-472D-ADF3-ACE3055B2DF7",
+              "name": "Vortex Falls",
+              "releaseYear": 2025
+            },
+            {
+              "id": "023CD603-E66A-4686-98DC-15C078DBFD17",
+              "name": "Vortex, the Dawn of Sovereignty",
+              "releaseYear": 2021
+            }
+          ]
+        },
+        {
+          "title": "Hit the Road",
+          "ms": 2363,
+          "cached": false,
+          "status": "ambiguous",
+          "candidates": [
+            {
+              "id": "1A0A6F6B-7F97-42CE-8C3C-FF5B7055ADB4",
+              "name": "Hit the Road",
+              "releaseYear": 2021
+            },
+            {
+              "id": "BE12F0E9-A22A-4138-9F81-38158B38127E",
+              "name": "Hit the Road: India",
+              "releaseYear": 2013
+            },
+            {
+              "id": "55BD9026-B99F-4261-9BA8-793FEAE3C249",
+              "name": "Hit the Road",
+              "releaseYear": 1941
+            },
+            {
+              "id": "D4E2CD37-1394-4064-A269-47DFEE6459AC",
+              "name": "Hit the Road Running",
+              "releaseYear": 1983
+            },
+            {
+              "id": "56024F5B-6319-49F7-9791-22FBC8446AFF",
+              "name": "Hit the Road, Nonna",
+              "releaseYear": 2011
+            }
+          ]
+        },
+        {
+          "title": "Playground",
+          "ms": 2461,
+          "cached": false,
+          "status": "ambiguous",
+          "candidates": [
+            {
+              "id": "C4B08A86-CB41-41D9-A540-9ABF8714B660",
+              "name": "Playground",
+              "releaseYear": 2021
+            },
+            {
+              "id": "C078E701-B418-4E3C-A11D-DB7E90236832",
+              "name": "Playground",
+              "releaseYear": 2016
+            },
+            {
+              "id": "6E0EC6B1-EA1C-41B7-8BC2-FB9B682BD59C",
+              "name": "The Deadman's Playground",
+              "releaseYear": 2025
+            },
+            {
+              "id": "120679F0-B5BA-4D90-B535-F9AABD096171",
+              "name": "Playground",
+              "releaseYear": 2009
+            },
+            {
+              "id": "717962D1-5C02-4756-BFEB-DA8B6C3F2A0A",
+              "name": "Playground",
+              "releaseYear": 2024
+            }
+          ]
+        },
+        {
+          "title": "No Bears",
+          "ms": 2554,
+          "cached": false,
+          "status": "unique-title-only",
+          "candidates": [
+            {
+              "id": "C0AA997E-D59A-4F4E-A019-9352DA7D8E11",
+              "name": "No Bears",
+              "releaseYear": 2022
+            },
+            {
+              "id": "346E3040-AF13-4B51-8955-6F27C6609E3B",
+              "name": "Care Bears Movie II: A New Generation",
+              "releaseYear": 1986
+            },
+            {
+              "id": "FE68859F-759D-4C8E-B2EA-82124487E6C2",
+              "name": "Santa and the Three Bears",
+              "releaseYear": 1970
+            },
+            {
+              "id": "CB376BE9-384A-41C5-9231-3592AF84ADCD",
+              "name": "Spider-Man: No Way Home",
+              "releaseYear": 2021
+            },
+            {
+              "id": "E77E42AB-CCB5-4402-A46F-004C1C34749A",
+              "name": "No Country for Old Men",
+              "releaseYear": 2007
+            }
+          ]
+        },
+        {
+          "title": "Apollo 10½: A Space Age Childhood",
+          "ms": 2534,
+          "cached": false,
+          "status": "unique-title-only",
+          "candidates": [
+            {
+              "id": "3D3F997D-615C-4BB0-BDA4-441C4C85A6BD",
+              "name": "Apollo 10½: A Space Age Childhood",
+              "releaseYear": 2022
+            },
+            {
+              "id": "2BF7D02E-4ED5-4D41-92AD-2E36FA2A857A",
+              "name": "Space Agents: The Mysterious Ax",
+              "releaseYear": 2023
+            },
+            {
+              "id": "8D7E76F9-3A3D-40A9-8FC1-407CDB1BB7F8",
+              "name": "Spacewalker",
+              "releaseYear": 2017
+            },
+            {
+              "id": "6B6BF8C1-5C25-4134-A169-39D619A6F4A3",
+              "name": "Space Adventure Cobra",
+              "releaseYear": 1982
+            },
+            {
+              "id": "B66D0DF5-1850-4C4F-83F1-55CDFE4F1A4C",
+              "name": "Secret Space UFOs: Apollo 1-11",
+              "releaseYear": 2023
+            }
+          ]
+        }
+      ],
+      "strategies": [
+        {
+          "take": 12,
+          "ms": 3872,
+          "cached": false,
+          "evidenceId": "80c932a7-585f-4c7e-b43b-1da5512d8944",
+          "returnedCount": 12,
+          "candidateCount": 11,
+          "uniqueTagCount": 198,
+          "descriptions": 11,
+          "releaseYears": 11,
+          "questionCount": {
+            "qloo": 0,
+            "legacy": 1,
+            "conservative": 1
+          },
+          "candidates": [
+            {
+              "id": "B30DB61E-707C-421E-A1C4-1A912B7F067D",
+              "name": "Perfect Days",
+              "releaseYear": 2023,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "0815796B-145D-4B9C-8C3E-9F440C4B8375",
+              "name": "EO",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "8481AF5B-82DF-42B7-9900-371EAFBA56FB",
+              "name": "Aftersun",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "C5F1E4CA-F802-4EC4-BD2E-398CBA0B4345",
+              "name": "The Fabelmans",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "6883B91C-2D78-498E-8863-A2C0CCBD1C6C",
+              "name": "Bardo: False Chronicle of a Handful of Truths",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "E7208ABC-1216-450E-AA43-B4DDC8798940",
+              "name": "Return to Seoul",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "90422160-276B-43B1-AF6F-B1C3EE72083A",
+              "name": "The Banshees of Inisherin",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "0BA7582F-2193-4DDA-8A92-2AD0C501CF55",
+              "name": "Broker",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "C4312710-DBFA-4023-AE72-597196DAFA03",
+              "name": "Asteroid City",
+              "releaseYear": 2023,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "BC28D270-FD25-4257-95C7-78D1DB05F012",
+              "name": "Living",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "5CD96CCE-8CC0-4E96-A34D-2927EBA64E76",
+              "name": "Fallen Leaves",
+              "releaseYear": 2023,
+              "descriptionPresent": true,
+              "tagCount": 20
+            }
+          ],
+          "rankings": {
+            "qloo": [
+              "perfectdays",
+              "eo",
+              "aftersun",
+              "thefabelmans",
+              "bardofalsechronicleofahandfuloftruths",
+              "returntoseoul",
+              "thebansheesofinisherin",
+              "broker",
+              "asteroidcity",
+              "living",
+              "fallenleaves"
+            ],
+            "legacy": [
+              "broker",
+              "perfectdays",
+              "aftersun",
+              "thefabelmans",
+              "bardofalsechronicleofahandfuloftruths",
+              "returntoseoul",
+              "thebansheesofinisherin",
+              "asteroidcity",
+              "fallenleaves",
+              "eo",
+              "living"
+            ],
+            "conservative": [
+              "perfectdays",
+              "eo",
+              "aftersun",
+              "thefabelmans",
+              "bardofalsechronicleofahandfuloftruths",
+              "returntoseoul",
+              "thebansheesofinisherin",
+              "broker",
+              "asteroidcity",
+              "living",
+              "fallenleaves"
+            ]
+          },
+          "rankingsFrozenAt": "2026-10-29T00:29:48.874Z",
+          "metrics": {
+            "positiveCount": 5,
+            "candidateCount": 11,
+            "retrievedPositiveCount": 1,
+            "retrievalRecall": 0.2,
+            "metrics": {
+              "qloo": {
+                "hitAtK": 1,
+                "recallAtK": 0.2,
+                "reciprocalRank": 0.3333333333333333,
+                "ndcgAtK": 0.23463936301137822,
+                "firstRelevantRank": 3
+              },
+              "legacy": {
+                "hitAtK": 1,
+                "recallAtK": 0.2,
+                "reciprocalRank": 0.3333333333333333,
+                "ndcgAtK": 0.23463936301137822,
+                "firstRelevantRank": 3
+              },
+              "conservative": {
+                "hitAtK": 1,
+                "recallAtK": 0.2,
+                "reciprocalRank": 0.3333333333333333,
+                "ndcgAtK": 0.23463936301137822,
+                "firstRelevantRank": 3
+              }
+            }
+          }
+        },
+        {
+          "take": 20,
+          "ms": 3905,
+          "cached": false,
+          "evidenceId": "4634ea90-c56c-498b-bf96-2c636e72222f",
+          "returnedCount": 20,
+          "candidateCount": 19,
+          "uniqueTagCount": 326,
+          "descriptions": 19,
+          "releaseYears": 19,
+          "questionCount": {
+            "qloo": 0,
+            "legacy": 1,
+            "conservative": 1
+          },
+          "candidates": [
+            {
+              "id": "B30DB61E-707C-421E-A1C4-1A912B7F067D",
+              "name": "Perfect Days",
+              "releaseYear": 2023,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "0815796B-145D-4B9C-8C3E-9F440C4B8375",
+              "name": "EO",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "8481AF5B-82DF-42B7-9900-371EAFBA56FB",
+              "name": "Aftersun",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "C5F1E4CA-F802-4EC4-BD2E-398CBA0B4345",
+              "name": "The Fabelmans",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "6883B91C-2D78-498E-8863-A2C0CCBD1C6C",
+              "name": "Bardo: False Chronicle of a Handful of Truths",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "E7208ABC-1216-450E-AA43-B4DDC8798940",
+              "name": "Return to Seoul",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "90422160-276B-43B1-AF6F-B1C3EE72083A",
+              "name": "The Banshees of Inisherin",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "0BA7582F-2193-4DDA-8A92-2AD0C501CF55",
+              "name": "Broker",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "C4312710-DBFA-4023-AE72-597196DAFA03",
+              "name": "Asteroid City",
+              "releaseYear": 2023,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "BC28D270-FD25-4257-95C7-78D1DB05F012",
+              "name": "Living",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "5CD96CCE-8CC0-4E96-A34D-2927EBA64E76",
+              "name": "Fallen Leaves",
+              "releaseYear": 2023,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "29EF0914-CCBB-4DC6-BFDE-7CD72146F4D8",
+              "name": "Tár",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "4457D3C8-FC5F-4020-8193-C7B89FE1C185",
+              "name": "The Quiet Girl",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "9A62B37E-9A6D-47DA-A6FD-9414FA7F7710",
+              "name": "Past Lives",
+              "releaseYear": 2023,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "5C7471A2-E28D-4CFA-BEFB-4B65721FF58B",
+              "name": "Alcarràs",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "5F1CFDC6-FD7A-44FF-B829-19C7DC4D1527",
+              "name": "The Holdovers",
+              "releaseYear": 2023,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "99B89840-700C-4C03-B69E-9361F6500871",
+              "name": "Guillermo del Toro's Pinocchio",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "9A4730B9-531B-44D3-923A-A9149E58B310",
+              "name": "Empire of Light",
+              "releaseYear": 2022,
+              "descriptionPresent": true,
+              "tagCount": 20
+            },
+            {
+              "id": "3ECAC26F-AC87-4E09-8A54-4B138B8596C6",
+              "name": "The Zone of Interest",
+              "releaseYear": 2023,
+              "descriptionPresent": true,
+              "tagCount": 20
+            }
+          ],
+          "rankings": {
+            "qloo": [
+              "perfectdays",
+              "eo",
+              "aftersun",
+              "thefabelmans",
+              "bardofalsechronicleofahandfuloftruths",
+              "returntoseoul",
+              "thebansheesofinisherin",
+              "broker",
+              "asteroidcity",
+              "living",
+              "fallenleaves",
+              "tar",
+              "thequietgirl",
+              "pastlives",
+              "alcarras",
+              "theholdovers",
+              "guillermodeltorospinocchio",
+              "empireoflight",
+              "thezoneofinterest"
+            ],
+            "legacy": [
+              "broker",
+              "perfectdays",
+              "aftersun",
+              "thefabelmans",
+              "bardofalsechronicleofahandfuloftruths",
+              "returntoseoul",
+              "thebansheesofinisherin",
+              "asteroidcity",
+              "fallenleaves",
+              "tar",
+              "thequietgirl",
+              "pastlives",
+              "alcarras",
+              "theholdovers",
+              "guillermodeltorospinocchio",
+              "empireoflight",
+              "eo",
+              "living",
+              "thezoneofinterest"
+            ],
+            "conservative": [
+              "perfectdays",
+              "eo",
+              "aftersun",
+              "thefabelmans",
+              "bardofalsechronicleofahandfuloftruths",
+              "returntoseoul",
+              "thebansheesofinisherin",
+              "broker",
+              "asteroidcity",
+              "living",
+              "fallenleaves",
+              "tar",
+              "thequietgirl",
+              "pastlives",
+              "alcarras",
+              "theholdovers",
+              "guillermodeltorospinocchio",
+              "empireoflight",
+              "thezoneofinterest"
+            ]
+          },
+          "rankingsFrozenAt": "2026-10-29T00:29:52.781Z",
+          "metrics": {
+            "positiveCount": 5,
+            "candidateCount": 19,
+            "retrievedPositiveCount": 2,
+            "retrievalRecall": 0.4,
+            "metrics": {
+              "qloo": {
+                "hitAtK": 1,
+                "recallAtK": 0.2,
+                "reciprocalRank": 0.3333333333333333,
+                "ndcgAtK": 0.23463936301137822,
+                "firstRelevantRank": 3
+              },
+              "legacy": {
+                "hitAtK": 1,
+                "recallAtK": 0.2,
+                "reciprocalRank": 0.3333333333333333,
+                "ndcgAtK": 0.23463936301137822,
+                "firstRelevantRank": 3
+              },
+              "conservative": {
+                "hitAtK": 1,
+                "recallAtK": 0.2,
+                "reciprocalRank": 0.3333333333333333,
+                "ndcgAtK": 0.23463936301137822,
+                "firstRelevantRank": 3
+              }
+            }
+          }
+        }
+      ],
+      "noQlooEditorial": {
+        "providerCalls": 0,
+        "questionCount": 0,
+        "ranking": [
+          "aftersun",
+          "saintomer",
+          "decisiontoleave",
+          "thebansheesofinisherin",
+          "nope",
+          "allthebeautyandthebloodshed",
+          "onefinemorning",
+          "eo",
+          "rrr",
+          "tar",
+          "corsage",
+          "pacifiction"
+        ],
+        "metrics": {
+          "positiveCount": 5,
+          "candidateCount": 12,
+          "retrievedPositiveCount": 2,
+          "retrievalRecall": 0.4,
+          "metrics": {
+            "editorial": {
+              "hitAtK": 1,
+              "recallAtK": 0.2,
+              "reciprocalRank": 1,
+              "ndcgAtK": 0.46927872602275644,
+              "firstRelevantRank": 1
+            }
+          }
+        }
+      },
+      "status": "complete"
+    }
+  ],
+  "completedAt": "2026-10-29T00:29:52.783Z"
+}

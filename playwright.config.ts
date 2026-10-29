@@ -4,9 +4,13 @@ export default defineConfig({
   testDir: "./tests/browser",
   fullyParallel: false,
   workers: 1,
+  globalTimeout: 600000,
   use: {
     baseURL: remoteOrigin || "http://localhost:3000",
     trace: "retain-on-failure",
+    actionTimeout: 10000,
+    navigationTimeout: 20000,
+    launchOptions: { timeout: 30000 },
   },
   reporter: [["list"], ["html", { open: "never" }]],
   webServer: remoteOrigin

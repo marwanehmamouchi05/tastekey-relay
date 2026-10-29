@@ -42,6 +42,7 @@ test("comparison uses only currently authorized confirmed likes and the producti
       {
         id: "emotional",
         name: "Emotional storytelling film",
+        description: "Emotional storytelling across generations",
         category: "movie",
         tags: [],
       },
@@ -103,4 +104,66 @@ test("judge tour gives separate working entry links without requiring an account
   await page.goto("/tour");
   await page.getByRole("link", { name: "Try Studio", exact: true }).click();
   await expect(page.getByLabel("Business name")).toBeVisible();
+});
+
+test("Suggestions and Proof use the same new-item pool after excluding seed IDs and duplicates", async ({
+  page,
+  context,
+}) => {
+  const seed = {
+    id: "seed-fixture",
+    name: "Reviewed fixture film",
+    category: "movie" as const,
+    tags: [],
+  };
+  const candidate = { ...seed, id: "new-fixture", name: "New fixture film" };
+  const profile = addPreference(emptyProfile(), seed.name, "movie", seed);
+  profile.consents.entertainment = {
+    context: "entertainment",
+    nodeIds: [profile.nodes[0].id],
+    expiresAt: new Date(Date.now() + 86400000).toISOString(),
+    budget: false,
+  };
+  await context.addInitScript((p) => {
+    if (!localStorage.getItem("tastekey.profile.v1"))
+      localStorage.setItem("tastekey.profile.v1", JSON.stringify(p));
+  }, profile);
+  await page.route("**/api/recommend", (r) =>
+    r.fulfill({
+      json: {
+        id: "pool-fixture",
+        source: "qloo",
+        tool: "synthetic test transport",
+        inputs: { entities: seed.id },
+        at: new Date().toISOString(),
+        cached: false,
+        entities: [seed, candidate, candidate],
+      },
+    }),
+  );
+  await page.goto("/personal/relay");
+  await page
+    .getByRole("button", { name: "Get suggestions", exact: true })
+    .click();
+  await expect(page.locator(".result-card")).toHaveCount(1);
+  await expect(page.locator(".result-card")).toContainText(candidate.name);
+  expect(
+    await page.evaluate(() =>
+      JSON.parse(localStorage.getItem("tastekey.proof.pool")!).entities.map(
+        (e: any) => e.id,
+      ),
+    ),
+  ).toEqual([candidate.id]);
+  await page.goto("/personal/proof");
+  await page
+    .getByLabel("Which result would you choose?")
+    .selectOption(candidate.id);
+  await page
+    .getByRole("button", { name: "Record comparison", exact: true })
+    .click();
+  const record = await page.evaluate(
+    () => JSON.parse(localStorage.getItem("tastekey.proof.records")!)[0],
+  );
+  for (const ranking of Object.values(record.rankings))
+    expect(ranking).toEqual([candidate.id]);
 });

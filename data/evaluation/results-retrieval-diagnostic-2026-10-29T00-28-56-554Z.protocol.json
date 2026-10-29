@@ -1,0 +1,88 @@
+{
+  "createdAt": "2026-10-29T00:28:56.551Z",
+  "kind": "fresh-annual-public-list-proxy-not-human-study",
+  "sourceUrl": "https://www.bfi.org.uk/sight-and-sound/polls/best-films-2022-all-votes",
+  "sourceDate": "2022-12-20",
+  "caseSelection": "First two displayed ballots; distinct from original five development ballots. No case substitution.",
+  "cases": [
+    {
+      "id": "jason-anderson-annual-2022",
+      "titles": [
+        "Aftersun",
+        "EO",
+        "The Fabelmans",
+        "Compartment No. 6",
+        "Flux Gourmet",
+        "Kimi",
+        "Nope",
+        "Viking",
+        "I Have Electric Dreams",
+        "Geographies of Solitude"
+      ]
+    },
+    {
+      "id": "michael-atkinson-annual-2022",
+      "titles": [
+        "Vortex",
+        "Crimes of the Future",
+        "Hit the Road",
+        "Aftersun",
+        "Playground",
+        "Brighton 4th",
+        "No Bears",
+        "TÁR",
+        "Apollo 10½: A Space Age Childhood",
+        "Intergalde"
+      ]
+    }
+  ],
+  "editorial": [
+    "Aftersun",
+    "Saint Omer",
+    "Decision to Leave",
+    "The Banshees of Inisherin",
+    "Nope",
+    "All the Beauty and the Bloodshed",
+    "One Fine Morning",
+    "EO",
+    "RRR",
+    "TÁR",
+    "Corsage",
+    "Pacifiction"
+  ],
+  "editorialSource": "https://www.bfi.org.uk/sight-and-sound/polls/50-best-films-2022",
+  "editorialDate": "2022-12-19",
+  "seedPositions": [
+    1,
+    3,
+    5,
+    7,
+    9
+  ],
+  "heldOutPositions": [
+    2,
+    4,
+    6,
+    8,
+    10
+  ],
+  "scriptSha256": "c0233cd12c57c658b79f7b0c5b8061ddf14b9a052c2ea46286bcd3b7feb5ca6a",
+  "rankingSha256": "a882f68f948d585545614072cfbee415786bcc5840afee20e166a0303b00d646",
+  "maximumAdapterCalls": 14,
+  "maximumUpstreamAttempts": 28,
+  "strategies": [
+    "combined-seeds-take12",
+    "combined-seeds-take20"
+  ],
+  "productionTakeUnchanged": 12,
+  "fixedSimulatedAnswer": "Emotional storytelling",
+  "noModelCalls": true,
+  "protocol": "Resolve unique exact-title seeds (ambiguities abstain); sequential same-seed queries at 12 and 20; exclude seed IDs and normalized titles; keep provider order, legacy and conservative rerank. Independently retrieved editorial top12 removes identical seed titles and requires no Qloo calls. Freeze rankings before matching held-out normalized titles. All 10 held-outs remain in denominators; no post-result tuning.",
+  "limits": [
+    "Tiny retrospective expert convenience sample; absence is not dislike; exact title is provisional, no year/director proof.",
+    "Editorial baseline uses the same poll's aggregate, including evaluated voters: circularity benefits baseline. It is not an independent generalization comparison.",
+    "Editorial baseline is restricted to annual films; Qloo is unrestricted, a domain mismatch. This tests discovery overlap, not ordinary-user relevance.",
+    "Answer is simulated, not a statement by either voter; no genuine question-efficiency or correction-recovery measure.",
+    "Provider descriptions are inspected in memory only; persist title/ID/year, metadata presence, hint support/order, latency and call counts. No identity or held-out titles sent to Qloo."
+  ]
+}

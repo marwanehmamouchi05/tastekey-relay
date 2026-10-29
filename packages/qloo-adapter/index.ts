@@ -10,6 +10,7 @@ import {
 } from "../shared-types";
 const exec = promisify(execFile);
 const cache = new Map<string, { at: number; data: QlooEvidence }>();
+const pending = new Map<string, Promise<QlooEvidence>>();
 let active = 0;
 export class QlooError extends Error {
   constructor(
@@ -82,34 +83,63 @@ export function normalizeEntities(raw: unknown, category: Category): Entity[] {
       "INVALID_RESPONSE",
       "Qloo response did not contain an entity list. No substitute data was generated.",
     );
-  return list.slice(0, 20).map((e: any) => {
-    const subtype = String(e.subtype ?? "").replace("urn:entity:", "");
-    return EntitySchema.parse({
-      id: e.entity_id ?? e.id,
-      name: e.name,
-      category: Category.safeParse(subtype).success ? subtype : category,
-      affinity:
-        typeof (e.affinity ?? e.query?.affinity) === "number"
-          ? (e.affinity ?? e.query.affinity)
-          : undefined,
-      description:
-        typeof e.properties?.description === "string"
-          ? e.properties.description.slice(0, 3000)
-          : undefined,
-      explainability:
-        e.query?.explainability === undefined
-          ? undefined
-          : JSON.stringify(e.query.explainability).slice(0, 4000),
-      tags: Array.isArray(e.tags)
-        ? e.tags
-            .map((t: any) => String(t.name ?? t.id ?? ""))
-            .filter(Boolean)
-            .slice(0, 20)
-        : [],
+  const seen = new Set<string>();
+  return list
+    .filter((e: any) => {
+      const id = e.entity_id ?? e.id;
+      if (seen.has(id)) return false;
+      seen.add(id);
+      return true;
+    })
+    .slice(0, 20)
+    .map((e: any) => {
+      const subtype = String(e.subtype ?? "").replace("urn:entity:", "");
+      return EntitySchema.parse({
+        id: e.entity_id ?? e.id,
+        name: e.name,
+        category: Category.safeParse(subtype).success ? subtype : category,
+        affinity:
+          typeof (e.affinity ?? e.query?.affinity) === "number"
+            ? (e.affinity ?? e.query.affinity)
+            : undefined,
+        description:
+          typeof e.properties?.description === "string"
+            ? e.properties.description.slice(0, 3000)
+            : undefined,
+        releaseYear:
+          Number.isInteger(e.properties?.release_year) &&
+          e.properties.release_year >= 1800 &&
+          e.properties.release_year <= 2200
+            ? e.properties.release_year
+            : undefined,
+        explainability:
+          e.query?.explainability === undefined
+            ? undefined
+            : JSON.stringify(e.query.explainability).slice(0, 4000),
+        tags: Array.isArray(e.tags)
+          ? e.tags
+              .map((t: any) => String(t.name ?? t.id ?? ""))
+              .filter(Boolean)
+              .slice(0, 20)
+          : [],
+      });
     });
-  });
 }
 export async function callQloo(
+  tool: "search" | "insights",
+  inputs: Record<string, string>,
+  category: Category,
+): Promise<QlooEvidence> {
+  const key = JSON.stringify({ tool, inputs, category });
+  const shared = pending.get(key);
+  if (shared) return shared;
+  const operation = executeQloo(tool, inputs, category).finally(() =>
+    pending.delete(key),
+  );
+  pending.set(key, operation);
+  return operation;
+}
+async function executeQloo(
   tool: "search" | "insights",
   inputs: Record<string, string>,
   category: Category,
@@ -131,7 +161,7 @@ export async function callQloo(
       "--type",
       `urn:entity:${category}`,
       "--take",
-      tool === "search" ? "5" : "12",
+      tool === "search" ? "5" : inputs.take === "20" ? "20" : "12",
       "--json",
     ];
     if (tool === "search") args.push("--query", inputs.query);
@@ -157,6 +187,7 @@ export async function callQloo(
           entities,
           at: new Date().toISOString(),
           cached: false,
+          requestAttempts: attempt + 1,
         };
         if (cache.size >= 150) cache.delete(cache.keys().next().value!);
         cache.set(key, { at: Date.now(), data });

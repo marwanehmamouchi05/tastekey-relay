@@ -70,7 +70,7 @@ describe("Personal state and verification", () => {
     expect(v.nodes.find((n) => n.id === q.options[0].id)?.status).toBe(
       "confirmed",
     );
-    expect(v.nodes.filter((n) => n.status === "rejected")).toHaveLength(2);
+    expect(v.nodes.filter((n) => n.status === "inferred")).toHaveLength(2);
     expect(nextQuestion(v)).toBeNull();
   });
   it("none of these rejects all possibilities without deleting the taste", () => {

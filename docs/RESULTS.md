@@ -1,5 +1,7 @@
 # Evaluation results — October 28, 2026
 
+October 29 addendum: [pipeline diagnosis and fresh two-list diagnostic](RECOMMENDATION_DIAGNOSIS_2026-10-29.md) record 14 real upstream attempts, zero model calls, a bounded reranker and preserved uncertainty. On new annual lists, retrieval at 12 found 1/10 held-out titles; 20 found 2/10, with no top-three gain. Both Qloo and the revised simulated-answer arm have mean Hit@3 0.5; their rankings are identical. An independent-retrieval editorial baseline has Hit@3 0.5 and recall 3/10, but contains the evaluated voters in its aggregate and has a narrower annual domain. This remains a tiny, biased retrospective proxy, not a human study or superiority evidence. The original negative experiment below is unchanged.
+
 **This experiment does not establish a recommendation-quality advantage.** Five retrospective public film ballots produced one provisional held-out match across 25 held-out films. The fixed simulated verification answer made that match rank worse. All cases, including misses, are retained.
 
 ## Public-list proxy, not human testers

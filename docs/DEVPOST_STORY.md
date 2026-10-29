@@ -34,9 +34,11 @@ Three synthetic Studio cases returned real Qloo evidence, kept allocations withi
 
 The audit corrected a duplicated evaluation calculation, a request-size guard that buffered too much data, and a widget popup that could claim success without confirmation. Our most useful lesson was to treat clarification and evidence as things to test, not reasons to assert accuracy.
 
+The October 29 follow-up replaces a global substring sort with a confirmed metadata hint bounded to one position, keeps unchosen reasons uncertain, displays Qloo release years for disambiguation, excludes already-used reference IDs from new suggestions and shares identical in-flight provider requests. A new frozen two-list diagnostic used 14 real provider attempts and no model calls. Requesting 20 instead of 12 found one more held-out title but no top-three gain, so production stays at 12. The revised simulated-answer ranking did not improve those new pools. The editorial no-Qloo baseline's same-poll contamination is disclosed. These findings support safety and correctness, not an accuracy advantage.
+
 ## What is next
 
-Genuine independent preference comparisons and business-owner judgments are the next validation. A Studio subscription is a business hypothesis, not validated pricing. Full owner-operated email registration remains unverified, although hosted sign-in and cryptographic/role fixtures work. Corporate identity federation, unique-human proof, live booking/pricing feeds, normal-browser extension activation and actual merchant installation remain explicit limits.
+Genuine independent preference comparisons and business-owner judgments are the next validation. A Studio subscription is a business hypothesis, not validated pricing. A real verified account completed login, refresh persistence, Owner team access and sign-out; fresh registration and code entry were not observed in this pass. Corporate identity federation, unique-human proof, live booking/pricing feeds, normal-browser extension activation and actual merchant installation remain explicit limits.
 
 ## Try it
 

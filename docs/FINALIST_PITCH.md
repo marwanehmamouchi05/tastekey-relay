@@ -1,5 +1,21 @@
 # Finalist presentation preparation
 
+## 60-second explanation
+
+TasteKey turns Qloo's cultural intelligence into choices people can inspect and control. Personal starts with something you like, asks an optional question, keeps guesses uncertain and lets you share selected likes for one purpose. A love of luxury design never becomes a luxury budget by default.
+
+Studio uses reviewed cultural references, a business goal and a budget to investigate a small pilot. Each idea links to real Qloo evidence, can become a saved plan, and can receive an owner-reported outcome. Optional AI helps interpret language; it cannot silently change protected facts or costs.
+
+The working integrations and privacy boundaries are tested. Our small public-list experiments do not prove better recommendations, and genuine customer validation remains next. Try both products without registration at the Quick tour.
+
+## Architecture in plain language
+
+The browser holds the personal graph and context grants. It sends only approved public entity IDs to the server. The server validates input and quotas, invokes the official Qloo harness and returns traceable cultural entities. Optional Bedrock calls receive explicit task text/evidence and pass structural validation before a reviewed change. Studio records live in SQLite, scoped to a private demo session or verified workspace membership. Cognito handles password/email sign-in; the app validates the OIDC callback and keeps its own expiring session. A non-root Docker container, Caddy HTTPS, persistent volume, consistent backups and pinned-release rollback support the public demo.
+
+## Current research answer
+
+The old global substring sort could overwhelm Qloo order. We replaced it with a complete-word metadata hint bounded to one position and stopped treating unchosen reasons as rejections. New annual-list diagnostics used 14 real provider attempts: 20 results added one held-out title but no top-three gain, so production stays at 12. The revised simulated answer did not improve those new rankings. These are safety/correctness improvements and limited retrieval observations, not demonstrated user accuracy gains. See the [diagnosis](RECOMMENDATION_DIAGNOSIS_2026-10-29.md).
+
 ## 90-second version
 
 Every new website asks us to start again: What do you like? What should we recommend? Small businesses face the same problem when choosing their next offering or event.

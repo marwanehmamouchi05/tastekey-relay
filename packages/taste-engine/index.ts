@@ -72,7 +72,18 @@ export function addPreference(
 }
 export function nextQuestion(p: Profile) {
   const uncertain = p.nodes.filter(
-    (n) => n.status === "inferred" && n.parentId,
+    (n) =>
+      n.status === "inferred" &&
+      n.parentId &&
+      p.nodes.some(
+        (parent) =>
+          parent.id === n.parentId &&
+          ["stated", "confirmed"].includes(parent.status),
+      ) &&
+      !p.nodes.some(
+        (answer) =>
+          answer.parentId === n.parentId && answer.status === "confirmed",
+      ),
   );
   const groups = new Map<string, Preference[]>();
   for (const n of uncertain)
@@ -81,7 +92,10 @@ export function nextQuestion(p: Profile) {
   const ranked = [...groups.entries()].sort((a, b) => {
     const impact = (id: string, count: number) =>
       count +
-      Object.values(p.consents).filter((c) => c?.nodeIds.includes(id)).length *
+      Object.values(p.consents).filter(
+        (c) =>
+          c && Date.parse(c.expiresAt) > Date.now() && c.nodeIds.includes(id),
+      ).length *
         2;
     return impact(b[0], b[1].length) - impact(a[0], a[1].length);
   });
@@ -99,9 +113,17 @@ export function verify(
   parentId: string,
   selected: string | null,
 ): Profile {
+  if (
+    selected !== null &&
+    !p.nodes.some(
+      (n) =>
+        n.id === selected && n.parentId === parentId && n.status === "inferred",
+    )
+  )
+    return p;
   const ev = evidence(
     selected
-      ? `Confirmed interpretation: ${p.nodes.find((n) => n.id === selected)?.label}. Alternative interpretations rejected for this reference.`
+      ? `Confirmed interpretation: ${p.nodes.find((n) => n.id === selected)?.label}. Other interpretations remain uncertain.`
       : "None of the proposed interpretations fit.",
   );
   return {
@@ -110,7 +132,12 @@ export function verify(
       n.parentId === parentId && n.status === "inferred"
         ? {
             ...n,
-            status: n.id === selected ? "confirmed" : "rejected",
+            status:
+              n.id === selected
+                ? "confirmed"
+                : selected === null
+                  ? "rejected"
+                  : "inferred",
             updatedAt: stamp(),
             evidence: [...n.evidence, ev],
           }
@@ -172,29 +199,77 @@ export function setBudget(
   };
 }
 
-/** Local, transparent tie-breaker; never treats affinity as an individual probability. */
+/** Omit exact reviewed references and duplicate IDs, without guessing that remakes are identical. */
+export function recommendationCandidates(
+  entities: Entity[],
+  referenceIds: string[],
+) {
+  const seen = new Set(referenceIds);
+  return entities.filter((entity) => {
+    if (seen.has(entity.id)) return false;
+    seen.add(entity.id);
+    return true;
+  });
+}
+const metadataWords = (value: string) =>
+  value.toLowerCase().match(/[\p{L}\p{N}]+/gu) ?? [];
+const uninformativeWords = new Set([
+  "the",
+  "and",
+  "with",
+  "this",
+  "that",
+  "like",
+  "love",
+  "for",
+  "its",
+]);
+/** A conservative text hint, not a semantic preference probability. Names are not evidence. */
+export function verifiedMetadataSupport(
+  entity: Entity,
+  preferences: Preference[],
+): number {
+  const documents = [entity.description || "", ...entity.tags].map(
+    metadataWords,
+  );
+  const answers = preferences
+    .filter((n) => n.status === "confirmed" && !n.entity)
+    .map((n) => [
+      ...new Set(
+        metadataWords(n.label).filter(
+          (w) => w.length > 3 && !uninformativeWords.has(w),
+        ),
+      ),
+    ])
+    .filter((words) => words.length);
+  // Require every informative word in the same metadata field. Nearby negation abstains.
+  return answers.some((words) =>
+    documents.some((tokens) =>
+      words.every((word) =>
+        tokens.some(
+          (token, i) =>
+            token === word &&
+            !tokens
+              .slice(Math.max(0, i - 3), i)
+              .some((t) => ["not", "no", "never", "without"].includes(t)),
+        ),
+      ),
+    ),
+  )
+    ? 1
+    : 0;
+}
+/** Preserve the provider prior: a complete confirmed metadata hint can move an item at most one position. */
 export function rankByVerifiedMetadata(
   entities: Entity[],
   preferences: Preference[],
 ): Entity[] {
-  const words = [
-    ...new Set(
-      preferences
-        .filter((n) => n.status === "confirmed")
-        .flatMap((n) => n.label.toLowerCase().split(/\W+/))
-        .filter((w) => w.length > 4),
-    ),
-  ];
   return entities
     .map((entity, index) => ({
       entity,
       index,
-      score: words.filter((w) =>
-        `${entity.name} ${entity.description || ""} ${entity.tags.join(" ")}`
-          .toLowerCase()
-          .includes(w),
-      ).length,
+      score: index - 1.1 * verifiedMetadataSupport(entity, preferences),
     }))
-    .sort((a, b) => b.score - a.score || a.index - b.index)
+    .sort((a, b) => a.score - b.score || a.index - b.index)
     .map((e) => e.entity);
 }

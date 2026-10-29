@@ -11,6 +11,11 @@ export default function JudgeTour() {
           </p>
         </div>
       </div>
+      <p className="microcopy">
+        Personal helps you find things from likes you choose to share. Studio
+        helps a business turn Qloo connections into a small, reviewable plan.
+        You stay in control of the guesses, spending limits and next steps.
+      </p>
       <section className="panel">
         <h2>Start with something you love</h2>
         <p>No account needed. Your likes stay in this browser.</p>
