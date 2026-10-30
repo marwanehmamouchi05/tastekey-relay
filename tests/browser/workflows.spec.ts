@@ -68,7 +68,8 @@ test("Personal: discovery, verification, persistence, correction, consent, delet
     .poll(() =>
       page.evaluate(
         () =>
-          JSON.parse(localStorage.getItem("tastekey.profile.v1")!).nodes.length,
+          JSON.parse(localStorage.getItem("tastekey.profile.v1") || "null")
+            ?.nodes.length,
       ),
     )
     .toBe(0);

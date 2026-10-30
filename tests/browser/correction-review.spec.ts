@@ -52,6 +52,10 @@ test("reviewing an AI budget does not silently add a new taste", async ({
       exact: true,
     }),
   ).toBeChecked();
+  await page.screenshot({
+    path: `${process.env.PLAYWRIGHT_SCREENSHOTS || "test-results"}/correction-review-synthetic.png`,
+    fullPage: true,
+  });
   await page
     .getByRole("button", { name: "Apply reviewed changes", exact: true })
     .click();

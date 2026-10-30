@@ -134,11 +134,13 @@ test("legacy mismatched identity and its reasons cannot be shared after reload",
   let p = savedReference();
   p.nodes[1].status = "confirmed";
   p.nodes[0].label = "Spirited Away";
+  // Seed before client initialization; writing after goto can race the
+  // initial empty-profile persistence effect on a slower remote page.
+  await page.addInitScript((p) => {
+    if (!localStorage.getItem("tastekey.profile.v1"))
+      localStorage.setItem("tastekey.profile.v1", JSON.stringify(p));
+  }, p);
   await page.goto("/personal/relay");
-  await page.evaluate(
-    (p) => localStorage.setItem("tastekey.profile.v1", JSON.stringify(p)),
-    p,
-  );
   await page.reload();
   await expect(
     page.getByText(/A saved name does not match its Qloo reference/),

@@ -15,6 +15,12 @@ These conservative English checks deliberately reject some valid wording. They a
 - Production build, TypeScript and changed-file formatting checks passed.
 - The live model acceptance test now also checks exact preservation of original taste IDs and labels after a budget-only correction. Production acceptance must be recorded separately after deployment.
 
+## Production findings and follow-up
+
+The first production run on commit 0b3804a completed with 26 passes, two failures and three intentional skips. One failure exposed a synthetic test setup race: seeding local storage after navigation could be overwritten by initial client persistence. The fixture now initializes storage before the app starts. The other was a real provider-contract failure: a model response omitted its explanation, so schema validation safely rejected the correction.
+
+The follow-up supplies neutral review guidance when explanatory display text is absent or null, without supplying any preference, category or amount. All correction fields still pass the independent explicit-statement checks. The model prompt now also specifies a flat response shape. Three new regression cases failed before the change and passed afterward; the complete unit suite passed 127 tests, with one intentional live-provider skip. Fresh production acceptance remains required after deploying this follow-up.
+
 ## Evidence boundaries
 
 One owner film-choice check found the first suggestions relevant but already seen; a follow-up candidate looked useful. This is one self-selected owner response, not independent customer validation, observed viewing, recommendation superiority or measured business benefit.

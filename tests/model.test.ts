@@ -40,6 +40,26 @@ function provider(output: unknown) {
     }),
   );
 }
+it.each([undefined, null])(
+  "a missing explanatory sentence does not discard a validated budget (%s)",
+  async (explanation) => {
+    provider({ budget: 60, budgetContext: "travel", explanation });
+    const proposal = await interpretCorrection(
+      "My hotel budget is $60 a night.",
+    );
+    expect(proposal.budget).toBe(60);
+    expect(proposal.explanation).toBe(
+      "Check each suggested change before applying it.",
+    );
+    expect(proposal.label).toBeUndefined();
+  },
+);
+it("missing display text never supplies an unstated budget", async () => {
+  provider({ budget: 60, budgetContext: "travel" });
+  const proposal = await interpretCorrection("I prefer affordable hotels.");
+  expect(proposal.budget).toBeUndefined();
+  expect(proposal.budgetContext).toBeUndefined();
+});
 it("does not allow the model to invent a budget from affordable aesthetics", async () => {
   provider({
     label: "Luxury architecture",
