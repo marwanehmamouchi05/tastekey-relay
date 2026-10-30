@@ -16,6 +16,11 @@ test("live model correction and evidence-grounded Studio advisor preserve protec
     .click();
   await page.getByRole("button", { name: "Add this", exact: true }).click();
   await page.goto("/personal/taste-dna");
+  const beforeNodes = await page.evaluate(() =>
+    JSON.parse(localStorage.getItem("tastekey.profile.v1")!).nodes.map(
+      (n: any) => ({ id: n.id, label: n.label }),
+    ),
+  );
   await page
     .getByPlaceholder(
       "I love luxury architecture, but choose affordable hotels. My hotel limit is $60 a night.",
@@ -47,6 +52,9 @@ test("live model correction and evidence-grounded Studio advisor preserve protec
   expect(
     profile.nodes.some((n: any) => /luxury.*architecture/i.test(n.label)),
   ).toBe(true);
+  expect(profile.nodes.map((n: any) => ({ id: n.id, label: n.label }))).toEqual(
+    beforeNodes,
+  );
   await page.screenshot({
     path: `${process.env.PLAYWRIGHT_SCREENSHOTS || "test-results"}/live-model-correction.png`,
     fullPage: true,

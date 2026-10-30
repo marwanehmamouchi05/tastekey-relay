@@ -100,9 +100,111 @@ it("accepts an explicitly stated USD hotel limit", async () => {
     (await interpretCorrection("My hotel budget is $60 a night.")).budget,
   ).toBe(60);
 });
+it.each([
+  [
+    "destination",
+    "I love luxury architecture. My hotel budget is $60 a night.",
+  ],
+  ["art", "I love architecture. My hotel budget is $60 a night."],
+  [
+    "Luxury architecture",
+    "I do not like luxury architecture. My hotel budget is $60 a night.",
+  ],
+  [
+    "Luxury architecture",
+    "Keep my luxury architecture taste. My hotel budget is $60 a night.",
+  ],
+])(
+  "withholds an unsupported preference label %s while keeping an explicit budget",
+  async (label, text) => {
+    provider({
+      label,
+      category: "design",
+      budget: 60,
+      budgetContext: "travel",
+      explanation: "Model interpretation.",
+    });
+    const proposal = await interpretCorrection(text);
+    expect(proposal.label).toBeUndefined();
+    expect(proposal.category).toBeUndefined();
+    expect(proposal.budget).toBe(60);
+  },
+);
+it("keeps a verbatim explicit positive preference without inventing a category from incomplete output", async () => {
+  provider({
+    label: "Luxury architecture",
+    explanation: "Incomplete interpretation.",
+  });
+  const proposal = await interpretCorrection("I love luxury architecture.");
+  expect(proposal.label).toBeUndefined();
+});
+it("does not attach a hotel amount to shopping when both contexts are mentioned", async () => {
+  provider({
+    budget: 60,
+    budgetContext: "shopping",
+    explanation: "Wrong spending context.",
+  });
+  expect(
+    (
+      await interpretCorrection(
+        "My shopping budget is $20 per item. My hotel limit is $60 a night.",
+      )
+    ).budget,
+  ).toBeUndefined();
+});
+it("withholds ambiguous spending amounts instead of choosing for the user", async () => {
+  provider({
+    budget: 60,
+    budgetContext: "travel",
+    explanation: "Ambiguous amount.",
+  });
+  expect(
+    (await interpretCorrection("My hotel limit is $60 or $80 a night.")).budget,
+  ).toBeUndefined();
+});
 it("rejects negative budgets and unrecognized model categories", async () => {
   provider({ budget: -60, budgetContext: "travel", explanation: "Invalid" });
   await expect(interpretCorrection("Hotels for $60")).rejects.toThrow();
+});
+it.each([
+  ["shopping", 20.5],
+  ["travel", 60],
+] as const)(
+  "keeps the explicit %s amount in separate spending clauses",
+  async (budgetContext, budget) => {
+    provider({
+      budgetContext,
+      budget,
+      explanation: "Explicit separate limits.",
+    });
+    expect(
+      (
+        await interpretCorrection(
+          "My shopping budget is $20.50 per item. My hotel limit is $60 a night.",
+        )
+      ).budget,
+    ).toBe(budget);
+  },
+);
+it("does not truncate a grouped amount into a different budget", async () => {
+  provider({
+    budgetContext: "travel",
+    budget: 1,
+    explanation: "Incorrect amount.",
+  });
+  expect(
+    (await interpretCorrection("My hotel budget is $1,500 per night.")).budget,
+  ).toBeUndefined();
+});
+it("withholds foreign-currency amounts", async () => {
+  provider({
+    budgetContext: "travel",
+    budget: 60,
+    explanation: "Wrong currency.",
+  });
+  expect(
+    (await interpretCorrection("My hotel budget is CAD $60 a night.")).budget,
+  ).toBeUndefined();
 });
 it("requires a configured provider instead of inventing a response", async () => {
   vi.stubEnv("MODEL_API_KEY", "");

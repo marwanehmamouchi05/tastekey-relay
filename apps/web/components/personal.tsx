@@ -602,9 +602,14 @@ function DNA(props: Props & { model: boolean }) {
   const node = profile.nodes.find((n) => n.id === selected);
   const [text, setText] = useState("");
   const [proposal, setProposal] = useState<any>(null);
+  const [includePreference, setIncludePreference] = useState(false);
+  const [includeBudget, setIncludeBudget] = useState(true);
   const [busy, setBusy] = useState(false);
   async function correct() {
     setBusy(true);
+    setProposal(null);
+    setIncludePreference(false);
+    setIncludeBudget(true);
     try {
       setProposal(await api("correction", { text, modelConsent: true }));
     } catch (e) {
@@ -805,7 +810,11 @@ function DNA(props: Props & { model: boolean }) {
         </div>
         <textarea
           value={text}
-          onChange={(e) => setText(e.target.value)}
+          onChange={(e) => {
+            setText(e.target.value);
+            setProposal(null);
+          }}
+          disabled={busy}
           maxLength={1500}
           placeholder="I love luxury architecture, but choose affordable hotels. My hotel limit is $60 a night."
         />
@@ -825,13 +834,49 @@ function DNA(props: Props & { model: boolean }) {
                 ? "Not specified"
                 : `${proposal.budget} USD (${proposal.budgetContext})`}
             </p>
+            <p>
+              Only checked changes will be applied. New tastes start unchecked.
+            </p>
+            {proposal.label && proposal.category && (
+              <label>
+                <input
+                  type="checkbox"
+                  checked={includePreference}
+                  onChange={(e) => setIncludePreference(e.target.checked)}
+                />
+                Add this taste: {proposal.label}
+              </label>
+            )}
+            {proposal.budgetContext && proposal.budget !== undefined && (
+              <label>
+                <input
+                  type="checkbox"
+                  checked={includeBudget}
+                  onChange={(e) => setIncludeBudget(e.target.checked)}
+                />
+                Use this budget: {proposal.budget} USD ({proposal.budgetContext}
+                )
+              </label>
+            )}
             <button
               className="primary"
+              disabled={
+                !(includePreference && proposal.label && proposal.category) &&
+                !(
+                  includeBudget &&
+                  proposal.budgetContext &&
+                  proposal.budget !== undefined
+                )
+              }
               onClick={() => {
                 let p = profile;
-                if (proposal.label && proposal.category)
+                if (includePreference && proposal.label && proposal.category)
                   p = addPreference(p, proposal.label, proposal.category);
-                if (proposal.budgetContext && proposal.budget !== undefined)
+                if (
+                  includeBudget &&
+                  proposal.budgetContext &&
+                  proposal.budget !== undefined
+                )
                   p = setBudget(p, proposal.budgetContext, proposal.budget);
                 update(p);
                 setProposal(null);
